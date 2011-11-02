@@ -100,6 +100,7 @@ public class CadastroDeUsuario extends JFrame {
 	private String caminhoImagem;
     private JLabel lblImagem = new JLabel("");
     private BufferedImage imagem_buffered;
+    private JButton btnRemover = new JButton("");
 	
 	/**
 	 * Launch the application.
@@ -136,6 +137,7 @@ public class CadastroDeUsuario extends JFrame {
 		btnLimpar.addActionListener(new Limpar());
 		btnInserirContato.setIcon(new ImageIcon(CadastroDeUsuario.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Create.png")));
 		btnInserirContato.addActionListener(new Inserir());
+		btnRemover.addActionListener(new Remover());
 
 		setTitle("Cadastro de Usu\u00E1rio");
 		setResizable(false);
@@ -446,11 +448,10 @@ public class CadastroDeUsuario extends JFrame {
 		scrollPane.setViewportView(tblContato);
 		tblContato.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
-		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(CadastroDeUsuario.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Remove.png")));
-		button.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		button.setBounds(581, 171, 35, 33);
-		pnlEndereco.add(button);
+		btnRemover.setIcon(new ImageIcon(CadastroDeUsuario.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Remove.png")));
+		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnRemover.setBounds(581, 171, 35, 33);
+		pnlEndereco.add(btnRemover);
 		
 		lblImagem.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		lblImagem.setBounds(684, 41, 160, 172);
@@ -620,8 +621,8 @@ public class CadastroDeUsuario extends JFrame {
 				    imagem_buffered = null;
 					File imagem_file = new File(fc.getSelectedFile().toString());
 					imagem_buffered = ImageIO.read( imagem_file );
-					ImageIO.write(imagem_buffered, "jpg", new File("bin/br/com/easyShop/telas/imagens/usuarioTela.jpg"));
-					lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/usuarioTela.jpg")));
+					ImageIO.write(imagem_buffered, "jpg", new File("bin/br/com/easyShop/telas/imagens/CadastroDeUsuario.jpg"));
+					lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/CadastroDeUsuario.jpg")));
 					caminhoImagem = fc.getSelectedFile().toString();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Arquivo selecionado não é uma imagem!");
@@ -660,6 +661,18 @@ public class CadastroDeUsuario extends JFrame {
 
 				modelo.addRow(new Object[]{cboContato.getSelectedItem(), txtContato.getText()});
 				txtContato.setText("");
+			}
+		}
+	}
+	
+	private class Remover implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			try {
+				modelo.removeRow(tblContato.getSelectedRow());
+				listaContatos.remove(tblContato.getSelectedRow());
+			} catch (Exception se2) {
+				// TODO: handle exception
+				JOptionPane.showMessageDialog(null, "Selecione o Contado que deseja remover da tabela.");
 			}
 		}
 	}

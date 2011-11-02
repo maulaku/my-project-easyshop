@@ -15,6 +15,7 @@ import br.com.easyShop.model.Usuario;
 import br.com.easyShop.service.UsuarioService;
 
 import javax.swing.ImageIcon;
+import javax.swing.JProgressBar;
 
 public class Login extends JFrame {
 	/**

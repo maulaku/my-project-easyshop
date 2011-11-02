@@ -1,5 +1,7 @@
 package br.com.easyShop.service;
 
+import java.util.List;
+
 import br.com.easyShop.model.Produto;
 import br.com.easyShop.persistencia.DAO.ProdutoDAO;
 
@@ -36,4 +38,8 @@ public class ProdutoService {
 		return ProdutoDAO.getCount(Produto.class);
 	}
 
+	public List<Produto> getProdutos(){
+		ProdutoDAO produtoDao = new ProdutoDAO();
+		return produtoDao.getProdutos();
+	}
 }
