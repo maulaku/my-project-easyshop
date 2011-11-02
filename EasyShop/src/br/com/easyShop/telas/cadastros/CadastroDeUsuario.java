@@ -41,7 +41,6 @@ import br.com.easyShop.model.Pais;
 import br.com.easyShop.model.Pessoa;
 import br.com.easyShop.model.PessoaFisica;
 import br.com.easyShop.model.PessoaJuridica;
-import br.com.easyShop.model.TipoContato;
 import br.com.easyShop.model.Usuario;
 import br.com.easyShop.service.CidadeService;
 import br.com.easyShop.service.ContatoService;
@@ -55,6 +54,7 @@ import br.com.easyShop.service.TipoContatoService;
 import br.com.easyShop.service.UsuarioService;
 import br.com.easyShop.telas.calendario.JDateChooser;
 import br.com.easyShop.utils.Constantes;
+import br.com.easyShop.utils.TipoContato;
 import br.com.easyShop.utils.TipoEndereco;
 
 public class CadastroDeUsuario extends JFrame {
@@ -389,7 +389,10 @@ public class CadastroDeUsuario extends JFrame {
 
 		cboContato.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		cboContato.setBounds(91, 171, 131, 26);
-		
+		cboContato.addItem(Constantes.CONTATO_TELEFONE);
+		cboContato.addItem(Constantes.CONTATO_CELULAR);
+		cboContato.addItem(Constantes.CONTATO_EMAIL);
+		cboContato.addItem(Constantes.CONTATO_FAX);
 		pnlEndereco.add(cboContato);
 
 		JLabel label_24 = new JLabel("Contato");
@@ -665,17 +668,15 @@ public class CadastroDeUsuario extends JFrame {
 			if(txtContato.getText().equals("")){
 				JOptionPane.showMessageDialog(null, "Digite primeiro o valor do Contato.");
 			}else{
-
-				TipoContato tipoContato = (TipoContato) cboContato.getSelectedItem();
-
+				
 				Contato contato = new Contato();
 				contato.setContato(txtContato.getText());
 				contato.setStatus(Constantes.STATUS_ATIVO);
-				contato.setTipoContato(tipoContato);
+				contato.setTipoContato(TipoContato.getIndexTipoEndereco(cboContato.getSelectedItem()));
 
 				listaContatos.add(contato);
 
-				modelo.addRow(new Object[]{cboContato.getSelectedItem().toString(), txtContato.getText()});
+				modelo.addRow(new Object[]{, txtContato.getText()});
 				txtContato.setText("");
 			}
 		}
@@ -712,9 +713,9 @@ public class CadastroDeUsuario extends JFrame {
 
 	private void preencherContato(){
 		TipoContatoService tipoContatoService = new TipoContatoService();
-		List<TipoContato> tiposContato = tipoContatoService.getlistaTipoContatos();
+		List<TipoContatoo> tiposContato = tipoContatoService.getlistaTipoContatos();
 
-		for(TipoContato tipoContato : tiposContato){
+		for(TipoContatoo tipoContato : tiposContato){
          	cboContato.addItem(tipoContato);
         }
 	}
