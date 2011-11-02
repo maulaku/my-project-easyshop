@@ -217,11 +217,6 @@ public class MeusDados extends JFrame {
 		btnCancelar.setBounds(663, 351, 160, 41);
 		contentPane.add(btnCancelar);
 		
-		JButton btnImagem = new JButton("Carregar Imagem");
-		btnImagem.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnImagem.setBounds(663, 164, 160, 168);
-		contentPane.add(btnImagem);
-		
 		tabbedPane.setEnabled(false);
 		tabbedPane.setBounds(10, 11, 636, 180);
 		contentPane.add(tabbedPane);
@@ -337,6 +332,10 @@ public class MeusDados extends JFrame {
 		txtNomeFantasia.setBounds(331, 39, 270, 26);
 		pnlPessoaJuridica.add(txtNomeFantasia);
 		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(663, 140, 160, 200);
+		contentPane.add(lblNewLabel);
+		
 		preencherDados();
 	}
 	
@@ -371,6 +370,9 @@ public class MeusDados extends JFrame {
 //		txtCEP.setText(usuario.getPessoa().getEnderecos().get(0).getCep());
 //		TipoEndereco tipo = new TipoEndereco(); 
 //		cboSexo.addItem(tipo.getNomeTipo(usuario.getPessoa().getEnderecos().get(0).getTipo()));
+		
+		txtUsuario.setText(usuario.getLogin());
+		txtSenha.setText(usuario.getSenha());
 
 	}
 	private class Cancelar implements ActionListener {

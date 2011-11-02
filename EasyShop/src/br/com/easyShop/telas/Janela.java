@@ -100,6 +100,7 @@ public class Janela extends JFrame implements ActionListener {
 		btnRelatorioProduto.addActionListener(new RelatorioDeProduto());
 		btnRelatorioDeMarca.addActionListener(new RelatorioDeMarca());
 		btnRelatorioDeCategoria.addActionListener(new RelatorioDeCategoria());
+		btnSair.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Turn off.png")));
 		btnSair.addActionListener(new Sair());
 		btnLogoff.addActionListener(new Logoff());
 		//btnEditarMeusDados.addActionListener(new EditarMeusDados());
