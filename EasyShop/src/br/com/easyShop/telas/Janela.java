@@ -1,27 +1,28 @@
 package br.com.easyShop.telas;
 
-
-import java.awt.EventQueue;
-
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 
 import java.awt.Frame;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Dimension;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -31,7 +32,6 @@ import br.com.easyShop.aplicacao.MainEasyShopDesktop;
 import br.com.easyShop.model.Usuario;
 import br.com.easyShop.relatorios.ExcRepositorio;
 import br.com.easyShop.relatorios.repositorioProduto;
-import br.com.easyShop.service.ProdutoService;
 import br.com.easyShop.telas.cadastros.CadastroDeCategoria;
 import br.com.easyShop.telas.cadastros.CadastroDeMarca;
 import br.com.easyShop.telas.cadastros.CadastroDeProdutos;
@@ -72,21 +72,10 @@ public class Janela extends JFrame implements ActionListener {
 	private JLabel lblRelogio = new JLabel("Rel\u00F3gio");
 	private javax.swing.Timer timer;  
 	private Usuario usuario = new Usuario();
+	private BufferedImage imagem_buffered;
 	/**
 	 * Launch the application.
 	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					Janela frame = new Janela();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
 	/**
 	 * Create the frame.
@@ -174,24 +163,35 @@ public class Janela extends JFrame implements ActionListener {
 		lblImagem.setHorizontalAlignment(SwingConstants.CENTER);
 		lblImagem.setBackground(Color.WHITE);
 		lblImagem.setBounds(53, 55, 126, 139);
+		
 		try {
-			lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/usuario"+usuario.getPkUsuario()+".jpg")));
+			
+			URL url = getClass().getResource("/br/com/easyShop/telas/imagens/usuario"+usuario.getPkUsuario()+".jpg");
+			File imagem_file = new File(url.getFile());
+			imagem_buffered = null;
+			
+			try {
+				imagem_buffered = ImageIO.read(imagem_file );
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
+
+			 BufferedImage aux = new BufferedImage(lblImagem.getSize().width, lblImagem.getSize().height, imagem_buffered.getType());//cria um buffer auxiliar com o tamanho desejado
+			 Graphics2D g = aux.createGraphics();//pega a classe graphics do aux para edicao
+			 AffineTransform at = AffineTransform.getScaleInstance((double) lblImagem.getSize().width / imagem_buffered.getWidth(), (double) lblImagem.getSize().height / imagem_buffered.getHeight());//cria a transformacao
+			 g.drawRenderedImage(imagem_buffered, at);//pinta e transforma a imagem real no auxiliar
+			
+			 lblImagem.setIcon(new ImageIcon(aux));
 			
 		} catch (Exception e) {
-			// TODO: handle exception
-			try {
-				if(usuario.getPessoa().getPessoaFisica().getSexo().equals("masculino")){
-					lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/padrao/padraoMasculino.png")));
-				}
-				else{
-					lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/padrao/padraoFeminino.png")));
-				}							
-			} catch (Exception e2) {
-				// TODO: handle exception
-				lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/padrao/padraoJuridico.png")));
+			if(usuario.getPessoa().getPessoaFisica().getSexo().equals("masculino")){
+				lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/padrao/padraoMasculino.png")));
 			}
-			
+			else{
+				lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/padrao/padraoFeminino.png")));
+			}
 		}
+
 		panel.add(lblImagem);
 		
 		btnCadastroProduto.setBounds(46, 21, 72, 67);
