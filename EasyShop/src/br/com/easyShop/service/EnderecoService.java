@@ -29,4 +29,11 @@ public class EnderecoService {
 		return enderecoDAO.getEndereco(pessoa);
 	}
 
+	public void atualizar(){
+		try {
+			EnderecoDAO.atualizar(endereco);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

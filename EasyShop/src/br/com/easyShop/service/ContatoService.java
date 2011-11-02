@@ -18,5 +18,13 @@ public class ContatoService {
 			e.printStackTrace();
 		}
 	}
+	
+	public void atualizar(){
+		try {
+			ContatoDAO.atualizar(contato);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }

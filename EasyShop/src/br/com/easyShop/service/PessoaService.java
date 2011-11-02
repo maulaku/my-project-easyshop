@@ -18,5 +18,13 @@ public class PessoaService {
 			e.printStackTrace();
 		}
 	}
+	
+	public void atulizar(){
+		try {
+			PessoaDAO.atualizar(pessoa);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }
