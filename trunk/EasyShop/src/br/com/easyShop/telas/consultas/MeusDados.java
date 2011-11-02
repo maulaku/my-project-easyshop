@@ -2,10 +2,18 @@ package br.com.easyShop.telas.consultas;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -19,7 +27,9 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+import br.com.easyShop.model.Endereco;
 import br.com.easyShop.model.Usuario;
+import br.com.easyShop.service.EnderecoService;
 import br.com.easyShop.service.UsuarioService;
 import br.com.easyShop.telas.calendario.JDateChooser;
 import br.com.easyShop.utils.TipoEndereco;
@@ -53,6 +63,12 @@ public class MeusDados extends JFrame {
 	private JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 	private JPanel pnlPessoaJuridica = new JPanel();
 	private JPanel pnlPessoaFisica = new JPanel();
+	private JComboBox cboPais; 
+	private JComboBox cboTipo;
+	private JComboBox cboEstado;
+	private JComboBox cboCidade;
+	private BufferedImage imagem_buffered;
+	private JLabel lblImagem;
 
 	/**
 	 * Launch the application.
@@ -121,7 +137,7 @@ public class MeusDados extends JFrame {
 		txtLogradouro.setBounds(133, 203, 256, 26);
 		contentPane.add(txtLogradouro);
 		
-		JComboBox cboTipo = new JComboBox();
+		cboTipo = new JComboBox();
 		cboTipo.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		cboTipo.setBounds(534, 250, 103, 26);
 		contentPane.add(cboTipo);
@@ -153,7 +169,7 @@ public class MeusDados extends JFrame {
 		txtBairro.setBounds(91, 250, 165, 26);
 		contentPane.add(txtBairro);
 		
-		JComboBox cboPais = new JComboBox();
+	    cboPais = new JComboBox();
 		cboPais.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		cboPais.setBounds(69, 299, 131, 26);
 		contentPane.add(cboPais);
@@ -163,7 +179,7 @@ public class MeusDados extends JFrame {
 		label_12.setBounds(37, 299, 42, 26);
 		contentPane.add(label_12);
 		
-		JComboBox cboEstado = new JComboBox();
+	    cboEstado = new JComboBox();
 		cboEstado.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		cboEstado.setBounds(286, 299, 130, 26);
 		contentPane.add(cboEstado);
@@ -173,7 +189,7 @@ public class MeusDados extends JFrame {
 		label_13.setBounds(229, 299, 63, 26);
 		contentPane.add(label_13);
 		
-		JComboBox cboCidade = new JComboBox();
+	    cboCidade = new JComboBox();
 		cboCidade.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		cboCidade.setBounds(485, 299, 152, 26);
 		contentPane.add(cboCidade);
@@ -332,9 +348,9 @@ public class MeusDados extends JFrame {
 		txtNomeFantasia.setBounds(331, 39, 270, 26);
 		pnlPessoaJuridica.add(txtNomeFantasia);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(663, 140, 160, 200);
-		contentPane.add(lblNewLabel);
+	    lblImagem = new JLabel("");
+		lblImagem.setBounds(663, 140, 160, 200);
+		contentPane.add(lblImagem);
 		
 		preencherDados();
 	}
@@ -348,6 +364,7 @@ public class MeusDados extends JFrame {
 				calendarDataDeNascimento.setCalendar(usuario.getPessoa().getPessoaFisica().getDataNascimento());
 				txtCPF.setText(usuario.getPessoa().getPessoaFisica().getCpf());
 				txtRG.setText(usuario.getPessoa().getPessoaFisica().getRg());
+				
 				if(usuario.getPessoa().getPessoaFisica().getSexo().equals("masculino")){
 					cboSexo.addItem("Masculino");
 				}else{
@@ -355,7 +372,6 @@ public class MeusDados extends JFrame {
 				}			
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			tabbedPane.setSelectedIndex(1);
 			txtCNPJ.setText(usuario.getPessoa().getPessoaJuridica().getCnpj());
 			txtInscricaoEstadual.setText(usuario.getPessoa().getPessoaJuridica().getInscricaoEstadual());
@@ -363,21 +379,63 @@ public class MeusDados extends JFrame {
 			txtRazaoSocial.setText(usuario.getPessoa().getPessoaJuridica().getRazaoSocial());
 		}
 		
-//		txtLogradouro.setText(usuario.getPessoa().getEnderecos().get(0).getLogradouro());
-//		txtBairro.setText(usuario.getPessoa().getEnderecos().get(0).getBairro());
-//		txtNumero.setText(usuario.getPessoa().getEnderecos().get(0).getNumero());
-//		txtComplemento.setText(usuario.getPessoa().getEnderecos().get(0).getComplemento());
-//		txtCEP.setText(usuario.getPessoa().getEnderecos().get(0).getCep());
-//		TipoEndereco tipo = new TipoEndereco(); 
-//		cboSexo.addItem(tipo.getNomeTipo(usuario.getPessoa().getEnderecos().get(0).getTipo()));
+		EnderecoService enderecoService = new EnderecoService();
+		Endereco endereco = new Endereco();
+		endereco = enderecoService.getEndereco(usuario.getPessoa());
+		
+		txtLogradouro.setText(endereco.getLogradouro());
+		txtBairro.setText(endereco.getBairro());
+		txtNumero.setText(endereco.getNumero());
+		txtComplemento.setText(endereco.getComplemento());
+		txtCEP.setText(endereco.getCep());
+		
+		cboCidade.addItem(endereco.getCidade());
+		cboEstado.addItem(endereco.getCidade().getEstado());
+		cboPais.addItem(endereco.getCidade().getEstado().getPais());
+		 
+		cboTipo.addItem(TipoEndereco.getNomeTipo(endereco.getTipo()));
 		
 		txtUsuario.setText(usuario.getLogin());
 		txtSenha.setText(usuario.getSenha());
-
+		
+		carregarImagem();
 	}
+	
 	private class Cancelar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			MeusDados.this.dispose();
+		}
+	}
+	
+	private void carregarImagem(){
+		
+    try {
+			
+			URL url = getClass().getResource("/br/com/easyShop/telas/imagens/usuario"+usuario.getPkUsuario()+".jpg");
+			File imagem_file = new File(url.getFile());
+			imagem_buffered = null;
+			
+			try {
+				imagem_buffered = ImageIO.read(imagem_file );
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
+
+			 BufferedImage aux = new BufferedImage(lblImagem.getSize().width, lblImagem.getSize().height, imagem_buffered.getType());//cria um buffer auxiliar com o tamanho desejado
+			 Graphics2D g = aux.createGraphics();//pega a classe graphics do aux para edicao
+			 AffineTransform at = AffineTransform.getScaleInstance((double) lblImagem.getSize().width / imagem_buffered.getWidth(), (double) lblImagem.getSize().height / imagem_buffered.getHeight());//cria a transformacao
+			 g.drawRenderedImage(imagem_buffered, at);//pinta e transforma a imagem real no auxiliar
+			
+			 lblImagem.setIcon(new ImageIcon(aux));
+			
+		} catch (Exception e) {
+			if(usuario.getPessoa().getPessoaFisica().getSexo().equals("masculino")){
+				lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/padrao/padraoMasculino.png")));
+			}
+			else{
+				lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/padrao/padraoFeminino.png")));
+			}
+
 		}
 	}
 }

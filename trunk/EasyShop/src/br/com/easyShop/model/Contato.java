@@ -17,8 +17,7 @@ public class Contato
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long pkContato;
-	@ManyToOne @JoinColumn(name="fkTipoContato")
-	private TipoContato tipoContato; //TIPO_CONTATO_TELEFONE, TIPO_CONTATO_EMAIL
+	private int  tipo; 
 	private String contato;
 	private int status = Constantes.STATUS_ATIVO;
 	@ManyToOne @JoinColumn(name="fkPessoa")
@@ -66,11 +65,12 @@ public class Contato
 		this.pessoa = pessoa;
 	}
 
-	public TipoContato getTipoContato() {
-		return tipoContato;
+	public int getTipo() {
+		return tipo;
 	}
 
-	public void setTipoContato(TipoContato tipoContato) {
-		this.tipoContato = tipoContato;
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
 	}
+	
 }

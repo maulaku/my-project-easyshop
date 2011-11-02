@@ -50,7 +50,6 @@ import br.com.easyShop.service.PaisService;
 import br.com.easyShop.service.PessoaFisicaService;
 import br.com.easyShop.service.PessoaJuridicaService;
 import br.com.easyShop.service.PessoaService;
-import br.com.easyShop.service.TipoContatoService;
 import br.com.easyShop.service.UsuarioService;
 import br.com.easyShop.telas.calendario.JDateChooser;
 import br.com.easyShop.utils.Constantes;
@@ -461,18 +460,9 @@ public class CadastroDeUsuario extends JFrame {
 			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				
-//				Imagem imagem = new Imagem();
-//				try {
-//					image = imagem.ReadImageAsByteArray(caminhoImagem);
-//				} catch (IOException e1) {
-//					e1.printStackTrace();
-//				}
-
 				Pessoa pessoa = new Pessoa();
 				pessoa.setStatus(Constantes.STATUS_ATIVO);
 				pessoa.setClientes(null);
-				//pessoa.setImagem(image);
 
 				if(tabbedPane.getSelectedIndex() == 0){
 					PessoaFisica pessoaFisica = new PessoaFisica();
@@ -556,13 +546,11 @@ public class CadastroDeUsuario extends JFrame {
 				try {
 					imagem_buffered = ImageIO.read( imagem_file );
 				} catch (IOException e2) {
-					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
 				try {
 					ImageIO.write(imagem_buffered, "jpg", new File("bin/br/com/easyShop/telas/imagens/usuario"+usuario.getPkUsuario()+".jpg"));
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				//*********************************************************************//
@@ -571,7 +559,6 @@ public class CadastroDeUsuario extends JFrame {
 			}
 		});
 
-		//preencherContato();
 		preencherPais();
 
 		cboPais.addActionListener(new ActionListener() {
@@ -637,7 +624,6 @@ public class CadastroDeUsuario extends JFrame {
 					lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/usuarioTela.jpg")));
 					caminhoImagem = fc.getSelectedFile().toString();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, "Arquivo selecionado não é uma imagem!");
 				}
 				//*********************************************************************//
@@ -648,10 +634,6 @@ public class CadastroDeUsuario extends JFrame {
 				 g.drawRenderedImage(imagem_buffered, at);//pinta e transforma a imagem real no auxiliar
 				
 				 lblImagem.setIcon(new ImageIcon(aux));
-				
-				//lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/usuarioTela.jpg")));
-				
-				//System.out.print(caminhoImagem);
 			}
 		}
 	}
@@ -672,11 +654,11 @@ public class CadastroDeUsuario extends JFrame {
 				Contato contato = new Contato();
 				contato.setContato(txtContato.getText());
 				contato.setStatus(Constantes.STATUS_ATIVO);
-				contato.setTipoContato(TipoContato.getIndexTipoEndereco(cboContato.getSelectedItem()));
+				contato.setTipo(TipoContato.getIndexTipoContato(cboContato.getSelectedItem().toString()));
 
 				listaContatos.add(contato);
 
-				modelo.addRow(new Object[]{, txtContato.getText()});
+				modelo.addRow(new Object[]{cboContato.getSelectedItem(), txtContato.getText()});
 				txtContato.setText("");
 			}
 		}
@@ -709,15 +691,6 @@ public class CadastroDeUsuario extends JFrame {
 				modelo.removeRow(0);
 			}
 		}
-	}
-
-	private void preencherContato(){
-		TipoContatoService tipoContatoService = new TipoContatoService();
-		List<TipoContatoo> tiposContato = tipoContatoService.getlistaTipoContatos();
-
-		for(TipoContatoo tipoContato : tiposContato){
-         	cboContato.addItem(tipoContato);
-        }
 	}
 
 	private void preencherPais(){
