@@ -188,8 +188,11 @@ public class Janela extends JFrame implements ActionListener {
 			if(usuario.getPessoa().getPessoaFisica().getSexo().equals("masculino")){
 				lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/padrao/padraoMasculino.png")));
 			}
-			else{
+			else if(usuario.getPessoa().getPessoaFisica().getSexo().equals("femino")){
 				lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/padrao/padraoFeminino.png")));
+			}
+			else{
+				lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/padrao/padraoJuridico.png")));
 			}
 		}
 

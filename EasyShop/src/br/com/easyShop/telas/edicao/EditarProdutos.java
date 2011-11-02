@@ -1,4 +1,4 @@
-package br.com.easyShop.telas.cadastros;
+package br.com.easyShop.telas.edicao;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -35,14 +35,13 @@ import br.com.easyShop.service.MarcaService;
 import br.com.easyShop.service.ProdutoService;
 import br.com.easyShop.utils.Constantes;
 
-public class CadastroDeProdutos extends JFrame {
+public class EditarProdutos extends JFrame {
 
 	/**
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel ctpCadastroProduto;
-	private JTextField txtNome;
 	private JTextField txtPreco;
 	private JTextField txtQuantidade;
 	private JTextField txtGarantia;
@@ -62,6 +61,8 @@ public class CadastroDeProdutos extends JFrame {
 	private JLabel lblImagem = new JLabel("");
 	private String caminhoImagem;
 	private JButton btnCancelar = new JButton("Cancelar");
+	private List<Produto> produtos = new ArrayList<Produto>();
+	private JComboBox cboProduto = new JComboBox();
 
 	/**
 	 * Launch the application.
@@ -70,7 +71,7 @@ public class CadastroDeProdutos extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CadastroDeProdutos frame = new CadastroDeProdutos();
+					EditarProdutos frame = new EditarProdutos();
 					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -83,10 +84,11 @@ public class CadastroDeProdutos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CadastroDeProdutos() {
-		btnCarregarImagem.setIcon(new ImageIcon(CadastroDeProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Picture.png")));
+	public EditarProdutos() {
+		btnCarregarImagem.setIcon(new ImageIcon(EditarProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Picture.png")));
 		btnCarregarImagem.addActionListener(new Abrir());
 		btnCancelar.addActionListener(new Cancelar());
+		cboProduto.addActionListener(new PreencherCampos());
 
 		setTitle("Cadastro de Produto");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -124,11 +126,6 @@ public class CadastroDeProdutos extends JFrame {
 		lblNomeDoProduto.setBounds(47, 28, 68, 26);
 		ctpCadastroProduto.add(lblNomeDoProduto);
 
-		txtNome = new JTextField();
-		txtNome.setColumns(10);
-		txtNome.setBounds(110, 31, 269, 26);
-		ctpCadastroProduto.add(txtNome);
-
 		JLabel lblMarca = new JLabel("Marca");
 		lblMarca.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblMarca.setBounds(59, 142, 56, 24);
@@ -164,19 +161,19 @@ public class CadastroDeProdutos extends JFrame {
 		txtGarantia.setBounds(451, 201, 116, 26);
 		ctpCadastroProduto.add(txtGarantia);
 
-		btnCancelar.setIcon(new ImageIcon(CadastroDeProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Close.png")));
+		btnCancelar.setIcon(new ImageIcon(EditarProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Close.png")));
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnCancelar.setBounds(595, 408, 160, 41);
 		ctpCadastroProduto.add(btnCancelar);
 
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setIcon(new ImageIcon(CadastroDeProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Save.png")));
+		btnSalvar.setIcon(new ImageIcon(EditarProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Save.png")));
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSalvar.setBounds(595, 295, 160, 41);
 		ctpCadastroProduto.add(btnSalvar);
 
 		JButton btnLimpar = new JButton("Limpar");
-		btnLimpar.setIcon(new ImageIcon(CadastroDeProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Trash.png")));
+		btnLimpar.setIcon(new ImageIcon(EditarProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Trash.png")));
 		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnLimpar.setBounds(595, 351, 160, 41);
 		ctpCadastroProduto.add(btnLimpar);
@@ -242,7 +239,7 @@ public class CadastroDeProdutos extends JFrame {
 				produto.setDescricao(textArea.getText());
 				produto.setGarantia(Integer.parseInt(txtGarantia.getText()));
 				produto.setMarca(marca);
-				produto.setNome(txtNome.getText());
+				//produto.setNome(txtNome.getText());
 				produto.setPreco(Double.parseDouble(txtPreco.getText()));
 				produto.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
 				produto.setStatus(Constantes.STATUS_ATIVO);
@@ -285,14 +282,18 @@ public class CadastroDeProdutos extends JFrame {
 		lblImagem.setBounds(595, 31, 160, 172);
 		ctpCadastroProduto.add(lblImagem);
 		
+		cboProduto.setBounds(110, 28, 246, 26);
+		ctpCadastroProduto.add(cboProduto);
+		
 		preencheComboCategoria();
 		preencherComboMarca();
+		preencheComboProdutos();
 	}
 
 	private class Abrir implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			JFileChooser fc = new JFileChooser();
-			int returnVal = fc.showOpenDialog(CadastroDeProdutos.this);
+			int returnVal = fc.showOpenDialog(EditarProdutos.this);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				fc.getSelectedFile().toString();
 				
@@ -323,7 +324,20 @@ public class CadastroDeProdutos extends JFrame {
 	
 	private class Cancelar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			CadastroDeProdutos.this.dispose();
+			EditarProdutos.this.dispose();
+		}
+	}
+	
+	private class PreencherCampos implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			Produto produto = new Produto();
+			produto = (Produto) cboProduto.getSelectedItem();
+			
+			txtCodigo.setText("" + produto.getCodigo());
+			txtGarantia.setText("" + produto.getGarantia());
+			txtPreco.setText("" + produto.getPreco());
+			txtQuantidade.setText("" + produto.getQuantidade());
+			//cboMarca.
 		}
 	}
 
@@ -333,6 +347,15 @@ public class CadastroDeProdutos extends JFrame {
 
 		 for(Categoria categoria : categorias){
 			 cboCategoria.addItem(categoria);
+         }
+	 }
+	 
+	 private void preencheComboProdutos(){
+		 ProdutoService produtoService = new ProdutoService();
+
+		 produtos = produtoService.getProdutos();
+		 for(Produto produto : produtos){
+			 cboProduto.addItem(produto);
          }
 	 }
 
@@ -348,7 +371,6 @@ public class CadastroDeProdutos extends JFrame {
 	 private void clean(){
 		 txtCodigo.setText("");
 		 txtGarantia.setText("");
-		 txtNome.setText("");
 		 txtPreco.setText("");
 		 txtQuantidade.setText("");
 		 textArea.setText("");
