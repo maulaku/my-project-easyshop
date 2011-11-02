@@ -16,7 +16,7 @@ public class TipoContato {
 		return null;
 	}
 
-	public static int getIndexTipoEndereco(String nome) {
+	public static int getIndexTipoContato(String nome) {
 
 		if (nome.equals(Constantes.CONTATO_EMAIL)) {
 			return Constantes.TIPO_CONTATO_EMAIL;
