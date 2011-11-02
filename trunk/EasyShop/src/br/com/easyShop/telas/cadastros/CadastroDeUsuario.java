@@ -3,8 +3,10 @@ package br.com.easyShop.telas.cadastros;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -99,6 +101,7 @@ public class CadastroDeUsuario extends JFrame {
 	private String caminhoImagem;
 	private byte []image;
     private JLabel lblImagem = new JLabel("");
+    private BufferedImage imagem_buffered;
 	
 	/**
 	 * Launch the application.
@@ -613,7 +616,7 @@ public class CadastroDeUsuario extends JFrame {
 				//Salvar imagem na pasta
 				
 				try {
-					BufferedImage imagem_buffered = null;
+				    imagem_buffered = null;
 					File imagem_file = new File(fc.getSelectedFile().toString());
 					imagem_buffered = ImageIO.read( imagem_file );
 					ImageIO.write(imagem_buffered, "jpg", new File("bin/br/com/easyShop/telas/imagens/usuarioTela.jpg"));
@@ -625,7 +628,14 @@ public class CadastroDeUsuario extends JFrame {
 				}
 				//*********************************************************************//
 				
+				 BufferedImage aux = new BufferedImage(lblImagem.getSize().width, lblImagem.getSize().height, imagem_buffered.getType());//cria um buffer auxiliar com o tamanho desejado
+				 Graphics2D g = aux.createGraphics();//pega a classe graphics do aux para edicao
+				 AffineTransform at = AffineTransform.getScaleInstance((double) lblImagem.getSize().width / imagem_buffered.getWidth(), (double) lblImagem.getSize().height / imagem_buffered.getHeight());//cria a transformacao
+				 g.drawRenderedImage(imagem_buffered, at);//pinta e transforma a imagem real no auxiliar
 				
+				 lblImagem.setIcon(new ImageIcon(aux));
+				
+				//lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/usuarioTela.jpg")));
 				
 				//System.out.print(caminhoImagem);
 			}
