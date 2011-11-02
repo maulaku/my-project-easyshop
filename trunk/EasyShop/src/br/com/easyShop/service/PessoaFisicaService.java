@@ -19,4 +19,12 @@ private static PessoaFisica pessoaFisica;
 		}
 	}
 	
+	public void atualizar(){
+		try {
+			PessoaFisicaDAO.atualizar(pessoaFisica);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

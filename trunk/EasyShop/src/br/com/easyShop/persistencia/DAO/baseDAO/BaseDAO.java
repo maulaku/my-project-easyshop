@@ -37,7 +37,8 @@ public class BaseDAO
 		Session session = HibernateUtil.getSession();
 		Transaction trans = session.beginTransaction();
 
-		session.update(object);
+		//session.update(object);
+		session.saveOrUpdate(object);
 
 		trans.commit();
 		session.close();
@@ -99,4 +100,5 @@ public class BaseDAO
 		List<T> objetos = obtemLista(classe, "SELECT * FROM " +classe.getSimpleName()+ " WHERE "+condicao);
 		return objetos.get(0);
 	}
+	
 }

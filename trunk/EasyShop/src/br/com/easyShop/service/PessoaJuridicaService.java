@@ -18,5 +18,13 @@ private static PessoaJuridica pessoaJuridica;
 			e.printStackTrace();
 		}
 	}
+	
+	public void atualizar(){
+		try {
+			PessoaJuridicaDAO.atualizar(pessoaJuridica);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }
