@@ -121,7 +121,7 @@ public class Login extends JFrame {
 					System.out.println("Senha Correta!");
 					setVisible(false);
 					Janela principal = new Janela(usuario);
-					
+					principal.setLocationRelativeTo(null);  
 					principal.setVisible(true);
 				}
 				else{

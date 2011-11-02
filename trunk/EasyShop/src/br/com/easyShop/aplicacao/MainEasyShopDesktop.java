@@ -25,6 +25,7 @@ public class MainEasyShopDesktop {
 //						principal.setResizable(false);  
 //						principal.setAlwaysOnTop(true);  
 //						principal.setVisible(true);
+						login.setLocationRelativeTo(null);  
 						login.setVisible(true);
 						login.setLocationRelativeTo(null);	//Coloca o Frame no meio da tela				
 					} catch (Exception e) {
