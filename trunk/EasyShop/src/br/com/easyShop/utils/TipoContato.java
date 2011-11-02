@@ -1,6 +1,6 @@
 package br.com.easyShop.utils;
 
-public class TipoContatoUtil {
+public class TipoContato {
 
 	public static String getNomeTipo(int tipo) {
 
