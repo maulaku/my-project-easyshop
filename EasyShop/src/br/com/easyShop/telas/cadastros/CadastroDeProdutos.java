@@ -229,7 +229,7 @@ public class CadastroDeProdutos extends JFrame {
 					e2.printStackTrace();
 				}
 				try {
-					ImageIO.write(imagem_buffered, "jpg", new File("bin/br/com/easyShop/telas/imagens/produto"+nextCodigo()+".jpg"));
+					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensProduto/produto"+nextCodigo()+".jpg"));
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -275,8 +275,8 @@ public class CadastroDeProdutos extends JFrame {
 				    imagem_buffered = null;
 					File imagem_file = new File(fc.getSelectedFile().toString());
 					imagem_buffered = ImageIO.read( imagem_file );
-					ImageIO.write(imagem_buffered, "jpg", new File("bin/br/com/easyShop/telas/imagens/CadastroDeProduto.jpg"));
-					lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/CadastroDeProduto.jpg")));
+					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensProduto/CadastroDeProduto.jpg"));
+					lblImagem.setIcon(new ImageIcon("Imagens/ImagensProduto/CadastroDeProduto.jpg"));
 					caminhoImagem = fc.getSelectedFile().toString();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Arquivo selecionado não é uma imagem!");

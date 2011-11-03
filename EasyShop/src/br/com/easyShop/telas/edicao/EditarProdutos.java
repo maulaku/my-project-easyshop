@@ -255,7 +255,7 @@ public class EditarProdutos extends JFrame {
 					e2.printStackTrace();
 				}
 				try {
-					ImageIO.write(imagem_buffered, "jpg", new File("bin/br/com/easyShop/telas/imagens/produto"+produto.getPkProduto()+".jpg"));
+					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensProduto/produto"+produto.getPkProduto()+".jpg"));
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -305,8 +305,8 @@ public class EditarProdutos extends JFrame {
 				    imagem_buffered = null;
 					File imagem_file = new File(fc.getSelectedFile().toString());
 					imagem_buffered = ImageIO.read( imagem_file );
-					ImageIO.write(imagem_buffered, "jpg", new File("bin/br/com/easyShop/telas/imagens/CadastroDeProduto.jpg"));
-					lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/CadastroDeProduto.jpg")));
+					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensProduto/CadastroDeProduto.jpg"));
+					lblImagem.setIcon(new ImageIcon("Imagens/ImagensProduto/CadastroDeProduto.jpg"));
 					caminhoImagem = fc.getSelectedFile().toString();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Arquivo selecionado não é uma imagem!");
@@ -344,27 +344,26 @@ public class EditarProdutos extends JFrame {
 			cboSubcategoria.setSelectedItem(produto.getCategoria().getSubCategoria().getPkCategoria()-1);
 			
 			try {
+				URL url = getClass().getResource("Imagens/ImagensProdutoproduto"+produto.getPkProduto()+".jpg");
+				File imagem_file = new File(url.getFile());
+				imagem_buffered = null;
 				
-			URL url = getClass().getResource("/br/com/easyShop/telas/imagens/produto"+produto.getPkProduto()+".jpg");
-			File imagem_file = new File(url.getFile());
-			imagem_buffered = null;
-			
-			try {
-				imagem_buffered = ImageIO.read(imagem_file );
-			} catch (IOException e2) {
-				e2.printStackTrace();
-			}
-
-			 BufferedImage aux = new BufferedImage(lblImagem.getSize().width, lblImagem.getSize().height, imagem_buffered.getType());//cria um buffer auxiliar com o tamanho desejado
-			 Graphics2D g = aux.createGraphics();//pega a classe graphics do aux para edicao
-			 AffineTransform at = AffineTransform.getScaleInstance((double) lblImagem.getSize().width / imagem_buffered.getWidth(), (double) lblImagem.getSize().height / imagem_buffered.getHeight());//cria a transformacao
-			 g.drawRenderedImage(imagem_buffered, at);//pinta e transforma a imagem real no auxiliar
-			
-			 lblImagem.setIcon(new ImageIcon(aux));
+				try {
+					imagem_buffered = ImageIO.read(imagem_file );
+				} catch (IOException e2) {
+					e2.printStackTrace();
+				}
+	
+				 BufferedImage aux = new BufferedImage(lblImagem.getSize().width, lblImagem.getSize().height, imagem_buffered.getType());//cria um buffer auxiliar com o tamanho desejado
+				 Graphics2D g = aux.createGraphics();//pega a classe graphics do aux para edicao
+				 AffineTransform at = AffineTransform.getScaleInstance((double) lblImagem.getSize().width / imagem_buffered.getWidth(), (double) lblImagem.getSize().height / imagem_buffered.getHeight());//cria a transformacao
+				 g.drawRenderedImage(imagem_buffered, at);//pinta e transforma a imagem real no auxiliar
+				
+				 lblImagem.setIcon(new ImageIcon(aux));
 			
 		    } catch (Exception e1) {
 				// TODO: handle exception
-		    	lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/padrao/padraoProduto.png")));
+		    	lblImagem.setIcon(new ImageIcon("Imagens/Padrao/padraoProduto.png"));
 			}
 			
 		}
