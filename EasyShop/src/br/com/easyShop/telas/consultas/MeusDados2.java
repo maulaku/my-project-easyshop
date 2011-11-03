@@ -561,9 +561,9 @@ public class MeusDados2 extends JFrame {
 							imagem_buffered,
 							"jpg",
 							new File(
-									"bin/br/com/easyShop/telas/imagens/usuarioTela.jpg"));
-					lblImagem.setIcon(new ImageIcon(getClass().getResource(
-							"/br/com/easyShop/telas/imagens/usuarioTela.jpg")));
+									"Imagens/ImagensUsuario/usuarioTela.jpg"));
+					lblImagem.setIcon(new ImageIcon(
+							"Imagens/ImagensUsuario/usuarioTela.jpg"));
 					caminhoImagem = fc.getSelectedFile().toString();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null,
@@ -714,7 +714,7 @@ public class MeusDados2 extends JFrame {
 
 		try {
 			URL url = getClass().getResource(
-					"/br/com/easyShop/telas/imagens/usuario"
+					"Imagens/ImagensUsuario/"
 							+ usuario.getPkUsuario() + ".jpg");
 			File imagem_file = new File(url.getFile());
 			imagem_buffered = null;
@@ -741,9 +741,9 @@ public class MeusDados2 extends JFrame {
 		} catch (Exception e) {
 			if (usuario.getPessoa().getPessoaFisica().getSexo()
 					.equals("masculino")) {
-				lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/padrao/padraoMasculino.png")));
+				lblImagem.setIcon(new ImageIcon("Imagens/ImagensUsuario/padraoMasculino.png"));
 			} else {
-				lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/padrao/padraoFeminino.png")));
+				lblImagem.setIcon(new ImageIcon("Imagens/ImagensUsuario/padraoFeminino.png"));
 			}
 		}
 	}
@@ -756,104 +756,98 @@ public class MeusDados2 extends JFrame {
 	}
 
 	@SuppressWarnings("deprecation")
-	private void salvarDados() {
-		Pessoa pessoa = new Pessoa();
-		pessoa.setStatus(Constantes.STATUS_ATIVO);
-		pessoa.setClientes(null);
+	private void salvarDados() {		
+		usuario.getPessoa().setStatus(Constantes.STATUS_ATIVO);
+		usuario.getPessoa().setClientes(null);
 
 		if (tabbedPane.getSelectedIndex() == 0) {
-			PessoaFisica pessoaFisica = new PessoaFisica();
-			pessoaFisica.setApelido(txtApelido.getText());
-			pessoaFisica.setCpf(txtCPF.getText());
-			pessoaFisica.setDataNascimento(calendarDataDeNasc.getCalendar());
-			pessoaFisica.setNome(txtUsuario.getText());
-			pessoaFisica.setRg(txtRG.getText());
-			pessoaFisica.setSexo(obtemSexo(cboSexo.getSelectedIndex()));
-			pessoaFisica.setStatus(Constantes.STATUS_ATIVO);
+			this.usuario.getPessoa().getPessoaFisica().setNome(txtUsuario.getText());
+			this.usuario.getPessoa().getPessoaFisica().setApelido(txtApelido.getText());
+			this.usuario.getPessoa().getPessoaFisica().setCpf(txtCPF.getText());
+			this.usuario.getPessoa().getPessoaFisica().setDataNascimento(calendarDataDeNasc.getCalendar());
+			this.usuario.getPessoa().getPessoaFisica().setRg(txtRG.getText());
+			this.usuario.getPessoa().getPessoaFisica().setSexo(obtemSexo(cboSexo.getSelectedIndex()));
+			this.usuario.getPessoa().getPessoaFisica().setStatus(Constantes.STATUS_ATIVO);
 
-			pessoa.setPessoaFisica(pessoaFisica);
+			//pessoa.setPessoaFisica(pessoaFisica);
 		} else {
-			PessoaJuridica pessoaJuridica = new PessoaJuridica();
-			pessoaJuridica.setCnpj(txtCNPJ.getText());
-			pessoaJuridica.setInscricaoEstadual(txtInscricaoEstadual.getText());
-			pessoaJuridica.setNomeFantasia(txtFantasia.getText());
-			pessoaJuridica.setRazaoSocial(txtRazao.getText());
-			pessoaJuridica.setStatus(Constantes.STATUS_ATIVO);
+			this.usuario.getPessoa().getPessoaJuridica().setCnpj(txtCNPJ.getText());
+			this.usuario.getPessoa().getPessoaJuridica().setInscricaoEstadual(txtInscricaoEstadual.getText());
+			this.usuario.getPessoa().getPessoaJuridica().setNomeFantasia(txtFantasia.getText());
+			this.usuario.getPessoa().getPessoaJuridica().setRazaoSocial(txtRazao.getText());
+			this.usuario.getPessoa().getPessoaJuridica().setStatus(Constantes.STATUS_ATIVO);
 
-			pessoa.setPessoaJuridica(pessoaJuridica);
+			//pessoa.setPessoaJuridica(pessoaJuridica);
 		}
 
-		pais = (Pais) cboPais.getSelectedItem();
-		estado = (Estado) cboEstado.getSelectedItem();
-		estado.setPais(pais);
-		cidade = (Cidade) cboCidade.getSelectedItem();
-		cidade.setEstado(estado);
+//		pais = (Pais) cboPais.getSelectedItem();
+//		estado = (Estado) cboEstado.getSelectedItem();
+//		estado.setPais(pais);
+//		cidade = (Cidade) cboCidade.getSelectedItem();
+//		cidade.setEstado(estado);
 
-		Endereco endereco = new Endereco();
-		endereco.setBairro(txtBairro.getText());
-		endereco.setCep(txtCEP.getText());
-		endereco.setCidade(cidade);
-		endereco.setComplemento(null);
-		endereco.setLogradouro(txtLogradouro.getText());
-		endereco.setPedidos(null);
-		endereco.setPessoa(pessoa);
-		endereco.setStatus(Constantes.STATUS_ATIVO);
-		endereco.setTipo(TipoEndereco.getIndexTipoEndereco(cboTipo
-				.getSelectedItem().toString()));
-		endereco.setComplemento(txtComplemento.getText());
-		endereco.setPkEndereco(1);
-		endereco.setNumero(txtNumero.getText());
+//		this.usuario.getPessoa().getEnderecos().get(0).setBairro(txtBairro.getText());
+//		this.usuario.getPessoa().getEnderecos().get(0).setCep(txtCEP.getText());
+//		//this.usuario.getPessoa().getEnderecos().get(0).setCidade(cidade);
+//		this.usuario.getPessoa().getEnderecos().get(0).setComplemento(txtComplemento.getText());
+		System.out.print("aAqui:     " + this.usuario.getPessoa().getEnderecos().get(0));
+//		this.usuario.getPessoa().getEnderecos().get(0).setLogradouro(txtLogradouro.getText());
+//		//this.usuario.getPessoa().getEnderecos().get(0).setPedidos(null);
+//		//this.usuario.getPessoa().getEnderecos().get(0).setPessoa(this.usuario.getPessoa());
+//		this.usuario.getPessoa().getEnderecos().get(0).setStatus(Constantes.STATUS_ATIVO);
+//		this.usuario.getPessoa().getEnderecos().get(0).setTipo(TipoEndereco.getIndexTipoEndereco(cboTipo
+//				.getSelectedItem().toString()));
+//		this.usuario.getPessoa().getEnderecos().get(0).setNumero(txtNumero.getText());
 
-		Usuario usuario = new Usuario();
-		usuario.setLogin(txtLogin.getText());
-		usuario.setPessoa(pessoa);
-		usuario.setSenha(txtPassword.getText());
-		usuario.setStatus(Constantes.STATUS_ATIVO);
-
-		if (tabbedPane.getSelectedIndex() == 0) {
-			PessoaFisicaService pessoaFisicaService = new PessoaFisicaService(
-					usuario.getPessoa().getPessoaFisica());
-			pessoaFisicaService.atualizar();
-		} else {
-			PessoaJuridicaService pessoaJuridicaService = new PessoaJuridicaService(
-					usuario.getPessoa().getPessoaJuridica());
-			pessoaJuridicaService.atualizar();
-		}
+		this.usuario.setLogin(txtLogin.getText());
+		//this.usuario.setPessoa(pessoa);
+		this.usuario.setSenha(txtPassword.getText());
+		this.usuario.setStatus(Constantes.STATUS_ATIVO);
+		
+//		if (tabbedPane.getSelectedIndex() == 0) {
+//			PessoaFisicaService pessoaFisicaService = new PessoaFisicaService(
+//					this.usuario.getPessoa().getPessoaFisica());
+//			pessoaFisicaService.atualizar();
+//		} else {
+//			PessoaJuridicaService pessoaJuridicaService = new PessoaJuridicaService(
+//					this.usuario.getPessoa().getPessoaJuridica());
+//			pessoaJuridicaService.atualizar();
+//		}
 
 		PessoaService pessoaService = new PessoaService(usuario.getPessoa());
 		pessoaService.atulizar();
 
-		for (Contato contatoAdd : listaContatos) {
-			contato = contatoAdd;
-			contato.setPessoa(pessoa);
-			ContatoService contatoService = new ContatoService(contato);
-			contatoService.atualizar();
-		}
+//		for (Contato contatoAdd : listaContatos) {
+//			contato = contatoAdd;
+//			contato.setPessoa(pessoa);
+//			ContatoService contatoService = new ContatoService(contato);
+//			contatoService.atualizar();
+//		}
 
 		UsuarioService usuarioService = new UsuarioService();
-		usuarioService.atualizar(usuario);
+		usuarioService.atualizar(this.usuario);
 
-		EnderecoService enderecoService = new EnderecoService(endereco);
-		enderecoService.atualizar();
+//		EnderecoService enderecoService = new EnderecoService(this.usuario.getPessoa().getEnderecos().get(0));
+//		enderecoService.atualizar();
 
-		// *********************************************************************//
-		// Salvar imagem na pasta
-		File imagem_file = new File(caminhoImagem);
-		BufferedImage imagem_buffered = null;
-		try {
-			imagem_buffered = ImageIO.read(imagem_file);
-		} catch (IOException e2) {
-			e2.printStackTrace();
-		}
-		try {
-			ImageIO.write(imagem_buffered, "jpg",
-					new File("bin/br/com/easyShop/telas/imagens/usuario"
-							+ usuario.getPkUsuario() + ".jpg"));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		// *********************************************************************//
-
+//		// *********************************************************************//
+//		// Salvar imagem na pasta
+//		File imagem_file = new File(caminhoImagem);
+//		BufferedImage imagem_buffered = null;
+//		try {
+//			imagem_buffered = ImageIO.read(imagem_file);
+//		} catch (IOException e2) {
+//			e2.printStackTrace();
+//		}
+//		try {
+//			ImageIO.write(imagem_buffered, "jpg",
+//					new File("bin/br/com/easyShop/telas/imagens/usuario"
+//							+ usuario.getPkUsuario() + ".jpg"));
+//		} catch (IOException e1) {
+//			e1.printStackTrace();
+//		}
+//		// *********************************************************************//
+//
 		JOptionPane.showMessageDialog(null, "Usuário inserido com sucesso!!");
 	}
 	

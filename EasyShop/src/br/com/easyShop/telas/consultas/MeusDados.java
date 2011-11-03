@@ -33,6 +33,7 @@ import br.com.easyShop.service.EnderecoService;
 import br.com.easyShop.service.UsuarioService;
 import br.com.easyShop.telas.calendario.JDateChooser;
 import br.com.easyShop.utils.TipoEndereco;
+import javax.swing.border.BevelBorder;
 
 public class MeusDados extends JFrame {
 
@@ -70,22 +71,22 @@ public class MeusDados extends JFrame {
 	private BufferedImage imagem_buffered;
 	private JLabel lblImagem;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args, final Usuario usuario) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MeusDados frame = new MeusDados(usuario);
-					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	/**
+//	 * Launch the application.
+//	 */
+//	public static void main(String[] args, final Usuario usuario) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					MeusDados frame = new MeusDados(usuario);
+//					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
@@ -349,6 +350,7 @@ public class MeusDados extends JFrame {
 		pnlPessoaJuridica.add(txtNomeFantasia);
 		
 	    lblImagem = new JLabel("");
+	    lblImagem.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		lblImagem.setBounds(663, 140, 160, 200);
 		contentPane.add(lblImagem);
 		

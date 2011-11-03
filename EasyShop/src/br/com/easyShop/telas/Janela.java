@@ -38,6 +38,8 @@ import br.com.easyShop.telas.cadastros.CadastroDeProdutos;
 import br.com.easyShop.telas.cadastros.CadastroDeUsuario;
 import br.com.easyShop.telas.cadastros.PesquisarProduto;
 import br.com.easyShop.telas.consultas.MeusDados;
+import br.com.easyShop.telas.consultas.MeusDados2;
+import br.com.easyShop.telas.edicao.EditarProdutos;
 import br.com.easyShop.telas.lancamentos.LancamentoDePermissao;
 
 import java.awt.Color;
@@ -73,6 +75,8 @@ public class Janela extends JFrame implements ActionListener {
 	private javax.swing.Timer timer;  
 	private Usuario usuario = new Usuario();
 	private BufferedImage imagem_buffered;
+	private JLabel lblEditarProduto = new JLabel("Editar Produto");
+	private JButton btnEditarProduto = new JButton("");
 	/**
 	 * Launch the application.
 	 */
@@ -105,6 +109,7 @@ public class Janela extends JFrame implements ActionListener {
 		btnLogoff.addActionListener(new Logoff());
 		//btnEditarMeusDados.addActionListener(new EditarMeusDados());
 		btnMeusDados.addActionListener(new MeusDado());
+		btnEditarProduto.addActionListener(new EditarProduto());
 
 		lblRelogio.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRelogio.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -158,7 +163,7 @@ public class Janela extends JFrame implements ActionListener {
 		label_1.setBounds(10, 11, 205, 33);
 		panel.add(label_1);
 		
-		JLabel lblImagem = new JLabel("Foto");
+		JLabel lblImagem = new JLabel("");
 		lblImagem.setPreferredSize(new Dimension(22, 22));
 		lblImagem.setMaximumSize(new Dimension(36, 35));
 		lblImagem.setHorizontalAlignment(SwingConstants.CENTER);
@@ -186,13 +191,13 @@ public class Janela extends JFrame implements ActionListener {
 			
 		} catch (Exception e) {
 			if(usuario.getPessoa().getPessoaFisica().getSexo().equals("masculino")){
-				lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/padrao/padraoMasculino.png")));
+				lblImagem.setIcon(new ImageIcon("Imagens/Padrao/padraoMasculino.png"));
 			}
 			else if(usuario.getPessoa().getPessoaFisica().getSexo().equals("femino")){
-				lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/padrao/padraoFeminino.png")));
+				lblImagem.setIcon(new ImageIcon("Imagens/Padrao/padraoFeminino.png"));
 			}
 			else{
-				lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/padrao/padraoJuridico.png")));
+				lblImagem.setIcon(new ImageIcon("Imagens/Padrao/padraoJuridico.png"));
 			}
 		}
 
@@ -270,6 +275,14 @@ public class Janela extends JFrame implements ActionListener {
 		lblRelatrioDeCategoria.setBounds(335, 85, 159, 41);
 		contentPane.add(lblRelatrioDeCategoria);
 		
+		
+		btnEditarProduto.setBounds(369, 145, 72, 67);
+		contentPane.add(btnEditarProduto);
+		
+		lblEditarProduto.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblEditarProduto.setBounds(361, 211, 112, 41);
+		contentPane.add(lblEditarProduto);
+		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/fundo_easyShop.jpg")));
 		label.setBounds(-216, -42, 1121, 593);
@@ -308,13 +321,16 @@ public class Janela extends JFrame implements ActionListener {
 	private class CadastroDeProduto implements ActionListener {
 		public void actionPerformed(ActionEvent e) {	
 			CadastroDeProdutos cadastroDeProdutos = new CadastroDeProdutos();
+			cadastroDeProdutos.setLocationRelativeTo(null);  
 			cadastroDeProdutos.setVisible(true);			
 		}
 	}
 	
 	private class MeusDado implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			MeusDados meusDados = new MeusDados(usuario);		
+			MeusDados2 meusDados = new MeusDados2(usuario);
+			meusDados.setLocationRelativeTo(null);  
+			meusDados.setAlwaysOnTop(true);  
 			meusDados.setVisible(true);			
 		}
 	}
@@ -322,6 +338,7 @@ public class Janela extends JFrame implements ActionListener {
 	private class CadastroDeUsuarios implements ActionListener {
 		public void actionPerformed(ActionEvent e) {	
 			CadastroDeUsuario cadastroDeUsuario = new CadastroDeUsuario();
+			cadastroDeUsuario.setLocationRelativeTo(null);  
 			cadastroDeUsuario.setVisible(true);			
 		}
 	}
@@ -329,6 +346,7 @@ public class Janela extends JFrame implements ActionListener {
 	private class PesquisaDeProduto implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			PesquisarProduto cadastro = new PesquisarProduto();
+			cadastro.setLocationRelativeTo(null);  
 			cadastro.setVisible(true);			
 		}
 	}
@@ -336,20 +354,23 @@ public class Janela extends JFrame implements ActionListener {
 	private class PesquisaDeCategoria implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			CadastroDeCategoria cadastro = new CadastroDeCategoria();		
+			cadastro.setLocationRelativeTo(null);  
 			cadastro.setVisible(true);			
 		}
 	}
 	
 	private class PesquisaDeMarca implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			CadastroDeMarca cadastro = new CadastroDeMarca();		
+			CadastroDeMarca cadastro = new CadastroDeMarca();
+			cadastro.setLocationRelativeTo(null);  
 			cadastro.setVisible(true);			
 		}
 	}
 	
 	private class AbrirLancamentoDePermissao implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			LancamentoDePermissao cadastro = new LancamentoDePermissao();		
+			LancamentoDePermissao cadastro = new LancamentoDePermissao();
+			cadastro.setLocationRelativeTo(null);  
 			cadastro.setVisible(true);			
 		}
 	}
@@ -402,6 +423,14 @@ public class Janela extends JFrame implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			Janela.this.dispose();
 			MainEasyShopDesktop.main(null);
+		}
+	}
+	
+	private class EditarProduto implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			EditarProdutos cadastro = new EditarProdutos();		
+			cadastro.setLocationRelativeTo(null);  
+			cadastro.setVisible(true);	
 		}
 	}
 }

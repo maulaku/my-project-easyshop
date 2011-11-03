@@ -8,7 +8,7 @@ public class PessoaService {
 	private static Pessoa pessoa;
 	
 	public PessoaService(Pessoa pessoa) {
-		PessoaService.pessoa = pessoa;
+		this.pessoa = pessoa;
 	}
 
 	public void inserirPessoa(){
@@ -21,7 +21,7 @@ public class PessoaService {
 	
 	public void atulizar(){
 		try {
-			PessoaDAO.atualizar(pessoa);
+			PessoaDAO.atualizar(this.pessoa);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

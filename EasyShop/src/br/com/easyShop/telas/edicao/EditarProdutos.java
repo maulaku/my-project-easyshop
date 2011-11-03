@@ -10,6 +10,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -332,12 +333,40 @@ public class EditarProdutos extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			Produto produto = new Produto();
 			produto = (Produto) cboProduto.getSelectedItem();
-			
+							
 			txtCodigo.setText("" + produto.getCodigo());
 			txtGarantia.setText("" + produto.getGarantia());
 			txtPreco.setText("" + produto.getPreco());
 			txtQuantidade.setText("" + produto.getQuantidade());
-			//cboMarca.
+			textArea.setText(produto.getDescricao());
+			cboMarca.setSelectedIndex(((int) produto.getMarca().getPkMarca())-1);
+			cboCategoria.setSelectedItem(produto.getCategoria().getPkCategoria()-1);
+			cboSubcategoria.setSelectedItem(produto.getCategoria().getSubCategoria().getPkCategoria()-1);
+			
+			try {
+				
+			URL url = getClass().getResource("/br/com/easyShop/telas/imagens/produto"+produto.getPkProduto()+".jpg");
+			File imagem_file = new File(url.getFile());
+			imagem_buffered = null;
+			
+			try {
+				imagem_buffered = ImageIO.read(imagem_file );
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
+
+			 BufferedImage aux = new BufferedImage(lblImagem.getSize().width, lblImagem.getSize().height, imagem_buffered.getType());//cria um buffer auxiliar com o tamanho desejado
+			 Graphics2D g = aux.createGraphics();//pega a classe graphics do aux para edicao
+			 AffineTransform at = AffineTransform.getScaleInstance((double) lblImagem.getSize().width / imagem_buffered.getWidth(), (double) lblImagem.getSize().height / imagem_buffered.getHeight());//cria a transformacao
+			 g.drawRenderedImage(imagem_buffered, at);//pinta e transforma a imagem real no auxiliar
+			
+			 lblImagem.setIcon(new ImageIcon(aux));
+			
+		    } catch (Exception e1) {
+				// TODO: handle exception
+		    	lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/padrao/padraoProduto.png")));
+			}
+			
 		}
 	}
 

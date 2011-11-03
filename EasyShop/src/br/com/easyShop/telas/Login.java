@@ -116,10 +116,7 @@ public class Login extends JFrame {
 				JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto!");
 			}
 			
-			if(usuario.getLogin().equals(getTxtUsuario())){
-				System.out.println("Usuario Correto!");
 				if(usuario.getSenha().equals(getPassSenha())){
-					System.out.println("Senha Correta!");
 					setVisible(false);
 					Janela principal = new Janela(usuario);
 					principal.setLocationRelativeTo(null);  
@@ -130,12 +127,7 @@ public class Login extends JFrame {
 					setPassSenha("");
 					JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto!");
 				}		
-			}
-			else{
-				setTxtUsuario("");
-				setPassSenha("");
-				JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto!");
-			}			
+					
 		}
 	}
 	
