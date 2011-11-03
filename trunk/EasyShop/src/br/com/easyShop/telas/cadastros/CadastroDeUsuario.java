@@ -550,7 +550,7 @@ public class CadastroDeUsuario extends JFrame {
 					e2.printStackTrace();
 				}
 				try {
-					ImageIO.write(imagem_buffered, "jpg", new File("bin/br/com/easyShop/telas/imagens/usuario"+usuario.getPkUsuario()+".jpg"));
+					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensUsuario/usuario"+usuario.getPkUsuario()+".jpg"));
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -621,8 +621,8 @@ public class CadastroDeUsuario extends JFrame {
 				    imagem_buffered = null;
 					File imagem_file = new File(fc.getSelectedFile().toString());
 					imagem_buffered = ImageIO.read( imagem_file );
-					ImageIO.write(imagem_buffered, "jpg", new File("bin/br/com/easyShop/telas/imagens/CadastroDeUsuario.jpg"));
-					lblImagem.setIcon(new ImageIcon(getClass().getResource("/br/com/easyShop/telas/imagens/CadastroDeUsuario.jpg")));
+					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/CadastroDeUsuario.jpg"));
+					lblImagem.setIcon(new ImageIcon(("Imagens/CadastroDeUsuario.jpg")));
 					caminhoImagem = fc.getSelectedFile().toString();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Arquivo selecionado não é uma imagem!");
