@@ -39,16 +39,11 @@ import br.com.easyShop.model.Endereco;
 import br.com.easyShop.model.Estado;
 import br.com.easyShop.model.Pais;
 import br.com.easyShop.model.Pessoa;
-import br.com.easyShop.model.PessoaFisica;
-import br.com.easyShop.model.PessoaJuridica;
 import br.com.easyShop.model.Usuario;
 import br.com.easyShop.service.CidadeService;
-import br.com.easyShop.service.ContatoService;
 import br.com.easyShop.service.EnderecoService;
 import br.com.easyShop.service.EstadoService;
 import br.com.easyShop.service.PaisService;
-import br.com.easyShop.service.PessoaFisicaService;
-import br.com.easyShop.service.PessoaJuridicaService;
 import br.com.easyShop.service.PessoaService;
 import br.com.easyShop.service.UsuarioService;
 import br.com.easyShop.telas.calendario.JDateChooser;
@@ -780,27 +775,31 @@ public class MeusDados2 extends JFrame {
 			//pessoa.setPessoaJuridica(pessoaJuridica);
 		}
 
-//		pais = (Pais) cboPais.getSelectedItem();
-//		estado = (Estado) cboEstado.getSelectedItem();
-//		estado.setPais(pais);
-//		cidade = (Cidade) cboCidade.getSelectedItem();
-//		cidade.setEstado(estado);
+		pais = (Pais) cboPais.getSelectedItem();
+		estado = (Estado) cboEstado.getSelectedItem();
+		estado.setPais(pais);
+		cidade = (Cidade) cboCidade.getSelectedItem();
+		cidade.setEstado(estado);
+		
+		Endereco endereco = new Endereco();
+		EnderecoService enderecoServico = new EnderecoService();
+		endereco = enderecoServico.getEndereco(this.usuario.getPessoa());
+		
+		Pessoa pessoa = new Pessoa();
+		PessoaService pessoaService = new PessoaService();
+		pessoa = pessoaService.getPessoa(usuario.getPessoa().getPessoaFisica());
+		pessoa.setPessoaFisica(usuario.getPessoa().getPessoaFisica());
 
-//		this.usuario.getPessoa().getEnderecos().get(0).setBairro(txtBairro.getText());
-//		this.usuario.getPessoa().getEnderecos().get(0).setCep(txtCEP.getText());
-//		//this.usuario.getPessoa().getEnderecos().get(0).setCidade(cidade);
-//		this.usuario.getPessoa().getEnderecos().get(0).setComplemento(txtComplemento.getText());
-		System.out.print("aAqui:     " + this.usuario.getPessoa().getEnderecos().get(0));
-//		this.usuario.getPessoa().getEnderecos().get(0).setLogradouro(txtLogradouro.getText());
-//		//this.usuario.getPessoa().getEnderecos().get(0).setPedidos(null);
-//		//this.usuario.getPessoa().getEnderecos().get(0).setPessoa(this.usuario.getPessoa());
-//		this.usuario.getPessoa().getEnderecos().get(0).setStatus(Constantes.STATUS_ATIVO);
-//		this.usuario.getPessoa().getEnderecos().get(0).setTipo(TipoEndereco.getIndexTipoEndereco(cboTipo
-//				.getSelectedItem().toString()));
-//		this.usuario.getPessoa().getEnderecos().get(0).setNumero(txtNumero.getText());
-
+		endereco.setBairro(txtBairro.getText());
+		endereco.setCep(txtCEP.getText());
+		endereco.setComplemento(txtComplemento.getText());
+		endereco.setLogradouro(txtLogradouro.getText());
+		endereco.setStatus(Constantes.STATUS_ATIVO);
+		endereco.setTipo(TipoEndereco.getIndexTipoEndereco(cboTipo
+				.getSelectedItem().toString()));
+		endereco.setNumero(txtNumero.getText());
+		
 		this.usuario.setLogin(txtLogin.getText());
-		//this.usuario.setPessoa(pessoa);
 		this.usuario.setSenha(txtPassword.getText());
 		this.usuario.setStatus(Constantes.STATUS_ATIVO);
 		
@@ -814,8 +813,7 @@ public class MeusDados2 extends JFrame {
 //			pessoaJuridicaService.atualizar();
 //		}
 
-		PessoaService pessoaService = new PessoaService(usuario.getPessoa());
-		pessoaService.atulizar();
+		pessoaService.atulizar(pessoa);
 
 //		for (Contato contatoAdd : listaContatos) {
 //			contato = contatoAdd;
@@ -827,8 +825,7 @@ public class MeusDados2 extends JFrame {
 		UsuarioService usuarioService = new UsuarioService();
 		usuarioService.atualizar(this.usuario);
 
-//		EnderecoService enderecoService = new EnderecoService(this.usuario.getPessoa().getEnderecos().get(0));
-//		enderecoService.atualizar();
+		enderecoServico.atualizar(endereco);
 
 //		// *********************************************************************//
 //		// Salvar imagem na pasta
@@ -883,7 +880,6 @@ public class MeusDados2 extends JFrame {
 		btnLimpar.setEnabled(true);
 		btnRemover.setEnabled(true);
 		btnSalvar.setEnabled(true);
-
 	}
 	
 	private void desabilitarCampos(){

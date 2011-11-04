@@ -2,6 +2,7 @@ package br.com.easyShop.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class Endereco
 	private Pessoa pessoa;
 	@ManyToOne @JoinColumn(name="fkCidade")
 	private Cidade cidade;
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany//(fetch=FetchType.LAZY)//(fetch = FetchType.LAZY )
 	private List<Pedido> pedidos;	
 	
 	public Endereco() {}

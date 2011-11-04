@@ -36,4 +36,12 @@ public class EnderecoService {
 			e.printStackTrace();
 		}
 	}
+	
+	public void atualizar(Endereco endereco){
+		try {
+			EnderecoDAO.atualizar(endereco);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
