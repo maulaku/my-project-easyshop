@@ -2,20 +2,19 @@ package br.com.easyShop.telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.JButton;
+import javax.swing.border.EmptyBorder;
 
 import br.com.easyShop.model.Usuario;
 import br.com.easyShop.service.UsuarioService;
-
-import javax.swing.ImageIcon;
-import javax.swing.JProgressBar;
 
 public class Login extends JFrame {
 	/**
@@ -71,7 +70,7 @@ public class Login extends JFrame {
 		panelLogin.add(btnCancelar);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(Login.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/fundo_easyShop.jpg")));
+		label.setIcon(new ImageIcon(Login.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/fundo_easyShop.jpg")));
 		label.setBounds(-382, -16, 1178, 578);
 		panelLogin.add(label);
 	}
@@ -119,13 +118,13 @@ public class Login extends JFrame {
 				else{
 					setTxtUsuario("");
 					setPassSenha("");
-					JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto!");
+					JOptionPane.showMessageDialog(null, "Usuï¿½rio ou senha incorreto!");
 				}
 			} catch (Exception e1) {
 				// TODO: handle exception
 				setTxtUsuario("");
 				setPassSenha("");
-				JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto!");
+				JOptionPane.showMessageDialog(null, "Usuï¿½rio ou senha incorreto!");
 			}	
 		}
 	}
