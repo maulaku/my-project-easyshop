@@ -10,4 +10,12 @@
         <channel ref="my-amf"/>
     </default-channels>
 
+	
+	<destination id="DJava">
+		<properties>
+			<source>
+				br.com.easyShop.comunicacao.JavaFlexRO
+			</source>
+		</properties>
+	</destination>
 </service>

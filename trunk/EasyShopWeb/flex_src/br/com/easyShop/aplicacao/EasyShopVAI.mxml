@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
-			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
+			   minWidth="955" minHeight="600">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			
+			var alert:Alert = null;
+			protected function mbotao1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				modulo.mreLoadModule("br/com/easyShop/telas/cadastros/cadastgro.swf");
+			}
+		]]>
+	</fx:Script>
+	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
+	
+	
 	<s:Label x="130" y="168" text="BEM VINDO"/>
+	<mxml:MModulo  id="modulo" x="291" y="89" width="339" height="203">
+	</mxml:MModulo>
+	<mxml:MBotao x="146" y="241" click="mbotao1_clickHandler(event)"/>
 </s:Application>

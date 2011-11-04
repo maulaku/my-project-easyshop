@@ -1,6 +1,6 @@
 package br.com.easyShop.model;
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,9 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Type;
+
+import utils.data.Data;
 import br.com.easyShop.utils.Constantes;
 
 @Entity
@@ -25,8 +26,8 @@ public class PessoaFisica {
 	private String apelido;
 	private String rg;
 	private String cpf;
-	@Temporal(TemporalType.DATE)
-	private Calendar dataNascimento;
+	@Type(type="timestamp")
+	private Data dataNascimento;
 	private String sexo;
 	private int status = Constantes.STATUS_ATIVO;
 	@OneToMany
@@ -54,14 +55,15 @@ public class PessoaFisica {
 		this.pkPessoaFisica = pkPessoaFisica;
 	}
 	
-	public Calendar getDataNascimento()
+	public Date getDataNascimento()
 	{
-		return dataNascimento;
+		return dataNascimento.getTime();
 	}
 
-	public void setDataNascimento(Calendar dataNascimento)
+	public void setDataNascimento(Date dataNascimento)
 	{
-		this.dataNascimento = dataNascimento;
+		Data data = new Data(dataNascimento);
+		this.dataNascimento = data;
 	}
 
 	public int getStatus()

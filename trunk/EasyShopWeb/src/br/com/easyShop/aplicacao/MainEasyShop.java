@@ -8,6 +8,11 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import br.com.easyShop.comunicacao.FlexProxy;
+import br.com.easyShop.comunicacao.JavaFlexRO;
+
+import flex.messaging.io.PropertyProxyRegistry;
+
 import logs.Logs;
 
 
@@ -18,10 +23,11 @@ public class MainEasyShop implements Servlet
 	{
 		try
 		{
-//			Configuracoes.carregar();
-//			//conecta com o banco
-//			BancoDeDados.conectar();
-			System.out.println("Conectado");
+			PropertyProxyRegistry.getRegistry().register(Object.class, new FlexProxy());
+			
+			JavaFlexRO.prePackages.add("br.com.easyShop.service");
+			
+			System.out.println("SISTEMA EASYSHOP INICIALIZADO");
 		}
 		catch(Exception e)
 		{
