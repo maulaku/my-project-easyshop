@@ -453,8 +453,8 @@ public class CadastroDeUsuario extends JFrame {
 		btnRemover.setBounds(581, 171, 35, 33);
 		pnlEndereco.add(btnRemover);
 		
-		lblImagem.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		lblImagem.setBounds(684, 41, 160, 172);
+		lblImagem.setBorder(null);
+		lblImagem.setBounds(684, 41, 160, 180);
 		pnlCadastro.add(lblImagem);
 		
 		btnSalvar.addActionListener(new ActionListener() {
@@ -530,8 +530,8 @@ public class CadastroDeUsuario extends JFrame {
 				for(Contato contatoAdd : listaContatos){
 					contato = contatoAdd;
 					contato.setPessoa(pessoa);
-					ContatoService contatoService = new ContatoService(contato);
-					contatoService.inserirContato();
+					ContatoService contatoService = new ContatoService();
+					contatoService.inserirContato(contato);
 				}
 
 				UsuarioService usuarioService = new UsuarioService();

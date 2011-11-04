@@ -38,7 +38,7 @@ import br.com.easyShop.telas.cadastros.CadastroDeProdutos;
 import br.com.easyShop.telas.cadastros.CadastroDeUsuario;
 import br.com.easyShop.telas.cadastros.PesquisarProduto;
 import br.com.easyShop.telas.consultas.MeusDados;
-import br.com.easyShop.telas.consultas.MeusDados2;
+import br.com.easyShop.telas.consultas.MeusDados;
 import br.com.easyShop.telas.edicao.EditarProdutos;
 import br.com.easyShop.telas.lancamentos.LancamentoDePermissao;
 
@@ -47,6 +47,10 @@ import javax.swing.ImageIcon;
 
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
 
 public class Janela extends JFrame implements ActionListener {
 
@@ -63,7 +67,7 @@ public class Janela extends JFrame implements ActionListener {
 	private JButton btnLancamentoDePermissao = new JButton("");
 	private JButton btnRelatorioProduto = new JButton("");
 	private JButton btnRelatorioDeMarca = new JButton("");
-	private JButton btnSair = new JButton("Sair");
+	private JButton btnSair = new JButton("   Sair");
 	private JButton btnLogoff = new JButton("Logoff");
 	private JButton btnMeusDados = new JButton("Meus Dados");
 	private JButton btnEditarMeusDados = new JButton("Editar Meus Dados");
@@ -106,6 +110,7 @@ public class Janela extends JFrame implements ActionListener {
 		btnRelatorioDeCategoria.addActionListener(new RelatorioDeCategoria());
 		btnSair.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Turn off.png")));
 		btnSair.addActionListener(new Sair());
+		btnLogoff.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/1320376266_login.png")));
 		btnLogoff.addActionListener(new Logoff());
 		//btnEditarMeusDados.addActionListener(new EditarMeusDados());
 		btnMeusDados.addActionListener(new MeusDado());
@@ -131,6 +136,7 @@ public class Janela extends JFrame implements ActionListener {
 		menuBar.add(mnIniciar);
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel.setMaximumSize(new Dimension(1032767, 1032767));
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(225, 440));
@@ -164,6 +170,7 @@ public class Janela extends JFrame implements ActionListener {
 		panel.add(label_1);
 		
 		JLabel lblImagem = new JLabel("");
+		lblImagem.setBorder(null);
 		lblImagem.setPreferredSize(new Dimension(22, 22));
 		lblImagem.setMaximumSize(new Dimension(36, 35));
 		lblImagem.setHorizontalAlignment(SwingConstants.CENTER);
@@ -172,8 +179,7 @@ public class Janela extends JFrame implements ActionListener {
 		
 		try {
 			
-			URL url = getClass().getResource("/br/com/easyShop/telas/imagens/usuario"+usuario.getPkUsuario()+".jpg");
-			File imagem_file = new File(url.getFile());
+			File imagem_file = new File("Imagens/ImagensUsuario/usuario"+ usuario.getPkUsuario() + ".jpg");
 			imagem_buffered = null;
 			
 			try {
@@ -328,7 +334,7 @@ public class Janela extends JFrame implements ActionListener {
 	
 	private class MeusDado implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			MeusDados2 meusDados = new MeusDados2(usuario);
+			MeusDados meusDados = new MeusDados(usuario);
 			meusDados.setLocationRelativeTo(null);  
 			meusDados.setAlwaysOnTop(true);  
 			meusDados.setVisible(true);			
