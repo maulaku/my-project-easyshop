@@ -566,7 +566,7 @@ public class MeusDados extends JFrame {
 					caminhoImagem = fc.getSelectedFile().toString();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null,
-							"Arquivo selecionado não é uma imagem!");
+							"Arquivo selecionado nï¿½o ï¿½ uma imagem!");
 				}
 				// *********************************************************************//
 
@@ -664,7 +664,7 @@ public class MeusDados extends JFrame {
 						.getNome());
 				txtApelido.setText(usuario.getPessoa().getPessoaFisica()
 						.getApelido());
-				calendarDataDeNasc.setCalendar(usuario.getPessoa()
+				calendarDataDeNasc.setDate(usuario.getPessoa()
 						.getPessoaFisica().getDataNascimento());
 				txtCPF.setText(usuario.getPessoa().getPessoaFisica().getCpf());
 				txtRG.setText(usuario.getPessoa().getPessoaFisica().getRg());
@@ -768,7 +768,7 @@ public class MeusDados extends JFrame {
 			this.usuario.getPessoa().getPessoaFisica().setNome(txtUsuario.getText());
 			this.usuario.getPessoa().getPessoaFisica().setApelido(txtApelido.getText());
 			this.usuario.getPessoa().getPessoaFisica().setCpf(txtCPF.getText());
-			this.usuario.getPessoa().getPessoaFisica().setDataNascimento(calendarDataDeNasc.getCalendar());
+			this.usuario.getPessoa().getPessoaFisica().setDataNascimento(calendarDataDeNasc.getDate());
 			this.usuario.getPessoa().getPessoaFisica().setRg(txtRG.getText());
 			this.usuario.getPessoa().getPessoaFisica().setSexo(obtemSexo(cboSexo.getSelectedIndex()));
 			this.usuario.getPessoa().getPessoaFisica().setStatus(Constantes.STATUS_ATIVO);
@@ -854,7 +854,7 @@ public class MeusDados extends JFrame {
 //		}
 //		// *********************************************************************//
 //
-		JOptionPane.showMessageDialog(null, "Usuário inserido com sucesso!!");
+		JOptionPane.showMessageDialog(null, "Usuï¿½rio inserido com sucesso!!");
 	}
 	
 	private void habilitarCampos(){

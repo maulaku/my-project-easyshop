@@ -469,7 +469,7 @@ public class CadastroDeUsuario extends JFrame {
 					PessoaFisica pessoaFisica = new PessoaFisica();
 					pessoaFisica.setApelido(txtApelido.getText());
 					pessoaFisica.setCpf(txtCPF.getText());
-					pessoaFisica.setDataNascimento(calendarDataDeNasc.getCalendar());
+					pessoaFisica.setDataNascimento(calendarDataDeNasc.getDate());
 					pessoaFisica.setNome(txtUsuario.getText());
 					pessoaFisica.setRg(txtRG.getText());
 					pessoaFisica.setSexo(obtemSexo(cboSexo.getSelectedIndex()));
@@ -556,7 +556,7 @@ public class CadastroDeUsuario extends JFrame {
 				}
 				//*********************************************************************//
 				
-				JOptionPane.showMessageDialog(null, "Usuário inserido com sucesso!!");
+				JOptionPane.showMessageDialog(null, "Usuï¿½rio inserido com sucesso!!");
 			}
 		});
 
@@ -625,7 +625,7 @@ public class CadastroDeUsuario extends JFrame {
 					lblImagem.setIcon(new ImageIcon(("Imagens/CadastroDeUsuario.jpg")));
 					caminhoImagem = fc.getSelectedFile().toString();
 				} catch (IOException e1) {
-					JOptionPane.showMessageDialog(null, "Arquivo selecionado não é uma imagem!");
+					JOptionPane.showMessageDialog(null, "Arquivo selecionado nï¿½o ï¿½ uma imagem!");
 				}
 				//*********************************************************************//
 				

@@ -21,6 +21,13 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  
+  <servlet>
+		<servlet-name>Main</servlet-name>
+		<servlet-class>br.com.easyShop.aplicacao.MainEasyShop</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	
   <servlet-mapping>
     <servlet-name>MessageBrokerServlet</servlet-name>
     <url-pattern>/messagebroker/*</url-pattern>

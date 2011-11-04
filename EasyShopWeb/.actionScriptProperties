@@ -16,7 +16,9 @@
   <applications>
     <application path="br/com/easyShop/aplicacao/EasyShopVAI.mxml"/>
   </applications>
-  <modules/>
+  <modules>
+    <module destPath="br/com/easyShop/telas/cadastros/cadastgro.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/cadastros/cadastgro.mxml"/>
+  </modules>
   <buildCSSFiles/>
   <flashCatalyst validateFlashCatalystCompatibility="false"/>
 </actionScriptProperties>
