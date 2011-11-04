@@ -21,6 +21,11 @@ import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
+
+import com.lowagie.text.pdf.PdfCopyFields;
+import com.lowagie.text.pdf.PdfReader;
+
+
 import relatorios.BaseJDS;
 import utils.data.Data;
 import br.com.easyShop.configuracoes.Configuracoes;
@@ -79,7 +84,7 @@ public class Relatorio
 				exporterHTML.setParameter(JRHtmlExporterParameter.JASPER_PRINT, impressaoFinal);    		   
 				exporterHTML.setParameter(JRHtmlExporterParameter.OUTPUT_STRING_BUFFER, output);  
 				exporterHTML.setParameter(JRHtmlExporterParameter.IS_USING_IMAGES_TO_ALIGN, false);  
-				exporterHTML.setParameter(JRHtmlExporterParameter.IGNORE_PAGE_MARGINS, false);
+//				exporterHTML.setParameter(JRHtmlExporterParameter.IGNORE_PAGE_MARGINS, false);
 				exporterHTML.exportReport(); 
 				return output.toString();
 			}
