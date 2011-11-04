@@ -2,6 +2,7 @@ package br.com.easyShop.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class Pessoa {
 	private PessoaJuridica pessoaJuridica;	
 	@OneToMany
 	private List<Usuario> usuarios;
-	@OneToMany(fetch = FetchType.LAZY)//(mappedBy="pkPessoa")
+	@OneToMany//(fetch = FetchType.LAZY)(mappedBy="pkPessoa")
 	private List<Endereco> enderecos;
 	@OneToMany
 	private List<Cliente> clientes;
