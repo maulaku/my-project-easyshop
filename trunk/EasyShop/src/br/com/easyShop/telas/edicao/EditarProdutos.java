@@ -279,8 +279,8 @@ public class EditarProdutos extends JFrame {
 
 		txtCodigo.setText(nextCodigo());
 		
-		lblImagem.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		lblImagem.setBounds(595, 31, 160, 172);
+		lblImagem.setBorder(null);
+		lblImagem.setBounds(595, 31, 169, 172);
 		ctpCadastroProduto.add(lblImagem);
 		
 		cboProduto.setBounds(110, 28, 246, 26);
@@ -344,14 +344,12 @@ public class EditarProdutos extends JFrame {
 			cboSubcategoria.setSelectedItem(produto.getCategoria().getSubCategoria().getPkCategoria()-1);
 			
 			try {
-				URL url = getClass().getResource("Imagens/ImagensProdutoproduto"+produto.getPkProduto()+".jpg");
-				File imagem_file = new File(url.getFile());
+				File imagem_file = new File("Imagens/ImagensProduto/produto"+ produto.getPkProduto() + ".jpg");
 				imagem_buffered = null;
 				
 				try {
 					imagem_buffered = ImageIO.read(imagem_file );
 				} catch (IOException e2) {
-					e2.printStackTrace();
 				}
 	
 				 BufferedImage aux = new BufferedImage(lblImagem.getSize().width, lblImagem.getSize().height, imagem_buffered.getType());//cria um buffer auxiliar com o tamanho desejado
