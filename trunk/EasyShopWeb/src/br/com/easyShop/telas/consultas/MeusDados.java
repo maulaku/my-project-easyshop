@@ -136,23 +136,17 @@ public class MeusDados extends JFrame {
 		pais = new Pais();
 		new Cidade();
 		btnCarregarImagem
-				.setIcon(new ImageIcon(
-						MeusDados.class
-								.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Picture.png")));
+				.setIcon(new ImageIcon(MeusDados.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Picture.png")));
 		btnCancelar
-				.setIcon(new ImageIcon(
-						MeusDados.class
-								.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Close.png")));
+				.setIcon(new ImageIcon(MeusDados.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Close.png")));
 		btnCancelar.addActionListener(new Cancelar());
 		btnLimpar
-				.setIcon(new ImageIcon(
-						MeusDados.class
-								.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Erase.png")));
+				.setIcon(new ImageIcon(MeusDados.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Trash.png")));
 		btnLimpar.addActionListener(new Limpar());
 		btnInserirContato
 				.setIcon(new ImageIcon(
 						MeusDados.class
-								.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Create.png")));
+								.getResource("/br/com/easyShop/telas/imagens/aplicacao/Create.png")));
 		btnInserirContato.addActionListener(new Inserir());
 
 		setTitle("Cadastro de Usu\u00E1rio");
@@ -300,9 +294,7 @@ public class MeusDados extends JFrame {
 
 	    btnSalvar = new JButton("Salvar");
 		btnSalvar
-				.setIcon(new ImageIcon(
-						MeusDados.class
-								.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Save.png")));
+				.setIcon(new ImageIcon(MeusDados.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Save.png")));
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSalvar.setBounds(684, 376, 160, 41);
 		pnlCadastro.add(btnSalvar);
@@ -472,7 +464,7 @@ public class MeusDados extends JFrame {
 	    btnRemover = new JButton("");
 		btnRemover.setIcon(new ImageIcon(
 				MeusDados.class
-						.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Remove.png")));
+						.getResource("/br/com/easyShop/telas/imagens/aplicacao/Remove.png")));
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnRemover.setBounds(581, 171, 35, 33);
 		pnlEndereco.add(btnRemover);
@@ -482,6 +474,7 @@ public class MeusDados extends JFrame {
 		pnlCadastro.add(lblImagem);
 		
 		btnEditar = new JButton("Editar");
+		btnEditar.setIcon(new ImageIcon(MeusDados.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/edit.png")));
 		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnEditar.setBounds(684, 324, 160, 41);
 		pnlCadastro.add(btnEditar);
@@ -836,25 +829,24 @@ public class MeusDados extends JFrame {
 
 		enderecoServico.atualizar(endereco);
 
-//		// *********************************************************************//
-//		// Salvar imagem na pasta
-//		File imagem_file = new File(caminhoImagem);
-//		BufferedImage imagem_buffered = null;
-//		try {
-//			imagem_buffered = ImageIO.read(imagem_file);
-//		} catch (IOException e2) {
-//			e2.printStackTrace();
-//		}
-//		try {
-//			ImageIO.write(imagem_buffered, "jpg",
-//					new File("bin/br/com/easyShop/telas/imagens/usuario"
-//							+ usuario.getPkUsuario() + ".jpg"));
-//		} catch (IOException e1) {
-//			e1.printStackTrace();
-//		}
-//		// *********************************************************************//
-//
-		JOptionPane.showMessageDialog(null, "Usu�rio inserido com sucesso!!");
+		// *********************************************************************//
+		// Salvar imagem na pasta
+		File imagem_file = new File(caminhoImagem);
+		BufferedImage imagem_buffered = null;
+		try {
+			imagem_buffered = ImageIO.read(imagem_file);
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
+		try {
+			ImageIO.write(imagem_buffered, "jpg",
+					new File("Imagens/ImagensUsuario/usuario"+ usuario.getPkUsuario() + ".jpg"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		// *********************************************************************//
+
+		JOptionPane.showMessageDialog(null, "Dado(s) atualizado(s) com sucesso!!");
 	}
 	
 	private void habilitarCampos(){
