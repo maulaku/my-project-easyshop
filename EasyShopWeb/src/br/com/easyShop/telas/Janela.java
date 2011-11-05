@@ -99,9 +99,9 @@ public class Janela extends JFrame implements ActionListener {
 		btnRelatorioProduto.addActionListener(new RelatorioDeProduto());
 		btnRelatorioDeMarca.addActionListener(new RelatorioDeMarca());
 		btnRelatorioDeCategoria.addActionListener(new RelatorioDeCategoria());
-		btnSair.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Turn off.png")));
+		btnSair.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Turn off.png")));
 		btnSair.addActionListener(new Sair());
-		btnLogoff.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/1320376266_login.png")));
+		btnLogoff.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/1320376266_login.png")));
 		btnLogoff.addActionListener(new Logoff());
 		//btnEditarMeusDados.addActionListener(new EditarMeusDados());
 		btnMeusDados.addActionListener(new MeusDado());
@@ -281,7 +281,7 @@ public class Janela extends JFrame implements ActionListener {
 		contentPane.add(lblEditarProduto);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/fundo_easyShop.jpg")));
+		label.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/fundo_easyShop.jpg")));
 		label.setBounds(-216, -42, 1121, 593);
 		contentPane.add(label);
 	}

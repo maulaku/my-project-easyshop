@@ -128,14 +128,14 @@ public class CadastroDeUsuario extends JFrame {
 		estado = new Estado();
 		pais = new Pais();
 		new Cidade();
-		btnCarregarImagem.setIcon(new ImageIcon(CadastroDeUsuario.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Picture.png")));
+		btnCarregarImagem.setIcon(new ImageIcon(CadastroDeUsuario.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Picture.png")));
 
 		btnCarregarImagem.addActionListener(new Abrir());
-		btnCancelar.setIcon(new ImageIcon(CadastroDeUsuario.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Close.png")));
+		btnCancelar.setIcon(new ImageIcon(CadastroDeUsuario.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Close.png")));
 		btnCancelar.addActionListener(new Cancelar());
-		btnLimpar.setIcon(new ImageIcon(CadastroDeUsuario.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Erase.png")));
+		btnLimpar.setIcon(new ImageIcon(CadastroDeUsuario.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Trash.png")));
 		btnLimpar.addActionListener(new Limpar());
-		btnInserirContato.setIcon(new ImageIcon(CadastroDeUsuario.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Create.png")));
+		btnInserirContato.setIcon(new ImageIcon(CadastroDeUsuario.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Create.png")));
 		btnInserirContato.addActionListener(new Inserir());
 		btnRemover.addActionListener(new Remover());
 
@@ -283,7 +283,7 @@ public class CadastroDeUsuario extends JFrame {
 		panel_1.add(txtFantasia);
 
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setIcon(new ImageIcon(CadastroDeUsuario.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Save.png")));
+		btnSalvar.setIcon(new ImageIcon(CadastroDeUsuario.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Save.png")));
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSalvar.setBounds(684, 328, 160, 41);
 		pnlCadastro.add(btnSalvar);
@@ -448,7 +448,7 @@ public class CadastroDeUsuario extends JFrame {
 		scrollPane.setViewportView(tblContato);
 		tblContato.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
-		btnRemover.setIcon(new ImageIcon(CadastroDeUsuario.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Remove.png")));
+		btnRemover.setIcon(new ImageIcon(CadastroDeUsuario.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Remove.png")));
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnRemover.setBounds(581, 171, 35, 33);
 		pnlEndereco.add(btnRemover);
