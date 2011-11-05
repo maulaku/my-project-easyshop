@@ -6,7 +6,7 @@ public class Constantes
 	public static final int STATUS_ATIVO=0;
 	public static final int STATUS_REMOVIDO=0;
 
-	//TIPOS DE PERMISSÃO
+	//TIPOS DE PERMISSï¿½O
 	public static final int TIPO_PERMISSAO_LEITURA=2220;
 	public static final int TIPO_PERMISSAO_LEITURA_ESCRITA=2221;
 
@@ -17,15 +17,15 @@ public class Constantes
 	public static final int TIPO_CONTATO_FAX=4023;
 
 	//CATEGORIA PAI
-	public static final int CATEGORIA_PAI=0;
+	public static final int CATEGORIA_PAI=4300;
 
-	//TIPO DE ENDEREÇOS
+	//TIPO DE ENDEREï¿½OS
 	public static final int TIPO_RESIDENCIA=3230;
 	public static final int TIPO_COMERCIAL=3231;
 	public static final int TIPO_APARTAMENTO=3232;
 
-	//TIPO DE ENDEREÇOS
-	public static final String RESIDENCIA="Residência";
+	//TIPO DE ENDEREï¿½OS
+	public static final String RESIDENCIA="Residï¿½ncia";
 	public static final String COMERCIAL="Comercial";
 	public static final String APARTAMENTO="Apartamento";
 

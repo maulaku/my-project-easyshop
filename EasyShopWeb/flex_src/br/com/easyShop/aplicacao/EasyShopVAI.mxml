@@ -2,14 +2,17 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 			   xmlns:s="library://ns.adobe.com/flex/spark"
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
-			   xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
-			   minWidth="955" minHeight="600">
+			   xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml" creationComplete="construtor()"
+			   width="1157" height="688" minWidth="955" minHeight="600" xmlns:comboLOD="br.com.easyShop.componentes.comboLOD.*">
+	
+	<!--*-*-*-* Include Scripts *-*-*-*-->
+	<fx:Script source="MainEasyShopScript.as" />
+	<fx:Script source="ImportsMain.as" />
 	
 	<fx:Script>
 		<![CDATA[
 			import mx.controls.Alert;
 			
-			var alert:Alert = null;
 			protected function mbotao1_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
@@ -23,8 +26,12 @@
 	</fx:Declarations>
 	
 	
-	<s:Label x="130" y="168" text="BEM VINDO"/>
-	<mxml:MModulo  id="modulo" x="291" y="89" width="339" height="203">
+	<mxml:MModulo  id="modulo" x="496" y="246" width="339" height="203">
 	</mxml:MModulo>
-	<mxml:MBotao x="146" y="241" click="mbotao1_clickHandler(event)"/>
+	<mxml:MBotao x="1077" y="67" click="mbotao1_clickHandler(event)"/>
+	<mxml:MPanel id="mpCategoriasSub" x="1" y="172" width="164" height="389" mreTamanhoTitulo="0">
+	</mxml:MPanel>
+	<mxml:MComboBox id="cbCategorias" x="142" y="105" width="206"/>
+	<comboLOD:MComboLOD id="cbBusca" x="356" y="106" width="677" mreLabelFunction="lfProduto" mreMinimoCaracteres="3"/>
+	<s:Label x="94" y="111" text="BUSCA:"/>
 </s:Application>
