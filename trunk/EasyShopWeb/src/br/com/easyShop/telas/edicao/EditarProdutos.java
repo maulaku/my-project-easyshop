@@ -48,7 +48,6 @@ public class EditarProdutos extends JFrame {
 	private List<Categoria> categorias = new ArrayList<Categoria>();
 	private List<Marca> marcas = new ArrayList<Marca>();
 	private CategoriaService categoriaService;
-	private JComboBox cboCategoria;
 	private JComboBox cboSubcategoria;
 	private JComboBox cboMarca;
 	private Categoria categoria;
@@ -84,101 +83,92 @@ public class EditarProdutos extends JFrame {
 	 * Create the frame.
 	 */
 	public EditarProdutos() {
-		btnCarregarImagem.setIcon(new ImageIcon(EditarProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Picture.png")));
+		btnCarregarImagem.setIcon(new ImageIcon(EditarProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Picture.png")));
 		btnCarregarImagem.addActionListener(new Abrir());
 		btnCancelar.addActionListener(new Cancelar());
 		cboProduto.addActionListener(new PreencherCampos());
 
 		setTitle("Cadastro de Produto");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 805, 519);
+		setBounds(100, 100, 813, 519);
 		ctpCadastroProduto = new JPanel();
 		ctpCadastroProduto.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(ctpCadastroProduto);
 		ctpCadastroProduto.setLayout(null);
 
-		JLabel label_1 = new JLabel("Categoria");
-		label_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		label_1.setBounds(33, 84, 82, 26);
-		ctpCadastroProduto.add(label_1);
-
-		JLabel label_2 = new JLabel("Subcategoria");
-		label_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		label_2.setBounds(298, 84, 107, 26);
-		ctpCadastroProduto.add(label_2);
+		JLabel lblCategoria = new JLabel("Categoria");
+		lblCategoria.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblCategoria.setBounds(33, 93, 107, 26);
+		ctpCadastroProduto.add(lblCategoria);
 
 		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o");
 		lblDescrio.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblDescrio.setBounds(33, 338, 74, 22);
 		ctpCadastroProduto.add(lblDescrio);
 
-	    cboCategoria = new JComboBox();
-		cboCategoria.setBounds(110, 84, 178, 26);
-		ctpCadastroProduto.add(cboCategoria);
-
 	    cboSubcategoria = new JComboBox();
-		cboSubcategoria.setBounds(404, 84, 163, 26);
+		cboSubcategoria.setBounds(124, 93, 178, 26);
 		ctpCadastroProduto.add(cboSubcategoria);
 
 		JLabel lblNomeDoProduto = new JLabel("Produto");
 		lblNomeDoProduto.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNomeDoProduto.setBounds(47, 28, 68, 26);
+		lblNomeDoProduto.setBounds(33, 31, 68, 26);
 		ctpCadastroProduto.add(lblNomeDoProduto);
 
 		JLabel lblMarca = new JLabel("Marca");
 		lblMarca.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblMarca.setBounds(59, 142, 56, 24);
+		lblMarca.setBounds(368, 93, 56, 24);
 		ctpCadastroProduto.add(lblMarca);
 
 		JLabel lblPreo = new JLabel("Pre\u00E7o Unit\u00E1rio");
 		lblPreo.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblPreo.setBounds(289, 142, 116, 25);
+		lblPreo.setBounds(33, 152, 116, 25);
 		ctpCadastroProduto.add(lblPreo);
 
 		txtPreco = new JTextField();
 		txtPreco.setColumns(10);
-		txtPreco.setBounds(404, 142, 163, 26);
+		txtPreco.setBounds(148, 152, 74, 26);
 		ctpCadastroProduto.add(txtPreco);
 
 		JLabel lblQuantidade = new JLabel("Quantidade");
 		lblQuantidade.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblQuantidade.setBounds(47, 200, 96, 27);
+		lblQuantidade.setBounds(232, 152, 96, 27);
 		ctpCadastroProduto.add(lblQuantidade);
 
 		txtQuantidade = new JTextField();
 		txtQuantidade.setColumns(10);
-		txtQuantidade.setBounds(153, 203, 135, 26);
+		txtQuantidade.setBounds(327, 154, 68, 26);
 		ctpCadastroProduto.add(txtQuantidade);
 
 		JLabel lblGarantia = new JLabel("Garantia (M\u00EAs)");
 		lblGarantia.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblGarantia.setBounds(333, 201, 124, 24);
+		lblGarantia.setBounds(405, 152, 124, 24);
 		ctpCadastroProduto.add(lblGarantia);
 
 		txtGarantia = new JTextField();
 		txtGarantia.setColumns(10);
-		txtGarantia.setBounds(451, 201, 116, 26);
+		txtGarantia.setBounds(523, 152, 74, 26);
 		ctpCadastroProduto.add(txtGarantia);
 
-		btnCancelar.setIcon(new ImageIcon(EditarProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Close.png")));
+		btnCancelar.setIcon(new ImageIcon(EditarProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Close.png")));
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnCancelar.setBounds(595, 408, 160, 41);
+		btnCancelar.setBounds(607, 408, 160, 41);
 		ctpCadastroProduto.add(btnCancelar);
 
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setIcon(new ImageIcon(EditarProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Save.png")));
+		btnSalvar.setIcon(new ImageIcon(EditarProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Save.png")));
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnSalvar.setBounds(595, 295, 160, 41);
+		btnSalvar.setBounds(607, 295, 160, 41);
 		ctpCadastroProduto.add(btnSalvar);
 
 		JButton btnLimpar = new JButton("Limpar");
-		btnLimpar.setIcon(new ImageIcon(EditarProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Trash.png")));
+		btnLimpar.setIcon(new ImageIcon(EditarProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Trash.png")));
 		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnLimpar.setBounds(595, 351, 160, 41);
+		btnLimpar.setBounds(607, 351, 160, 41);
 		ctpCadastroProduto.add(btnLimpar);
 
 		btnCarregarImagem.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnCarregarImagem.setBounds(595, 200, 169, 41);
+		btnCarregarImagem.setBounds(607, 200, 169, 41);
 		ctpCadastroProduto.add(btnCarregarImagem);
 
 		textArea = new TextArea();
@@ -186,37 +176,19 @@ public class EditarProdutos extends JFrame {
 		ctpCadastroProduto.add(textArea);
 
 	    cboMarca = new JComboBox();
-		cboMarca.setBounds(110, 144, 178, 26);
+		cboMarca.setBounds(419, 95, 178, 26);
 		ctpCadastroProduto.add(cboMarca);
 
 		JLabel lblCdigo = new JLabel("C\u00F3digo");
 		lblCdigo.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblCdigo.setBounds(389, 30, 68, 26);
+		lblCdigo.setBounds(419, 31, 68, 26);
 		ctpCadastroProduto.add(lblCdigo);
 
 		txtCodigo = new JTextField();
 		txtCodigo.setColumns(10);
-		txtCodigo.setBounds(451, 31, 116, 26);
+		txtCodigo.setBounds(481, 32, 116, 26);
 		txtCodigo.setEditable(false);
 		ctpCadastroProduto.add(txtCodigo);
-
-		cboCategoria.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-
-				categoria = (Categoria) cboCategoria.getSelectedItem();
-
-				CategoriaService categoriaService = new CategoriaService();
-				//List<Categoria> subCategorias = categoriaService.getSubCategorias(categoria);
-				List<Categoria> subCategorias = categoriaService.getCategorias();
-
-				cboSubcategoria.removeAllItems();
-
-                for(Categoria subCategoria : subCategorias){
-                	cboSubcategoria.addItem(subCategoria);
-                }
-			}
-		});
 
 		btnSalvar.addActionListener(new ActionListener() {
 			@Override
@@ -228,9 +200,9 @@ public class EditarProdutos extends JFrame {
 				subCategoria = new Categoria();
 				subCategoria = (Categoria) cboSubcategoria.getSelectedItem();
 
-				if(subCategoria == null){
-					subCategoria = (Categoria) cboCategoria.getSelectedItem();
-				}
+//				if(subCategoria == null){
+//					subCategoria = (Categoria) cboCategoria.getSelectedItem();
+//				}
 
 				Produto produto = new Produto();
 				produto.setCategoria(subCategoria);
@@ -278,10 +250,10 @@ public class EditarProdutos extends JFrame {
 		txtCodigo.setText(nextCodigo());
 		
 		lblImagem.setBorder(null);
-		lblImagem.setBounds(595, 31, 169, 172);
+		lblImagem.setBounds(607, 31, 169, 172);
 		ctpCadastroProduto.add(lblImagem);
 		
-		cboProduto.setBounds(110, 28, 246, 26);
+		cboProduto.setBounds(96, 31, 246, 26);
 		ctpCadastroProduto.add(cboProduto);
 		
 		preencheComboCategoria();
@@ -307,7 +279,7 @@ public class EditarProdutos extends JFrame {
 					lblImagem.setIcon(new ImageIcon("Imagens/ImagensProduto/CadastroDeProduto.jpg"));
 					caminhoImagem = fc.getSelectedFile().toString();
 				} catch (IOException e1) {
-					JOptionPane.showMessageDialog(null, "Arquivo selecionado não é uma imagem!");
+					JOptionPane.showMessageDialog(null, "Arquivo selecionado nï¿½o ï¿½ uma imagem!");
 				}
 				//*********************************************************************//
 				
@@ -338,7 +310,7 @@ public class EditarProdutos extends JFrame {
 			txtQuantidade.setText("" + produto.getQuantidade());
 			textArea.setText(produto.getDescricao());
 			cboMarca.setSelectedIndex(((int) produto.getMarca().getPkMarca())-1);
-			cboCategoria.setSelectedItem(produto.getCategoria().getPkCategoria()-1);
+//			cboCategoria.setSelectedItem(produto.getCategoria().getPkCategoria()-1);
 			cboSubcategoria.setSelectedItem(produto.getCategoria().getSubCategoria().getPkCategoria()-1);
 			
 			try {
@@ -365,13 +337,13 @@ public class EditarProdutos extends JFrame {
 		}
 	}
 
-	 private void preencheComboCategoria(){
+	private void preencheComboCategoria(){
 		 categoriaService = new CategoriaService();
-		 categorias = categoriaService.getAllCategorias();
+		 categorias = categoriaService.getCategorias();
 
 		 for(Categoria categoria : categorias){
-			 cboCategoria.addItem(categoria);
-         }
+			 cboSubcategoria.addItem(categoria);
+       }
 	 }
 	 
 	 private void preencheComboProdutos(){

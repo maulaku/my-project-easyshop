@@ -72,6 +72,8 @@ public class Janela extends JFrame implements ActionListener {
 	private BufferedImage imagem_buffered;
 	private JLabel lblEditarProduto = new JLabel("Editar Produto");
 	private JButton btnEditarProduto = new JButton("");
+	private JMenu mnIniciar = new JMenu("     Iniciar    ");
+	
 	/**
 	 * Launch the application.
 	 */
@@ -103,7 +105,6 @@ public class Janela extends JFrame implements ActionListener {
 		btnSair.addActionListener(new Sair());
 		btnLogoff.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/1320376266_login.png")));
 		btnLogoff.addActionListener(new Logoff());
-		//btnEditarMeusDados.addActionListener(new EditarMeusDados());
 		btnMeusDados.addActionListener(new MeusDado());
 		btnEditarProduto.addActionListener(new EditarProduto());
 
@@ -117,7 +118,6 @@ public class Janela extends JFrame implements ActionListener {
 		menuBar.setBounds(0, 521, 839, 41);
 		contentPane.add(menuBar);
 		
-		JMenu mnIniciar = new JMenu("     Iniciar    ");
 		mnIniciar.setFocusTraversalPolicyProvider(true);
 		mnIniciar.setFocusPainted(true);
 		mnIniciar.setFocusCycleRoot(true);
