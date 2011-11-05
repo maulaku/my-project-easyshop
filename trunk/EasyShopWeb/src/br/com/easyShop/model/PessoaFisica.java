@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
-import utils.data.Data;
+
 import br.com.easyShop.utils.Constantes;
 
 @Entity
@@ -27,7 +27,7 @@ public class PessoaFisica {
 	private String rg;
 	private String cpf;
 	@Type(type="timestamp")
-	private Data dataNascimento;
+	private Date dataNascimento;
 	private String sexo;
 	private int status = Constantes.STATUS_ATIVO;
 	@OneToMany
@@ -57,12 +57,14 @@ public class PessoaFisica {
 	
 	public Date getDataNascimento()
 	{
-		return dataNascimento.getTime();
+		//return dataNascimento.getTime();
+		return dataNascimento;
 	}
 
 	public void setDataNascimento(Date dataNascimento)
 	{
-		Data data = new Data(dataNascimento);
+		Date data = new Date();
+		data = dataNascimento;
 		this.dataNascimento = data;
 	}
 
