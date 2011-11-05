@@ -1,7 +1,9 @@
 package br.com.easyShop.service;
 
+import java.util.Arrays;
 import java.util.List;
 
+import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Produto;
 import br.com.easyShop.persistencia.DAO.ProdutoDAO;
 
@@ -41,5 +43,24 @@ public class ProdutoService {
 	public List<Produto> getProdutos(){
 		ProdutoDAO produtoDao = new ProdutoDAO();
 		return produtoDao.getProdutos();
+	}
+	
+	/**
+	 * Metodo que busca os produtos atraves do nome passado como parametro
+	 * @author Jean
+	 * @Aba MainEasyShop
+	 * @param nome
+	 * @return lista de produtos
+	 */
+	public ResultJava getProdutosNome(String nome)
+	{
+		try
+		{
+			return new ResultJava(new ProdutoDAO().getProdutosNome(nome));
+		} 
+		catch (Exception e)
+		{
+			return new ResultJava(false, Arrays.asList(new String[]{"Erro ão buscar produtos"}));
+		}
 	}
 }

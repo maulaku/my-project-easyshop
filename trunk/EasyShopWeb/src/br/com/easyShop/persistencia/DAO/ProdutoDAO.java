@@ -17,5 +17,14 @@ public class ProdutoDAO extends BaseDAO{
 
 		return produtos;
 	}
+	
+	public List<Produto> getProdutosNome(String nome) throws Exception 
+	{
+		String query;
+		
+		query = "SELECT * FROM produto WHERE nome like '%"+nome+"%'";
+		
+		return obtemLista(Produto.class, query);
+	}
 
 }
