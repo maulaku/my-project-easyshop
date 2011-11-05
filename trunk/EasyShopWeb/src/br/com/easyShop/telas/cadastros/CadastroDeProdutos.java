@@ -83,7 +83,7 @@ public class CadastroDeProdutos extends JFrame {
 	 * Create the frame.
 	 */
 	public CadastroDeProdutos() {
-		btnCarregarImagem.setIcon(new ImageIcon(CadastroDeProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Picture.png")));
+		btnCarregarImagem.setIcon(new ImageIcon(CadastroDeProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Picture.png")));
 		btnCarregarImagem.addActionListener(new Abrir());
 		btnCancelar.addActionListener(new Cancelar());
 
@@ -154,19 +154,19 @@ public class CadastroDeProdutos extends JFrame {
 		txtGarantia.setBounds(504, 141, 63, 26);
 		ctpCadastroProduto.add(txtGarantia);
 
-		btnCancelar.setIcon(new ImageIcon(CadastroDeProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Close.png")));
+		btnCancelar.setIcon(new ImageIcon(CadastroDeProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Close.png")));
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnCancelar.setBounds(604, 365, 160, 41);
 		ctpCadastroProduto.add(btnCancelar);
 
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setIcon(new ImageIcon(CadastroDeProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Save.png")));
+		btnSalvar.setIcon(new ImageIcon(CadastroDeProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Save.png")));
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSalvar.setBounds(604, 252, 160, 41);
 		ctpCadastroProduto.add(btnSalvar);
 
 		JButton btnLimpar = new JButton("Limpar");
-		btnLimpar.setIcon(new ImageIcon(CadastroDeProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplica\u00E7\u00E3o/Trash.png")));
+		btnLimpar.setIcon(new ImageIcon(CadastroDeProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Trash.png")));
 		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnLimpar.setBounds(604, 308, 160, 41);
 		ctpCadastroProduto.add(btnLimpar);
@@ -279,7 +279,7 @@ public class CadastroDeProdutos extends JFrame {
 					lblImagem.setIcon(new ImageIcon("Imagens/ImagensProduto/CadastroDeProduto.jpg"));
 					caminhoImagem = fc.getSelectedFile().toString();
 				} catch (IOException e1) {
-					JOptionPane.showMessageDialog(null, "Arquivo selecionado não é uma imagem!");
+					JOptionPane.showMessageDialog(null, "Arquivo selecionado nï¿½o ï¿½ uma imagem!");
 				}
 				//*********************************************************************//
 				
