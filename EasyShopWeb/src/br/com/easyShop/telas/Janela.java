@@ -42,6 +42,8 @@ import br.com.easyShop.telas.consultas.MeusDados;
 import br.com.easyShop.telas.consultas.PesquisarProduto;
 import br.com.easyShop.telas.edicao.EditarProdutos;
 import br.com.easyShop.telas.lancamentos.LancamentoDePermissao;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Janela extends JFrame implements ActionListener {
 
@@ -73,6 +75,7 @@ public class Janela extends JFrame implements ActionListener {
 	private JLabel lblEditarProduto = new JLabel("Editar Produto");
 	private JButton btnEditarProduto = new JButton("");
 	private JMenu mnIniciar = new JMenu("     Iniciar    ");
+	private JLabel lblImagem = new JLabel("");
 	
 	/**
 	 * Launch the application.
@@ -107,6 +110,13 @@ public class Janela extends JFrame implements ActionListener {
 		btnLogoff.addActionListener(new Logoff());
 		btnMeusDados.addActionListener(new MeusDado());
 		btnEditarProduto.addActionListener(new EditarProduto());
+		mnIniciar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				preencherImagem();
+			}
+		});
+		
 
 		lblRelogio.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRelogio.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -160,7 +170,6 @@ public class Janela extends JFrame implements ActionListener {
 		label_1.setBounds(10, 11, 205, 33);
 		panel.add(label_1);
 		
-		JLabel lblImagem = new JLabel("");
 		lblImagem.setBorder(null);
 		lblImagem.setPreferredSize(new Dimension(22, 22));
 		lblImagem.setMaximumSize(new Dimension(36, 35));
@@ -168,8 +177,7 @@ public class Janela extends JFrame implements ActionListener {
 		lblImagem.setBackground(Color.WHITE);
 		lblImagem.setBounds(53, 55, 126, 139);
 		
-		try {
-			
+		try {			
 			File imagem_file = new File("Imagens/ImagensUsuario/usuario"+ usuario.getPkUsuario() + ".jpg");
 			imagem_buffered = null;
 			
@@ -428,6 +436,37 @@ public class Janela extends JFrame implements ActionListener {
 			EditarProdutos cadastro = new EditarProdutos();		
 			cadastro.setLocationRelativeTo(null);  
 			cadastro.setVisible(true);	
+		}
+	}
+	
+	public void preencherImagem(){
+		try {			
+			File imagem_file = new File("Imagens/ImagensUsuario/usuario"+ usuario.getPkUsuario() + ".jpg");
+			imagem_buffered = null;
+			
+			try {
+				imagem_buffered = ImageIO.read(imagem_file );
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
+
+			 BufferedImage aux = new BufferedImage(lblImagem.getSize().width, lblImagem.getSize().height, imagem_buffered.getType());//cria um buffer auxiliar com o tamanho desejado
+			 Graphics2D g = aux.createGraphics();//pega a classe graphics do aux para edicao
+			 AffineTransform at = AffineTransform.getScaleInstance((double) lblImagem.getSize().width / imagem_buffered.getWidth(), (double) lblImagem.getSize().height / imagem_buffered.getHeight());//cria a transformacao
+			 g.drawRenderedImage(imagem_buffered, at);//pinta e transforma a imagem real no auxiliar
+			
+			 lblImagem.setIcon(new ImageIcon(aux));
+			
+		} catch (Exception e) {
+			if(usuario.getPessoa().getPessoaFisica().getSexo().equals("masculino")){
+				lblImagem.setIcon(new ImageIcon("Imagens/Padrao/padraoMasculino.png"));
+			}
+			else if(usuario.getPessoa().getPessoaFisica().getSexo().equals("femino")){
+				lblImagem.setIcon(new ImageIcon("Imagens/Padrao/padraoFeminino.png"));
+			}
+			else{
+				lblImagem.setIcon(new ImageIcon("Imagens/Padrao/padraoJuridico.png"));
+			}
 		}
 	}
 }

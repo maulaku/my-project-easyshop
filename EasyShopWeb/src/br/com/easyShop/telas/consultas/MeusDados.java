@@ -103,7 +103,7 @@ public class MeusDados extends JFrame {
 	private Usuario usuario = new Usuario();
 	private JTabbedPane tabbedPane;
 	private JButton btnEditar;
-	private JButton btnRemover;
+	private JButton btnRemover = new JButton("");
 	private JButton btnSalvar;
 
 	/**
@@ -132,6 +132,9 @@ public class MeusDados extends JFrame {
 		
 		this.usuario = usuario;
 
+		btnInserirContato.addActionListener(new Inserir());
+		btnRemover.addActionListener(new Remover());
+		
 		estado = new Estado();
 		pais = new Pais();
 		new Cidade();
@@ -147,7 +150,6 @@ public class MeusDados extends JFrame {
 				.setIcon(new ImageIcon(
 						MeusDados.class
 								.getResource("/br/com/easyShop/telas/imagens/aplicacao/Create.png")));
-		btnInserirContato.addActionListener(new Inserir());
 
 		setTitle("Cadastro de Usu\u00E1rio");
 		setResizable(false);
@@ -461,7 +463,6 @@ public class MeusDados extends JFrame {
 		tblContato.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null,
 				null, null));
 
-	    btnRemover = new JButton("");
 		btnRemover.setIcon(new ImageIcon(
 				MeusDados.class
 						.getResource("/br/com/easyShop/telas/imagens/aplicacao/Remove.png")));
@@ -829,22 +830,25 @@ public class MeusDados extends JFrame {
 
 		enderecoServico.atualizar(endereco);
 
-		// *********************************************************************//
-		// Salvar imagem na pasta
-		File imagem_file = new File(caminhoImagem);
-		BufferedImage imagem_buffered = null;
-		try {
-			imagem_buffered = ImageIO.read(imagem_file);
-		} catch (IOException e2) {
-			e2.printStackTrace();
+		try{
+			// *********************************************************************//
+			// Salvar imagem na pasta
+			File imagem_file = new File(caminhoImagem);
+			BufferedImage imagem_buffered = null;
+			try {
+				imagem_buffered = ImageIO.read(imagem_file);
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
+			try {
+				ImageIO.write(imagem_buffered, "jpg",
+						new File("Imagens/ImagensUsuario/usuario"+ usuario.getPkUsuario() + ".jpg"));
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			// *********************************************************************//
+		}catch (Exception e) {
 		}
-		try {
-			ImageIO.write(imagem_buffered, "jpg",
-					new File("Imagens/ImagensUsuario/usuario"+ usuario.getPkUsuario() + ".jpg"));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		// *********************************************************************//
 
 		JOptionPane.showMessageDialog(null, "Dado(s) atualizado(s) com sucesso!!");
 	}
@@ -915,5 +919,17 @@ public class MeusDados extends JFrame {
 		btnLimpar.setEnabled(false);
 		btnRemover.setEnabled(false);
 		btnSalvar.setEnabled(false);
+	}
+	
+	private class Remover implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			try {
+				modelo.removeRow(tblContato.getSelectedRow());
+				listaContatos.remove(tblContato.getSelectedRow());
+			} catch (Exception se2) {
+				// TODO: handle exception
+				JOptionPane.showMessageDialog(null, "Selecione o Contado que deseja remover da tabela.");
+			}
+		}
 	}
 }
