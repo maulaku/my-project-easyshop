@@ -215,21 +215,24 @@ public class EditarProdutos extends JFrame {
 				produto.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
 				produto.setStatus(Constantes.STATUS_ATIVO);
 
-				//*********************************************************************//
-				//Salvar imagem na pasta
-				File imagem_file = new File(caminhoImagem);
-				BufferedImage imagem_buffered = null;
-				try {
-					imagem_buffered = ImageIO.read( imagem_file );
-				} catch (IOException e2) {
-					e2.printStackTrace();
+				try{
+					//*********************************************************************//
+					//Salvar imagem na pasta
+					File imagem_file = new File(caminhoImagem);
+					BufferedImage imagem_buffered = null;
+					try {
+						imagem_buffered = ImageIO.read( imagem_file );
+					} catch (IOException e2) {
+						e2.printStackTrace();
+					}
+					try {
+						ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensProduto/produto"+produto.getPkProduto()+".jpg"));
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+					//*********************************************************************//
+				}catch (Exception e1) {
 				}
-				try {
-					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensProduto/produto"+produto.getPkProduto()+".jpg"));
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				//*********************************************************************//
 				
 				ProdutoService produtoService = new ProdutoService(produto);
 			    produtoService.inserirProduto();
@@ -311,7 +314,16 @@ public class EditarProdutos extends JFrame {
 			textArea.setText(produto.getDescricao());
 			cboMarca.setSelectedIndex(((int) produto.getMarca().getPkMarca())-1);
 //			cboCategoria.setSelectedItem(produto.getCategoria().getPkCategoria()-1);
-			cboSubcategoria.setSelectedItem(produto.getCategoria().getSubCategoria().getPkCategoria()-1);
+			
+			int qtd = cboSubcategoria.getItemCount(), i;
+			Categoria categoria = new Categoria();
+			for(i=0; i<qtd; i++){
+				categoria = (Categoria) cboSubcategoria.getItemAt(i);
+				if(produto.getCategoria().getPkCategoria() == categoria.getPkCategoria()){
+					cboSubcategoria.setSelectedIndex(i);
+					break;
+				}
+			}			
 			
 			try {
 				File imagem_file = new File("Imagens/ImagensProduto/produto"+ produto.getPkProduto() + ".jpg");
