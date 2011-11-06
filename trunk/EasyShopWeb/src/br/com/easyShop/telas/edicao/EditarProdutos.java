@@ -88,7 +88,7 @@ public class EditarProdutos extends JFrame {
 		btnCancelar.addActionListener(new Cancelar());
 		cboProduto.addActionListener(new PreencherCampos());
 
-		setTitle("Cadastro de Produto");
+		setTitle("Editar Produto");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 813, 519);
 		ctpCadastroProduto = new JPanel();

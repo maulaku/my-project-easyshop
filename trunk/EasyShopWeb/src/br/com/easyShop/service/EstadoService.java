@@ -12,5 +12,10 @@ public class EstadoService {
 		EstadoDAO estadoDao = new EstadoDAO();
 		return estadoDao.getEstados(pais);
 	}
+	
+	public static Estado getEstado(String nome){
+		EstadoDAO estadoDao = new EstadoDAO();
+		return estadoDao.getEstado(nome);
+	}
 
 }

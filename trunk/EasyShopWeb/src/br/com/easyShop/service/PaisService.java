@@ -15,5 +15,10 @@ public class PaisService {
 		
 		return paises;
 	}
+	
+	public static Pais getPais(String nome){
+		PaisDAO paisDao = new PaisDAO();
+		return paisDao.getPais(nome);
+	}
 
 }
