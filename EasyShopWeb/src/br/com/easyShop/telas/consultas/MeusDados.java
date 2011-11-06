@@ -830,7 +830,7 @@ public class MeusDados extends JFrame {
 
 		enderecoServico.atualizar(endereco);
 
-		try{
+		try{ 
 			// *********************************************************************//
 			// Salvar imagem na pasta
 			File imagem_file = new File(caminhoImagem);
