@@ -1,8 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		  xmlns:s="library://ns.adobe.com/flex/spark" 
-		  xmlns:mx="library://ns.adobe.com/flex/mx" width="756" height="530">
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"
+		  xmlns:s="library://ns.adobe.com/flex/spark"
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
+		  xmlns:tabela="br.com.mresolucoes.renders.tabela.*"
+		  xmlns:cadastros="br.com.easyShop.telas.cadastros.*"
+		  width="756" height="530">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
+	<mxml:MPanel x="49" y="27" width="678" height="475">
+		<tabela:MRGridRadio x="68" y="27" width="21" height="23">
+		</tabela:MRGridRadio>
+		<mxml:MPanel x="28" y="66" width="620" height="377" title="Dados pessoasis">
+			<s:Label x="11" y="12" text="Nome*"/>
+			<mxml:MCaixaTexto x="57" y="5" width="362"/>
+			<s:Label x="11" y="46" text="Apelido"/>
+			<s:Label x="13" y="77" text="Data de Nascimento"/>
+			<s:Label x="12" y="107" text="Sexo"/>
+			<s:Label x="13" y="136" text="RG"/>
+			<s:Label x="12" y="169" text="CPF"/>
+			<s:Label x="10" y="202" text="Contato"/>
+			<mxml:MCampoData x="135" y="70" width="184"/>
+			<mxml:MComboBox x="47" y="101" width="161"/>
+			<mxml:MCaixaTexto x="65" y="40" width="354"/>
+			<mxml:MCaixaTexto x="47" y="132" width="161"/>
+			<mxml:MCaixaTexto x="47" y="162" width="161"/>
+			<mxml:MComboBox x="62" y="192"/>
+			<mxml:MCaixaTexto x="216" y="193" width="203"/>
+			<mxml:MTabela x="61" y="223" width="353" height="94"/>
+		</mxml:MPanel>
+		<s:Label x="94" y="35" text="Pessoa Fisica"/>
+	</mxml:MPanel>
 </s:Module>
