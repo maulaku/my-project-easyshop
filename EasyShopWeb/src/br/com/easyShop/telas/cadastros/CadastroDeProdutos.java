@@ -47,12 +47,11 @@ public class CadastroDeProdutos extends JFrame {
 	private JTextField txtQuantidade;
 	private JTextField txtGarantia;
 	private static JButton btnCarregarImagem = new JButton("Carregar Imagem");
-	private List<Categoria> categorias = new ArrayList<Categoria>();
+	private List<Categoria> categoriasPaisSolteiros = new ArrayList<Categoria>();
 	private List<Marca> marcas = new ArrayList<Marca>();
 	private CategoriaService categoriaService;
 	private JComboBox cboSubcategoria;
 	private JComboBox cboMarca;
-	private Categoria categoria;
 	private Categoria subCategoria;
 	private JTextField txtCodigo;
 	private Marca marca;
@@ -61,6 +60,7 @@ public class CadastroDeProdutos extends JFrame {
 	private JLabel lblImagem = new JLabel("");
 	private String caminhoImagem;
 	private JButton btnCancelar = new JButton("Cancelar");
+	 
 
 	/**
 	 * Launch the application.
@@ -204,10 +204,6 @@ public class CadastroDeProdutos extends JFrame {
 				subCategoria = new Categoria();
 				subCategoria = (Categoria) cboSubcategoria.getSelectedItem();
 
-//				if(subCategoria == null){
-//					subCategoria = (Categoria) cboCategoria.getSelectedItem();
-//				}
-
 				Produto produto = new Produto();
 				produto.setCategoria(subCategoria);
 				produto.setCodigo(txtCodigo.getText());
@@ -301,11 +297,11 @@ public class CadastroDeProdutos extends JFrame {
 
 	 private void preencheComboCategoria(){
 		 categoriaService = new CategoriaService();
-		 categorias = categoriaService.getCategorias();
+		 categoriasPaisSolteiros = categoriaService.getPaisSolteiros();
 
-		 for(Categoria categoria : categorias){
+		 for(Categoria categoria : categoriasPaisSolteiros){
 			 cboSubcategoria.addItem(categoria);
-        }
+         } 		 
 	 }
 
 	 private void preencherComboMarca(){
