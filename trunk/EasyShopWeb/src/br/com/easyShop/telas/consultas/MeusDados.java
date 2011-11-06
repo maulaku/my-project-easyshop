@@ -91,6 +91,7 @@ public class MeusDados extends JFrame {
 	private Estado estado;
 	private Cidade cidade;
 	private List<Contato> listaContatos = new ArrayList<Contato>();
+	private List<Contato> listaContatosRemovidos = new ArrayList<Contato>();
 	private Contato contato = new Contato();
 	private JTextField txtRazao;
 	private JTextField txtFantasia;
@@ -607,8 +608,8 @@ public class MeusDados extends JFrame {
 						.getSelectedItem().toString()));
 
 				listaContatos.add(contato);
-				modelo.addRow(new Object[] { cboContato.getSelectedItem(),
-						txtContato.getText() });
+				modelo.addRow(new Object[] { TipoContato.getNomeTipo(contato.getTipo()),
+						contato.getContato() });
 				txtContato.setText("");
 			}
 		}
@@ -617,8 +618,12 @@ public class MeusDados extends JFrame {
 	private class Remover implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			try {
+				Contato ct = new Contato();
 				modelo.removeRow(tblContato.getSelectedRow());
 				listaContatos.remove(tblContato.getSelectedRow());
+				
+//				ct = tblContato.get
+//				listaContatosRemovidos.addItem(tblContato.getSelectedRow());
 			} catch (Exception se2) {
 				JOptionPane.showMessageDialog(null,
 						"Selecione o Contado que deseja remover da tabela.");
