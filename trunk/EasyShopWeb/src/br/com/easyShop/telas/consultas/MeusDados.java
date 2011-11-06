@@ -9,7 +9,6 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +31,6 @@ import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-
-import com.mysql.jdbc.Util;
 
 import br.com.easyShop.model.Cidade;
 import br.com.easyShop.model.Contato;
@@ -103,8 +100,9 @@ public class MeusDados extends JFrame {
 	private Usuario usuario = new Usuario();
 	private JTabbedPane tabbedPane;
 	private JButton btnEditar;
-	private JButton btnRemover = new JButton("");
+	private JButton btnRemover;
 	private JButton btnSalvar;
+	private String tipoEndereco;
 
 	/**
 	 * Launch the application.
@@ -129,29 +127,33 @@ public class MeusDados extends JFrame {
 	 */
 
 	public MeusDados(Usuario usuario) {
-		
+
 		this.usuario = usuario;
 
-		btnInserirContato.addActionListener(new Inserir());
-		btnRemover.addActionListener(new Remover());
-		
 		estado = new Estado();
 		pais = new Pais();
 		new Cidade();
 		btnCarregarImagem
-				.setIcon(new ImageIcon(MeusDados.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Picture.png")));
+				.setIcon(new ImageIcon(
+						MeusDados.class
+								.getResource("/br/com/easyShop/telas/imagens/aplicacao/Picture.png")));
 		btnCancelar
-				.setIcon(new ImageIcon(MeusDados.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Close.png")));
+				.setIcon(new ImageIcon(
+						MeusDados.class
+								.getResource("/br/com/easyShop/telas/imagens/aplicacao/Close.png")));
 		btnCancelar.addActionListener(new Cancelar());
 		btnLimpar
-				.setIcon(new ImageIcon(MeusDados.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Trash.png")));
+				.setIcon(new ImageIcon(
+						MeusDados.class
+								.getResource("/br/com/easyShop/telas/imagens/aplicacao/Trash.png")));
 		btnLimpar.addActionListener(new Limpar());
 		btnInserirContato
 				.setIcon(new ImageIcon(
 						MeusDados.class
 								.getResource("/br/com/easyShop/telas/imagens/aplicacao/Create.png")));
+		btnInserirContato.addActionListener(new Inserir());
 
-		setTitle("Cadastro de Usu\u00E1rio");
+		setTitle("Meus Dados");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 881, 642);
@@ -294,9 +296,11 @@ public class MeusDados extends JFrame {
 		txtFantasia.setBounds(331, 39, 270, 26);
 		panel_1.add(txtFantasia);
 
-	    btnSalvar = new JButton("Salvar");
+		btnSalvar = new JButton("Salvar");
 		btnSalvar
-				.setIcon(new ImageIcon(MeusDados.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Save.png")));
+				.setIcon(new ImageIcon(
+						MeusDados.class
+								.getResource("/br/com/easyShop/telas/imagens/aplicacao/Save.png")));
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSalvar.setBounds(684, 376, 160, 41);
 		pnlCadastro.add(btnSalvar);
@@ -344,9 +348,6 @@ public class MeusDados extends JFrame {
 		cboTipo.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		cboTipo.setBounds(523, 72, 103, 26);
 		pnlEndereco.add(cboTipo);
-		cboTipo.addItem(Constantes.RESIDENCIA);
-		cboTipo.addItem(Constantes.COMERCIAL);
-		cboTipo.addItem(Constantes.APARTAMENTO);
 
 		JLabel label_18 = new JLabel("Tipo");
 		label_18.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -404,11 +405,11 @@ public class MeusDados extends JFrame {
 
 		cboContato.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		cboContato.setBounds(91, 171, 131, 26);
+		pnlEndereco.add(cboContato);
 		cboContato.addItem(Constantes.CONTATO_TELEFONE);
 		cboContato.addItem(Constantes.CONTATO_CELULAR);
 		cboContato.addItem(Constantes.CONTATO_EMAIL);
 		cboContato.addItem(Constantes.CONTATO_FAX);
-		pnlEndereco.add(cboContato);
 
 		JLabel label_24 = new JLabel("Contato");
 		label_24.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -463,9 +464,11 @@ public class MeusDados extends JFrame {
 		tblContato.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null,
 				null, null));
 
-		btnRemover.setIcon(new ImageIcon(
-				MeusDados.class
-						.getResource("/br/com/easyShop/telas/imagens/aplicacao/Remove.png")));
+		btnRemover = new JButton("");
+		btnRemover
+				.setIcon(new ImageIcon(
+						MeusDados.class
+								.getResource("/br/com/easyShop/telas/imagens/aplicacao/Remove.png")));
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnRemover.setBounds(581, 171, 35, 33);
 		pnlEndereco.add(btnRemover);
@@ -473,9 +476,12 @@ public class MeusDados extends JFrame {
 		lblImagem.setBorder(null);
 		lblImagem.setBounds(684, 41, 160, 180);
 		pnlCadastro.add(lblImagem);
-		
+
 		btnEditar = new JButton("Editar");
-		btnEditar.setIcon(new ImageIcon(MeusDados.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/edit.png")));
+		btnEditar
+				.setIcon(new ImageIcon(
+						MeusDados.class
+								.getResource("/br/com/easyShop/telas/imagens/aplicacao/edit.png")));
 		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnEditar.setBounds(684, 324, 160, 41);
 		pnlCadastro.add(btnEditar);
@@ -485,9 +491,9 @@ public class MeusDados extends JFrame {
 
 		btnSalvar.addActionListener(new SalvarListener());
 		btnCarregarImagem.addActionListener(new Abrir());
-		cboPais.addActionListener(new PaisListener());
-		cboEstado.addActionListener(new EstadoListener());
 		btnEditar.addActionListener(new EditarListener());
+		btnRemover.addActionListener(new Remover());
+		btnInserirContato.addActionListener(new Inserir());
 	}
 
 	private String obtemSexo(int sexo) {
@@ -497,8 +503,8 @@ public class MeusDados extends JFrame {
 			return "feminino";
 		}
 	}
-	
-	private class PaisListener implements ActionListener{
+
+	private class PaisListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			pais = (Pais) cboPais.getSelectedItem();
@@ -513,15 +519,15 @@ public class MeusDados extends JFrame {
 			}
 		}
 	}
-	
-	private class EditarListener implements ActionListener{
+
+	private class EditarListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			habilitarCampos();			
+			habilitarCampos();
 		}
 	}
-	
-	private class EstadoListener implements ActionListener{
+
+	private class EstadoListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			estado = (Estado) cboEstado.getSelectedItem();
@@ -550,11 +556,8 @@ public class MeusDados extends JFrame {
 					imagem_buffered = null;
 					File imagem_file = new File(fc.getSelectedFile().toString());
 					imagem_buffered = ImageIO.read(imagem_file);
-					ImageIO.write(
-							imagem_buffered,
-							"jpg",
-							new File(
-									"Imagens/ImagensUsuario/usuarioTela.jpg"));
+					ImageIO.write(imagem_buffered, "jpg", new File(
+							"Imagens/ImagensUsuario/usuarioTela.jpg"));
 					lblImagem.setIcon(new ImageIcon(
 							"Imagens/ImagensUsuario/usuarioTela.jpg"));
 					caminhoImagem = fc.getSelectedFile().toString();
@@ -567,15 +570,15 @@ public class MeusDados extends JFrame {
 				BufferedImage aux = new BufferedImage(
 						lblImagem.getSize().width, lblImagem.getSize().height,
 						imagem_buffered.getType());
-				
+
 				Graphics2D g = aux.createGraphics();
-				
+
 				AffineTransform at = AffineTransform.getScaleInstance(
 						(double) lblImagem.getSize().width
 								/ imagem_buffered.getWidth(),
 						(double) lblImagem.getSize().height
 								/ imagem_buffered.getHeight());
-				
+
 				g.drawRenderedImage(imagem_buffered, at);
 
 				lblImagem.setIcon(new ImageIcon(aux));
@@ -604,10 +607,21 @@ public class MeusDados extends JFrame {
 						.getSelectedItem().toString()));
 
 				listaContatos.add(contato);
-
 				modelo.addRow(new Object[] { cboContato.getSelectedItem(),
 						txtContato.getText() });
 				txtContato.setText("");
+			}
+		}
+	}
+
+	private class Remover implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			try {
+				modelo.removeRow(tblContato.getSelectedRow());
+				listaContatos.remove(tblContato.getSelectedRow());
+			} catch (Exception se2) {
+				JOptionPane.showMessageDialog(null,
+						"Selecione o Contado que deseja remover da tabela.");
 			}
 		}
 	}
@@ -700,11 +714,13 @@ public class MeusDados extends JFrame {
 		ContatoService contatoService = new ContatoService();
 		List<Contato> contatos = new ArrayList<Contato>();
 		contatos = contatoService.getContatos(usuario.getPessoa());
-		
+
 		for (Contato contato : contatos) {
-			modelo.addRow(new Object[]{TipoContato.getNomeTipo(contato.getTipo()),contato.getContato()});
+			modelo.addRow(new Object[] {
+					TipoContato.getNomeTipo(contato.getTipo()),
+					contato.getContato() });
 		}
-		
+
 		txtLogin.setText(usuario.getLogin());
 		txtPassword.setText(usuario.getSenha());
 
@@ -714,7 +730,8 @@ public class MeusDados extends JFrame {
 	private void carregarImagem() {
 
 		try {
-			File imagem_file = new File("Imagens/ImagensUsuario/usuario"+ usuario.getPkUsuario() + ".jpg");
+			File imagem_file = new File("Imagens/ImagensUsuario/usuario"
+					+ usuario.getPkUsuario() + ".jpg");
 			imagem_buffered = null;
 
 			try {
@@ -739,9 +756,11 @@ public class MeusDados extends JFrame {
 		} catch (Exception e) {
 			if (usuario.getPessoa().getPessoaFisica().getSexo()
 					.equals("masculino")) {
-				lblImagem.setIcon(new ImageIcon("Imagens/Padrao/padraoMasculino.png"));
+				lblImagem.setIcon(new ImageIcon(
+						"Imagens/Padrao/padraoMasculino.png"));
 			} else {
-				lblImagem.setIcon(new ImageIcon("Imagens/Padrao/padraoFeminino.png"));
+				lblImagem.setIcon(new ImageIcon(
+						"Imagens/Padrao/padraoFeminino.png"));
 			}
 		}
 	}
@@ -754,28 +773,34 @@ public class MeusDados extends JFrame {
 	}
 
 	@SuppressWarnings("deprecation")
-	private void salvarDados() {		
+	private void salvarDados() {
 		usuario.getPessoa().setStatus(Constantes.STATUS_ATIVO);
 		usuario.getPessoa().setClientes(null);
 
 		if (tabbedPane.getSelectedIndex() == 0) {
-			this.usuario.getPessoa().getPessoaFisica().setNome(txtUsuario.getText());
-			this.usuario.getPessoa().getPessoaFisica().setApelido(txtApelido.getText());
+			this.usuario.getPessoa().getPessoaFisica()
+					.setNome(txtUsuario.getText());
+			this.usuario.getPessoa().getPessoaFisica()
+					.setApelido(txtApelido.getText());
 			this.usuario.getPessoa().getPessoaFisica().setCpf(txtCPF.getText());
-			this.usuario.getPessoa().getPessoaFisica().setDataNascimento(calendarDataDeNasc.getDate());
+			this.usuario.getPessoa().getPessoaFisica()
+					.setDataNascimento(calendarDataDeNasc.getDate());
 			this.usuario.getPessoa().getPessoaFisica().setRg(txtRG.getText());
-			this.usuario.getPessoa().getPessoaFisica().setSexo(obtemSexo(cboSexo.getSelectedIndex()));
-			this.usuario.getPessoa().getPessoaFisica().setStatus(Constantes.STATUS_ATIVO);
-
-			//pessoa.setPessoaFisica(pessoaFisica);
+			this.usuario.getPessoa().getPessoaFisica()
+					.setSexo(obtemSexo(cboSexo.getSelectedIndex()));
+			this.usuario.getPessoa().getPessoaFisica()
+					.setStatus(Constantes.STATUS_ATIVO);
 		} else {
-			this.usuario.getPessoa().getPessoaJuridica().setCnpj(txtCNPJ.getText());
-			this.usuario.getPessoa().getPessoaJuridica().setInscricaoEstadual(txtInscricaoEstadual.getText());
-			this.usuario.getPessoa().getPessoaJuridica().setNomeFantasia(txtFantasia.getText());
-			this.usuario.getPessoa().getPessoaJuridica().setRazaoSocial(txtRazao.getText());
-			this.usuario.getPessoa().getPessoaJuridica().setStatus(Constantes.STATUS_ATIVO);
-
-			//pessoa.setPessoaJuridica(pessoaJuridica);
+			this.usuario.getPessoa().getPessoaJuridica()
+					.setCnpj(txtCNPJ.getText());
+			this.usuario.getPessoa().getPessoaJuridica()
+					.setInscricaoEstadual(txtInscricaoEstadual.getText());
+			this.usuario.getPessoa().getPessoaJuridica()
+					.setNomeFantasia(txtFantasia.getText());
+			this.usuario.getPessoa().getPessoaJuridica()
+					.setRazaoSocial(txtRazao.getText());
+			this.usuario.getPessoa().getPessoaJuridica()
+					.setStatus(Constantes.STATUS_ATIVO);
 		}
 
 		pais = (Pais) cboPais.getSelectedItem();
@@ -783,11 +808,11 @@ public class MeusDados extends JFrame {
 		estado.setPais(pais);
 		cidade = (Cidade) cboCidade.getSelectedItem();
 		cidade.setEstado(estado);
-		
+
 		Endereco endereco = new Endereco();
 		EnderecoService enderecoServico = new EnderecoService();
 		endereco = enderecoServico.getEndereco(this.usuario.getPessoa());
-		
+
 		Pessoa pessoa = new Pessoa();
 		PessoaService pessoaService = new PessoaService();
 		pessoa = pessoaService.getPessoa(usuario.getPessoa().getPessoaFisica());
@@ -801,11 +826,11 @@ public class MeusDados extends JFrame {
 		endereco.setTipo(TipoEndereco.getIndexTipoEndereco(cboTipo
 				.getSelectedItem().toString()));
 		endereco.setNumero(txtNumero.getText());
-		
+
 		this.usuario.setLogin(txtLogin.getText());
 		this.usuario.setSenha(txtPassword.getText());
 		this.usuario.setStatus(Constantes.STATUS_ATIVO);
-		
+
 		if (tabbedPane.getSelectedIndex() == 0) {
 			PessoaFisicaService pessoaFisicaService = new PessoaFisicaService(
 					this.usuario.getPessoa().getPessoaFisica());
@@ -830,7 +855,7 @@ public class MeusDados extends JFrame {
 
 		enderecoServico.atualizar(endereco);
 
-		try{ 
+		try {
 			// *********************************************************************//
 			// Salvar imagem na pasta
 			File imagem_file = new File(caminhoImagem);
@@ -841,25 +866,30 @@ public class MeusDados extends JFrame {
 				e2.printStackTrace();
 			}
 			try {
-				ImageIO.write(imagem_buffered, "jpg",
-						new File("Imagens/ImagensUsuario/usuario"+ usuario.getPkUsuario() + ".jpg"));
+				ImageIO.write(
+						imagem_buffered,
+						"jpg",
+						new File("Imagens/ImagensUsuario/usuario"
+								+ usuario.getPkUsuario() + ".jpg"));
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
 			// *********************************************************************//
-		}catch (Exception e) {
+		} catch (Exception e) {
+			e.getStackTrace();
 		}
 
-		JOptionPane.showMessageDialog(null, "Dado(s) atualizado(s) com sucesso!!");
+		JOptionPane.showMessageDialog(null,
+				"Dado(s) atualizado(s) com sucesso!!");
 	}
-	
-	private void habilitarCampos(){
-		
+
+	private void habilitarCampos() {
+
 		txtUsuario.setEnabled(true);
 		txtApelido.setEnabled(true);
 		calendarDataDeNasc.setEnabled(true);
 		txtCPF.setEnabled(true);
-		txtRG.setEnabled(true);		
+		txtRG.setEnabled(true);
 		txtLogradouro.setEnabled(true);
 		txtCEP.setEnabled(true);
 		txtBairro.setEnabled(true);
@@ -879,21 +909,35 @@ public class MeusDados extends JFrame {
 		cboPais.setEnabled(true);
 		cboContato.setEnabled(true);
 		cboSexo.setEnabled(true);
-		
+
 		btnCarregarImagem.setEnabled(true);
 		btnInserirContato.setEnabled(true);
 		btnLimpar.setEnabled(true);
 		btnRemover.setEnabled(true);
 		btnSalvar.setEnabled(true);
+
+		tipoEndereco = cboTipo.getSelectedItem().toString();
+		cboTipo.removeAllItems();
+		preencherTipoEndereco();
+		cboTipo.setSelectedIndex(TipoEndereco.posicaoCombo(tipoEndereco));
+
+		cboPais.removeAllItems();
+		cboCidade.removeAllItems();
+		cboEstado.removeAllItems();
+
+		preencherPais();
+
+		cboPais.addActionListener(new PaisListener());
+		cboEstado.addActionListener(new EstadoListener());
 	}
-	
-	private void desabilitarCampos(){
-		
+
+	private void desabilitarCampos() {
+
 		txtUsuario.setEnabled(false);
 		txtApelido.setEnabled(false);
 		calendarDataDeNasc.setEnabled(false);
 		txtCPF.setEnabled(false);
-		txtRG.setEnabled(false);		
+		txtRG.setEnabled(false);
 		txtLogradouro.setEnabled(false);
 		txtCEP.setEnabled(false);
 		txtBairro.setEnabled(false);
@@ -913,23 +957,17 @@ public class MeusDados extends JFrame {
 		cboPais.setEnabled(false);
 		cboContato.setEnabled(false);
 		cboSexo.setEnabled(false);
-		
+
 		btnCarregarImagem.setEnabled(false);
 		btnInserirContato.setEnabled(false);
 		btnLimpar.setEnabled(false);
 		btnRemover.setEnabled(false);
 		btnSalvar.setEnabled(false);
 	}
-	
-	private class Remover implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			try {
-				modelo.removeRow(tblContato.getSelectedRow());
-				listaContatos.remove(tblContato.getSelectedRow());
-			} catch (Exception se2) {
-				// TODO: handle exception
-				JOptionPane.showMessageDialog(null, "Selecione o Contado que deseja remover da tabela.");
-			}
-		}
+
+	private void preencherTipoEndereco() {
+		cboTipo.addItem(Constantes.RESIDENCIA);
+		cboTipo.addItem(Constantes.APARTAMENTO);
+		cboTipo.addItem(Constantes.COMERCIAL);
 	}
 }
