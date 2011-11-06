@@ -671,7 +671,6 @@ public class CadastroDeUsuario extends JFrame {
 				modelo.removeRow(tblContato.getSelectedRow());
 				listaContatos.remove(tblContato.getSelectedRow());
 			} catch (Exception se2) {
-				// TODO: handle exception
 				JOptionPane.showMessageDialog(null, "Selecione o Contado que deseja remover da tabela.");
 			}
 		}
