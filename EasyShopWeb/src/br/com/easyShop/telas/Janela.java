@@ -94,21 +94,28 @@ public class Janela extends JFrame implements ActionListener {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		btnCadastroProduto.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/addProduto.png")));
 		
 		btnCadastroProduto.addActionListener(new CadastroDeProduto());
+		btnCadastroUsuario.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/addUsuario.png")));
 		btnCadastroUsuario.addActionListener(new CadastroDeUsuarios());
 		btnPesquisarProduto.addActionListener(new PesquisaDeProduto());
 		btnCadastroDeCategoria.addActionListener(new PesquisaDeCategoria());
 		btnCadastroDeMarca.addActionListener(new PesquisaDeMarca());
+		btnLancamentoDePermissao.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/lancamentoDePermissao.png")));
 		btnLancamentoDePermissao.addActionListener(new AbrirLancamentoDePermissao());
+		btnRelatorioProduto.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/relatorio.png")));
 		btnRelatorioProduto.addActionListener(new RelatorioDeProduto());
+		btnRelatorioDeMarca.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/relatorio.png")));
 		btnRelatorioDeMarca.addActionListener(new RelatorioDeMarca());
+		btnRelatorioDeCategoria.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/relatorio.png")));
 		btnRelatorioDeCategoria.addActionListener(new RelatorioDeCategoria());
 		btnSair.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Turn off.png")));
 		btnSair.addActionListener(new Sair());
 		btnLogoff.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/1320376266_login.png")));
 		btnLogoff.addActionListener(new Logoff());
 		btnMeusDados.addActionListener(new MeusDado());
+		btnEditarProduto.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/editarProduto.png")));
 		btnEditarProduto.addActionListener(new EditarProduto());
 		mnIniciar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -209,6 +216,10 @@ public class Janela extends JFrame implements ActionListener {
 		panel.add(lblImagem);
 		
 		btnCadastroProduto.setBounds(46, 21, 72, 67);
+		btnCadastroProduto.setBorder(null);
+		btnCadastroProduto.setBorderPainted(false);
+		btnCadastroProduto.setContentAreaFilled(false);
+		btnCadastroProduto.setOpaque(false);
 		contentPane.add(btnCadastroProduto);
 		
 		JLabel lblCadastroDeProdutos = new JLabel("Cadastro de Produtos");
@@ -217,6 +228,10 @@ public class Janela extends JFrame implements ActionListener {
 		contentPane.add(lblCadastroDeProdutos);
 		
 		btnCadastroUsuario.setBounds(46, 145, 72, 67);
+		btnCadastroUsuario.setBorder(null);
+		btnCadastroUsuario.setBorderPainted(false);
+		btnCadastroUsuario.setContentAreaFilled(false);
+		btnCadastroUsuario.setOpaque(false);
 		contentPane.add(btnCadastroUsuario);
 		
 		JLabel lblCadastroDeUsurio = new JLabel(" Cadastro de Usu\u00E1rio");
@@ -249,6 +264,10 @@ public class Janela extends JFrame implements ActionListener {
 		contentPane.add(lblCadastroDeMarca);
 		
 		btnLancamentoDePermissao.setBounds(205, 147, 72, 67);
+		btnLancamentoDePermissao.setBorder(null);
+		btnLancamentoDePermissao.setBorderPainted(false);
+		btnLancamentoDePermissao.setContentAreaFilled(false);
+		btnLancamentoDePermissao.setOpaque(false);
 		contentPane.add(btnLancamentoDePermissao);
 		
 		JLabel lblLanamentoDeProduo = new JLabel("Lan\u00E7amento de Permiss\u00E3o");
