@@ -54,7 +54,6 @@ public class Janela extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JButton btnCadastroProduto = new JButton("");
 	private JButton btnCadastroUsuario = new JButton("");
-	private JButton btnPesquisarProduto = new JButton("");
 	private JButton btnCadastroDeCategoria = new JButton("");
 	private JButton btnCadastroDeMarca = new JButton("");
 	private JButton btnLancamentoDePermissao = new JButton("");
@@ -99,8 +98,9 @@ public class Janela extends JFrame implements ActionListener {
 		btnCadastroProduto.addActionListener(new CadastroDeProduto());
 		btnCadastroUsuario.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/addUsuario.png")));
 		btnCadastroUsuario.addActionListener(new CadastroDeUsuarios());
-		btnPesquisarProduto.addActionListener(new PesquisaDeProduto());
+		btnCadastroDeCategoria.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/relatorio.png")));
 		btnCadastroDeCategoria.addActionListener(new PesquisaDeCategoria());
+		btnCadastroDeMarca.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/relatorio.png")));
 		btnCadastroDeMarca.addActionListener(new PesquisaDeMarca());
 		btnLancamentoDePermissao.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/lancamentoDePermissao.png")));
 		btnLancamentoDePermissao.addActionListener(new AbrirLancamentoDePermissao());
@@ -239,15 +239,11 @@ public class Janela extends JFrame implements ActionListener {
 		lblCadastroDeUsurio.setBounds(10, 211, 147, 41);
 		contentPane.add(lblCadastroDeUsurio);
 		
-		btnPesquisarProduto.setBounds(205, 21, 72, 67);
-		contentPane.add(btnPesquisarProduto);
-		
-		JLabel lblPesquisarProduto = new JLabel(" Pesquisar Produto");
-		lblPesquisarProduto.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblPesquisarProduto.setBounds(179, 84, 137, 43);
-		contentPane.add(lblPesquisarProduto);
-		
 		btnCadastroDeCategoria.setBounds(46, 274, 72, 67);
+		btnCadastroDeCategoria.setBorder(null);
+		btnCadastroDeCategoria.setBorderPainted(false);
+		btnCadastroDeCategoria.setContentAreaFilled(false);
+		btnCadastroDeCategoria.setOpaque(false);
 		contentPane.add(btnCadastroDeCategoria);
 		
 		JLabel lblCadastroDeCategoria = new JLabel("Cadastro de Categoria");
@@ -256,6 +252,10 @@ public class Janela extends JFrame implements ActionListener {
 		contentPane.add(lblCadastroDeCategoria);
 		
 		btnCadastroDeMarca.setBounds(46, 403, 72, 67);
+		btnCadastroDeMarca.setBorder(null);
+		btnCadastroDeMarca.setBorderPainted(false);
+		btnCadastroDeMarca.setContentAreaFilled(false);
+		btnCadastroDeMarca.setOpaque(false);
 		contentPane.add(btnCadastroDeMarca);
 		
 		JLabel lblCadastroDeMarca = new JLabel("Cadastro de Marca");
@@ -276,6 +276,10 @@ public class Janela extends JFrame implements ActionListener {
 		contentPane.add(lblLanamentoDeProduo);
 		
 		btnRelatorioProduto.setBounds(205, 274, 72, 67);
+		btnRelatorioProduto.setBorder(null);
+		btnRelatorioProduto.setBorderPainted(false);
+		btnRelatorioProduto.setContentAreaFilled(false);
+		btnRelatorioProduto.setOpaque(false);
 		contentPane.add(btnRelatorioProduto);
 		
 		JLabel lblRelatrioDeProduto = new JLabel("Relat\u00F3rio de Produto");
@@ -284,6 +288,10 @@ public class Janela extends JFrame implements ActionListener {
 		contentPane.add(lblRelatrioDeProduto);
 		
 		btnRelatorioDeMarca.setBounds(205, 403, 72, 67);
+		btnRelatorioDeMarca.setBorder(null);
+		btnRelatorioDeMarca.setBorderPainted(false);
+		btnRelatorioDeMarca.setContentAreaFilled(false);
+		btnRelatorioDeMarca.setOpaque(false);
 		contentPane.add(btnRelatorioDeMarca);
 		
 		JLabel lblRelatrioDeMarca = new JLabel("Relat\u00F3rio de Marca");
@@ -292,6 +300,10 @@ public class Janela extends JFrame implements ActionListener {
 		contentPane.add(lblRelatrioDeMarca);
 		
 		btnRelatorioDeCategoria.setBounds(367, 19, 72, 67);
+		btnRelatorioDeCategoria.setBorder(null);
+		btnRelatorioDeCategoria.setBorderPainted(false);
+		btnRelatorioDeCategoria.setContentAreaFilled(false);
+		btnRelatorioDeCategoria.setOpaque(false);
 		contentPane.add(btnRelatorioDeCategoria);
 		
 		JLabel lblRelatrioDeCategoria = new JLabel("Relat\u00F3rio de Categoria");
@@ -300,11 +312,15 @@ public class Janela extends JFrame implements ActionListener {
 		contentPane.add(lblRelatrioDeCategoria);
 		
 		
-		btnEditarProduto.setBounds(369, 145, 72, 67);
+		btnEditarProduto.setBounds(212, 21, 72, 67);
+		btnEditarProduto.setBorder(null);
+		btnEditarProduto.setBorderPainted(false);
+		btnEditarProduto.setContentAreaFilled(false);
+		btnEditarProduto.setOpaque(false);
 		contentPane.add(btnEditarProduto);
 		
 		lblEditarProduto.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblEditarProduto.setBounds(361, 211, 112, 41);
+		lblEditarProduto.setBounds(204, 87, 112, 41);
 		contentPane.add(lblEditarProduto);
 		
 		JLabel label = new JLabel("");
@@ -346,6 +362,7 @@ public class Janela extends JFrame implements ActionListener {
 		public void actionPerformed(ActionEvent e) {	
 			CadastroDeProdutos cadastroDeProdutos = new CadastroDeProdutos();
 			cadastroDeProdutos.setLocationRelativeTo(null);  
+			cadastroDeProdutos.setUndecorated(true);
 			cadastroDeProdutos.setVisible(true);			
 		}
 	}
@@ -364,14 +381,6 @@ public class Janela extends JFrame implements ActionListener {
 			CadastroDeUsuario cadastroDeUsuario = new CadastroDeUsuario();
 			cadastroDeUsuario.setLocationRelativeTo(null);  
 			cadastroDeUsuario.setVisible(true);			
-		}
-	}
-	
-	private class PesquisaDeProduto implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			PesquisarProduto cadastro = new PesquisarProduto();
-			cadastro.setLocationRelativeTo(null);  
-			cadastro.setVisible(true);			
 		}
 	}
 	
