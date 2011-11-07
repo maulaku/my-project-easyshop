@@ -4,11 +4,16 @@
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml" creationComplete="construtor()"
 			   width="1157" height="688" minWidth="955" minHeight="600" xmlns:comboLOD="br.com.easyShop.componentes.comboLOD.*">
+		
+	<mx:ApplicationControlBar x="10" y="6" width="589">
+		<mxml:MBotao id="btnEntrar" x="1054" y="32" width="70" height="28" label="Entrar" fontSize="16" click="btnEntrar_clickHandler(true)"/>
+	</mx:ApplicationControlBar>
+	
 	
 	<!--*-*-*-* Include Scripts *-*-*-*-->
 	<fx:Script source="MainEasyShopScript.as" />
 	<fx:Script source="ImportsMain.as" />
-	
+		
 	<fx:Script>
 		<![CDATA[
 			import mx.controls.Alert;
@@ -23,15 +28,20 @@
 	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<mx:Parallel id="fechar">
+			<mx:Zoom />
+			<mx:Fade />
+		</mx:Parallel>
 	</fx:Declarations>
 	
 	
 	<mxml:MModulo  id="modulo" x="182" y="173" width="938" height="388">
 	</mxml:MModulo>
-	<mxml:MBotao x="1077" y="67" click="mbotao1_clickHandler(event)"/>
+	<mxml:MBotao x="1054" y="106" click="mbotao1_clickHandler(event)"/>
 	<mxml:MPanel id="mpCategoriasSub" x="1" y="172" width="164" height="389" mreTamanhoTitulo="0">
 	</mxml:MPanel>
 	<mxml:MComboBox id="cbCategorias" x="142" y="105" width="206"/>
 	<comboLOD:MComboLOD id="cbBusca" x="356" y="106" width="677" mreLabelFunction="lfProduto" mreMinimoCaracteres="3"/>
 	<s:Label x="94" y="111" text="BUSCA:"/>
+	
 </s:Application>

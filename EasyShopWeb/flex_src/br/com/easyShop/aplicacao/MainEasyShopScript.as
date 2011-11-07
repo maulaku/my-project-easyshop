@@ -3,6 +3,9 @@ import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Produto;
 import br.com.mresolucoes.componentes.mre.Alerta;
 import br.com.mresolucoes.imagens.ImagensUtils;
+import br.com.easyShop.telas.Login;
+
+import mx.managers.PopUpManager;
 
 /**
  * Inicializa os componentes e objetos
@@ -36,4 +39,14 @@ public function resultCategoria(result:ResultJava):void
 public function lfProduto(item:Object=null, colunm:Object=null):String
 {
 	return item != null ? (item as Produto).nome : "null";
+}
+
+protected function btnEntrar_clickHandler(centrado:Boolean):void
+{
+	// TODO Auto-generated method stub
+	var painel:Login = new Login();
+	painel.showCloseButton=true;
+	PopUpManager.addPopUp(painel, this, true);
+	
+	if(centrado==true) PopUpManager.centerPopUp(painel);
 }
