@@ -26,14 +26,14 @@ public function resultCategoria(result:ResultJava):void
 		{ 
 			Alerta.abrir(result.lista.length > 0 ? result.lista.getItemAt(0) as String : "Ops, Erro ao carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
 		}
-	}
+	} 
 	catch(e:Error)
 	{ 
 		Alerta.abrir("Ops, Ocorreu um erro ao carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
 	}
 }
 
-public function lfProduto(item:Object, colunm:Object=null):String
+public function lfProduto(item:Object=null, colunm:Object=null):String
 {
-	return item != null? (item as Produto).nome : "null";
+	return item != null ? (item as Produto).nome : "null";
 }

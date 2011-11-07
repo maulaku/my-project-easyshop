@@ -16,7 +16,7 @@
 			protected function mbotao1_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
-				modulo.mreLoadModule("br/com/easyShop/telas/cadastros/cadastgro.swf");
+				modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroCliente.swf");
 			}
 		]]>
 	</fx:Script>
@@ -26,7 +26,7 @@
 	</fx:Declarations>
 	
 	
-	<mxml:MModulo  id="modulo" x="496" y="246" width="339" height="203">
+	<mxml:MModulo  id="modulo" x="182" y="173" width="938" height="388">
 	</mxml:MModulo>
 	<mxml:MBotao x="1077" y="67" click="mbotao1_clickHandler(event)"/>
 	<mxml:MPanel id="mpCategoriasSub" x="1" y="172" width="164" height="389" mreTamanhoTitulo="0">

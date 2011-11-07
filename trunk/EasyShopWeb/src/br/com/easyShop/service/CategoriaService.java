@@ -67,11 +67,9 @@ public class CategoriaService {
 	 */
 	public ResultJava getTodasCategoriasPai() {
 		try {
-			return new ResultJava(true,
-					new CategoriaDAO().getTodasCategoriasPai());
+			return new ResultJava(true, new CategoriaDAO().getTodasCategoriasPai());
 		} catch (Exception e) {
-			return new ResultJava(false,
-					Arrays.asList(new String[] { "Erro ao buscar categorias" }));
+			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao buscar categorias" }));
 		}
 	}
 }
