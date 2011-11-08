@@ -542,21 +542,17 @@ public class CadastroDeUsuario extends JFrame {
 				
 				//*********************************************************************//
 				//Salvar imagem na pasta
-				File imagem_file = new File(caminhoImagem);
-				BufferedImage imagem_buffered = null;
-				try {
+				try{
+					File imagem_file = new File(caminhoImagem);
+					BufferedImage imagem_buffered = null;
 					imagem_buffered = ImageIO.read( imagem_file );
-				} catch (IOException e2) {
-					e2.printStackTrace();
-				}
-				try {
 					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensUsuario/usuario"+usuario.getPkUsuario()+".jpg"));
-				} catch (IOException e1) {
-					e1.printStackTrace();
+				}catch (Exception e1) {
+					
 				}
 				//*********************************************************************//
 				
-				JOptionPane.showMessageDialog(null, "Usu�rio inserido com sucesso!!");
+				JOptionPane.showMessageDialog(null, "Usuário inserido com sucesso!!");
 			}
 		});
 
@@ -621,11 +617,11 @@ public class CadastroDeUsuario extends JFrame {
 				    imagem_buffered = null;
 					File imagem_file = new File(fc.getSelectedFile().toString());
 					imagem_buffered = ImageIO.read( imagem_file );
-					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/CadastroDeUsuario.jpg"));
-					lblImagem.setIcon(new ImageIcon(("Imagens/CadastroDeUsuario.jpg")));
+					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensUsuario/CadastroDeUsuario.jpg"));
+					lblImagem.setIcon(new ImageIcon(("Imagens/ImagensUsuario/CadastroDeUsuario.jpg")));
 					caminhoImagem = fc.getSelectedFile().toString();
 				} catch (IOException e1) {
-					JOptionPane.showMessageDialog(null, "Arquivo selecionado n�o � uma imagem!");
+					JOptionPane.showMessageDialog(null, "Arquivo selecionado não é uma imagem!");
 				}
 				//*********************************************************************//
 				
