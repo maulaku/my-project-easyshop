@@ -2,20 +2,23 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 			   xmlns:s="library://ns.adobe.com/flex/spark"
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
-			   xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml" creationComplete="construtor()"
-			   width="1157" height="688" minWidth="955" minHeight="600" xmlns:comboLOD="br.com.easyShop.componentes.comboLOD.*">
-		
-	<mx:ApplicationControlBar x="10" y="6" width="300">
-		<mxml:MBotao id="btnEntrar" x="1054" y="32" width="70" height="28" label="Entrar" fontSize="16" click="btnEntrar_clickHandler(true)"/>
-	</mx:ApplicationControlBar>
-	
-	
+			   xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
+			   xmlns:comboLOD="br.com.easyShop.componentes.comboLOD.*"
+			   xmlns:tabela="br.com.mresolucoes.renders.tabela.*"
+			   width="1157" height="688" minWidth="955" minHeight="600"
+			   creationComplete="construtor()" pageTitle="EasyShop">
 	<!--*-*-*-* Include Scripts *-*-*-*-->
 	<fx:Script source="MainEasyShopScript.as" />
 	<fx:Script source="ImportsMain.as" />
 		
 	<fx:Script>
 		<![CDATA[
+			
+//	<mx:ApplicationControlBar x="10" y="6" width="300">
+//			<mxml:MBotao id="btnEntrar" x="1054" y="32" width="70" height="28" label="Entrar" fontSize="16" click="btnEntrar_clickHandler(true)"/>
+//		</mx:ApplicationControlBar>
+			
+			
 			import mx.controls.Alert;
 		]]>
 	</fx:Script>
@@ -28,14 +31,21 @@
 		</mx:Parallel>
 	</fx:Declarations>
 	
-	
-	<mxml:MModulo  id="modulo" x="182" y="173" width="938" height="388">
+	<s:Image x="-6" y="-10" width="1173" height="688" scaleMode="stretch" smooth="true"
+			 smoothingQuality="high" source="../imagens/fundo.png"/>
+	<mxml:MModulo  id="modulo" x="173" y="173" width="947" height="466">
 	</mxml:MModulo>
-	<mxml:MBotao x="1054" y="106" click="mbotao1_clickHandler(event)"/>
 	<mxml:MPanel id="mpCategoriasSub" x="1" y="172" width="164" height="389" mreTamanhoTitulo="0">
 	</mxml:MPanel>
-	<mxml:MComboBox id="cbCategorias" x="142" y="105" width="206"/>
-	<comboLOD:MComboLOD id="cbBusca" x="356" y="106" width="677" mreLabelFunction="lfProduto" mreMinimoCaracteres="3"/>
-	<s:Label x="94" y="111" text="BUSCA:"/>
+	<mxml:MComboBox id="cbCategorias" x="128" y="144" width="207"/>
+	<mxml:MBotao id="btnEntrar" x="1050" y="36" width="70" height="28" label="Entrar"
+				 click="btnEntrar_clickHandler(true)" fontSize="16"/>
+	<s:Label x="58" y="140" width="65" height="31" color="#F0F2F9" fontFamily="Verdana"
+			 fontSize="15" fontWeight="bold" text="BUSCA" textAlign="center" verticalAlign="middle"/>
+	<comboLOD:MComboLOD id="cbBusca" x="338" y="145" width="659" height="22"
+						mreLabelFunction="lfProduto" mreMinimoCaracteres="3"/>
+	<s:Button x="1000" y="143" height="25" label="Buscar"/>
+	<s:Image x="-21" y="-75" width="650" height="359" source="../imagens/nomEasy.png"/>
+	
 	
 </s:Application>

@@ -5,9 +5,13 @@ import br.com.easyShop.telas.Login;
 import br.com.mresolucoes.componentes.mre.Alerta;
 import br.com.mresolucoes.imagens.ImagensUtils;
 
+import flash.events.Event;
 import flash.events.MouseEvent;
 
+import mx.controls.Alert;
 import mx.managers.PopUpManager;
+
+var painel:Login = new Login();
 
 /**
  * Inicializa os componentes e objetos
@@ -46,15 +50,27 @@ public function lfProduto(item:Object=null, colunm:Object=null):String
 protected function btnEntrar_clickHandler(centrado:Boolean):void
 {
 	// TODO Auto-generated method stub
-	var painel:Login = new Login();
 	painel.showCloseButton=true;
+	painel.setVisible(true);
+	painel.addEventListener("clickadoLogin", lidaClickadoLogin);
+	painel.addEventListener("clickadoPessoaFisica", lidaClickadoPessoaFisica);
+	painel.addEventListener("clickadoPessoaJuridica", lidaClickadoPessoaJuridica);
 	PopUpManager.addPopUp(painel, this, true);
 	
 	if(centrado==true) PopUpManager.centerPopUp(painel);
 }
 
-protected function mbotao1_clickHandler(event:MouseEvent):void
-{
-	// TODO Auto-generated method stub
-	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroCliente.swf");
+private function lidaClickadoLogin(event:Event):void{
+	Alert.show("O botão Login do painel dbConf foi clickado!!\nO texto escrito nos campos\n user: "+event.currentTarget.txtUsuario.text+"\npass: "+event.currentTarget.txtSenha.text+"\n\nCerto ??");
+	painel.setVisible(false);
+}
+
+private function lidaClickadoPessoaFisica(event:Event):void{
+	painel.setVisible(false);
+	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaFisica.swf");
+}
+
+private function lidaClickadoPessoaJuridica(event:Event):void{
+	painel.setVisible(false);
+	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaJuridica.swf");
 }
