@@ -4,14 +4,16 @@ import br.com.easyShop.model.Produto;
 import br.com.easyShop.telas.Login;
 import br.com.mresolucoes.componentes.mre.Alerta;
 import br.com.mresolucoes.imagens.ImagensUtils;
-
+import mx.containers.Panel; 
+import mx.effects.Effect; 
+import mx.effects.WipeDown;
 import flash.events.Event;
 import flash.events.MouseEvent;
 
 import mx.controls.Alert;
 import mx.managers.PopUpManager;
 
-var painel:Login = new Login();
+var painel:Login;
 
 /**
  * Inicializa os componentes e objetos
@@ -50,6 +52,7 @@ public function lfProduto(item:Object=null, colunm:Object=null):String
 protected function btnEntrar_clickHandler(centrado:Boolean):void
 {
 	// TODO Auto-generated method stub
+	painel = new Login();
 	painel.showCloseButton=true;
 	painel.setVisible(true);
 	painel.addEventListener("clickadoLogin", lidaClickadoLogin);
