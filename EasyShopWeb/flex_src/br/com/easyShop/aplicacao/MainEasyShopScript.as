@@ -1,9 +1,11 @@
 import br.com.easyShop.comunicacao.MRemoteObject;
 import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Produto;
+import br.com.easyShop.telas.Login;
 import br.com.mresolucoes.componentes.mre.Alerta;
 import br.com.mresolucoes.imagens.ImagensUtils;
-import br.com.easyShop.telas.Login;
+
+import flash.events.MouseEvent;
 
 import mx.managers.PopUpManager;
 
@@ -49,4 +51,10 @@ protected function btnEntrar_clickHandler(centrado:Boolean):void
 	PopUpManager.addPopUp(painel, this, true);
 	
 	if(centrado==true) PopUpManager.centerPopUp(painel);
+}
+
+protected function mbotao1_clickHandler(event:MouseEvent):void
+{
+	// TODO Auto-generated method stub
+	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroCliente.swf");
 }
