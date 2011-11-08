@@ -32,10 +32,11 @@
 	</fx:Declarations>
 	
 	<s:Image x="-6" y="-10" width="1173" height="688" scaleMode="stretch" smooth="true"
-			 smoothingQuality="high" source="../imagens/fundo.png"/>
+			 smoothingQuality="high" source="../imagens/aplicacao/fundo.png"/>
+	<s:Image x="-18" y="-49" width="650" height="319" source="../imagens/aplicacao/nomEasy.png"/>
 	<mxml:MModulo  id="modulo" x="173" y="173" width="947" height="466">
 	</mxml:MModulo>
-	<mxml:MPanel id="mpCategoriasSub" x="1" y="172" width="164" height="389" mreTamanhoTitulo="0">
+	<mxml:MPanel id="mpCategoriasSub" x="1" y="172" width="174" height="467" mreTamanhoTitulo="0">
 	</mxml:MPanel>
 	<mxml:MComboBox id="cbCategorias" x="128" y="144" width="207"/>
 	<mxml:MBotao id="btnEntrar" x="1050" y="36" width="70" height="28" label="Entrar"
@@ -44,8 +45,8 @@
 			 fontSize="15" fontWeight="bold" text="BUSCA" textAlign="center" verticalAlign="middle"/>
 	<comboLOD:MComboLOD id="cbBusca" x="338" y="145" width="659" height="22"
 						mreLabelFunction="lfProduto" mreMinimoCaracteres="3"/>
-	<s:Button x="1000" y="143" height="25" label="Buscar"/>
-	<s:Image x="-21" y="-75" width="650" height="359" source="../imagens/nomEasy.png"/>
+	<s:Button x="1000" y="143" height="25" label="Buscar" fontSize="14"/>
+	
 	
 	
 </s:Application>
