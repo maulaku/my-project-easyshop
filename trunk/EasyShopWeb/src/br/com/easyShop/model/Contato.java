@@ -16,23 +16,33 @@ public class Contato
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkContato;
-	private int  tipo; 
+	private Long pkContato;
+	private Integer  tipo; 
 	private String contato;
-	private int status = Constantes.STATUS_ATIVO;
+	private Integer status = Constantes.STATUS_ATIVO;
 	@ManyToOne @JoinColumn(name="fkPessoa")
 	private Pessoa pessoa;
 
 	public Contato() {}
 
-	public long getPkContato()
+	public Long getPkContato()
 	{
 		return pkContato;
 	}
 
-	public void setPkContato(long pkContato)
+	public void setPkContato(Long pkContato)
 	{
 		this.pkContato = pkContato;
+	}
+
+	public Integer getTipo()
+	{
+		return tipo;
+	}
+
+	public void setTipo(Integer tipo)
+	{
+		this.tipo = tipo;
 	}
 
 	public String getContato()
@@ -45,12 +55,12 @@ public class Contato
 		this.contato = contato;
 	}
 
-	public int getStatus()
+	public Integer getStatus()
 	{
 		return status;
 	}
 
-	public void setStatus(int status)
+	public void setStatus(Integer status)
 	{
 		this.status = status;
 	}
@@ -63,14 +73,5 @@ public class Contato
 	public void setPessoa(Pessoa pessoa)
 	{
 		this.pessoa = pessoa;
-	}
-
-	public int getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
-	}
-	
+	}	
 }

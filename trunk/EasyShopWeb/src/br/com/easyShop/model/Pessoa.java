@@ -20,70 +20,41 @@ public class Pessoa {
 	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int pkPessoa;
-	private int status = Constantes.STATUS_ATIVO;
+	private Long pkPessoa;
+	private Integer status = Constantes.STATUS_ATIVO;
 	@ManyToOne @JoinColumn(name="fkPessoaFisica") 
 	private PessoaFisica pessoaFisica;
 	@ManyToOne @JoinColumn(name="fkPessoaJuridica") 
 	private PessoaJuridica pessoaJuridica;	
-	@OneToMany
+	@OneToMany (mappedBy="pessoa")
 	private List<Usuario> usuarios;
-	@OneToMany//(fetch = FetchType.LAZY)(mappedBy="pkPessoa")
+	@OneToMany (mappedBy="pessoa")
 	private List<Endereco> enderecos;
-	@OneToMany
+	@OneToMany (mappedBy="pessoa")
 	private List<Cliente> clientes;
-	@OneToMany
+	@OneToMany (mappedBy="pessoa")
 	private List<Contato> contatos;
 	
 	public Pessoa() {}
 
-	public List<Cliente> getClientes()
-	{
-		return clientes;
-	}
-
-	public void setClientes(List<Cliente> clientes)
-	{
-		this.clientes = clientes;
-	}
-
-	public List<Contato> getContatos()
-	{
-		return contatos;
-	}
-
-	public void setContatos(List<Contato> contatos)
-	{
-		this.contatos = contatos;
-	}
-
-	public List<Endereco> getEnderecos()
-	{
-		return enderecos;
-	}
-
-	public void setEnderecos(List<Endereco> enderecos)
-	{
-		this.enderecos = enderecos;
-	}
-	
-	public int getPkPessoa()
+	public Long getPkPessoa()
 	{
 		return pkPessoa;
 	}
-	public int getStatus()
+
+	public void setPkPessoa(Long pkPessoa)
+	{
+		this.pkPessoa = pkPessoa;
+	}
+
+	public Integer getStatus()
 	{
 		return status;
 	}
 
-	public void setStatus(int status)
+	public void setStatus(Integer status)
 	{
 		this.status = status;
-	}
-
-	public void setPkPessoa(int pkPessoa)
-	{
-		this.pkPessoa = pkPessoa;
 	}
 
 	public PessoaFisica getPessoaFisica()
@@ -116,5 +87,33 @@ public class Pessoa {
 		this.usuarios = usuarios;
 	}
 
+	public List<Endereco> getEnderecos()
+	{
+		return enderecos;
+	}
 
+	public void setEnderecos(List<Endereco> enderecos)
+	{
+		this.enderecos = enderecos;
+	}
+
+	public List<Cliente> getClientes()
+	{
+		return clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes)
+	{
+		this.clientes = clientes;
+	}
+
+	public List<Contato> getContatos()
+	{
+		return contatos;
+	}
+
+	public void setContatos(List<Contato> contatos)
+	{
+		this.contatos = contatos;
+	}
 }

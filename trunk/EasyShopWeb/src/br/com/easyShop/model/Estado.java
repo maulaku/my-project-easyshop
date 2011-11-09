@@ -22,7 +22,7 @@ public class Estado
 	private String sigla;	  
 	@ManyToOne @JoinColumn(name="fkPais")
 	private Pais pais;
-	@OneToMany
+	@OneToMany (mappedBy="estado")
 	private List<Cidade> cidades;
 	
 	public Estado(){}

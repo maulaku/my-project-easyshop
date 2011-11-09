@@ -17,47 +17,63 @@ public class Cidade
 {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkCidade;
+	private Long pkCidade;
 	private String nome;
 	@ManyToOne @JoinColumn(name="fkEstado")
 	private Estado estado;
-	@OneToMany
+	@OneToMany (mappedBy="cidade")
 	private List<Endereco> enderecos;
 	
 	public Cidade() {}
 	
-	public long getPkCidade()
+	public Long getPkCidade()
 	{
 		return pkCidade;
 	}
-	public void setPkCidade(long pkCidade)
+
+
+	public void setPkCidade(Long pkCidade)
 	{
 		this.pkCidade = pkCidade;
 	}
+
+
 	public String getNome()
 	{
 		return nome;
 	}
+
+
 	public void setNome(String nome)
 	{
 		this.nome = nome;
 	}
+
+
 	public Estado getEstado()
 	{
 		return estado;
 	}
+
+
 	public void setEstado(Estado estado)
 	{
 		this.estado = estado;
 	}
+
+
 	public List<Endereco> getEnderecos()
 	{
 		return enderecos;
 	}
+
+
 	public void setEnderecos(List<Endereco> enderecos)
 	{
 		this.enderecos = enderecos;
 	}
+
+
 	public String toString(){  
 	        return this.nome;  
 	} 

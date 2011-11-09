@@ -17,21 +17,21 @@ public class PerfilPagamento
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkPerfilPagamento;
+	private Long pkPerfilPagamento;
 	private String nome;
 	private String descricao;
-	private int status = Constantes.STATUS_ATIVO;
-	@OneToMany
+	private Integer status = Constantes.STATUS_ATIVO;
+	@OneToMany (mappedBy="perfilpagamento")
 	private List<Pedido> pedidos;
 	
 	public PerfilPagamento() {}
 
-	public long getPkPerfilPagamento()
+	public Long getPkPerfilPagamento()
 	{
 		return pkPerfilPagamento;
 	}
 
-	public void setPkPerfilPagamento(long pkPerfilPagamento)
+	public void setPkPerfilPagamento(Long pkPerfilPagamento)
 	{
 		this.pkPerfilPagamento = pkPerfilPagamento;
 	}
@@ -56,12 +56,12 @@ public class PerfilPagamento
 		this.descricao = descricao;
 	}
 
-	public int getStatus()
+	public Integer getStatus()
 	{
 		return status;
 	}
 
-	public void setStatus(int status)
+	public void setStatus(Integer status)
 	{
 		this.status = status;
 	}
@@ -74,6 +74,5 @@ public class PerfilPagamento
 	public void setPedidos(List<Pedido> pedidos)
 	{
 		this.pedidos = pedidos;
-	}
-	
+	}	
 }

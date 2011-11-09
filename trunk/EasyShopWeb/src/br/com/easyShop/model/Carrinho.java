@@ -25,12 +25,12 @@ public class Carrinho
 	
 	public Carrinho() {}
 
-	public long getPkCarrinho()
+	public Long getPkCarrinho()
 	{
 		return pkCarrinho;
 	}
 
-	public void setPkCarrinho(long pkCarrinho)
+	public void setPkCarrinho(Long pkCarrinho)
 	{
 		this.pkCarrinho = pkCarrinho;
 	}
