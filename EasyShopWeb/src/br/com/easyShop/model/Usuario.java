@@ -20,67 +20,55 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int pkUsuario;
+	private Integer pkUsuario;
 	private String login;
 	private String senha;
-	private int status = Constantes.STATUS_ATIVO;
+	private Integer status = Constantes.STATUS_ATIVO;
     @ManyToOne @JoinColumn(name="fkPessoa")    
 	private Pessoa pessoa;
-    @OneToMany
+    @OneToMany (mappedBy="usuario")
     private List<UsuarioTela> permissoes;
 	
     public Usuario () {}    
     
-	public int getPkUsuario()
-	{
+	public Integer getPkUsuario() {
 		return pkUsuario;
 	}
 
-
-	public void setPkUsuario(int pkUsuario)
-	{
+	public void setPkUsuario(Integer pkUsuario) {
 		this.pkUsuario = pkUsuario;
 	}
-
 
 	public String getLogin() {
 		return login;
 	}
-	
+
 	public void setLogin(String login) {
 		this.login = login;
 	}
-	
-	public int getStatus()
-	{
-		return status;
-	}
 
-	public void setStatus(int status)
-	{
-		this.status = status;
-	}
-
-	public String getSenha()
-	{
+	public String getSenha() {
 		return senha;
 	}
 
-	public void setSenha(String senha)
-	{
+	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 
 	public Pessoa getPessoa() {
 		return pessoa;
 	}
-	
+
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
-	}
-	
-	public String toString(){  
-        return this.login;  
 	}
 
 	public List<UsuarioTela> getPermissoes() {
@@ -89,6 +77,10 @@ public class Usuario {
 
 	public void setPermissoes(List<UsuarioTela> permissoes) {
 		this.permissoes = permissoes;
-	} 
-	
+	}
+
+	public String toString(){  
+        return this.login;  
+	}
+
 }

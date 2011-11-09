@@ -14,7 +14,7 @@ public class UsuarioTela
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkUsuarioTela;
+	private Long pkUsuarioTela;
 	@ManyToOne @JoinColumn(name="fkTipoPermissao")
 	private TipoPermissao tipoPermissao; 
 	@ManyToOne @JoinColumn(name="fkUsuario")
@@ -23,38 +23,28 @@ public class UsuarioTela
 	private Tela tela;
 	
 	public UsuarioTela() {}
-
-	public long getPkUsuarioTela()
-	{
+	
+	public Long getPkUsuarioTela() {
 		return pkUsuarioTela;
 	}
 
-
-	public void setPkUsuarioTela(long pkUsuarioTela)
-	{
+	public void setPkUsuarioTela(Long pkUsuarioTela) {
 		this.pkUsuarioTela = pkUsuarioTela;
 	}
 
-
-	public TipoPermissao getTipoPermissao()
-	{
+	public TipoPermissao getTipoPermissao() {
 		return tipoPermissao;
 	}
 
-
-	public void setTipoPermissao(TipoPermissao tipoPermissao)
-	{
+	public void setTipoPermissao(TipoPermissao tipoPermissao) {
 		this.tipoPermissao = tipoPermissao;
 	}
 
-
-	public Usuario getUsuario()
-	{
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario usuario)
-	{
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
@@ -65,8 +55,7 @@ public class UsuarioTela
 	public void setTela(Tela tela) {
 		this.tela = tela;
 	}
-	
-	
+
 	public String toString(){  
         return this.tela.getNome();  
 	}

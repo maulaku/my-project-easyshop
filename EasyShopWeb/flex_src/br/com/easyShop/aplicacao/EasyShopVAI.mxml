@@ -51,7 +51,7 @@
 	</mxml:MPanel>
 	<mxml:MComboBox id="cbCategorias" x="129" y="223" width="207"/>
 	<mxml:MBotao id="btnEntrar" x="970" y="33" width="70" height="28" label="Entrar"
-				 click="btnEntrar_clickHandler(true)" fontFamily="Verdana" fontSize="16"/>
+				 click="btnEntrar_clickHandler(true)" fontFamily="Verdana" fontSize="16" />
 	<mxml:MBotao id="btnCarrinho" x="1055" y="33" width="80" height="28" label="Carrinho"
 				 fontFamily="Verdana" fontSize="16"/>
 	<s:Label x="59" y="219" width="65" height="31" color="#F0F2F9" fontFamily="Verdana"
