@@ -17,63 +17,35 @@ public class PessoaJuridica {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int pkPessoaJuridica;
+	private Long pkPessoaJuridica;
 	private String razaoSocial;
 	private String nomeFantasia;
 	private String cnpj;
 	private String inscricaoEstadual;
-	private int status = Constantes.STATUS_ATIVO;
-	@OneToMany
+	private Integer status = Constantes.STATUS_ATIVO;
+	@OneToMany (mappedBy="pessoajuridica")
 	private List<Pessoa> pessoas;
 	
 	public PessoaJuridica() {}
-	
-	public List<Pessoa> getPessoas()
-	{
-		return pessoas;
-	}
 
-	public void setPessoas(List<Pessoa> pessoas)
-	{
-		this.pessoas = pessoas;
-	}
-
-	public int getStatus()
-	{
-		return status;
-	}
-
-	public void setStatus(int status)
-	{
-		this.status = status;
-	}
-
-	public int getPkPessoaJuridica()
+	public Long getPkPessoaJuridica()
 	{
 		return pkPessoaJuridica;
 	}
 
-	public void setPkPessoaJuridica(int pkPessoaJuridica)
+	public void setPkPessoaJuridica(Long pkPessoaJuridica)
 	{
 		this.pkPessoaJuridica = pkPessoaJuridica;
 	}
 
-	public String getInscricaoEstadual()
+	public String getRazaoSocial()
 	{
-		return inscricaoEstadual;
+		return razaoSocial;
 	}
 
-	public void setInscricaoEstadual(String inscricaoEstadual)
+	public void setRazaoSocial(String razaoSocial)
 	{
-		this.inscricaoEstadual = inscricaoEstadual;
-	}
-
-	public String getCnpj() {
-		return cnpj;
-	}
-	
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
+		this.razaoSocial = razaoSocial;
 	}
 
 	public String getNomeFantasia()
@@ -86,14 +58,43 @@ public class PessoaJuridica {
 		this.nomeFantasia = nomeFantasia;
 	}
 
-	public String getRazaoSocial()
+	public String getCnpj()
 	{
-		return razaoSocial;
+		return cnpj;
 	}
 
-	public void setRazaoSocial(String razaoSocial)
+	public void setCnpj(String cnpj)
 	{
-		this.razaoSocial = razaoSocial;
+		this.cnpj = cnpj;
 	}
-	
+
+	public String getInscricaoEstadual()
+	{
+		return inscricaoEstadual;
+	}
+
+	public void setInscricaoEstadual(String inscricaoEstadual)
+	{
+		this.inscricaoEstadual = inscricaoEstadual;
+	}
+
+	public Integer getStatus()
+	{
+		return status;
+	}
+
+	public void setStatus(Integer status)
+	{
+		this.status = status;
+	}
+
+	public List<Pessoa> getPessoas()
+	{
+		return pessoas;
+	}
+
+	public void setPessoas(List<Pessoa> pessoas)
+	{
+		this.pessoas = pessoas;
+	}	
 }

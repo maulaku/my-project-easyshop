@@ -23,22 +23,22 @@ public class CarrinhoProduto
 	
 	public CarrinhoProduto() {}
 
-	public long getPkCarrinhoProduto()
+	public Long getPkCarrinhoProduto()
 	{
 		return pkCarrinhoProduto;
 	}
 
-	public void setPkCarrinhoProduto(long pkCarrinhoProduto)
+	public void setPkCarrinhoProduto(Long pkCarrinhoProduto)
 	{
 		this.pkCarrinhoProduto = pkCarrinhoProduto;
 	}
 
-	public int getQuantidade()
+	public Integer getQuantidade()
 	{
 		return quantidade;
 	}
 
-	public void setQuantidade(int quantidade)
+	public void setQuantidade(Integer quantidade)
 	{
 		this.quantidade = quantidade;
 	}

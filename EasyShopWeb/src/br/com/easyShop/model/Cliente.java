@@ -19,28 +19,28 @@ public class Cliente
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkCliente;
+	private Long pkCliente;
 	private String codigo;
-	private int status = Constantes.STATUS_ATIVO;
+	private Integer status = Constantes.STATUS_ATIVO;
 	@ManyToOne @JoinColumn(name="fkPessoa")
 	private Pessoa pessoa;
-	@OneToMany
+	@OneToMany (mappedBy="cliente")
 	private List<Pedido> pedidos;
-	@OneToMany
+	@OneToMany (mappedBy="cliente")
 	private List<Carrinho> carrinhos;
-	@OneToMany
+	@OneToMany (mappedBy="cliente")
 	private List<Preferencia> preferencias;
-	@OneToMany
+	@OneToMany (mappedBy="cliente")
 	private List<Desejo> desejos;
 	
 	public Cliente() {}
 
-	public long getPkCliente()
+	public Long getPkCliente()
 	{
 		return pkCliente;
 	}
 
-	public void setPkCliente(long pkCliente)
+	public void setPkCliente(Long pkCliente)
 	{
 		this.pkCliente = pkCliente;
 	}
@@ -55,12 +55,12 @@ public class Cliente
 		this.codigo = codigo;
 	}
 
-	public int getStatus()
+	public Integer getStatus()
 	{
 		return status;
 	}
 
-	public void setStatus(int status)
+	public void setStatus(Integer status)
 	{
 		this.status = status;
 	}

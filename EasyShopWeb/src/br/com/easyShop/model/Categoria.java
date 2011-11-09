@@ -28,28 +28,34 @@ public class Categoria {
 	private List<Produto> produtos;
 
 	public Categoria() { }
-
-	public long getPkCategoria() {
+	
+	public Long getPkCategoria()
+	{
 		return pkCategoria;
 	}
-	
-	public void setPkCategoria(long pkCategoria) {
+
+	public void setPkCategoria(Long pkCategoria)
+	{
 		this.pkCategoria = pkCategoria;
 	}
-	
-	public String getNome() {
+
+	public String getNome()
+	{
 		return nome;
 	}
-	
-	public void setNome(String nome) {
+
+	public void setNome(String nome)
+	{
 		this.nome = nome;
 	}
-	
-	public int getTipo() {
+
+	public Integer getTipo()
+	{
 		return tipo;
 	}
-	
-	public void setTipo(int tipo) {
+
+	public void setTipo(Integer tipo)
+	{
 		this.tipo = tipo;
 	}
 
@@ -81,8 +87,8 @@ public class Categoria {
 	public void setProdutos(List<Produto> produtos)
 	{
 		this.produtos = produtos;
-	}   
-	
+	}
+
 	public String toString(){  
 	    return this.nome;  
 	}

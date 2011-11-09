@@ -21,7 +21,7 @@ public class PessoaFisica {
 	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int pkPessoaFisica;
+	private Long pkPessoaFisica;
 	private String nome;
 	private String apelido;
 	private String rg;
@@ -29,12 +29,92 @@ public class PessoaFisica {
 	@Type(type="timestamp")
 	private Date dataNascimento;
 	private String sexo;
-	private int status = Constantes.STATUS_ATIVO;
-	@OneToMany
+	private Integer status = Constantes.STATUS_ATIVO;
+	@OneToMany (mappedBy="pessoafisica")
 	private List<Pessoa> pessoas;
 				
 	public PessoaFisica() {}
-	
+
+	public Long getPkPessoaFisica()
+	{
+		return pkPessoaFisica;
+	}
+
+	public void setPkPessoaFisica(Long pkPessoaFisica)
+	{
+		this.pkPessoaFisica = pkPessoaFisica;
+	}
+
+	public String getNome()
+	{
+		return nome;
+	}
+
+	public void setNome(String nome)
+	{
+		this.nome = nome;
+	}
+
+	public String getApelido()
+	{
+		return apelido;
+	}
+
+	public void setApelido(String apelido)
+	{
+		this.apelido = apelido;
+	}
+
+	public String getRg()
+	{
+		return rg;
+	}
+
+	public void setRg(String rg)
+	{
+		this.rg = rg;
+	}
+
+	public String getCpf()
+	{
+		return cpf;
+	}
+
+	public void setCpf(String cpf)
+	{
+		this.cpf = cpf;
+	}
+
+	public Date getDataNascimento()
+	{
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Date dataNascimento)
+	{
+		this.dataNascimento = dataNascimento;
+	}
+
+	public String getSexo()
+	{
+		return sexo;
+	}
+
+	public void setSexo(String sexo)
+	{
+		this.sexo = sexo;
+	}
+
+	public Integer getStatus()
+	{
+		return status;
+	}
+
+	public void setStatus(Integer status)
+	{
+		this.status = status;
+	}
+
 	public List<Pessoa> getPessoas()
 	{
 		return pessoas;
@@ -44,80 +124,4 @@ public class PessoaFisica {
 	{
 		this.pessoas = pessoas;
 	}
-
-	public int getPkPessoaFisica()
-	{
-		return pkPessoaFisica;
-	}
-
-	public void setPkPessoaFisica(int pkPessoaFisica)
-	{
-		this.pkPessoaFisica = pkPessoaFisica;
-	}
-	
-	public Date getDataNascimento()
-	{
-		//return dataNascimento.getTime();
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(Date dataNascimento)
-	{
-		Date data = new Date();
-		data = dataNascimento;
-		this.dataNascimento = data;
-	}
-
-	public int getStatus()
-	{
-		return status;
-	}
-
-	public void setStatus(int status)
-	{
-		this.status = status;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-	
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
-	public String getApelido() {
-		return apelido;
-	}
-	
-	public void setApelido(String apelido) {
-		this.apelido = apelido;
-	}
-	
-	public String getRg() {
-		return rg;
-	}
-	
-	public void setRg(String rg) {
-		this.rg = rg;
-	}
-	
-	public String getCpf() {
-		return cpf;
-	}
-	
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-	
-	
-	public String getSexo() {
-		return sexo;
-	}
-	
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
-	
-	
 }

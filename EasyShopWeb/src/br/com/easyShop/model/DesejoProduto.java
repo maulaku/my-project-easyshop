@@ -14,7 +14,7 @@ public class DesejoProduto
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkDesejoProduto;
+	private Long pkDesejoProduto;
 	@ManyToOne @JoinColumn(name="fkDesejo")
 	private Desejo desejo;
 	@ManyToOne @JoinColumn(name="fkProduto")
@@ -22,12 +22,12 @@ public class DesejoProduto
 	
 	public DesejoProduto() {}
 
-	public long getPkDesejoProduto()
+	public Long getPkDesejoProduto()
 	{
 		return pkDesejoProduto;
 	}
 
-	public void setPkDesejoProduto(long pkDesejoProduto)
+	public void setPkDesejoProduto(Long pkDesejoProduto)
 	{
 		this.pkDesejoProduto = pkDesejoProduto;
 	}

@@ -19,22 +19,22 @@ public class Desejo
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkDesejo;
+	private Long pkDesejo;
 	private String nome;
-	private int status = Constantes.STATUS_ATIVO;
+	private Integer status = Constantes.STATUS_ATIVO;
 	@ManyToOne @JoinColumn(name="fkCliente")
 	private Cliente cliente;
-	@OneToMany
+	@OneToMany (mappedBy="desejo")
 	private List<DesejoProduto> desejoProdutos;
 	
 	public Desejo() {}
 
-	public long getPkDesejo()
+	public Long getPkDesejo()
 	{
 		return pkDesejo;
 	}
 
-	public void setPkDesejo(long pkDesejo)
+	public void setPkDesejo(Long pkDesejo)
 	{
 		this.pkDesejo = pkDesejo;
 	}
@@ -49,12 +49,12 @@ public class Desejo
 		this.nome = nome;
 	}
 
-	public int getStatus()
+	public Integer getStatus()
 	{
 		return status;
 	}
 
-	public void setStatus(int status)
+	public void setStatus(Integer status)
 	{
 		this.status = status;
 	}

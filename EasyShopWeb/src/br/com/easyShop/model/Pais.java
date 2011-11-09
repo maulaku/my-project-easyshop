@@ -15,20 +15,18 @@ public class Pais
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkPais;
+	private Long pkPais;
 	private String nome;
-	@OneToMany
+	@OneToMany (mappedBy="pais")
 	private List<Estado> estados;
 
 	public Pais() {}
 
-
-
-	public long getPkPais()
+	public Long getPkPais()
 	{
 		return pkPais;
 	}
-	public void setPkPais(long pkPais)
+	public void setPkPais(Long pkPais)
 	{
 		this.pkPais = pkPais;
 	}
@@ -48,8 +46,7 @@ public class Pais
 	{
 		this.estados = estados;
 	}
-
-	 public String toString(){
+	public String toString(){
 	        return this.nome;
 	 }
 }
