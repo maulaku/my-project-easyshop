@@ -20,6 +20,14 @@
 			
 			import mx.controls.Alert;
 			
+			public function mouseOver(evt:MouseEvent):void{
+				aumentar.play([evt.currentTarget]);
+			}
+			
+			public function mouseOut(evt:MouseEvent):void{
+				diminuir.play([evt.currentTarget]);
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -29,28 +37,42 @@
 			<mx:Zoom />
 			<mx:Fade />
 		</mx:Parallel>
+		
+		<mx:Resize id="aumentar" duration="150" widthTo="150" heightTo="60"/>
+		<mx:Resize id="diminuir" duration="200" widthTo="120" heightTo="40"/>
 	</fx:Declarations>
 	
 	<s:Image x="-6" y="-10" width="1173" height="688" scaleMode="stretch" smooth="true"
 			 smoothingQuality="high" source="../imagens/aplicacao/fundo.png"/>
 	<s:Image x="-18" y="-49" width="650" height="319" source="../imagens/aplicacao/nomEasy.png"/>
-	<mxml:MModulo  id="modulo" x="174" y="292" width="947" height="559">
+	<mxml:MModulo  id="modulo" x="174" y="252" width="947" height="559">
 	</mxml:MModulo>
-	<mxml:MPanel id="mpCategoriasSub" x="2" y="291" width="174" height="560" mreTamanhoTitulo="0">
+	<mxml:MPanel id="mpCategoriasSub" x="2" y="251" width="174" height="560" mreTamanhoTitulo="0">
 	</mxml:MPanel>
-	<mxml:MComboBox id="cbCategorias" x="129" y="263" width="207"/>
+	<mxml:MComboBox id="cbCategorias" x="129" y="223" width="207"/>
 	<mxml:MBotao id="btnEntrar" x="970" y="33" width="70" height="28" label="Entrar"
 				 click="btnEntrar_clickHandler(true)" fontFamily="Verdana" fontSize="16"/>
 	<mxml:MBotao id="btnCarrinho" x="1055" y="33" width="80" height="28" label="Carrinho"
 				 fontFamily="Verdana" fontSize="16"/>
-	<s:Label x="59" y="259" width="65" height="31" color="#F0F2F9" fontFamily="Verdana"
+	<s:Label x="59" y="219" width="65" height="31" color="#F0F2F9" fontFamily="Verdana"
 			 fontSize="15" fontWeight="bold" text="BUSCA" textAlign="center" verticalAlign="middle"/>
-	<comboLOD:MComboLOD id="cbBusca" x="339" y="264" width="659" height="22"
+	<comboLOD:MComboLOD id="cbBusca" x="339" y="224" width="659" height="22"
 						mreLabelFunction="lfProduto" mreMinimoCaracteres="3"/>
-	<s:Button x="1001" y="262" height="25" label="Buscar" fontFamily="Verdana" fontSize="14"/>
+	<s:Button x="1001" y="222" height="25" label="Buscar" fontFamily="Verdana" fontSize="14"/>
 	<s:Label x="390" y="889" width="355" height="19" fontSize="15"
 			 text="Créditos sobre o Site ficaram aqui" textAlign="center" verticalAlign="middle"/>
 	
 	
 	
+	<mx:HBox id="providerImg" x="0" y="129" width="100%" height="82" clipContent="true"
+			 horizontalAlign="center" horizontalScrollPolicy="off" verticalAlign="bottom"
+			 verticalScrollPolicy="off">
+		<s:Button x="1001" y="262" height="40" label="Eletrodomestico" fontFamily="Verdana" fontSize="14" useHandCursor="true" mouseOut="mouseOut(event)" mouseOver="mouseOver(event)"/>
+		<s:Button x="1001" y="262" height="40" label="Informática" fontFamily="Verdana" fontSize="14" useHandCursor="true" mouseOut="mouseOut(event)" mouseOver="mouseOver(event)"/>
+		<s:Button x="1001" y="262" height="40" label="Cozinha" fontFamily="Verdana" fontSize="14" useHandCursor="true" mouseOut="mouseOut(event)" mouseOver="mouseOver(event)"/>
+		<s:Button x="1001" y="262" height="40" label="Automóvel" fontFamily="Verdana" fontSize="14" useHandCursor="true" mouseOut="mouseOut(event)" mouseOver="mouseOver(event)"/>
+		<s:Button x="1001" y="262" height="40" label="Roupas" fontFamily="Verdana" fontSize="14" useHandCursor="true" mouseOut="mouseOut(event)" mouseOver="mouseOver(event)"/>
+	</mx:HBox>
+	
 </s:Application>
+
