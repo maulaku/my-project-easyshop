@@ -17,14 +17,14 @@ public class Categoria {
 	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkCategoria;
+	private Long pkCategoria;
 	private String nome;
-	private int tipo;
+	private Integer tipo;
 	@ManyToOne @JoinColumn(name="fkCategoria")
     private Categoria subCategoria;
-	@OneToMany
+	@OneToMany (mappedBy="categoria")
 	private List<Preferencia> preferencias;
-	@OneToMany
+	@OneToMany(mappedBy="categoria")
 	private List<Produto> produtos;
 
 	public Categoria() { }
