@@ -16,9 +16,9 @@ public class Preferencia
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkPreferencia;
+	private Long pkPreferencia;
 	private String nome;
-	private int status = Constantes.STATUS_ATIVO;
+	private Integer status = Constantes.STATUS_ATIVO;
 	@ManyToOne @JoinColumn(name="fkCliente")
 	private Cliente cliente;
 	@ManyToOne @JoinColumn(name="fkCategoria")
@@ -26,53 +26,47 @@ public class Preferencia
 	
 	public Preferencia() {}
 
-	public long getPkPreferencia()
-	{
+	public Long getPkPreferencia() {
 		return pkPreferencia;
 	}
 
-	public void setPkPreferencia(long pkPreferencia)
-	{
+	public void setPkPreferencia(Long pkPreferencia) {
 		this.pkPreferencia = pkPreferencia;
 	}
 
-	public String getNome()
-	{
+	public String getNome() {
 		return nome;
 	}
 
-	public void setNome(String nome)
-	{
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	public int getStatus()
-	{
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status)
-	{
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 
-	public Cliente getCliente()
-	{
+	public Cliente getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(Cliente cliente)
-	{
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
-	public Categoria getCategoria()
-	{
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria)
-	{
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public String toString(){  
+	    return this.nome;  
 	}
 }

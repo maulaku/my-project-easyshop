@@ -312,7 +312,7 @@ public class EditarProdutos extends JFrame {
 			txtPreco.setText("" + produto.getPreco());
 			txtQuantidade.setText("" + produto.getQuantidade());
 			textArea.setText(produto.getDescricao());
-			cboMarca.setSelectedIndex(((int) produto.getMarca().getPkMarca())-1);
+			cboMarca.setSelectedIndex((int) (((Long) produto.getMarca().getPkMarca())-1));
 //			cboCategoria.setSelectedItem(produto.getCategoria().getPkCategoria()-1);
 			
 			int qtd = cboSubcategoria.getItemCount(), i;

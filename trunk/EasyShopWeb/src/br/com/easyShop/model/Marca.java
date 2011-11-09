@@ -15,48 +15,46 @@ public class Marca {
 	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkMarca;
+	private Long pkMarca;
 	private String nome;
-	private int status;
-	@OneToMany
+	private Integer status;
+	@OneToMany (mappedBy="marca")
 	private List<Produto> produtos;
 	
 	public Marca() { }
 	
-	public long getPkMarca() {
+	public Long getPkMarca() {
 		return pkMarca;
 	}
-	
-	public void setPkMarca(long pkMarca) {
+
+	public void setPkMarca(Long pkMarca) {
 		this.pkMarca = pkMarca;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	public int getStatus() {
+
+	public Integer getStatus() {
 		return status;
 	}
-	
-	public void setStatus(int status) {
+
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 
-	public List<Produto> getProdutos()
-	{
+	public List<Produto> getProdutos() {
 		return produtos;
 	}
 
-	public void setProdutos(List<Produto> produtos)
-	{
+	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
-	
+
 	public String toString(){  
 	    return this.nome;  
 	}

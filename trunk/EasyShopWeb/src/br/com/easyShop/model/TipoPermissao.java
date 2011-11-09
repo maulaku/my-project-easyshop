@@ -15,31 +15,19 @@ public class TipoPermissao
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkTipoPermissao;
+	private Long pkTipoPermissao;
 	private String nome;
-	@OneToMany
+	@OneToMany (mappedBy="tipopermissao")
 	private List<UsuarioTela> permissoes;
 	
 	public TipoPermissao() {}
 
-	public long getPkTipoPermissao()
-	{
+	public Long getPkTipoPermissao() {
 		return pkTipoPermissao;
 	}
 
-	public void setPkTipoPermissao(long pkTipoPermissao)
-	{
+	public void setPkTipoPermissao(Long pkTipoPermissao) {
 		this.pkTipoPermissao = pkTipoPermissao;
-	}
-
-	public List<UsuarioTela> getPermissoes()
-	{
-		return permissoes;
-	}
-
-	public void setPermissoes(List<UsuarioTela> permissoes)
-	{
-		this.permissoes = permissoes;
 	}
 
 	public String getNome() {
@@ -49,7 +37,15 @@ public class TipoPermissao
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
+	public List<UsuarioTela> getPermissoes() {
+		return permissoes;
+	}
+
+	public void setPermissoes(List<UsuarioTela> permissoes) {
+		this.permissoes = permissoes;
+	}
+
 	public String toString(){  
         return this.nome;  
 	} 

@@ -15,41 +15,44 @@ public class Tela
 {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkTela;
+	private Long pkTela;
 	private String nome;
-	@OneToMany
+	@OneToMany (mappedBy="tela")
 	private List<UsuarioTela> permissoes;
 	
 	public Tela() {}
 
-	public long getPkTela()
-	{
+	
+	public Long getPkTela() {
 		return pkTela;
 	}
 
-	public void setPkTela(long pkTela)
-	{
+
+	public void setPkTela(Long pkTela) {
 		this.pkTela = pkTela;
 	}
 
-	public String getNome()
-	{
+
+	public String getNome() {
 		return nome;
 	}
 
-	public void setNome(String nome)
-	{
+
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 
 	public List<UsuarioTela> getPermissoes() {
 		return permissoes;
 	}
 
+
 	public void setPermissoes(List<UsuarioTela> permissoes) {
 		this.permissoes = permissoes;
 	}
-	
+
+
 	public String toString(){  
         return this.nome;  
 	}
