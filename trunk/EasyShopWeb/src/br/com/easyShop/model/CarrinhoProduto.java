@@ -14,8 +14,8 @@ public class CarrinhoProduto
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkCarrinhoProduto;
-	private int quantidade;
+	private Long pkCarrinhoProduto;
+	private Integer quantidade;
 	@ManyToOne @JoinColumn(name="fkCarrinho")
 	private Carrinho carrinho;
 	@ManyToOne @JoinColumn(name="fkProduto")

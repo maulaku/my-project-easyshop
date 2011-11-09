@@ -17,10 +17,10 @@ public class Carrinho
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkCarrinho;
+	private Long pkCarrinho;
 	@ManyToOne @JoinColumn(name="fkCliente")
 	private Cliente cliente;
-	@OneToMany
+	@OneToMany (mappedBy="carrinho")
 	private List<CarrinhoProduto> carrinhoProdutos;
 	
 	public Carrinho() {}

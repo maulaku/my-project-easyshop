@@ -22,7 +22,7 @@ public class Produto {
 	private long pkProduto;
 	private String nome;
 	private String codigo;
-	private double preco;
+	private Double preco;
 	private int quantidade;
 	private int garantia;
 	private String descricao;
