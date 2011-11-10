@@ -53,7 +53,6 @@ public function lfProduto(item:Object=null, colunm:Object=null):String
 
 protected function btnEntrar_clickHandler(centrado:Boolean):void
 {
-	// TODO Auto-generated method stub
 	painel = new Login();
 	painel.showCloseButton=true;
 	painel.setVisible(true);
