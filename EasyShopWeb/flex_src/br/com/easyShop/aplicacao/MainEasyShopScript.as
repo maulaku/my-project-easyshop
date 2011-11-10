@@ -72,6 +72,7 @@ private function lidaClickadoLogin(event:Event):void{
 
 private function lidaClickadoPessoaFisica(event:Event):void{
 	painel.setVisible(false);
+	ScrollBar.setVisible(true);
 	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaFisica.swf");
 }
 
