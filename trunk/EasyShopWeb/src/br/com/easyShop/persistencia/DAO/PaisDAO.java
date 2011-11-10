@@ -17,18 +17,18 @@ public class PaisDAO extends BaseDAO {
 
 		return paises;
 	}
-
-	public Pais getPais(String nome) {
-		Pais pais = new Pais();
-
-		try {
-			pais = (Pais) obtemUnico(Pais.class,
-					"pkPais = \"" + nome.toString() + "\"");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return pais;
-	}
+//
+//	public Pais getPais(String nome) {
+//		Pais pais = new Pais();
+//
+//		try {
+//			pais = (Pais) obtemUnico(Pais.class,
+//					"pkPais = \"" + nome.toString() + "\"");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//		return pais;
+//	}
 
 }

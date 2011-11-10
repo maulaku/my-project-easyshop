@@ -18,9 +18,9 @@ public class PaisService extends BaseServiceAtta
 		return paises;
 	}
 	
-	public static Pais getPais(String nome){
-		PaisDAO paisDao = new PaisDAO();
-		return paisDao.getPais(nome);
-	}
+//	public static Pais getPais(String nome){
+//		PaisDAO paisDao = new PaisDAO();
+//		return paisDao.getPais(nome);
+//	}
 
 }

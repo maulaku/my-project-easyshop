@@ -5,7 +5,6 @@ import java.util.List;
 import br.com.easyShop.model.Categoria;
 import br.com.easyShop.persistencia.DAO.baseDAO.BaseDAOAtta;
 import br.com.easyShop.persistencia.utils.QuerySQL;
-import br.com.easyShop.utils.Constantes;
 
 public class CategoriaDAO extends BaseDAOAtta{
 
@@ -42,13 +41,19 @@ public class CategoriaDAO extends BaseDAOAtta{
 		return obtem(Categoria.class, query, profundidade);		
 	}
 	
-	public List<Categoria> getTodasCategoriasPai(int profundidade) throws Exception
+	/**
+	 * Busca todas categorias do tipo PAI
+	 * @param profundidade
+	 * @return lista de categorias de um tipo
+	 * @throws Exception
+	 */
+	public List<Categoria> getTodasCategoriasTipo(int tipo, int profundidade) throws Exception
 	{
 		QuerySQL query = new QuerySQL();
 		
 		query.add("SELECT *");
 		query.add(" FROM Categoria");
-		query.add(" WHERE TIPO = ?", Constantes.CATEGORIA_PAI);
+		query.add(" WHERE TIPO = ?", tipo);
 
 		return obtem(Categoria.class, query, profundidade);
 	}

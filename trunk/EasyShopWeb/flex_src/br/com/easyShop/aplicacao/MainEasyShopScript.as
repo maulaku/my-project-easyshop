@@ -1,16 +1,18 @@
 import br.com.easyShop.comunicacao.MRemoteObject;
 import br.com.easyShop.comunicacao.ResultJava;
+import br.com.easyShop.model.Cliente;
 import br.com.easyShop.model.Produto;
 import br.com.easyShop.telas.Login;
 import br.com.mresolucoes.componentes.mre.Alerta;
 import br.com.mresolucoes.imagens.ImagensUtils;
-import mx.containers.Panel; 
-import mx.effects.Effect; 
-import mx.effects.WipeDown;
+
 import flash.events.Event;
 import flash.events.MouseEvent;
 
+import mx.containers.Panel;
 import mx.controls.Alert;
+import mx.effects.Effect;
+import mx.effects.WipeDown;
 import mx.managers.PopUpManager;
 
 var painel:Login;
@@ -26,7 +28,7 @@ public function construtor():void
 
 public function resultCategoria(result:ResultJava):void
 {
-	try
+	try		
 	{		
 		
 		if(result.item != null && (result.item as Boolean)==true)
