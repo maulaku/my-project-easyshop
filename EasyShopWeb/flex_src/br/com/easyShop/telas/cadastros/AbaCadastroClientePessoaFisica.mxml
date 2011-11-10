@@ -79,12 +79,12 @@
 	<s:Label x="179" y="551" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Senha"
 			 textAlign="left" verticalAlign="middle"/>
 	<mx:HRule x="122" y="484" width="358" height="5"/>
-	<s:Image x="644" y="110" width="170" height="186" smooth="true" smoothingQuality="high"
+	<s:Image id="lblImagem" x="644" y="110" width="170" height="186" smooth="true" smoothingQuality="high"
 			 source="@Embed('../../imagens/aplicacao/user.png')"/>
 	<s:Button x="489" y="341" width="29" height="25" icon="@Embed('../../imagens/botoes/Create.png')"/>
 	<s:Button x="520" y="341" width="29" height="25" icon="@Embed('../../imagens/botoes/Remove.png')"/>
 	<s:Button x="651" y="302" width="153" height="31" label="Carregar Imagem"
-			  icon="@Embed('../../imagens/botoes/Picture.png')"/>
+			  icon="@Embed('../../imagens/botoes/Picture.png')" click="abreJanela()" />
 	<s:Button x="672" y="378" width="114" height="31" label="Salvar"
 			  icon="@Embed('../../imagens/botoes/Save.png')"/>
 	<s:Button x="672" y="436" width="114" height="31" label="Limpar"

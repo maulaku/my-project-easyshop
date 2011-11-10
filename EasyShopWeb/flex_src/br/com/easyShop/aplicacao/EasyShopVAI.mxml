@@ -42,13 +42,13 @@
 		<s:Image x="-67" y="-95" width="650" height="319" scaleMode="stretch" smooth="true"
 				 smoothingQuality="high" source="@Embed('../imagens/aplicacao/nomEasy.png')"/>
 		
-		<s:Image x="918" y="-49" width="303" height="98" smooth="true" smoothingQuality="high"
+		<s:Image x="898" y="-49" width="303" height="98" smooth="true" smoothingQuality="high"
 				 source="@Embed('../imagens/aplicacao/fundoBotao.png')"/>
 		
-		<s:Image x="1017" y="-29" width="70" height="64" buttonMode="true" smooth="true" smoothingQuality="high"
+		<s:Image x="997" y="-29" width="70" height="64" buttonMode="true" smooth="true" smoothingQuality="high"
 				 source="@Embed('../imagens/aplicacao/icone_carrinho.png')"/>
 		
-		<s:Image x="936" y="-29" buttonMode="true" click="btnEntrar_clickHandler(true)" smooth="true"
+		<s:Image x="916" y="-29" buttonMode="true" click="btnEntrar_clickHandler(true)" smooth="true"
 				 smoothingQuality="high" source="@Embed('../imagens/aplicacao/user3.png')"/>
 		
 		<mxml:MModulo  id="modulo" x="182" y="184" width="976" height="559">
