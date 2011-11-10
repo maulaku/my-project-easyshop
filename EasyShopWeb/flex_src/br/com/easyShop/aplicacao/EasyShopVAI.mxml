@@ -42,6 +42,15 @@
 		<s:Image x="-67" y="-95" width="650" height="319" scaleMode="stretch" smooth="true"
 				 smoothingQuality="high" source="@Embed('../imagens/aplicacao/nomEasy.png')"/>
 		
+		<s:Image x="918" y="-49" width="303" height="98" smooth="true" smoothingQuality="high"
+				 source="@Embed('../imagens/aplicacao/fundoBotao.png')"/>
+		
+		<s:Image x="1017" y="-29" width="70" height="64" buttonMode="true" smooth="true" smoothingQuality="high"
+				 source="@Embed('../imagens/aplicacao/icone_carrinho.png')"/>
+		
+		<s:Image x="936" y="-29" buttonMode="true" click="btnEntrar_clickHandler(true)" smooth="true"
+				 smoothingQuality="high" source="@Embed('../imagens/aplicacao/user3.png')"/>
+		
 		<mxml:MModulo  id="modulo" x="182" y="184" width="976" height="559">
 			<s:VScrollBar x="963" y="0" width="17" height="559" viewport="{modulo}" id="ScrollBar" visible="false"/>
 		</mxml:MModulo>
@@ -49,9 +58,9 @@
 		
 		
 		<mxml:MComboBox id="cbCategorias" x="137" y="155" width="207" labelField="nome"/>
-		<mxml:MBotao id="btnEntrar" x="883" y="10" width="146" height="54" label="Entrar"
-					 click="btnEntrar_clickHandler(true)" fontFamily="Verdana" fontSize="16"
-					 fontWeight="normal"/>
+		
+		
+		
 		<s:Label x="67" y="151" width="65" height="31" color="#F0F2F9" fontFamily="Verdana"
 				 fontSize="15" fontWeight="bold" text="BUSCA" textAlign="center" verticalAlign="middle"/>
 		<comboLOD:MComboLOD id="cbBusca" x="347" y="156" width="659" height="22"
@@ -72,8 +81,7 @@
 			<s:Button x="1001" y="262" height="40" label="Automóvel" fontFamily="Verdana" fontSize="14" useHandCursor="true" mouseOut="mouseOut(event)" mouseOver="mouseOver(event)"/>
 			<s:Button x="1001" y="262" height="40" label="Roupas" fontFamily="Verdana" fontSize="14" useHandCursor="true" mouseOut="mouseOut(event)" mouseOver="mouseOver(event)"/>
 		</mx:HBox>
-			<s:Button id="btnCarrinho" x="1037" y="9" width="149" height="54" label="Carrinho"
-					  fontFamily="Verdana" fontSize="16" icon="@Embed('../imagens/aplicacao/icone_carrinho.png')"/>
+			
 		
 		<mx:Accordion x="10" y="186" width="174" height="556">
 			<s:NavigatorContent width="100%" height="15" label="Eletrodoméstico">
@@ -90,6 +98,9 @@
 			<s:NavigatorContent width="100%" height="100%" label="Roupas">
 			</s:NavigatorContent>
 		</mx:Accordion>
+		
+		
+		
 </s:Panel>
 </s:Application>
 

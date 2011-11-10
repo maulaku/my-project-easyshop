@@ -21,10 +21,10 @@
     <application path="br/com/easyShop/aplicacao/EasyShopVAI.mxml"/>
   </applications>
   <modules>
-    <module destPath="br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaFisica.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaFisica.mxml"/>
     <module destPath="br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaJuridica.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaJuridica.mxml"/>
-    
-</modules>
+    <module destPath="br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaFisica.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaFisica.mxml"/>
+    <module application="flex_src/br/com/easyShop/aplicacao/EasyShopVAI.mxml" destPath="br/com/easyShop/telas/produtos/AbaProduto.swf" optimize="true" sourcePath="flex_src/br/com/easyShop/telas/produtos/AbaProduto.mxml"/>
+  </modules>
   <buildCSSFiles/>
   <flashCatalyst validateFlashCatalystCompatibility="false"/>
 </actionScriptProperties>
