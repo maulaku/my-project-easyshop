@@ -4,74 +4,42 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
+import javax.persistence.Column;
 import br.com.easyShop.utils.Constantes;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 
 @Entity
-@Table(name="contato", schema="easy")
 public class Contato
 {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkContato;
-	private Integer  tipo; 
+	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long pkContato;
+	@Column(length=500)
 	private String contato;
-	private Integer status = Constantes.STATUS_ATIVO;
+	private int tipo;
+	private int status = Constantes.STATUS_ATIVO;
+
 	@ManyToOne @JoinColumn(name="fkPessoa")
 	private Pessoa pessoa;
 
-	public Contato() {}
 
-	public Long getPkContato()
-	{
-		return pkContato;
-	}
+	/*-*-*-* Construtores *-*-*-*/
+	public Contato() { }
 
-	public void setPkContato(Long pkContato)
-	{
-		this.pkContato = pkContato;
-	}
+	/*-*-*-* Metodos Gets e Sets *-*-*-*/
+	public long getPkContato() { return pkContato; }
+	public void setPkContato(long pkContato) { this.pkContato = pkContato; }
 
-	public Integer getTipo()
-	{
-		return tipo;
-	}
+	public String getContato() { return contato; }
+	public void setContato(String contato) { this.contato = contato; }
 
-	public void setTipo(Integer tipo)
-	{
-		this.tipo = tipo;
-	}
+	public int getTipo() { return tipo; }
+	public void setTipo(int tipo) { this.tipo = tipo; }
 
-	public String getContato()
-	{
-		return contato;
-	}
+	public int getStatus() { return status; }
+	public void setStatus(int status) { this.status = status; }
 
-	public void setContato(String contato)
-	{
-		this.contato = contato;
-	}
-
-	public Integer getStatus()
-	{
-		return status;
-	}
-
-	public void setStatus(Integer status)
-	{
-		this.status = status;
-	}
-
-	public Pessoa getPessoa()
-	{
-		return pessoa;
-	}
-
-	public void setPessoa(Pessoa pessoa)
-	{
-		this.pessoa = pessoa;
-	}	
+	public Pessoa getPessoa() { return pessoa; }
+	public void setPessoa(Pessoa pessoa) { this.pessoa = pessoa; }
 }

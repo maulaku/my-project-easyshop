@@ -3,28 +3,38 @@ package br.com.easyShop.persistencia.DAO;
 import java.util.List;
 
 import br.com.easyShop.model.Produto;
-import br.com.easyShop.persistencia.DAO.baseDAO.BaseDAO;
+import br.com.easyShop.persistencia.DAO.baseDAO.BaseDAOAtta;
+import br.com.easyShop.persistencia.utils.QuerySQL;
 
-public class ProdutoDAO extends BaseDAO{
+public class ProdutoDAO extends BaseDAOAtta {
 	
-	public List<Produto> getProdutos() {
-		List<Produto> produtos = null;
-		try {
-			produtos = obtemLista(Produto.class, "Select * from produto");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return produtos;
+	public List<Produto> getProdutos(int profundidade) throws Exception  
+	{
+		QuerySQL query = new QuerySQL();
+		
+		query.add("SELECT *");
+		query.add(" FROM Produto");
+		
+		return obtem(Produto.class, query, profundidade);
 	}
 	
-	public List<Produto> getProdutosNome(String nome) throws Exception 
+	/**
+	 * Buscas os produtos atraés do nome
+	 * @author Jean
+	 * @param nome
+	 * @param profundidade
+	 * @return lista de produtos
+	 * @throws Exception
+	 */
+	public List<Produto> getProdutosNome(String nome, int profundidade) throws Exception 
 	{
-		String query;
+		QuerySQL query = new QuerySQL();
 		
-		query = "SELECT * FROM produto WHERE nome like '%"+nome+"%'";
+		query.add("SELECT *");
+		query.add(" FROM Produto");
+		query.add(" WHERE nome like '%?%'", nome);
 		
-		return obtemLista(Produto.class, query);
+		return obtem(Produto.class, query, profundidade);
 	}
 
 }

@@ -21,7 +21,7 @@ var painel:Login;
 public function construtor():void
 {
 	cbBusca.mreServicePesquisa = "ProdutoService.getProdutosNome";
-	MRemoteObject.get("CategoriaService.getTodasCategoriasPai", [null], resultCategoria);
+	MRemoteObject.get("CategoriaService.getTodasCategoriasPai", null, resultCategoria);
 }
 
 public function resultCategoria(result:ResultJava):void

@@ -33,6 +33,8 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import utils.data.Data;
+
 import br.com.easyShop.model.Cidade;
 import br.com.easyShop.model.Contato;
 import br.com.easyShop.model.Endereco;
@@ -469,7 +471,7 @@ public class CadastroDeUsuario extends JFrame {
 					PessoaFisica pessoaFisica = new PessoaFisica();
 					pessoaFisica.setApelido(txtApelido.getText());
 					pessoaFisica.setCpf(txtCPF.getText());
-					pessoaFisica.setDataNascimento(calendarDataDeNasc.getDate());
+					pessoaFisica.setDataNascimento(new Data(calendarDataDeNasc.getDate()));
 					pessoaFisica.setNome(txtUsuario.getText());
 					pessoaFisica.setRg(txtRG.getText());
 					pessoaFisica.setSexo(obtemSexo(cboSexo.getSelectedIndex()));
@@ -531,11 +533,11 @@ public class CadastroDeUsuario extends JFrame {
 					contato = contatoAdd;
 					contato.setPessoa(pessoa);
 					ContatoService contatoService = new ContatoService();
-					contatoService.inserirContato(contato);
+					contatoService.salvarContato(contato);
 				}
 
 				UsuarioService usuarioService = new UsuarioService();
-				usuarioService.inserirUsuario(usuario);
+				usuarioService.salvar(usuario);
 
 				EnderecoService enderecoService = new EnderecoService(endereco);
 				enderecoService.inserir();

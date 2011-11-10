@@ -7,29 +7,43 @@ import br.com.easyShop.persistencia.DAO.UsuarioDAO;
 
 public class UsuarioService {
 
-	public void inserirUsuario(Usuario usuario) {
-		try {
-			UsuarioDAO.inserir(usuario);
-		} catch (Exception e) {
+	public void salvar(Usuario usuario) 
+	{
+		try 
+		{
+			new UsuarioDAO().salvar(usuario);
+		} 
+		catch (Exception e) 
+		{
 			e.printStackTrace();
 		}
 	}
 
-	public List<Usuario> getUsuarios() {
-		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		return usuarioDAO.getUsuarios();
-	}
-
-	public Usuario getUsuario(String nome) {
-		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		return usuarioDAO.getUsuario(nome);
-	}
-
-	public void atualizar(Usuario usuario) {
-		try {
-			UsuarioDAO.atualizar(usuario);
-		} catch (Exception e) {
+	public List<Usuario> getUsuarios()
+	{
+		try
+		{
+			return new UsuarioDAO().getUsuarios(-1);
+		} 
+		catch (Exception e)
+		{
 			e.printStackTrace();
+			return null;
 		}
 	}
+
+	public Usuario getUsuario(String nome) 
+	{
+		try
+		{
+			return new UsuarioDAO().getUsuarioNome(nome, -1);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	
 }

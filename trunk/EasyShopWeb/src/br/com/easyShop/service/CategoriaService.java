@@ -12,27 +12,54 @@ public class CategoriaService {
 
 	private List<Categoria> categoriasPais = new ArrayList<Categoria>();
 
-	public List<Categoria> getAllCategorias() {
-		CategoriaDAO categoriaDao = new CategoriaDAO();
-		return categoriaDao.getAllCategorias();
+	public List<Categoria> getAllCategorias() 
+	{
+		try
+		{
+			return new CategoriaDAO().getAllCategorias(-1);
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public void inserirCategoria(Categoria categoria) {
-		try {
-			CategoriaDAO.inserir(categoria);
-		} catch (Exception e) {
+		try 
+		{
+			new CategoriaDAO().salvar(categoria);
+		}
+		catch (Exception e) 
+		{
 			e.printStackTrace();
 		}
 	}
 
-	public List<Categoria> getSubCategorias(Categoria categoria) {
-		CategoriaDAO categoriaDao = new CategoriaDAO();
-		return categoriaDao.getCategoriasSub(categoria);
+	public List<Categoria> getSubCategorias(Categoria categoria) 
+	{
+		try
+		{
+			return new CategoriaDAO().getCategoriasSub(categoria, -1);
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
 	}
 
-	public List<Categoria> getCategorias() {
-		CategoriaDAO categoriaDao = new CategoriaDAO();
-		return categoriaDao.getCategorias();
+	public List<Categoria> getCategorias() 
+	{
+		try
+		{
+			return new CategoriaDAO().getCategorias(-1);
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	private void addSubCategoria(Categoria categoria) {
@@ -42,34 +69,44 @@ public class CategoriaService {
 	public List<Categoria> getPaisSolteiros() {
 
 		List<Categoria> categorias = new ArrayList<Categoria>();
-		CategoriaDAO categoriaDao = new CategoriaDAO();
-		categorias = categoriaDao.getAllCategorias();
+		
+		try
+		{
+			categorias = new CategoriaDAO().getAllCategorias(-1);
 
-		for (Categoria categoria : categorias) {
-
-			List<Categoria> subCategoria = new ArrayList<Categoria>();
-			subCategoria = categoriaDao.getCategoriasSub(categoria);
-
-			if (subCategoria.size() == 0) {
-				addSubCategoria(categoria);
+			for (Categoria categoria : categorias)
+			{
+	
+				List<Categoria> subCategoria = new ArrayList<Categoria>();
+				subCategoria = new CategoriaDAO().getCategoriasSub(categoria, -1);
+	
+				if (subCategoria.size() == 0) {
+					addSubCategoria(categoria);
+				}
 			}
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
 		}
 
 		return categoriasPais;
 	}
 
 	/**
-	 * Busca todas categorias
-	 * 
+	 * Busca todas categorias 
 	 * @author Jean
-	 * @Aba MainEasyShop
+	 * @Uso MainEasyShop
 	 * @return lista de categorias
 	 */
 	public ResultJava getTodasCategoriasPai() {
-		try {
-			return new ResultJava(true, new CategoriaDAO().getTodasCategoriasPai());
-		} catch (Exception e) {
-			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao buscar categorias" }));
+		try
+		{
+			return new ResultJava(true, new CategoriaDAO().getTodasCategoriasPai(-1));
+		} 
+		catch (Exception e) 
+		{
+			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao buscar categorias\n" + e }));
 		}
 	}
 }

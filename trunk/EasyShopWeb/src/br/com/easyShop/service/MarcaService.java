@@ -7,17 +7,29 @@ import br.com.easyShop.persistencia.DAO.MarcaDAO;
 
 public class MarcaService {
 
-	public void inserir(Marca marca) {
-		try {
-			MarcaDAO.inserir(marca);
-		} catch (Exception e) {
+	public void inserir(Marca marca) 
+	{
+		try 
+		{
+			new MarcaDAO().salvar(marca);
+		}
+		catch (Exception e) 
+		{
 			e.printStackTrace();
 		}
 	}
 	
-	public List<Marca> getMarcas(){
-		MarcaDAO marcaDao = new MarcaDAO();
-		return marcaDao.getMarcas();
+	public List<Marca> getMarcas()
+	{
+		try
+		{
+			return new MarcaDAO().getMarcas(-1);
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

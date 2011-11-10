@@ -1,117 +1,68 @@
 package br.com.easyShop.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
+import javax.persistence.Column;
 import br.com.easyShop.utils.Constantes;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.OneToMany;
 
 @Entity
-@Table(name="cliente", schema="easy")
-public class Cliente 
+public class Cliente
 {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkCliente;
+	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long pkCliente;
+	@Column(length=500)
 	private String codigo;
-	private Integer status = Constantes.STATUS_ATIVO;
+	private int status = Constantes.STATUS_ATIVO;
+
 	@ManyToOne @JoinColumn(name="fkPessoa")
 	private Pessoa pessoa;
-	@OneToMany (mappedBy="cliente")
-	private List<Pedido> pedidos;
-	@OneToMany (mappedBy="cliente")
-	private List<Carrinho> carrinhos;
-	@OneToMany (mappedBy="cliente")
+
+	@OneToMany(mappedBy="cliente")
 	private List<Preferencia> preferencias;
-	@OneToMany (mappedBy="cliente")
+
+	@OneToMany(mappedBy="cliente")
 	private List<Desejo> desejos;
-	
-	public Cliente() {}
 
-	public Long getPkCliente()
-	{
-		return pkCliente;
-	}
+	@OneToMany(mappedBy="cliente")
+	private List<Carrinho> carrinhos;
 
-	public void setPkCliente(Long pkCliente)
-	{
-		this.pkCliente = pkCliente;
-	}
+	@OneToMany(mappedBy="cliente")
+	private List<Pedido> pedidos;
 
-	public String getCodigo()
-	{
-		return codigo;
-	}
 
-	public void setCodigo(String codigo)
-	{
-		this.codigo = codigo;
-	}
+	/*-*-*-* Construtores *-*-*-*/
+	public Cliente() { }
 
-	public Integer getStatus()
-	{
-		return status;
-	}
+	/*-*-*-* Metodos Gets e Sets *-*-*-*/
+	public long getPkCliente() { return pkCliente; }
+	public void setPkCliente(long pkCliente) { this.pkCliente = pkCliente; }
 
-	public void setStatus(Integer status)
-	{
-		this.status = status;
-	}
+	public String getCodigo() { return codigo; }
+	public void setCodigo(String codigo) { this.codigo = codigo; }
 
-	public Pessoa getPessoa()
-	{
-		return pessoa;
-	}
+	public int getStatus() { return status; }
+	public void setStatus(int status) { this.status = status; }
 
-	public void setPessoa(Pessoa pessoa)
-	{
-		this.pessoa = pessoa;
-	}
+	public Pessoa getPessoa() { return pessoa; }
+	public void setPessoa(Pessoa pessoa) { this.pessoa = pessoa; }
 
-	public List<Pedido> getPedidos()
-	{
-		return pedidos;
-	}
+	public List<Preferencia> getPreferencias() { if(preferencias==null) { preferencias = new ArrayList<Preferencia>(); } return preferencias; }
+	public void setPreferencias(List<Preferencia> preferencias) { this.preferencias = preferencias; }
 
-	public void setPedidos(List<Pedido> pedidos)
-	{
-		this.pedidos = pedidos;
-	}
+	public List<Desejo> getDesejos() { if(desejos==null) { desejos = new ArrayList<Desejo>(); } return desejos; }
+	public void setDesejos(List<Desejo> desejos) { this.desejos = desejos; }
 
-	public List<Carrinho> getCarrinhos()
-	{
-		return carrinhos;
-	}
+	public List<Carrinho> getCarrinhos() { if(carrinhos==null) { carrinhos = new ArrayList<Carrinho>(); } return carrinhos; }
+	public void setCarrinhos(List<Carrinho> carrinhos) { this.carrinhos = carrinhos; }
 
-	public void setCarrinhos(List<Carrinho> carrinhos)
-	{
-		this.carrinhos = carrinhos;
-	}
-
-	public List<Preferencia> getPreferencias()
-	{
-		return preferencias;
-	}
-
-	public void setPreferencias(List<Preferencia> preferencias)
-	{
-		this.preferencias = preferencias;
-	}
-
-	public List<Desejo> getDesejos()
-	{
-		return desejos;
-	}
-
-	public void setDesejos(List<Desejo> desejos)
-	{
-		this.desejos = desejos;
-	}
+	public List<Pedido> getPedidos() { if(pedidos==null) { pedidos = new ArrayList<Pedido>(); } return pedidos; }
+	public void setPedidos(List<Pedido> pedidos) { this.pedidos = pedidos; }
 }

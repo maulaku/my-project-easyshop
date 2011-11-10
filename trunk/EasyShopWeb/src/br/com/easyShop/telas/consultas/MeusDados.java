@@ -32,6 +32,8 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import utils.data.Data;
+
 import br.com.easyShop.model.Cidade;
 import br.com.easyShop.model.Contato;
 import br.com.easyShop.model.Endereco;
@@ -789,7 +791,7 @@ public class MeusDados extends JFrame {
 					.setApelido(txtApelido.getText());
 			this.usuario.getPessoa().getPessoaFisica().setCpf(txtCPF.getText());
 			this.usuario.getPessoa().getPessoaFisica()
-					.setDataNascimento(calendarDataDeNasc.getDate());
+					.setDataNascimento(new Data(calendarDataDeNasc.getDate()));
 			this.usuario.getPessoa().getPessoaFisica().setRg(txtRG.getText());
 			this.usuario.getPessoa().getPessoaFisica()
 					.setSexo(obtemSexo(cboSexo.getSelectedIndex()));
@@ -852,11 +854,11 @@ public class MeusDados extends JFrame {
 			contato = contatoAdd;
 			contato.setPessoa(pessoa);
 			ContatoService contatoService = new ContatoService();
-			contatoService.atualizar(contato);
+			contatoService.salvarContato(contato);
 		}
 
 		UsuarioService usuarioService = new UsuarioService();
-		usuarioService.atualizar(this.usuario);
+		usuarioService.salvar(this.usuario);
 
 		enderecoServico.atualizar(endereco);
 
