@@ -2,8 +2,10 @@ package br.com.easyShop.service;
 
 import br.com.easyShop.model.PessoaFisica;
 import br.com.easyShop.persistencia.DAO.PessoaFisicaDAO;
+import br.com.easyShop.service.base.BaseServiceAtta;
 
-public class PessoaFisicaService {
+public class PessoaFisicaService extends BaseServiceAtta 
+{
 
 private static PessoaFisica pessoaFisica;
 	

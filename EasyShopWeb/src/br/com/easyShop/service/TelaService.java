@@ -4,8 +4,10 @@ import java.util.List;
 
 import br.com.easyShop.model.Tela;
 import br.com.easyShop.persistencia.DAO.TelaDAO;
+import br.com.easyShop.service.base.BaseServiceAtta;
 
-public class TelaService {
+public class TelaService extends BaseServiceAtta
+{
 
 	public List<Tela> getTelas()
 	{

@@ -4,8 +4,9 @@ import java.util.List;
 
 import br.com.easyShop.model.TipoPermissao;
 import br.com.easyShop.persistencia.DAO.TipoPermissaoDAO;
+import br.com.easyShop.service.base.BaseServiceAtta;
 
-public class TipoPermissaoService 
+public class TipoPermissaoService extends BaseServiceAtta
 {
 	public List<TipoPermissao> getTipoPermissao()
 	{

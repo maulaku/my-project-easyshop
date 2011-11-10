@@ -5,8 +5,10 @@ import br.com.easyShop.model.PessoaFisica;
 import br.com.easyShop.model.Produto;
 import br.com.easyShop.persistencia.DAO.PessoaDAO;
 import br.com.easyShop.persistencia.DAO.ProdutoDAO;
+import br.com.easyShop.service.base.BaseServiceAtta;
 
-public class PessoaService {
+public class PessoaService extends BaseServiceAtta
+{
 	
 	private static Pessoa pessoa;
 	

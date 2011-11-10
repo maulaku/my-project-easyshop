@@ -7,8 +7,10 @@ import java.util.List;
 import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Categoria;
 import br.com.easyShop.persistencia.DAO.CategoriaDAO;
+import br.com.easyShop.service.base.BaseServiceAtta;
 
-public class CategoriaService {
+public class CategoriaService extends BaseServiceAtta
+{
 
 	private List<Categoria> categoriasPais = new ArrayList<Categoria>();
 

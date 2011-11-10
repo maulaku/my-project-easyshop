@@ -5,8 +5,10 @@ import java.util.List;
 import br.com.easyShop.model.Contato;
 import br.com.easyShop.model.Pessoa;
 import br.com.easyShop.persistencia.DAO.ContatoDAO;
+import br.com.easyShop.service.base.BaseServiceAtta;
 
-public class ContatoService {	
+public class ContatoService extends BaseServiceAtta
+{	
 	public ContatoService(){ }
 
 	public void salvarContato(Contato contato)
