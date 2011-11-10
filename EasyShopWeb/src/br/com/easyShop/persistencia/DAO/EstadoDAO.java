@@ -19,17 +19,17 @@ public class EstadoDAO extends BaseDAO {
 		return estados;
 	}
 
-	public Estado getEstado(String nome) {
-		Estado estado = new Estado();
-
-		try {
-			estado = (Estado) obtemUnico(Estado.class,
-					"pkEstado = \"" + nome.toString() + "\"");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return estado;
-	}
+//	public Estado getEstado(String nome) {
+//		Estado estado = new Estado();
+//
+//		try {
+//			estado = (Estado) obtemUnico(Estado.class,
+//					"pkEstado = \"" + nome.toString() + "\"");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//		return estado;
+//	}
 
 }

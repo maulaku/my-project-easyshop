@@ -8,6 +8,7 @@ import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Categoria;
 import br.com.easyShop.persistencia.DAO.CategoriaDAO;
 import br.com.easyShop.service.base.BaseServiceAtta;
+import br.com.easyShop.utils.Constantes;
 
 public class CategoriaService extends BaseServiceAtta
 {
@@ -104,7 +105,7 @@ public class CategoriaService extends BaseServiceAtta
 	public ResultJava getTodasCategoriasPai() {
 		try
 		{
-			return new ResultJava(true, new CategoriaDAO().getTodasCategoriasPai(-1));
+			return new ResultJava(true, new CategoriaDAO().getTodasCategoriasTipo(Constantes.CATEGORIA_PAI, -1));
 		} 
 		catch (Exception e) 
 		{

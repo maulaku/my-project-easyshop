@@ -705,7 +705,7 @@ public class CadastroDeUsuario extends JFrame {
 
 	private void preencherPais(){
 		PaisService paisService = new PaisService();
-		List<Pais> paises = paisService.getPaises();
+		List<Pais> paises = paisService.getTodos(objetoClasse, profundidade, status, orderBy)
 
 		 for(Pais pais : paises){
          	cboPais.addItem(pais);
