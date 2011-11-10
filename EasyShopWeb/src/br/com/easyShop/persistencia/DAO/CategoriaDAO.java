@@ -2,53 +2,54 @@ package br.com.easyShop.persistencia.DAO;
 
 import java.util.List;
 
-import utils.IntegerUtil;
 import br.com.easyShop.model.Categoria;
-import br.com.easyShop.persistencia.DAO.baseDAO.BaseDAO;
+import br.com.easyShop.persistencia.DAO.baseDAO.BaseDAOAtta;
+import br.com.easyShop.persistencia.utils.QuerySQL;
 import br.com.easyShop.utils.Constantes;
 
-public class CategoriaDAO extends BaseDAO{
+public class CategoriaDAO extends BaseDAOAtta{
 
 
-	public List<Categoria> getAllCategorias(){
-		List<Categoria> categorias = null;
-		try {
-			categorias = obtemLista(Categoria.class, "Select * from categoria");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return categorias;
+	public List<Categoria> getAllCategorias(int profundidade) throws Exception
+	{
+		QuerySQL query = new QuerySQL();
+			
+		query.add("SELECT *");
+		query.add(" FROM Categoria");
+		
+		return obtem(Categoria.class, query, profundidade);
 	}
 
-	public List<Categoria> getCategoriasSub(Categoria categoria){
-		List<Categoria> subCategorias = null;
-		try {
-			subCategorias = obtemLista(Categoria.class, "Select * from Categoria where fkcategoria = " + categoria.getPkCategoria());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return subCategorias;
+	public List<Categoria> getCategoriasSub(Categoria categoria, int profundidade) throws Exception
+	{
+		QuerySQL query = new QuerySQL();
+			
+		query.add("SELECT *");
+		query.add(" FROM Categoria");
+		query.add(" WHERE fkCategoria = ?", categoria.getPkCategoria());
+		
+		return obtem(Categoria.class, query, profundidade);		
 	}
 
-	public List<Categoria> getCategorias(){
-		List<Categoria> subCategorias = null;
-		try {
-			subCategorias = obtemLista(Categoria.class, "Select * from Categoria where fkcategoria is not null " );
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public List<Categoria> getCategorias(int profundidade) throws Exception
+	{
+		QuerySQL query = new QuerySQL();
 
-		return subCategorias;
+		query.add("SELECT *");
+		query.add(" FROM Categoria");
+		query.add(" WHERE fkCategoria IS NOT NULL");
+		
+		return obtem(Categoria.class, query, profundidade);		
 	}
 	
-	public List<Categoria> getTodasCategoriasPai() throws Exception
+	public List<Categoria> getTodasCategoriasPai(int profundidade) throws Exception
 	{
-		String query;
+		QuerySQL query = new QuerySQL();
 		
-		query = "SELECT * FROM categoria WHERE TIPO = "+IntegerUtil.toString(Constantes.CATEGORIA_PAI);
-		
-		return obtemLista(Categoria.class, query);
+		query.add("SELECT *");
+		query.add(" FROM Categoria");
+		query.add(" WHERE TIPO = ?", Constantes.CATEGORIA_PAI);
+
+		return obtem(Categoria.class, query, profundidade);
 	}
 }

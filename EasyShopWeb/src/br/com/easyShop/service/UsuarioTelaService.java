@@ -6,27 +6,40 @@ import br.com.easyShop.model.Usuario;
 import br.com.easyShop.model.UsuarioTela;
 import br.com.easyShop.persistencia.DAO.UsuarioTelaDAO;
 
-public class UsuarioTelaService {
-	public void inserirUsuarioTela(UsuarioTela usuarioTela){
+public class UsuarioTelaService 
+{
+	public void inserirUsuarioTela(UsuarioTela usuarioTela)
+	{
 		try
 		{
-			UsuarioTelaDAO.inserir(usuarioTela);
-		} catch (Exception e)
+			new UsuarioTelaDAO().salvar(usuarioTela);
+		} 
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
 	}
 	
-	public List<UsuarioTela> getUsuarioTelas(Usuario usuario){
-		UsuarioTelaDAO usuarioTelaDAO = new UsuarioTelaDAO();
-		return usuarioTelaDAO.getUsuarioTelas(usuario);
-	}
-	
-	public void excluirUsuarioTela(UsuarioTela usuarioTela){
+	public List<UsuarioTela> getUsuarioTelas(Usuario usuario)
+	{
 		try
 		{
-			UsuarioTelaDAO.remover(usuarioTela);
-		} catch (Exception e)
+			return new UsuarioTelaDAO().getUsuarioTelas(usuario, -1);
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public void excluirUsuarioTela(UsuarioTela usuarioTela)
+	{
+		try
+		{
+			new UsuarioTelaDAO().remover(usuarioTela);
+		} 
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}

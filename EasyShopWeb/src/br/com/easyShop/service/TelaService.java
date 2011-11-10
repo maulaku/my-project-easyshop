@@ -7,8 +7,16 @@ import br.com.easyShop.persistencia.DAO.TelaDAO;
 
 public class TelaService {
 
-	public List<Tela> getTelas(){
-		TelaDAO telaDAO = new TelaDAO();
-		return telaDAO.getTelas();
+	public List<Tela> getTelas()
+	{
+		try
+		{
+			return new TelaDAO().getTelas(-1);
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

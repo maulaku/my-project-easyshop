@@ -8,9 +8,17 @@ import br.com.easyShop.persistencia.DAO.CidadeDAO;
 
 public class CidadeService {
 	
-	public List<Cidade> getCidades(Estado estado){
-		CidadeDAO cidadeDAO = new CidadeDAO();
-		return cidadeDAO.getCidades(estado);
+	public List<Cidade> getCidades(Estado estado)
+	{
+		try
+		{
+			return new CidadeDAO().getCidades(estado, -1);
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

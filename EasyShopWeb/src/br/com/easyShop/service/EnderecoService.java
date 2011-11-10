@@ -8,9 +8,7 @@ public class EnderecoService {
 
 	private static Endereco endereco;
 	
-	public EnderecoService(){
-		
-	}
+	public EnderecoService(){ }
 
 	public EnderecoService(Endereco endereco){
 		 EnderecoService.endereco = endereco;

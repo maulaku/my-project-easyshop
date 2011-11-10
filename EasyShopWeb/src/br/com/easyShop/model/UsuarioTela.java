@@ -4,60 +4,39 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 
 @Entity
-@Table(name="usuariotela", schema="easy")
 public class UsuarioTela
 {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkUsuarioTela;
-	@ManyToOne @JoinColumn(name="fkTipoPermissao")
-	private TipoPermissao tipoPermissao; 
+	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long pkUsuarioTela;
+
 	@ManyToOne @JoinColumn(name="fkUsuario")
 	private Usuario usuario;
+
 	@ManyToOne @JoinColumn(name="fkTela")
 	private Tela tela;
-	
-	public UsuarioTela() {}
-	
-	public Long getPkUsuarioTela() {
-		return pkUsuarioTela;
-	}
 
-	public void setPkUsuarioTela(Long pkUsuarioTela) {
-		this.pkUsuarioTela = pkUsuarioTela;
-	}
+	@ManyToOne @JoinColumn(name="fkTipoPermissao")
+	private TipoPermissao tipoPermissao;
 
-	public TipoPermissao getTipoPermissao() {
-		return tipoPermissao;
-	}
 
-	public void setTipoPermissao(TipoPermissao tipoPermissao) {
-		this.tipoPermissao = tipoPermissao;
-	}
+	/*-*-*-* Construtores *-*-*-*/
+	public UsuarioTela() { }
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
+	/*-*-*-* Metodos Gets e Sets *-*-*-*/
+	public long getPkUsuarioTela() { return pkUsuarioTela; }
+	public void setPkUsuarioTela(long pkUsuarioTela) { this.pkUsuarioTela = pkUsuarioTela; }
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
+	public Usuario getUsuario() { return usuario; }
+	public void setUsuario(Usuario usuario) { this.usuario = usuario; }
 
-	public Tela getTela() {
-		return tela;
-	}
+	public Tela getTela() { return tela; }
+	public void setTela(Tela tela) { this.tela = tela; }
 
-	public void setTela(Tela tela) {
-		this.tela = tela;
-	}
-
-	public String toString(){  
-        return this.tela.getNome();  
-	}
-
+	public TipoPermissao getTipoPermissao() { return tipoPermissao; }
+	public void setTipoPermissao(TipoPermissao tipoPermissao) { this.tipoPermissao = tipoPermissao; }
 }

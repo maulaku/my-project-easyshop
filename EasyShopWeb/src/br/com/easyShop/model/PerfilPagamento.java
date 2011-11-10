@@ -1,78 +1,47 @@
 package br.com.easyShop.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
+import javax.persistence.Column;
 import br.com.easyShop.utils.Constantes;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.OneToMany;
 
 @Entity
-@Table(name="perfilpagamento", schema="easy")
 public class PerfilPagamento
 {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkPerfilPagamento;
+	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long pkPerfilPagamento;
+	@Column(length=500)
 	private String nome;
+	@Column(length=5000)
 	private String descricao;
-	private Integer status = Constantes.STATUS_ATIVO;
-	@OneToMany (mappedBy="perfilpagamento")
+	private int status = Constantes.STATUS_ATIVO;
+
+	@OneToMany(mappedBy="perfilPagamento")
 	private List<Pedido> pedidos;
-	
-	public PerfilPagamento() {}
 
-	public Long getPkPerfilPagamento()
-	{
-		return pkPerfilPagamento;
-	}
 
-	public void setPkPerfilPagamento(Long pkPerfilPagamento)
-	{
-		this.pkPerfilPagamento = pkPerfilPagamento;
-	}
+	/*-*-*-* Construtores *-*-*-*/
+	public PerfilPagamento() { }
 
-	public String getNome()
-	{
-		return nome;
-	}
+	/*-*-*-* Metodos Gets e Sets *-*-*-*/
+	public long getPkPerfilPagamento() { return pkPerfilPagamento; }
+	public void setPkPerfilPagamento(long pkPerfilPagamento) { this.pkPerfilPagamento = pkPerfilPagamento; }
 
-	public void setNome(String nome)
-	{
-		this.nome = nome;
-	}
+	public String getNome() { return nome; }
+	public void setNome(String nome) { this.nome = nome; }
 
-	public String getDescricao()
-	{
-		return descricao;
-	}
+	public String getDescricao() { return descricao; }
+	public void setDescricao(String descricao) { this.descricao = descricao; }
 
-	public void setDescricao(String descricao)
-	{
-		this.descricao = descricao;
-	}
+	public int getStatus() { return status; }
+	public void setStatus(int status) { this.status = status; }
 
-	public Integer getStatus()
-	{
-		return status;
-	}
-
-	public void setStatus(Integer status)
-	{
-		this.status = status;
-	}
-
-	public List<Pedido> getPedidos()
-	{
-		return pedidos;
-	}
-
-	public void setPedidos(List<Pedido> pedidos)
-	{
-		this.pedidos = pedidos;
-	}	
+	public List<Pedido> getPedidos() { if(pedidos==null) { pedidos = new ArrayList<Pedido>(); } return pedidos; }
+	public void setPedidos(List<Pedido> pedidos) { this.pedidos = pedidos; }
 }

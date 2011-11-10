@@ -1,33 +1,32 @@
 package br.com.easyShop.persistencia.DAO;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import br.com.easyShop.model.Usuario;
-import br.com.easyShop.persistencia.DAO.baseDAO.BaseDAO;
+import br.com.easyShop.persistencia.DAO.baseDAO.BaseDAOAtta;
+import br.com.easyShop.persistencia.utils.QuerySQL;
 
 
-public class UsuarioDAO extends BaseDAO {
-
-    public List<Usuario> getUsuarios(){
-    	List<Usuario> usuarios = new ArrayList<Usuario>();
-    	try {
-			usuarios = obtemLista(Usuario.class, "select * from usuario");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-    	return usuarios;
+public class UsuarioDAO extends BaseDAOAtta
+{
+    public List<Usuario> getUsuarios(int profundidade) throws Exception  
+	 {
+		 QuerySQL query = new QuerySQL();
+			
+		 query.add("SELECT *");
+		 query.add(" FROM Usuario");
+		
+		 return obtem(Usuario.class, query, profundidade);
     }
     
-    public Usuario getUsuario(String nome){
-    	Usuario usuario = new Usuario();
-    	try {
-			usuario = (Usuario) obtemUnico(Usuario.class,"login = \"" + nome.toString() + "\"");
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Usuário ou senha incorreta!");
-		}
-			return usuario;
+    public Usuario getUsuarioNome(String nome, int profundidade) throws Exception
+    {
+    	QuerySQL query = new QuerySQL();
+		
+		 query.add("SELECT *");
+		 query.add("FROM Usuario");
+		 query.add("WHERE login = ?", nome);
+		 
+		 return obtemUnico(Usuario.class, query, profundidade);
     }
 }

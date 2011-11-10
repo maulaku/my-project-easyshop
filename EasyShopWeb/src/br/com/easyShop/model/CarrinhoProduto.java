@@ -4,62 +4,37 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 
 @Entity
-@Table(name="carrinhoproduto", schema="easy")
 public class CarrinhoProduto
 {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkCarrinhoProduto;
+	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long pkCarrinhoProduto;
 	private Integer quantidade;
+
 	@ManyToOne @JoinColumn(name="fkCarrinho")
 	private Carrinho carrinho;
+
 	@ManyToOne @JoinColumn(name="fkProduto")
 	private Produto produto;
-	
-	public CarrinhoProduto() {}
 
-	public Long getPkCarrinhoProduto()
-	{
-		return pkCarrinhoProduto;
-	}
 
-	public void setPkCarrinhoProduto(Long pkCarrinhoProduto)
-	{
-		this.pkCarrinhoProduto = pkCarrinhoProduto;
-	}
+	/*-*-*-* Construtores *-*-*-*/
+	public CarrinhoProduto() { }
 
-	public Integer getQuantidade()
-	{
-		return quantidade;
-	}
+	/*-*-*-* Metodos Gets e Sets *-*-*-*/
+	public long getPkCarrinhoProduto() { return pkCarrinhoProduto; }
+	public void setPkCarrinhoProduto(long pkCarrinhoProduto) { this.pkCarrinhoProduto = pkCarrinhoProduto; }
 
-	public void setQuantidade(Integer quantidade)
-	{
-		this.quantidade = quantidade;
-	}
+	public Integer getQuantidade() { return quantidade; }
+	public void setQuantidade(Integer quantidade) { this.quantidade = quantidade; }
 
-	public Carrinho getCarrinho()
-	{
-		return carrinho;
-	}
+	public Carrinho getCarrinho() { return carrinho; }
+	public void setCarrinho(Carrinho carrinho) { this.carrinho = carrinho; }
 
-	public void setCarrinho(Carrinho carrinho)
-	{
-		this.carrinho = carrinho;
-	}
-
-	public Produto getProduto()
-	{
-		return produto;
-	}
-
-	public void setProduto(Produto produto)
-	{
-		this.produto = produto;
-	}
+	public Produto getProduto() { return produto; }
+	public void setProduto(Produto produto) { this.produto = produto; }
 }

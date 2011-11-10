@@ -1,52 +1,37 @@
 package br.com.easyShop.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Column;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="tipopermissao", schema="easy")
 public class TipoPermissao
 {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkTipoPermissao;
+	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long pkTipoPermissao;
+	@Column(length=500)
 	private String nome;
-	@OneToMany (mappedBy="tipopermissao")
-	private List<UsuarioTela> permissoes;
-	
-	public TipoPermissao() {}
 
-	public Long getPkTipoPermissao() {
-		return pkTipoPermissao;
-	}
+	@OneToMany(mappedBy="tipoPermissao")
+	private List<UsuarioTela> usuarioTelas;
 
-	public void setPkTipoPermissao(Long pkTipoPermissao) {
-		this.pkTipoPermissao = pkTipoPermissao;
-	}
 
-	public String getNome() {
-		return nome;
-	}
+	/*-*-*-* Construtores *-*-*-*/
+	public TipoPermissao() { }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+	/*-*-*-* Metodos Gets e Sets *-*-*-*/
+	public long getPkTipoPermissao() { return pkTipoPermissao; }
+	public void setPkTipoPermissao(long pkTipoPermissao) { this.pkTipoPermissao = pkTipoPermissao; }
 
-	public List<UsuarioTela> getPermissoes() {
-		return permissoes;
-	}
+	public String getNome() { return nome; }
+	public void setNome(String nome) { this.nome = nome; }
 
-	public void setPermissoes(List<UsuarioTela> permissoes) {
-		this.permissoes = permissoes;
-	}
-
-	public String toString(){  
-        return this.nome;  
-	} 
+	public List<UsuarioTela> getUsuarioTelas() { if(usuarioTelas==null) { usuarioTelas = new ArrayList<UsuarioTela>(); } return usuarioTelas; }
+	public void setUsuarioTelas(List<UsuarioTela> usuarioTelas) { this.usuarioTelas = usuarioTelas; }
 }

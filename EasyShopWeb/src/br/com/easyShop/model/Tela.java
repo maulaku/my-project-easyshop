@@ -1,59 +1,37 @@
 package br.com.easyShop.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Column;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="tela", schema="easy")
 public class Tela
 {
-	@Id 
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkTela;
+	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long pkTela;
+	@Column(length=500)
 	private String nome;
-	@OneToMany (mappedBy="tela")
-	private List<UsuarioTela> permissoes;
-	
-	public Tela() {}
 
-	
-	public Long getPkTela() {
-		return pkTela;
-	}
+	@OneToMany(mappedBy="tela")
+	private List<UsuarioTela> usuarioTelas;
 
 
-	public void setPkTela(Long pkTela) {
-		this.pkTela = pkTela;
-	}
+	/*-*-*-* Construtores *-*-*-*/
+	public Tela() { }
 
+	/*-*-*-* Metodos Gets e Sets *-*-*-*/
+	public long getPkTela() { return pkTela; }
+	public void setPkTela(long pkTela) { this.pkTela = pkTela; }
 
-	public String getNome() {
-		return nome;
-	}
+	public String getNome() { return nome; }
+	public void setNome(String nome) { this.nome = nome; }
 
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-
-	public List<UsuarioTela> getPermissoes() {
-		return permissoes;
-	}
-
-
-	public void setPermissoes(List<UsuarioTela> permissoes) {
-		this.permissoes = permissoes;
-	}
-
-
-	public String toString(){  
-        return this.nome;  
-	}
+	public List<UsuarioTela> getUsuarioTelas() { if(usuarioTelas==null) { usuarioTelas = new ArrayList<UsuarioTela>(); } return usuarioTelas; }
+	public void setUsuarioTelas(List<UsuarioTela> usuarioTelas) { this.usuarioTelas = usuarioTelas; }
 }

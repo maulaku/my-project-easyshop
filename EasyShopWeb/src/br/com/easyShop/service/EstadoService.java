@@ -8,14 +8,14 @@ import br.com.easyShop.persistencia.DAO.EstadoDAO;
 
 public class EstadoService {
 	
-	public List<Estado> getEstados(Pais pais){
-		EstadoDAO estadoDao = new EstadoDAO();
-		return estadoDao.getEstados(pais);
+	public List<Estado> getEstados(Pais pais)
+	{
+		return new EstadoDAO().getEstados(pais);
 	}
 	
-	public static Estado getEstado(String nome){
-		EstadoDAO estadoDao = new EstadoDAO();
-		return estadoDao.getEstado(nome);
+	public static Estado getEstado(String nome)
+	{
+		return new EstadoDAO().getEstado(nome);
 	}
 
 }

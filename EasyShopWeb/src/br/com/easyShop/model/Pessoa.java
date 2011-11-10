@@ -1,119 +1,74 @@
 package br.com.easyShop.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
+import javax.persistence.Column;
 import br.com.easyShop.utils.Constantes;
-
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.OneToMany;
 
 @Entity
-@Table(name="pessoa", schema="easy")
-public class Pessoa {
-	
-	@Id 
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkPessoa;
-	private Integer status = Constantes.STATUS_ATIVO;
-	@ManyToOne @JoinColumn(name="fkPessoaFisica") 
+public class Pessoa
+{
+	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long pkPessoa;
+	@Column(length=500)
+	private String foto;
+	private int status = Constantes.STATUS_ATIVO;
+
+	@ManyToOne @JoinColumn(name="fkPessoaJuridica")
+	private PessoaJuridica pessoaJuridica;
+
+	@ManyToOne @JoinColumn(name="fkPessoaFisica")
 	private PessoaFisica pessoaFisica;
-	@ManyToOne @JoinColumn(name="fkPessoaJuridica") 
-	private PessoaJuridica pessoaJuridica;	
-	@OneToMany (mappedBy="pessoa")
+
+	@OneToMany(mappedBy="pessoa")
 	private List<Usuario> usuarios;
-	@OneToMany (mappedBy="pessoa")
-	private List<Endereco> enderecos;
-	@OneToMany (mappedBy="pessoa")
-	private List<Cliente> clientes;
-	@OneToMany (mappedBy="pessoa")
+
+	@OneToMany(mappedBy="pessoa")
 	private List<Contato> contatos;
-	
-	public Pessoa() {}
 
-	public Long getPkPessoa()
-	{
-		return pkPessoa;
-	}
+	@OneToMany(mappedBy="pessoa")
+	private List<Cliente> clientes;
 
-	public void setPkPessoa(Long pkPessoa)
-	{
-		this.pkPessoa = pkPessoa;
-	}
+	@OneToMany(mappedBy="pessoa")
+	private List<Endereco> enderecos;
 
-	public Integer getStatus()
-	{
-		return status;
-	}
 
-	public void setStatus(Integer status)
-	{
-		this.status = status;
-	}
+	/*-*-*-* Construtores *-*-*-*/
+	public Pessoa() { }
 
-	public PessoaFisica getPessoaFisica()
-	{
-		return pessoaFisica;
-	}
+	/*-*-*-* Metodos Gets e Sets *-*-*-*/
+	public long getPkPessoa() { return pkPessoa; }
+	public void setPkPessoa(long pkPessoa) { this.pkPessoa = pkPessoa; }
 
-	public void setPessoaFisica(PessoaFisica pessoaFisica)
-	{
-		this.pessoaFisica = pessoaFisica;
-	}
+	public String getFoto() { return foto; }
+	public void setFoto(String foto) { this.foto = foto; }
 
-	public PessoaJuridica getPessoaJuridica()
-	{
-		return pessoaJuridica;
-	}
+	public int getStatus() { return status; }
+	public void setStatus(int status) { this.status = status; }
 
-	public void setPessoaJuridica(PessoaJuridica pessoaJuridica)
-	{
-		this.pessoaJuridica = pessoaJuridica;
-	}
+	public PessoaJuridica getPessoaJuridica() { return pessoaJuridica; }
+	public void setPessoaJuridica(PessoaJuridica pessoaJuridica) { this.pessoaJuridica = pessoaJuridica; }
 
-	public List<Usuario> getUsuarios()
-	{
-		return usuarios;
-	}
+	public PessoaFisica getPessoaFisica() { return pessoaFisica; }
+	public void setPessoaFisica(PessoaFisica pessoaFisica) { this.pessoaFisica = pessoaFisica; }
 
-	public void setUsuarios(List<Usuario> usuarios)
-	{
-		this.usuarios = usuarios;
-	}
+	public List<Usuario> getUsuarios() { if(usuarios==null) { usuarios = new ArrayList<Usuario>(); } return usuarios; }
+	public void setUsuarios(List<Usuario> usuarios) { this.usuarios = usuarios; }
 
-	public List<Endereco> getEnderecos()
-	{
-		return enderecos;
-	}
+	public List<Contato> getContatos() { if(contatos==null) { contatos = new ArrayList<Contato>(); } return contatos; }
+	public void setContatos(List<Contato> contatos) { this.contatos = contatos; }
 
-	public void setEnderecos(List<Endereco> enderecos)
-	{
-		this.enderecos = enderecos;
-	}
+	public List<Cliente> getClientes() { if(clientes==null) { clientes = new ArrayList<Cliente>(); } return clientes; }
+	public void setClientes(List<Cliente> clientes) { this.clientes = clientes; }
 
-	public List<Cliente> getClientes()
-	{
-		return clientes;
-	}
-
-	public void setClientes(List<Cliente> clientes)
-	{
-		this.clientes = clientes;
-	}
-
-	public List<Contato> getContatos()
-	{
-		return contatos;
-	}
-
-	public void setContatos(List<Contato> contatos)
-	{
-		this.contatos = contatos;
-	}
+	public List<Endereco> getEnderecos() { if(enderecos==null) { enderecos = new ArrayList<Endereco>(); } return enderecos; }
+	public void setEnderecos(List<Endereco> enderecos) { this.enderecos = enderecos; }
 }

@@ -1,57 +1,32 @@
+package br.com.easyShop.aplicacao
+{
+	import br.com.easyShop.model.*;
 
-import br.com.easyShop.model.Carrinho;
-import br.com.easyShop.model.CarrinhoProduto;
-import br.com.easyShop.model.Categoria;
-import br.com.easyShop.model.Cidade;
-import br.com.easyShop.model.Cliente;
-import br.com.easyShop.model.Contato;
-import br.com.easyShop.model.Desejo;
-import br.com.easyShop.model.DesejoProduto;
-import br.com.easyShop.model.Endereco;
-import br.com.easyShop.model.Estado;
-import br.com.easyShop.model.Marca;
-import br.com.easyShop.model.Pais;
-import br.com.easyShop.model.Pedido;
-import br.com.easyShop.model.PedidoProduto;
-import br.com.easyShop.model.PerfilPagamento;
-import br.com.easyShop.model.Pessoa;
-import br.com.easyShop.model.PessoaFisica;
-import br.com.easyShop.model.PessoaJuridica;
-import br.com.easyShop.model.Preferencia;
-import br.com.easyShop.model.Produto;
-import br.com.easyShop.model.Tela;
-import br.com.easyShop.model.TipoPermissao;
-import br.com.easyShop.model.Usuario;
-import br.com.easyShop.model.UsuarioTela;
-import br.com.mresolucoes.componentes.mre.Alerta;
-import br.com.mresolucoes.componentes.mre.MModulo;
-
-import mx.controls.Alert;
-
-private var alerta:Alerta = null;
-private var alert:Alert = null;
-private var mModulo:MModulo = null;
-private var carrinho:Carrinho = null;
-private var carrinhoProduto:CarrinhoProduto = null;
-private var categoria:Categoria = null;
-private var cidade:Cidade = null;
-private var cliente:Cliente = null;
-private var contato:Contato = null;
-private var desejo:Desejo = null;
-private var desejoProduto:DesejoProduto = null;
-private var endereco:Endereco = null;
-private var estado:Estado = null;
-private var marca:Marca = null;
-private var pais:Pais = null;
-private var pedido:Pedido = null;
-private var pedidoProduto:PedidoProduto = null;
-private var perfilPagamento:PerfilPagamento = null;
-private var pessoa:Pessoa = null;
-private var pessoaFisica:PessoaFisica = null;
-private var pessoaJuridica:PessoaJuridica = null;
-private var preferencia:Preferencia = null;
-private var produto:Produto = null;
-private var tela:Tela = null;
-private var tipoPermissao:TipoPermissao = null;
-private var usuario:Usuario = null;
-private var usuarioTela:UsuarioTela = null;
+	public class ImportsMain
+	{
+//		public static var carrinho:Carrinho = null;
+//		public static var carrinhoProduto:CarrinhoProduto = null;
+//		public static var categoria:Categoria = null;
+//		public static var cidade:Cidade = null;
+//		public static var cliente:Cliente = null;
+//		public static var contato:Contato = null;
+//		public static var desejo:Desejo = null;
+//		public static var desejoProduto:DesejoProduto = null;
+//		public static var endereco:Endereco = null;
+//		public static var estado:Estado = null;
+//		public static var marca:Marca = null;
+//		public static var pais:Pais = null;
+//		public static var pedido:Pedido = null;
+//		public static var pedidoProduto:PedidoProduto = null;
+//		public static var perfilPagamento:PerfilPagamento = null;
+//		public static var pessoa:Pessoa = null;
+//		public static var pessoaFisica:PessoaFisica = null;
+//		public static var pessoaJuridica:PessoaJuridica = null;
+//		public static var preferencia:Preferencia = null;
+//		public static var produto:Produto = null;
+//		public static var tela:Tela = null;
+//		public static var tipoPermissao:TipoPermissao = null;
+//		public static var usuario:Usuario = null;
+//		public static var usuarioTela:UsuarioTela = null;
+	}
+}

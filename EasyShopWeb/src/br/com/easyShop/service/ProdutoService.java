@@ -37,7 +37,15 @@ public class ProdutoService {
 	}
 
 	public int getCountProdutos(){
-		return ProdutoDAO.getCount(Produto.class);
+		try
+		{
+			return ProdutoDAO.getCount(Produto.class);
+		} catch (Exception e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1;
 	}
 
 	public List<Produto> getProdutos(){
@@ -56,7 +64,7 @@ public class ProdutoService {
 	{
 		try
 		{
-			return new ResultJava(new ProdutoDAO().getProdutosNome(nome));
+			return new ResultJava(new ProdutoDAO().getProdutosNome(nome, -1));
 		} 
 		catch (Exception e)
 		{

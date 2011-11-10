@@ -5,10 +5,14 @@ import br.com.easyShop.persistencia.DAO.UsuarioDAO;
 
 public class CarrinhoProdutoService {
 
-	public void inserir(CarrinhoProduto carrinhoProduto){
-		try {
-			UsuarioDAO.inserir(carrinhoProduto);
-		} catch (Exception e) {
+	public void inserir(CarrinhoProduto carrinhoProduto)
+	{
+		try 
+		{
+			new UsuarioDAO().salvar(carrinhoProduto);
+		} 
+		catch (Exception e) 
+		{
 			e.printStackTrace();
 		}
 	}

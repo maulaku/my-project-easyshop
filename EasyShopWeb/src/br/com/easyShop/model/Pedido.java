@@ -1,129 +1,72 @@
 package br.com.easyShop.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import br.com.easyShop.utils.Constantes;
-
+import org.hibernate.annotations.Type;
 import utils.data.Data;
+import br.com.easyShop.utils.Constantes;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.OneToMany;
 
 @Entity
-@Table(name="pedido", schema="easy")
 public class Pedido
 {
-	@Id 
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkPedido;
+	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long pkPedido;
 	private Double total;
+	@Type(type="timestamp")
 	private Data dataPedido;
+	@Type(type="timestamp")
 	private Data dataEntrega;
-    private Integer status = Constantes.STATUS_ATIVO;   
-    @ManyToOne @JoinColumn(name="fkEndereco")
-    private Endereco endereco;
-    @ManyToOne @JoinColumn(name="fkPerfilPagamento")
-    private PerfilPagamento perfilPagamento;
-    @ManyToOne @JoinColumn(name="fkCliente")
-    private Cliente cliente;
-    @OneToMany (mappedBy="pedido")
-    private List<PedidoProduto> pedidoProdutos;
-    
-	public Pedido() {}
+	private Integer status = Constantes.STATUS_ATIVO;
 
-	public Long getPkPedido()
-	{
-		return pkPedido;
-	}
+	@ManyToOne @JoinColumn(name="fkPerfilPagamento")
+	private PerfilPagamento perfilPagamento;
 
-	public void setPkPedido(Long pkPedido)
-	{
-		this.pkPedido = pkPedido;
-	}
+	@ManyToOne @JoinColumn(name="fkCliente")
+	private Cliente cliente;
 
-	public Double getTotal()
-	{
-		return total;
-	}
+	@ManyToOne @JoinColumn(name="fkEndereco")
+	private Endereco endereco;
 
-	public void setTotal(Double total)
-	{
-		this.total = total;
-	}
+	@OneToMany(mappedBy="pedido")
+	private List<PedidoProduto> pedidoProdutos;
 
-	public Data getDataPedido()
-	{
-		return dataPedido;
-	}
 
-	public void setDataPedido(Data dataPedido)
-	{
-		this.dataPedido = dataPedido;
-	}
+	/*-*-*-* Construtores *-*-*-*/
+	public Pedido() { }
 
-	public Data getDataEntrega()
-	{
-		return dataEntrega;
-	}
+	/*-*-*-* Metodos Gets e Sets *-*-*-*/
+	public long getPkPedido() { return pkPedido; }
+	public void setPkPedido(long pkPedido) { this.pkPedido = pkPedido; }
 
-	public void setDataEntrega(Data dataEntrega)
-	{
-		this.dataEntrega = dataEntrega;
-	}
+	public Double getTotal() { return total; }
+	public void setTotal(Double total) { this.total = total; }
 
-	public Integer getStatus()
-	{
-		return status;
-	}
+	public Data getDataPedido() { return dataPedido; }
+	public void setDataPedido(Data dataPedido) { this.dataPedido = dataPedido; }
 
-	public void setStatus(Integer status)
-	{
-		this.status = status;
-	}
+	public Data getDataEntrega() { return dataEntrega; }
+	public void setDataEntrega(Data dataEntrega) { this.dataEntrega = dataEntrega; }
 
-	public Endereco getEndereco()
-	{
-		return endereco;
-	}
+	public Integer getStatus() { return status; }
+	public void setStatus(Integer status) { this.status = status; }
 
-	public void setEndereco(Endereco endereco)
-	{
-		this.endereco = endereco;
-	}
+	public PerfilPagamento getPerfilPagamento() { return perfilPagamento; }
+	public void setPerfilPagamento(PerfilPagamento perfilPagamento) { this.perfilPagamento = perfilPagamento; }
 
-	public PerfilPagamento getPerfilPagamento()
-	{
-		return perfilPagamento;
-	}
+	public Cliente getCliente() { return cliente; }
+	public void setCliente(Cliente cliente) { this.cliente = cliente; }
 
-	public void setPerfilPagamento(PerfilPagamento perfilPagamento)
-	{
-		this.perfilPagamento = perfilPagamento;
-	}
+	public Endereco getEndereco() { return endereco; }
+	public void setEndereco(Endereco endereco) { this.endereco = endereco; }
 
-	public Cliente getCliente()
-	{
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente)
-	{
-		this.cliente = cliente;
-	}
-
-	public List<PedidoProduto> getPedidoProdutos()
-	{
-		return pedidoProdutos;
-	}
-
-	public void setPedidoProdutos(List<PedidoProduto> pedidoProdutos)
-	{
-		this.pedidoProdutos = pedidoProdutos;
-	}
+	public List<PedidoProduto> getPedidoProdutos() { if(pedidoProdutos==null) { pedidoProdutos = new ArrayList<PedidoProduto>(); } return pedidoProdutos; }
+	public void setPedidoProdutos(List<PedidoProduto> pedidoProdutos) { this.pedidoProdutos = pedidoProdutos; }
 }
