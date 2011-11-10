@@ -89,6 +89,7 @@ public class CadastroDeMarca extends JFrame {
 
                  MarcaService marcaServise = new MarcaService();
                  marcaServise.inserir(marca);
+                 
                  JOptionPane.showMessageDialog(null, "Marca inserida com sucesso!!");
                  textField.setText("");
 			}
