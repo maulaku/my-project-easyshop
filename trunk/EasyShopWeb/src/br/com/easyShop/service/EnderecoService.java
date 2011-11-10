@@ -3,8 +3,10 @@ package br.com.easyShop.service;
 import br.com.easyShop.model.Endereco;
 import br.com.easyShop.model.Pessoa;
 import br.com.easyShop.persistencia.DAO.EnderecoDAO;
+import br.com.easyShop.service.base.BaseServiceAtta;
 
-public class EnderecoService {
+public class EnderecoService extends BaseServiceAtta
+{
 
 	private static Endereco endereco;
 	

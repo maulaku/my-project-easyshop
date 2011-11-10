@@ -6,8 +6,10 @@ import java.util.List;
 import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Produto;
 import br.com.easyShop.persistencia.DAO.ProdutoDAO;
+import br.com.easyShop.service.base.BaseServiceAtta;
 
-public class ProdutoService {
+public class ProdutoService extends BaseServiceAtta
+{
 
 	private static Produto produto;
 

@@ -5,8 +5,10 @@ import java.util.List;
 import br.com.easyShop.model.Estado;
 import br.com.easyShop.model.Pais;
 import br.com.easyShop.persistencia.DAO.EstadoDAO;
+import br.com.easyShop.service.base.BaseServiceAtta;
 
-public class EstadoService {
+public class EstadoService extends BaseServiceAtta
+{
 	
 	public List<Estado> getEstados(Pais pais)
 	{

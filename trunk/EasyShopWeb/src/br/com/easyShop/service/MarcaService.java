@@ -4,8 +4,10 @@ import java.util.List;
 
 import br.com.easyShop.model.Marca;
 import br.com.easyShop.persistencia.DAO.MarcaDAO;
+import br.com.easyShop.service.base.BaseServiceAtta;
 
-public class MarcaService {
+public class MarcaService extends BaseServiceAtta
+{
 
 	public void inserir(Marca marca) 
 	{
