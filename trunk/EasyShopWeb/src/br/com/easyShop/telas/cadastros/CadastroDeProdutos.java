@@ -60,7 +60,7 @@ public class CadastroDeProdutos extends JFrame {
 	private JLabel lblImagem = new JLabel("");
 	private String caminhoImagem;
 	private JButton btnCancelar = new JButton("Cancelar");
-	 
+
 
 	/**
 	 * Launch the application.
@@ -230,12 +230,12 @@ public class CadastroDeProdutos extends JFrame {
 					e1.printStackTrace();
 				}
 				//*********************************************************************//
-				
-				ProdutoService produtoService = new ProdutoService(produto);
-			    produtoService.inserirProduto();
-			    
+
+				ProdutoService produtoService = new ProdutoService();
+			    produtoService.inserirProduto(produto);
+
 				JOptionPane.showMessageDialog(null, "Produto inserido com sucesso!!");
-				
+
 				clean();
 			}
 		});
@@ -248,11 +248,11 @@ public class CadastroDeProdutos extends JFrame {
 		});
 
 		txtCodigo.setText(nextCodigo());
-		
+
 		lblImagem.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		lblImagem.setBounds(595, 31, 160, 172);
 		ctpCadastroProduto.add(lblImagem);
-		
+
 		preencheComboCategoria();
 		preencherComboMarca();
 	}
@@ -263,10 +263,10 @@ public class CadastroDeProdutos extends JFrame {
 			int returnVal = fc.showOpenDialog(CadastroDeProdutos.this);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				fc.getSelectedFile().toString();
-				
+
 				//*********************************************************************//
 				//Salvar imagem na pasta
-				
+
 				try {
 				    imagem_buffered = null;
 					File imagem_file = new File(fc.getSelectedFile().toString());
@@ -278,17 +278,17 @@ public class CadastroDeProdutos extends JFrame {
 					JOptionPane.showMessageDialog(null, "Arquivo selecionado n�o � uma imagem!");
 				}
 				//*********************************************************************//
-				
+
 				 BufferedImage aux = new BufferedImage(lblImagem.getSize().width, lblImagem.getSize().height, imagem_buffered.getType());//cria um buffer auxiliar com o tamanho desejado
 				 Graphics2D g = aux.createGraphics();//pega a classe graphics do aux para edicao
 				 AffineTransform at = AffineTransform.getScaleInstance((double) lblImagem.getSize().width / imagem_buffered.getWidth(), (double) lblImagem.getSize().height / imagem_buffered.getHeight());//cria a transformacao
 				 g.drawRenderedImage(imagem_buffered, at);//pinta e transforma a imagem real no auxiliar
-				
+
 				 lblImagem.setIcon(new ImageIcon(aux));
 		}
 	}
 	}
-	
+
 	private class Cancelar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			CadastroDeProdutos.this.dispose();
@@ -301,7 +301,7 @@ public class CadastroDeProdutos extends JFrame {
 
 		 for(Categoria categoria : categoriasPaisSolteiros){
 			 cboSubcategoria.addItem(categoria);
-         } 		 
+         }
 	 }
 
 	 private void preencherComboMarca(){
@@ -323,10 +323,10 @@ public class CadastroDeProdutos extends JFrame {
 	 }
 
 	 private String nextCodigo(){
-		int count;
+		long count;
 		ProdutoService produtoService = new ProdutoService();
 		count = produtoService.getCountProdutos();
 		count++;
-		return Integer.toString(count);
+		return Long.toString(count);
 	 }
 }

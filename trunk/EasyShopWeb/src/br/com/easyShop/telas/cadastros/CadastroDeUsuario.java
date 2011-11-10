@@ -103,7 +103,7 @@ public class CadastroDeUsuario extends JFrame {
     private JLabel lblImagem = new JLabel("");
     private BufferedImage imagem_buffered;
     private JButton btnRemover = new JButton("");
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -449,16 +449,16 @@ public class CadastroDeUsuario extends JFrame {
 		tblContato = new JTable(modelo);
 		scrollPane.setViewportView(tblContato);
 		tblContato.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		
+
 		btnRemover.setIcon(new ImageIcon(CadastroDeUsuario.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Remove.png")));
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnRemover.setBounds(581, 171, 35, 33);
 		pnlEndereco.add(btnRemover);
-		
+
 		lblImagem.setBorder(null);
 		lblImagem.setBounds(684, 41, 160, 180);
 		pnlCadastro.add(lblImagem);
-		
+
 		btnSalvar.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			@Override
@@ -519,15 +519,15 @@ public class CadastroDeUsuario extends JFrame {
 				usuario.setStatus(Constantes.STATUS_ATIVO);
 
 				if(tabbedPane.getSelectedIndex() == 0){
-					PessoaFisicaService pessoaFisicaService = new PessoaFisicaService(usuario.getPessoa().getPessoaFisica());
-					pessoaFisicaService.inserirPessoaFisica();
+					PessoaFisicaService pessoaFisicaService = new PessoaFisicaService();
+					pessoaFisicaService.inserirPessoaFisica(usuario.getPessoa().getPessoaFisica());
 				}else{
-					PessoaJuridicaService pessoaJuridicaService = new PessoaJuridicaService(usuario.getPessoa().getPessoaJuridica());
-					pessoaJuridicaService.inserirPessoaJuridica();
+					PessoaJuridicaService pessoaJuridicaService = new PessoaJuridicaService();
+					pessoaJuridicaService.inserirPessoaJuridica(usuario.getPessoa().getPessoaJuridica());
 				}
 
-				PessoaService pessoaService = new PessoaService(usuario.getPessoa());
-				pessoaService.inserirPessoa();
+				PessoaService pessoaService = new PessoaService();
+				pessoaService.inserirPessoa(usuario.getPessoa());
 
 				for(Contato contatoAdd : listaContatos){
 					contato = contatoAdd;
@@ -539,9 +539,9 @@ public class CadastroDeUsuario extends JFrame {
 				UsuarioService usuarioService = new UsuarioService();
 				usuarioService.salvar(usuario);
 
-				EnderecoService enderecoService = new EnderecoService(endereco);
-				enderecoService.inserir();
-				
+				EnderecoService enderecoService = new EnderecoService();
+				enderecoService.salvar(endereco);
+
 				//*********************************************************************//
 				//Salvar imagem na pasta
 				try{
@@ -550,10 +550,10 @@ public class CadastroDeUsuario extends JFrame {
 					imagem_buffered = ImageIO.read( imagem_file );
 					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensUsuario/usuario"+usuario.getPkUsuario()+".jpg"));
 				}catch (Exception e1) {
-					
+
 				}
 				//*********************************************************************//
-				
+
 				JOptionPane.showMessageDialog(null, "Usuário inserido com sucesso!!");
 			}
 		});
@@ -606,15 +606,15 @@ public class CadastroDeUsuario extends JFrame {
 	}
 
 	private class Abrir implements ActionListener {
-		public void actionPerformed(ActionEvent e) {		
+		public void actionPerformed(ActionEvent e) {
 			JFileChooser fc = new JFileChooser();
 			int returnVal = fc.showOpenDialog(CadastroDeUsuario.this);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				fc.getSelectedFile().toString();
-				
+
 				//*********************************************************************//
 				//Salvar imagem na pasta
-				
+
 				try {
 				    imagem_buffered = null;
 					File imagem_file = new File(fc.getSelectedFile().toString());
@@ -626,12 +626,12 @@ public class CadastroDeUsuario extends JFrame {
 					JOptionPane.showMessageDialog(null, "Arquivo selecionado não é uma imagem!");
 				}
 				//*********************************************************************//
-				
+
 				 BufferedImage aux = new BufferedImage(lblImagem.getSize().width, lblImagem.getSize().height, imagem_buffered.getType());//cria um buffer auxiliar com o tamanho desejado
 				 Graphics2D g = aux.createGraphics();//pega a classe graphics do aux para edicao
 				 AffineTransform at = AffineTransform.getScaleInstance((double) lblImagem.getSize().width / imagem_buffered.getWidth(), (double) lblImagem.getSize().height / imagem_buffered.getHeight());//cria a transformacao
 				 g.drawRenderedImage(imagem_buffered, at);//pinta e transforma a imagem real no auxiliar
-				
+
 				 lblImagem.setIcon(new ImageIcon(aux));
 			}
 		}
@@ -649,7 +649,7 @@ public class CadastroDeUsuario extends JFrame {
 			if(txtContato.getText().equals("")){
 				JOptionPane.showMessageDialog(null, "Digite primeiro o valor do Contato.");
 			}else{
-				
+
 				Contato contato = new Contato();
 				contato.setContato(txtContato.getText());
 				contato.setStatus(Constantes.STATUS_ATIVO);
@@ -662,7 +662,7 @@ public class CadastroDeUsuario extends JFrame {
 			}
 		}
 	}
-	
+
 	private class Remover implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			try {
@@ -705,7 +705,7 @@ public class CadastroDeUsuario extends JFrame {
 
 	private void preencherPais(){
 		PaisService paisService = new PaisService();
-		List<Pais> paises = paisService.getTodos(objetoClasse, profundidade, status, orderBy)
+		List<Pais> paises = paisService.getPaises();
 
 		 for(Pais pais : paises){
          	cboPais.addItem(pais);

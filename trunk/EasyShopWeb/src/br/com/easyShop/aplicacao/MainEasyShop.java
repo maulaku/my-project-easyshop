@@ -24,11 +24,11 @@ public class MainEasyShop implements Servlet
 		try
 		{
 			PropertyProxyRegistry.getRegistry().register(Object.class, new FlexProxy());
-			
+
 			JavaFlexRO.prePackages.add("br.com.easyShop.service");
 
 			Configuracoes.carregar(Configuracoes.class.getResourceAsStream("configuracoes.properties"), Configuracoes.class.getResourceAsStream("log4j.properties"));
-			
+
 			System.out.println("Iniciando DB...");
 			BancoDeDados.conectar();
 			System.out.println("SISTEMA EASYSHOP INICIALIZADO COM SUCESSO");
@@ -37,15 +37,15 @@ public class MainEasyShop implements Servlet
 		{
 			System.out.println("SISTEMA EASYSHOP NÃO INICIALIZADO");
 			e.printStackTrace();
-			
+
 			return;
 		}
-		
+
 	}
 
 	@Override
-	public void destroy() 
-	{ 
+	public void destroy()
+	{
 		try
 		{
 			BancoDeDados.desconectar();
