@@ -5,36 +5,27 @@ import br.com.easyShop.model.Pessoa;
 import br.com.easyShop.persistencia.DAO.EnderecoDAO;
 import br.com.easyShop.service.base.BaseServiceAtta;
 
-public class EnderecoService extends BaseServiceAtta
-{
-	public void salvar(Endereco endereco)
-	{
-		try 
-		{
+public class EnderecoService extends BaseServiceAtta {
+	public void salvar(Endereco endereco) {
+		try {
 			new EnderecoDAO().salvar(endereco);
-		}
-		catch (Exception e) 
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public Endereco getEnderecoPessoa(Pessoa pessoa)
-	{
-		try
-		{
+
+	public Endereco getEnderecoPessoa(Pessoa pessoa) {
+		try {
 			return new EnderecoDAO().getEnderecoPessoa(pessoa, -1);
-		} 
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 
-	public void atualizar(Endereco endereco)
-	{
+	public void atualizar(Endereco endereco) {
 		salvar(endereco);
 	}
-	
+
+
 }

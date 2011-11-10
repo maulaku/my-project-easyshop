@@ -233,12 +233,12 @@ public class EditarProdutos extends JFrame {
 					//*********************************************************************//
 				}catch (Exception e1) {
 				}
-				
-				ProdutoService produtoService = new ProdutoService(produto);
-			    produtoService.inserirProduto();
-			    
+
+				ProdutoService produtoService = new ProdutoService();
+			    produtoService.inserirProduto(produto);
+
 				JOptionPane.showMessageDialog(null, "Produto inserido com sucesso!!");
-				
+
 				clean();
 			}
 		});
@@ -251,14 +251,14 @@ public class EditarProdutos extends JFrame {
 		});
 
 		txtCodigo.setText(nextCodigo());
-		
+
 		lblImagem.setBorder(null);
 		lblImagem.setBounds(607, 31, 169, 172);
 		ctpCadastroProduto.add(lblImagem);
-		
+
 		cboProduto.setBounds(96, 31, 246, 26);
 		ctpCadastroProduto.add(cboProduto);
-		
+
 		preencheComboCategoria();
 		preencherComboMarca();
 		preencheComboProdutos();
@@ -270,10 +270,10 @@ public class EditarProdutos extends JFrame {
 			int returnVal = fc.showOpenDialog(EditarProdutos.this);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				fc.getSelectedFile().toString();
-				
+
 				//*********************************************************************//
 				//Salvar imagem na pasta
-				
+
 				try {
 				    imagem_buffered = null;
 					File imagem_file = new File(fc.getSelectedFile().toString());
@@ -285,28 +285,28 @@ public class EditarProdutos extends JFrame {
 					JOptionPane.showMessageDialog(null, "Arquivo selecionado n�o � uma imagem!");
 				}
 				//*********************************************************************//
-				
+
 				 BufferedImage aux = new BufferedImage(lblImagem.getSize().width, lblImagem.getSize().height, imagem_buffered.getType());//cria um buffer auxiliar com o tamanho desejado
 				 Graphics2D g = aux.createGraphics();//pega a classe graphics do aux para edicao
 				 AffineTransform at = AffineTransform.getScaleInstance((double) lblImagem.getSize().width / imagem_buffered.getWidth(), (double) lblImagem.getSize().height / imagem_buffered.getHeight());//cria a transformacao
 				 g.drawRenderedImage(imagem_buffered, at);//pinta e transforma a imagem real no auxiliar
-				
+
 				 lblImagem.setIcon(new ImageIcon(aux));
 		}
 	}
 	}
-	
+
 	private class Cancelar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			EditarProdutos.this.dispose();
 		}
 	}
-	
+
 	private class PreencherCampos implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			Produto produto = new Produto();
 			produto = (Produto) cboProduto.getSelectedItem();
-							
+
 			txtCodigo.setText("" + produto.getCodigo());
 			txtGarantia.setText("" + produto.getGarantia());
 			txtPreco.setText("" + produto.getPreco());
@@ -314,7 +314,7 @@ public class EditarProdutos extends JFrame {
 			textArea.setText(produto.getDescricao());
 			cboMarca.setSelectedIndex((int) (((Long) produto.getMarca().getPkMarca())-1));
 //			cboCategoria.setSelectedItem(produto.getCategoria().getPkCategoria()-1);
-			
+
 			int qtd = cboSubcategoria.getItemCount(), i;
 			Categoria categoria = new Categoria();
 			for(i=0; i<qtd; i++){
@@ -323,29 +323,29 @@ public class EditarProdutos extends JFrame {
 					cboSubcategoria.setSelectedIndex(i);
 					break;
 				}
-			}			
-			
+			}
+
 			try {
 				File imagem_file = new File("Imagens/ImagensProduto/produto"+ produto.getPkProduto() + ".jpg");
 				imagem_buffered = null;
-				
+
 				try {
 					imagem_buffered = ImageIO.read(imagem_file );
 				} catch (IOException e2) {
 				}
-	
+
 				 BufferedImage aux = new BufferedImage(lblImagem.getSize().width, lblImagem.getSize().height, imagem_buffered.getType());//cria um buffer auxiliar com o tamanho desejado
 				 Graphics2D g = aux.createGraphics();//pega a classe graphics do aux para edicao
 				 AffineTransform at = AffineTransform.getScaleInstance((double) lblImagem.getSize().width / imagem_buffered.getWidth(), (double) lblImagem.getSize().height / imagem_buffered.getHeight());//cria a transformacao
 				 g.drawRenderedImage(imagem_buffered, at);//pinta e transforma a imagem real no auxiliar
-				
+
 				 lblImagem.setIcon(new ImageIcon(aux));
-			
+
 		    } catch (Exception e1) {
 				// TODO: handle exception
 		    	lblImagem.setIcon(new ImageIcon("Imagens/Padrao/padraoProduto.png"));
 			}
-			
+
 		}
 	}
 
@@ -357,7 +357,7 @@ public class EditarProdutos extends JFrame {
 			 cboSubcategoria.addItem(categoria);
        }
 	 }
-	 
+
 	 private void preencheComboProdutos(){
 		 ProdutoService produtoService = new ProdutoService();
 
@@ -385,10 +385,10 @@ public class EditarProdutos extends JFrame {
 	 }
 
 	 private String nextCodigo(){
-		int count;
+		long count;
 		ProdutoService produtoService = new ProdutoService();
 		count = produtoService.getCountProdutos();
 		count++;
-		return Integer.toString(count);
+		return Long.toString(count);
 	 }
 }

@@ -7,17 +7,15 @@ import br.com.easyShop.model.Pais;
 import br.com.easyShop.persistencia.DAO.EstadoDAO;
 import br.com.easyShop.service.base.BaseServiceAtta;
 
-public class EstadoService extends BaseServiceAtta
-{
-	
-	public List<Estado> getEstados(Pais pais)
-	{
-		return new EstadoDAO().getEstados(pais);
-	}
-	
-	public static Estado getEstado(String nome)
-	{
-		return new EstadoDAO().getEstado(nome);
+public class EstadoService extends BaseServiceAtta {
+
+	public List<Estado> getEstados(Pais pais) {
+		try {
+			return new EstadoDAO().getEstadosPais(pais, 0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

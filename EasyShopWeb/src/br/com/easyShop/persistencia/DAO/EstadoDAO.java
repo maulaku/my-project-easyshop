@@ -3,33 +3,18 @@ package br.com.easyShop.persistencia.DAO;
 import java.util.List;
 import br.com.easyShop.model.Estado;
 import br.com.easyShop.model.Pais;
-import br.com.easyShop.persistencia.DAO.baseDAO.BaseDAO;
+import br.com.easyShop.persistencia.DAO.baseDAO.BaseDAOAtta;
+import br.com.easyShop.persistencia.utils.QuerySQL;
 
-public class EstadoDAO extends BaseDAO {
+public class EstadoDAO extends BaseDAOAtta {
 
-	public List<Estado> getEstados(Pais pais) {
-		List<Estado> estados = null;
-		try {
-			estados = obtemLista(Estado.class,
-					"Select * from Estado where fkpais = " + pais.getPkPais());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public List<Estado> getEstadosPais(Pais pais, int profundidade) throws Exception {
+		QuerySQL query = new QuerySQL();
 
-		return estados;
+		query.add("SELECT *");
+		query.add(" FROM Estado");
+		query.add(" WHERE fkPais = ?", pais.getPkPais());
+
+		return obtem(Estado.class, query, profundidade);
 	}
-
-//	public Estado getEstado(String nome) {
-//		Estado estado = new Estado();
-//
-//		try {
-//			estado = (Estado) obtemUnico(Estado.class,
-//					"pkEstado = \"" + nome.toString() + "\"");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//
-//		return estado;
-//	}
-
 }

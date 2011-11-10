@@ -4,26 +4,18 @@ import br.com.easyShop.model.PessoaJuridica;
 import br.com.easyShop.persistencia.DAO.PessoaJuridicaDAO;
 import br.com.easyShop.service.base.BaseServiceAtta;
 
-public class PessoaJuridicaService extends BaseServiceAtta
-{
-	
-private static PessoaJuridica pessoaJuridica;
-	
-    public PessoaJuridicaService(PessoaJuridica pessoaJuridica) {
-		PessoaJuridicaService.pessoaJuridica = pessoaJuridica;
-	}
-
-	public void inserirPessoaJuridica(){
+public class PessoaJuridicaService extends BaseServiceAtta {
+	public void inserirPessoaJuridica(PessoaJuridica pessoaJuridica) {
 		try {
-			PessoaJuridicaDAO.inserir(pessoaJuridica);
+			new PessoaJuridicaDAO().salvar(pessoaJuridica);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void atualizar(){
+
+	public void atualizar(PessoaJuridica pessoaJuridica) {
 		try {
-			PessoaJuridicaDAO.atualizar(pessoaJuridica);
+			inserirPessoaJuridica(pessoaJuridica);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

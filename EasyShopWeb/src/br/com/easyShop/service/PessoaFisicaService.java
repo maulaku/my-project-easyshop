@@ -4,29 +4,21 @@ import br.com.easyShop.model.PessoaFisica;
 import br.com.easyShop.persistencia.DAO.PessoaFisicaDAO;
 import br.com.easyShop.service.base.BaseServiceAtta;
 
-public class PessoaFisicaService extends BaseServiceAtta 
-{
-
-private static PessoaFisica pessoaFisica;
-	
-	public PessoaFisicaService(PessoaFisica pessoaFisica) {
-		PessoaFisicaService.pessoaFisica = pessoaFisica;
-	}
-
-	public void inserirPessoaFisica(){
+public class PessoaFisicaService extends BaseServiceAtta {
+	public void inserirPessoaFisica(PessoaFisica pessoaFisica) {
 		try {
-			PessoaFisicaDAO.inserir(pessoaFisica);
+			new PessoaFisicaDAO().salvar(pessoaFisica);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void atualizar(){
+
+	public void atualizar(PessoaFisica pessoaFisica) {
 		try {
-			PessoaFisicaDAO.atualizar(pessoaFisica);
+			inserirPessoaFisica(pessoaFisica);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -623,7 +624,7 @@ public class MeusDados extends JFrame {
 				Contato ct = new Contato();
 				modelo.removeRow(tblContato.getSelectedRow());
 				listaContatos.remove(tblContato.getSelectedRow());
-				
+
 //				ct = tblContato.get
 //				listaContatosRemovidos.addItem(tblContato.getSelectedRow());
 			} catch (Exception se2) {
@@ -672,6 +673,7 @@ public class MeusDados extends JFrame {
 	}
 
 	private void preencherDados() {
+
 		try {
 			if (usuario.getPessoa().getPessoaFisica().getNome().equals(null) == false) {
 				tabbedPane.setSelectedIndex(0);
@@ -679,8 +681,14 @@ public class MeusDados extends JFrame {
 						.getNome());
 				txtApelido.setText(usuario.getPessoa().getPessoaFisica()
 						.getApelido());
-				calendarDataDeNasc.setDate(usuario.getPessoa()
-						.getPessoaFisica().getDataNascimento());
+
+				Data data = new Data();
+				data = usuario.getPessoa().getPessoaFisica().getDataNascimento();
+
+				Date dataNascimento = new Date();
+				dataNascimento = data.getTime();
+
+				calendarDataDeNasc.setDate(dataNascimento);
 				txtCPF.setText(usuario.getPessoa().getPessoaFisica().getCpf());
 				txtRG.setText(usuario.getPessoa().getPessoaFisica().getRg());
 
@@ -704,7 +712,7 @@ public class MeusDados extends JFrame {
 
 		EnderecoService enderecoService = new EnderecoService();
 		Endereco endereco = new Endereco();
-		endereco = enderecoService.getEndereco(usuario.getPessoa());
+		endereco = enderecoService.getEnderecoPessoa(usuario.getPessoa());
 
 		txtLogradouro.setText(endereco.getLogradouro());
 		txtBairro.setText(endereco.getBairro());
@@ -818,11 +826,11 @@ public class MeusDados extends JFrame {
 
 		Endereco endereco = new Endereco();
 		EnderecoService enderecoServico = new EnderecoService();
-		endereco = enderecoServico.getEndereco(this.usuario.getPessoa());
+		endereco = enderecoServico.getEnderecoPessoa(this.usuario.getPessoa());
 
 		Pessoa pessoa = new Pessoa();
 		PessoaService pessoaService = new PessoaService();
-		pessoa = pessoaService.getPessoa(usuario.getPessoa().getPessoaFisica());
+		pessoa = pessoaService.getPessoa(usuario.getPessoa().getPessoaFisica(),-1);
 		pessoa.setPessoaFisica(usuario.getPessoa().getPessoaFisica());
 
 		endereco.setBairro(txtBairro.getText());
@@ -839,13 +847,11 @@ public class MeusDados extends JFrame {
 		this.usuario.setStatus(Constantes.STATUS_ATIVO);
 
 		if (tabbedPane.getSelectedIndex() == 0) {
-			PessoaFisicaService pessoaFisicaService = new PessoaFisicaService(
-					this.usuario.getPessoa().getPessoaFisica());
-			pessoaFisicaService.atualizar();
+			PessoaFisicaService pessoaFisicaService = new PessoaFisicaService();
+			pessoaFisicaService.atualizar(this.usuario.getPessoa().getPessoaFisica());
 		} else {
-			PessoaJuridicaService pessoaJuridicaService = new PessoaJuridicaService(
-					this.usuario.getPessoa().getPessoaJuridica());
-			pessoaJuridicaService.atualizar();
+			PessoaJuridicaService pessoaJuridicaService = new PessoaJuridicaService();
+			pessoaJuridicaService.atualizar(this.usuario.getPessoa().getPessoaJuridica());
 		}
 
 		pessoaService.atulizar(pessoa);
