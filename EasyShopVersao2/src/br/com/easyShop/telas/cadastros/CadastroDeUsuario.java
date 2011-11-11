@@ -497,6 +497,9 @@ public class CadastroDeUsuario extends JFrame {
 					pessoaFisica.setRg(txtRG.getText());
 					pessoaFisica.setSexo(obtemSexo(cboSexo.getSelectedIndex()));
 					pessoaFisica.setStatus(Constantes.STATUS_ATIVO);
+					
+					PessoaFisicaService pessoaFisicaService = new PessoaFisicaService();
+					pessoaFisicaService.inserirPessoaFisica(pessoaFisica);
 
 					pessoa.setPessoaFisica(pessoaFisica);
 				}
@@ -508,8 +511,14 @@ public class CadastroDeUsuario extends JFrame {
 					pessoaJuridica.setRazaoSocial(txtRazao.getText());
 					pessoaJuridica.setStatus(Constantes.STATUS_ATIVO);
 
+					PessoaJuridicaService pessoaJuridicaService = new PessoaJuridicaService();
+					pessoaJuridicaService.inserirPessoaJuridica(pessoaJuridica);
+					
 					pessoa.setPessoaJuridica(pessoaJuridica);
 				}
+				
+				PessoaService pessoaService = new PessoaService();
+				pessoaService.inserirPessoa(pessoa);
 
 				if (cboPais.getSelectedItem() != null) { pais = (Pais) cboPais.getSelectedItem(); }
 				if (cboEstado.getSelectedItem() != null) { estado = (Estado) cboEstado.getSelectedItem(); }
@@ -540,15 +549,13 @@ public class CadastroDeUsuario extends JFrame {
 				usuario.setStatus(Constantes.STATUS_ATIVO);
 
 				if(tabbedPane.getSelectedIndex() == 0){
-					PessoaFisicaService pessoaFisicaService = new PessoaFisicaService();
-					pessoaFisicaService.inserirPessoaFisica(usuario.getPessoa().getPessoaFisica());
+					
 				}else{
 					PessoaJuridicaService pessoaJuridicaService = new PessoaJuridicaService();
 					pessoaJuridicaService.inserirPessoaJuridica(usuario.getPessoa().getPessoaJuridica());
 				}
 
-				PessoaService pessoaService = new PessoaService();
-				pessoaService.inserirPessoa(usuario.getPessoa());
+				
 
 				for(Contato contatoAdd : listaContatos){
 					contato = contatoAdd;
@@ -562,18 +569,18 @@ public class CadastroDeUsuario extends JFrame {
 
 				EnderecoService enderecoService = new EnderecoService();
 				enderecoService.salvar(endereco);
-
-				//*********************************************************************//
-				//Salvar imagem na pasta
-				try{
-					File imagem_file = new File(caminhoImagem);
-					BufferedImage imagem_buffered = null;
-					imagem_buffered = ImageIO.read( imagem_file );
-					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensUsuario/usuario"+usuario.getPkUsuario()+".jpg"));
-				}catch (Exception e1) {
-
-				}
-				//*********************************************************************//
+//
+//				//*********************************************************************//
+//				//Salvar imagem na pasta
+//				try{
+//					File imagem_file = new File(caminhoImagem);
+//					BufferedImage imagem_buffered = null;
+//					imagem_buffered = ImageIO.read( imagem_file );
+//					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensUsuario/usuario"+usuario.getPkUsuario()+".jpg"));
+//				}catch (Exception e1) {
+//
+//				}
+//				//*********************************************************************//
 
 				JOptionPane.showMessageDialog(null, "Usuário inserido com sucesso!!");
 			}
