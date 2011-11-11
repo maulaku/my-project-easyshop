@@ -33,8 +33,13 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import flex.messaging.io.PropertyProxyRegistry;
+
 import utils.data.Data;
 
+import br.com.easyShop.comunicacao.FlexProxy;
+import br.com.easyShop.comunicacao.JavaFlexRO;
+import br.com.easyShop.configuracoes.Configuracoes;
 import br.com.easyShop.model.Cidade;
 import br.com.easyShop.model.Contato;
 import br.com.easyShop.model.Endereco;
@@ -44,6 +49,7 @@ import br.com.easyShop.model.Pessoa;
 import br.com.easyShop.model.PessoaFisica;
 import br.com.easyShop.model.PessoaJuridica;
 import br.com.easyShop.model.Usuario;
+import br.com.easyShop.persistencia.conexao.BancoDeDados;
 import br.com.easyShop.service.CidadeService;
 import br.com.easyShop.service.ContatoService;
 import br.com.easyShop.service.EnderecoService;
@@ -107,10 +113,25 @@ public class CadastroDeUsuario extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
+		PropertyProxyRegistry.getRegistry().register(Object.class, new FlexProxy());
+
+		JavaFlexRO.prePackages.add("br.com.easyShop.service");
+
+		Configuracoes.carregar(Configuracoes.class.getResourceAsStream("configuracoes.properties"), Configuracoes.class.getResourceAsStream("log4j.properties"));
+
+		System.out.println("Iniciando DB...");
+		BancoDeDados.conectar();
+		System.out.println("SISTEMA EASYSHOP INICIALIZADO COM SUCESSO");
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					Configuracoes.carregar(Configuracoes.class.getResourceAsStream("configuracoes.properties"), Configuracoes.class.getResourceAsStream("log4j.properties"));
+
+					BancoDeDados.conectar();
+					
 					CadastroDeUsuario frame = new CadastroDeUsuario();
 					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 					frame.setVisible(true);
@@ -490,10 +511,10 @@ public class CadastroDeUsuario extends JFrame {
 					pessoa.setPessoaJuridica(pessoaJuridica);
 				}
 
-				pais = (Pais) cboPais.getSelectedItem();
-				estado = (Estado) cboEstado.getSelectedItem();
+				if (cboPais.getSelectedItem() != null) { pais = (Pais) cboPais.getSelectedItem(); }
+				if (cboEstado.getSelectedItem() != null) { estado = (Estado) cboEstado.getSelectedItem(); }
 				estado.setPais(pais);
-				cidade = (Cidade) cboCidade.getSelectedItem();
+				if (cboCidade.getSelectedItem() != null) { cidade = (Cidade) cboCidade.getSelectedItem(); }
 				cidade.setEstado(estado);
 
 				int t = tabbedPane.getSelectedIndex();
