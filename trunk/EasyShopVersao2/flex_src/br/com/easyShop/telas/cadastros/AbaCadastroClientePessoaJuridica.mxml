@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"
+		  xmlns:s="library://ns.adobe.com/flex/spark"
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
+		  width="878" height="624">
+		
+	<fx:Script source="AbaCadastroClientePessoaJuridicaScript.as" />
+		
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<mxml:MCaixaTexto id="ctTeste" x="107" y="41" width="126" fontSize="18"/>
+	<s:Label x="59" y="42" width="65" height="24" fontFamily="Verdana" fontSize="18" text="CNPJ"
+			 textAlign="left" verticalAlign="middle"/>
+	<s:Label x="58" y="192" width="107" height="24" fontFamily="Verdana" fontSize="18" text="Logradouro"
+			 textAlign="left" verticalAlign="middle"/>
+	<mxml:MCaixaTexto id="ctTeste8" x="171" y="190" width="154" fontSize="18"/>
+	<mxml:MCaixaTexto id="ctTeste3" x="351" y="190" width="35" fontSize="18"/>
+	<s:Label x="327" y="191" width="27" height="24" fontFamily="Verdana" fontSize="18" text="Nº"
+			 textAlign="left" verticalAlign="middle"/>
+	<mxml:MCaixaTexto id="ctTeste4" x="428" y="190" width="119" fontSize="18"/>
+	<s:Label x="389" y="192" width="40" height="24" fontFamily="Verdana" fontSize="18" text="CEP"
+			 textAlign="left" verticalAlign="middle"/>
+	<s:Label x="58" y="242" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Bairro"
+			 textAlign="left" verticalAlign="middle"/>
+	<mxml:MCaixaTexto id="ctTeste5" x="117" y="241" width="139" fontSize="18"/>
+	<mxml:MCaixaTexto id="ctTeste6" x="324" y="241" width="62" fontSize="18"/>
+	<s:Label x="264" y="243" width="70" height="24" fontFamily="Verdana" fontSize="18" text="Comp."
+			 textAlign="left" verticalAlign="middle"/>
+	<s:Label x="386" y="243" width="40" height="24" fontFamily="Verdana" fontSize="18" text="Tipo"
+			 textAlign="left" verticalAlign="middle"/>
+	<mxml:MComboBox x="428" y="242" width="119" fontSize="18"/>
+	<s:Label x="59" y="293" width="40" height="24" fontFamily="Verdana" fontSize="18" text="País"
+			 textAlign="left" verticalAlign="middle"/>
+	<mxml:MComboBox x="106" y="292" width="88" fontSize="18"/>
+	<s:Label x="201" y="292" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Estado"
+			 textAlign="left" verticalAlign="middle"/>
+	<mxml:MComboBox x="264" y="291" width="89" fontSize="18"/>
+	<s:Label x="357" y="291" width="74" height="24" fontFamily="Verdana" fontSize="18" text="Cidade"
+			 textAlign="left" verticalAlign="middle"/>
+	<mxml:MComboBox x="422" y="291" width="125" fontSize="18"/>
+	<s:Label x="58" y="342" width="85" height="24" fontFamily="Verdana" fontSize="18" text="Contato"
+			 textAlign="left" verticalAlign="middle"/>
+	<mxml:MComboBox x="139" y="341" width="104" fontSize="18"/>
+	<mxml:MCaixaTexto id="ctTeste7" x="246" y="341" width="240" fontSize="18"/>
+	<s:DataGrid x="125" y="380" width="352" height="80" requestedRowCount="4">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn dataField="dataField1" headerText="Tipo"></s:GridColumn>
+				<s:GridColumn dataField="dataField2" headerText="Contato"></s:GridColumn>
+			</s:ArrayList>
+		</s:columns>
+		<s:typicalItem>
+			<fx:Object dataField1="Sample Data" dataField2="Sample Data" dataField3="Sample Data"></fx:Object>
+		</s:typicalItem>
+		<s:ArrayList>
+			
+		</s:ArrayList>
+	</s:DataGrid>
+	<mxml:MCaixaTexto id="ctTeste9" x="244" y="509" width="169" fontSize="18"/>
+	<s:Label x="176" y="510" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Cliente"
+			 textAlign="left" verticalAlign="middle"/>
+	<mxml:MCaixaTexto id="ctTeste10" x="244" y="550" width="169" fontSize="18"/>
+	<s:Label x="179" y="551" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Senha"
+			 textAlign="left" verticalAlign="middle"/>
+	<mx:HRule x="122" y="484" width="358" height="5"/>
+	<s:Image x="644" y="110" width="170" height="186" smooth="false"
+			 source="../../../../assets/Create.png"/>
+	<s:Button x="489" y="341" width="29" height="25" icon="../../../../assets/Create.png"/>
+	<s:Button x="520" y="341" width="29" height="25" icon="../../../../assets/Create.png"/>
+	<s:Button x="651" y="302" width="153" height="31" label="Carregar Imagem"
+			  icon="../../../../assets/Create.png"/>
+	<s:Button x="672" y="378" width="114" height="31" label="Salvar"
+			  icon="../../../../assets/Create.png"/>
+	<s:Button x="672" y="436" width="114" height="31" label="Limpar"
+			  icon="../../../../assets/Create.png"/>
+	<s:Button x="672" y="488" width="114" height="31" label="Cancelar"
+			  icon="../../../../assets/Create.png"/>
+	<mx:VRule x="593" y="75" width="2" height="473"/>
+	<mxml:MCaixaTexto id="ctTeste11" x="195" y="93" width="352" fontSize="18"/>
+	<s:Label x="59" y="94" width="145" height="24" fontFamily="Verdana" fontSize="18" text="Nome Fantasia"
+			 textAlign="left" verticalAlign="middle"/>
+	<mxml:MCaixaTexto id="ctTeste0" x="401" y="41" width="146" fontSize="18"/>
+	<s:Label x="237" y="42" width="202" height="24" fontFamily="Verdana" fontSize="18" text="Inscrição Estadual"
+			 textAlign="left" verticalAlign="middle"/>
+	<mxml:MCaixaTexto id="ctTeste1" x="179" y="141" width="368" fontSize="18"/>
+	<s:Label x="58" y="143" width="145" height="24" fontFamily="Verdana" fontSize="18" text="Razão Social"
+			 textAlign="left" verticalAlign="middle"/>
+</s:Module>

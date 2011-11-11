@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				width="580" height="300" backgroundAlpha="1.0" backgroundColor="#E0E3E3"
+				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar">
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<mx:Label x="30" y="109" width="75" fontFamily="Verdana" fontSize="16" text="Usuário"/>
+	<mx:Label x="34" y="148" width="57.5" fontFamily="Verdana" fontSize="16" text="Senha"/>
+	<mx:TextInput x="100" y="107" id="txtUsuario"/>
+	<mx:TextInput x="100" y="146" displayAsPassword="true" id="txtSenha"/>
+	<mx:Button id="btnLogin" x="86" y="195" width="130" label="Login"
+			   fontFamily="Verdana" fontSize="16" click="clickadoLogin()"/>
+	<mx:VRule x="280" y="35" width="9" height="205" chromeColor="#969494"/>
+	<mx:Label x="54" y="54" color="#1C4BE2" fontFamily="Verdana" fontSize="17"
+			  text="JÁ SOU CADASTRADO" textAlign="center"/>
+	<mx:Label x="337" y="53" color="#1C4BE2" fontFamily="Verdana" fontSize="17"
+			  text="NOVO CADASTRO" textAlign="center"/>
+	<mx:Button id="btnLogin0" x="298" y="139" width="120" height="28" label="Pessoa Física"
+			   fontFamily="Verdana" fontSize="15" click="clickadoPessoaFisica()"/>
+	<mx:Button id="btnLogin1" x="425" y="138" width="129" height="29" label="Pessoa Jurídica"
+			   fontFamily="Verdana" fontSize="15" click="clickadoPessoaJuridica()"/>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			
+			protected function btnEntrar_clickHandler(centrado:Boolean):void
+			{
+				// TODO Auto-generated method stub
+				var painel:Login = new Login();
+				painel.showCloseButton=true;
+				PopUpManager.addPopUp(painel, this, true);
+				
+				if(centrado==true) PopUpManager.centerPopUp(painel);
+			}
+			
+			protected function clickadoPessoaFisica():void
+			{
+				this.dispatchEvent(new Event("clickadoPessoaFisica"));			
+			}
+			
+			private function clickadoLogin():void {
+				this.dispatchEvent(new Event("clickadoLogin"));
+			}
+			
+			protected function clickadoPessoaJuridica():void
+			{
+				this.dispatchEvent(new Event("clickadoPessoaJuridica"));
+			}
+			
+		]]>
+	</fx:Script>
+	
+</mx:TitleWindow>
