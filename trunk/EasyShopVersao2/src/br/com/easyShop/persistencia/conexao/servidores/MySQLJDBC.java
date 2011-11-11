@@ -66,7 +66,7 @@ public class MySQLJDBC extends BaseJDBC
 	        case Types.LONGVARCHAR: { return resultSet.getString(index); }
 	        case Types.INTEGER:		{ return resultSet.getInt(index); }
 	        case Types.SMALLINT:	{ return resultSet.getInt(index); }
-	        case Types.BIGINT:		{ return resultSet.getInt(index); }
+	        case Types.BIGINT:		{ return resultSet.getLong(index); }
 	        case Types.DOUBLE:		{ return resultSet.getDouble(index); }
 	        case Types.REAL:		{ return resultSet.getDouble(index); }
 	        case Types.FLOAT:		{ return resultSet.getFloat(index); }
