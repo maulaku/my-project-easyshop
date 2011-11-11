@@ -35,6 +35,8 @@ public class Login extends JFrame {
 	 */
 	public Login() {
 		super("Login");
+		System.out.println("Iniciando DB...2");
+
 		
 		btnEntrar.addActionListener(new VerificarLogin());
 		btnCancelar.addActionListener(new Cancelar());
