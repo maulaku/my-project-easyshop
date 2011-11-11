@@ -162,9 +162,9 @@ public class BaseDAO extends BaseDAOSQL
 		{
 			resultSQL = baseJDBC.executaSelect(((QuerySQL)condicao).toString(baseJDBC), false); 
 		}
-		else if(condicao instanceof Long)
+		else if((Long)condicao instanceof Long)
 		{
-			QuerySQL querySQL = BaseDAOSQL.classeToSelectRegistroSQL(classe, (Long)condicao, baseJDBC);
+			QuerySQL querySQL = BaseDAOSQL.classeToSelectRegistroSQL(classe, condicao, baseJDBC);
 			resultSQL = baseJDBC.executaSelect(querySQL.toString(baseJDBC), false);
 		}
 		else
