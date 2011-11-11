@@ -34,4 +34,9 @@ public class Pais
 
 	public List<Estado> getEstados() { if(estados==null) { estados = new ArrayList<Estado>(); } return estados; }
 	public void setEstados(List<Estado> estados) { this.estados = estados; }
+
+	@Override
+	public String toString() {
+		return nome;
+	}
 }
