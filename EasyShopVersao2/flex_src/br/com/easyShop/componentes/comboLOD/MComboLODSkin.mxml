@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:SparkSkin alpha.disabled="0.5" blendMode="normal" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fb="http://ns.adobe.com/flashbuilder/2009" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:comboLOD="br.com.mresolucoes.atta.componentes.comboLOD.*" xmlns:comboLOD1="br.com.easyShop.componentes.comboLOD.*">
+
+    <fx:Metadata>
+		[States("normalWithPrompt",  "disabledWithPrompt")]
+		[HostComponent("spark.components.TextInput")]
+    </fx:Metadata> 
+    
+	<fx:Script>
+		<![CDATA[
+			private static const focusExclusions:Array = ["textDisplay"];
+			override public function get focusSkinExclusions():Array { return focusExclusions;};
+		]]>
+	</fx:Script>
+	
+    <fx:Script fb:purpose="styling">
+		
+        private var paddingChanged:Boolean;
+        
+        /* Define the skin elements that should not be colorized. */
+        static private const exclusions:Array = ["background", "textDisplay"]; 
+        override public function get colorizeExclusions():Array {return exclusions;}
+        
+        /* Define the content fill items that should be colored by the "contentBackgroundColor" style. */
+        static private const contentFill:Array = ["bgFill"];
+        override public function get contentItems():Array {return contentFill};
+        
+        override protected function commitProperties():void
+        {
+            super.commitProperties();
+            
+            if (paddingChanged)
+            {
+                updatePadding();
+                paddingChanged = false;
+            }
+        }
+        
+        override protected function initializationComplete():void
+        {
+            useChromeColor = true;
+            super.initializationComplete();
+        }
+        
+        override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+        {
+            if (getStyle("borderVisible") == true)
+            {
+                border.visible = true;
+                shadow.visible = true;
+                background.left = background.top = background.right = background.bottom = 1;
+                textDisplay.left = textDisplay.top = textDisplay.bottom = 1;
+            }
+            else
+            {
+                border.visible = false;
+                shadow.visible = false;
+                background.left = background.top = background.right = background.bottom = 0;
+                textDisplay.left = textDisplay.top = textDisplay.bottom = 0;
+            }
+			textDisplay.right = 25; //Adicionada a configuracao para deslocar a area de texto
+			
+            borderStroke.color = getStyle("borderColor");
+            borderStroke.alpha = getStyle("borderAlpha");
+            
+            super.updateDisplayList(unscaledWidth, unscaledHeight);
+        }
+
+        private function updatePadding():void
+        {
+            if (!textDisplay) { return; }
+            
+            // Push padding styles into the textDisplay
+            var padding:Number;
+            
+            padding = getStyle("paddingLeft");
+            if(textDisplay.getStyle("paddingLeft")!=padding) { textDisplay.setStyle("paddingLeft", padding); }
+            
+            padding = getStyle("paddingTop");
+            if(textDisplay.getStyle("paddingTop")!=padding) { textDisplay.setStyle("paddingTop", padding); }
+            
+            padding = getStyle("paddingRight");
+            if(textDisplay.getStyle("paddingRight")!=padding) { textDisplay.setStyle("paddingRight", padding); }
+            
+            padding = getStyle("paddingBottom");
+            if(textDisplay.getStyle("paddingBottom")!=padding) { textDisplay.setStyle("paddingBottom", padding); }
+        }
+ 
+        override public function styleChanged(styleProp:String):void
+        {
+            var allStyles:Boolean = !styleProp || styleProp == "styleName";
+
+            super.styleChanged(styleProp);
+            
+            if (allStyles || styleProp.indexOf("padding") == 0)
+            {
+                paddingChanged = true;
+                invalidateProperties();
+            }
+        }
+    </fx:Script>
+    
+
+	<!-- States --> 
+    <s:states>
+        <s:State name="normal"/>
+        <s:State name="disabled"/>
+    </s:states>
+    
+    <!-- border --> 
+    <s:Rect left="0" right="0" top="0" bottom="0" id="border">
+        <s:stroke>     
+            <s:SolidColorStroke id="borderStroke" weight="1" />
+        </s:stroke>
+    </s:Rect>
+
+    <!-- fill -->
+    <s:Rect id="background" left="1" right="1" top="1" bottom="1">
+        <s:fill>
+            <s:SolidColor id="bgFill" color="0xFFFFFF" />
+        </s:fill>
+    </s:Rect>
+    
+    <!-- shadow -->
+    <s:Rect left="1" top="1" right="1" height="1" id="shadow">
+        <s:fill>
+            <s:SolidColor color="0x000000" alpha="0.12" />
+        </s:fill>
+    </s:Rect>
+
+	
+    <!-- Componentes de Texto, Icone e PopUp -->
+    <!--- @copy spark.components.supportClasses.SkinnableTextBase#textDisplay -->
+    <s:RichEditableText id="textDisplay" verticalAlign="middle" widthInChars="10" left="1" right="25" top="1" bottom="1" />
+	
+	<mx:Image id="imagem" right="4" verticalCenter="0" maintainAspectRatio="true" width="16" height="16" source="br/com/mresolucoes/componentes/comboLOD/imagens/lupa16.png"/> 
+	
+	<s:PopUpAnchor id="popUp" top="0" bottom="0" left="0" right="0" popUpWidthMatchesAnchorWidth="true" popUpPosition="below" displayPopUp="false">
+		<s:Group id="dropDown" width="100%" maxHeight="200">
+			<comboLOD1:MListComboLOD id="list" width="100%" maxHeight="200" />
+		</s:Group>
+	</s:PopUpAnchor>
+
+</s:SparkSkin>
