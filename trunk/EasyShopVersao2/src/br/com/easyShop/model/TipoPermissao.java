@@ -14,7 +14,7 @@ public class TipoPermissao
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkTipoPermissao;
+	private Long pkTipoPermissao;
 	@Column(length=500)
 	private String nome;
 
@@ -26,8 +26,8 @@ public class TipoPermissao
 	public TipoPermissao() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public long getPkTipoPermissao() { return pkTipoPermissao; }
-	public void setPkTipoPermissao(long pkTipoPermissao) { this.pkTipoPermissao = pkTipoPermissao; }
+	public Long getPkTipoPermissao() { return pkTipoPermissao; }
+	public void setPkTipoPermissao(Long pkTipoPermissao) { this.pkTipoPermissao = pkTipoPermissao; }
 
 	public String getNome() { return nome; }
 	public void setNome(String nome) { this.nome = nome; }

@@ -17,10 +17,10 @@ public class Pessoa
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkPessoa;
+	private Long pkPessoa;
 	@Column(length=500)
 	private String foto;
-	private int status = Constantes.STATUS_ATIVO;
+	private Integer status = Constantes.STATUS_ATIVO;
 
 	@ManyToOne @JoinColumn(name="fkPessoaJuridica")
 	private PessoaJuridica pessoaJuridica;
@@ -45,14 +45,14 @@ public class Pessoa
 	public Pessoa() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public long getPkPessoa() { return pkPessoa; }
-	public void setPkPessoa(long pkPessoa) { this.pkPessoa = pkPessoa; }
+	public Long getPkPessoa() { return pkPessoa; }
+	public void setPkPessoa(Long pkPessoa) { this.pkPessoa = pkPessoa; }
 
 	public String getFoto() { return foto; }
 	public void setFoto(String foto) { this.foto = foto; }
 
-	public int getStatus() { return status; }
-	public void setStatus(int status) { this.status = status; }
+	public Integer getStatus() { return status; }
+	public void setStatus(Integer status) { this.status = status; }
 
 	public PessoaJuridica getPessoaJuridica() { return pessoaJuridica; }
 	public void setPessoaJuridica(PessoaJuridica pessoaJuridica) { this.pessoaJuridica = pessoaJuridica; }

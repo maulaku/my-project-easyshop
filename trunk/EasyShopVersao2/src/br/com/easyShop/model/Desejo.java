@@ -17,10 +17,10 @@ public class Desejo
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkDesejo;
+	private Long pkDesejo;
 	@Column(length=500)
 	private String nome;
-	private int status = Constantes.STATUS_ATIVO;
+	private Integer status = Constantes.STATUS_ATIVO;
 
 	@ManyToOne @JoinColumn(name="fkCliente")
 	private Cliente cliente;
@@ -33,14 +33,14 @@ public class Desejo
 	public Desejo() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public long getPkDesejo() { return pkDesejo; }
-	public void setPkDesejo(long pkDesejo) { this.pkDesejo = pkDesejo; }
+	public Long getPkDesejo() { return pkDesejo; }
+	public void setPkDesejo(Long pkDesejo) { this.pkDesejo = pkDesejo; }
 
 	public String getNome() { return nome; }
 	public void setNome(String nome) { this.nome = nome; }
 
-	public int getStatus() { return status; }
-	public void setStatus(int status) { this.status = status; }
+	public Integer getStatus() { return status; }
+	public void setStatus(Integer status) { this.status = status; }
 
 	public Cliente getCliente() { return cliente; }
 	public void setCliente(Cliente cliente) { this.cliente = cliente; }

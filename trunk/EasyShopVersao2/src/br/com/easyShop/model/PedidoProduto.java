@@ -12,8 +12,8 @@ public class PedidoProduto
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkPedidoProduto;
-	private int quantidade;
+	private Long pkPedidoProduto;
+	private Integer quantidade;
 
 	@ManyToOne @JoinColumn(name="fkPedido")
 	private Pedido pedido;
@@ -26,11 +26,11 @@ public class PedidoProduto
 	public PedidoProduto() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public long getPkPedidoProduto() { return pkPedidoProduto; }
-	public void setPkPedidoProduto(long pkPedidoProduto) { this.pkPedidoProduto = pkPedidoProduto; }
+	public Long getPkPedidoProduto() { return pkPedidoProduto; }
+	public void setPkPedidoProduto(Long pkPedidoProduto) { this.pkPedidoProduto = pkPedidoProduto; }
 
-	public int getQuantidade() { return quantidade; }
-	public void setQuantidade(int quantidade) { this.quantidade = quantidade; }
+	public Integer getQuantidade() { return quantidade; }
+	public void setQuantidade(Integer quantidade) { this.quantidade = quantidade; }
 
 	public Pedido getPedido() { return pedido; }
 	public void setPedido(Pedido pedido) { this.pedido = pedido; }

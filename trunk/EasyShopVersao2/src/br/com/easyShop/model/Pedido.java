@@ -18,7 +18,7 @@ public class Pedido
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkPedido;
+	private Long pkPedido;
 	private Double total;
 	@Type(type="timestamp")
 	private Data dataPedido;
@@ -43,8 +43,8 @@ public class Pedido
 	public Pedido() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public long getPkPedido() { return pkPedido; }
-	public void setPkPedido(long pkPedido) { this.pkPedido = pkPedido; }
+	public Long getPkPedido() { return pkPedido; }
+	public void setPkPedido(Long pkPedido) { this.pkPedido = pkPedido; }
 
 	public Double getTotal() { return total; }
 	public void setTotal(Double total) { this.total = total; }

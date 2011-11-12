@@ -15,10 +15,10 @@ public class Marca
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkMarca;
+	private Long pkMarca;
 	@Column(length=500)
 	private String nome;
-	private int status = Constantes.STATUS_ATIVO;
+	private Integer status = Constantes.STATUS_ATIVO;
 
 	@OneToMany(mappedBy="marca")
 	private List<Produto> produtos;
@@ -28,14 +28,14 @@ public class Marca
 	public Marca() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public long getPkMarca() { return pkMarca; }
-	public void setPkMarca(long pkMarca) { this.pkMarca = pkMarca; }
+	public Long getPkMarca() { return pkMarca; }
+	public void setPkMarca(Long pkMarca) { this.pkMarca = pkMarca; }
 
 	public String getNome() { return nome; }
 	public void setNome(String nome) { this.nome = nome; }
 
-	public int getStatus() { return status; }
-	public void setStatus(int status) { this.status = status; }
+	public Integer getStatus() { return status; }
+	public void setStatus(Integer status) { this.status = status; }
 
 	public List<Produto> getProdutos() { if(produtos==null) { produtos = new ArrayList<Produto>(); } return produtos; }
 	public void setProdutos(List<Produto> produtos) { this.produtos = produtos; }

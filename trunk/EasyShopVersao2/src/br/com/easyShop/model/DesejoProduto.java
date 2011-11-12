@@ -12,7 +12,7 @@ public class DesejoProduto
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkDesejoProduto;
+	private Long pkDesejoProduto;
 
 	@ManyToOne @JoinColumn(name="fkDesejo")
 	private Desejo desejo;
@@ -25,8 +25,8 @@ public class DesejoProduto
 	public DesejoProduto() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public long getPkDesejoProduto() { return pkDesejoProduto; }
-	public void setPkDesejoProduto(long pkDesejoProduto) { this.pkDesejoProduto = pkDesejoProduto; }
+	public Long getPkDesejoProduto() { return pkDesejoProduto; }
+	public void setPkDesejoProduto(Long pkDesejoProduto) { this.pkDesejoProduto = pkDesejoProduto; }
 
 	public Desejo getDesejo() { return desejo; }
 	public void setDesejo(Desejo desejo) { this.desejo = desejo; }

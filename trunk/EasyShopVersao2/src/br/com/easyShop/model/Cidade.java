@@ -16,7 +16,7 @@ public class Cidade
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkCidade;
+	private Long pkCidade;
 	@Column(length=500)
 	private String nome;
 
@@ -31,8 +31,8 @@ public class Cidade
 	public Cidade() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public long getPkCidade() { return pkCidade; }
-	public void setPkCidade(long pkCidade) { this.pkCidade = pkCidade; }
+	public Long getPkCidade() { return pkCidade; }
+	public void setPkCidade(Long pkCidade) { this.pkCidade = pkCidade; }
 
 	public String getNome() { return nome; }
 	public void setNome(String nome) { this.nome = nome; }

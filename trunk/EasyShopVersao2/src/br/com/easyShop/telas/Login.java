@@ -107,9 +107,8 @@ public class Login extends JFrame {
 			
 			usuario = new Usuario();
 			UsuarioService usuarioService = new UsuarioService();
-			
-			try {
-				usuario = usuarioService.getUsuario(getTxtUsuario());
+
+			usuario = usuarioService.getUsuario(getTxtUsuario());
 				
 				if(usuario.getSenha().equals(getPassSenha())){
 					setVisible(false);
@@ -120,14 +119,8 @@ public class Login extends JFrame {
 				else{
 					setTxtUsuario("");
 					setPassSenha("");
-					JOptionPane.showMessageDialog(null, "Usu�rio ou senha incorreto!");
+					JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto!");
 				}
-			} catch (Exception e1) {
-				// TODO: handle exception
-				setTxtUsuario("");
-				setPassSenha("");
-				JOptionPane.showMessageDialog(null, "Usu�rio ou senha incorreto!");
-			}	
 		}
 	}
 	
