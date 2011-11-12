@@ -17,13 +17,13 @@ public class Produto
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkProduto;
+	private Long pkProduto;
 	@Column(length=500)
 	private String nome;
 	@Column(length=500)
 	private String codigo;
 	private Double preco;
-	private int quantidade;
+	private Integer quantidade;
 	private Boolean promocao;
 	private Integer garantia;
 	@Column(length=5000)
@@ -54,8 +54,8 @@ public class Produto
 	public Produto() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public long getPkProduto() { return pkProduto; }
-	public void setPkProduto(long pkProduto) { this.pkProduto = pkProduto; }
+	public Long getPkProduto() { return pkProduto; }
+	public void setPkProduto(Long pkProduto) { this.pkProduto = pkProduto; }
 
 	public String getNome() { return nome; }
 	public void setNome(String nome) { this.nome = nome; }
@@ -66,8 +66,8 @@ public class Produto
 	public Double getPreco() { return preco; }
 	public void setPreco(Double preco) { this.preco = preco; }
 
-	public int getQuantidade() { return quantidade; }
-	public void setQuantidade(int quantidade) { this.quantidade = quantidade; }
+	public Integer getQuantidade() { return quantidade; }
+	public void setQuantidade(Integer quantidade) { this.quantidade = quantidade; }
 
 	public Boolean getPromocao() { return promocao; }
 	public void setPromocao(Boolean promocao) { this.promocao = promocao; }

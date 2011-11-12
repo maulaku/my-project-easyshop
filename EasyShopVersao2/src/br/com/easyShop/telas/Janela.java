@@ -187,13 +187,8 @@ public class Janela extends JFrame implements ActionListener {
 		try {			
 			File imagem_file = new File("Imagens/ImagensUsuario/usuario"+ usuario.getPkUsuario() + ".jpg");
 			imagem_buffered = null;
+			imagem_buffered = ImageIO.read(imagem_file );
 			
-			try {
-				imagem_buffered = ImageIO.read(imagem_file );
-			} catch (IOException e2) {
-				e2.printStackTrace();
-			}
-
 			 BufferedImage aux = new BufferedImage(lblImagem.getSize().width, lblImagem.getSize().height, imagem_buffered.getType());//cria um buffer auxiliar com o tamanho desejado
 			 Graphics2D g = aux.createGraphics();//pega a classe graphics do aux para edicao
 			 AffineTransform at = AffineTransform.getScaleInstance((double) lblImagem.getSize().width / imagem_buffered.getWidth(), (double) lblImagem.getSize().height / imagem_buffered.getHeight());//cria a transformacao

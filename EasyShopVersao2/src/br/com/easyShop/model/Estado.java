@@ -16,7 +16,7 @@ public class Estado
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long pkEstado;
+	private Long pkEstado;
 	@Column(length=500)
 	private String sigla;
 	@Column(length=500)
@@ -33,8 +33,8 @@ public class Estado
 	public Estado() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public long getPkEstado() { return pkEstado; }
-	public void setPkEstado(long pkEstado) { this.pkEstado = pkEstado; }
+	public Long getPkEstado() { return pkEstado; }
+	public void setPkEstado(Long pkEstado) { this.pkEstado = pkEstado; }
 
 	public String getSigla() { return sigla; }
 	public void setSigla(String sigla) { this.sigla = sigla; }
