@@ -1,5 +1,6 @@
 package br.com.easyShop.telas.cadastros;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Graphics2D;
 
@@ -18,6 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -50,6 +52,7 @@ public class CadastroDeCategoria extends JFrame {
 	private BufferedImage imagem_buffered;
 	private String caminhoImagem;
 	private JButton btnCancelar = new JButton("Cancelar");
+	private JButton btnLimpar = new JButton("Limpar");
 
 	/**
 	 * Launch the application.
@@ -75,6 +78,7 @@ public class CadastroDeCategoria extends JFrame {
 		
 		btnCarregar.addActionListener(new Abrir());
 		btnCancelar.addActionListener(new Cancelar());
+		btnLimpar.addActionListener(new Apagar());
 		
 		setTitle("Cadastro de Categoria");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -100,7 +104,6 @@ public class CadastroDeCategoria extends JFrame {
 		btnInserir.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		contentPane.add(btnInserir);
 
-		JButton btnLimpar = new JButton("Limpar");
 		btnLimpar.setIcon(new ImageIcon(CadastroDeCategoria.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Trash.png")));
 		btnLimpar.setBounds(181, 264, 160, 31);
 		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -130,38 +133,46 @@ public class CadastroDeCategoria extends JFrame {
 		btnInserir.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				Categoria categoriaPai = new Categoria();
-				CategoriaService categoriaService = new CategoriaService();
-				
-				if(rdSub.isSelected() == true){
-					 categoriaPai = (Categoria) cboCategoriaPai.getSelectedItem();
+				if(txtNome.getText().equals("")){
+					txtNome.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+					JOptionPane.showMessageDialog(null, "Digite o nome da Categoria!!");
 				}
 				else{
-					categoriaPai = null;
-				}
-
-                Categoria categoria = new Categoria();
-                categoria.setNome(txtNome.getText());
-                categoria.setSubCategoria(categoriaPai);
-                
-                categoriaService.inserirCategoria(categoria);
-                
-                
-                //*********************************************************************//
-				//Salvar imagem na pasta
-				try{
-					File imagem_file = new File(caminhoImagem);
-					BufferedImage imagem_buffered = null;
-					imagem_buffered = ImageIO.read( imagem_file );
-					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensCategoria/categoria"+categoria.getPkCategoria()+".jpg"));
-				}catch (Exception e1) {
+					JTextField jTextField = new JTextField();
+					txtNome.setBorder(jTextField.getBorder());
 					
+					Categoria categoriaPai = new Categoria();
+					CategoriaService categoriaService = new CategoriaService();
+					
+					if(rdSub.isSelected() == true){
+						 categoriaPai = (Categoria) cboCategoriaPai.getSelectedItem();
+					}
+					else{
+						categoriaPai = null;
+					}
+	
+	                Categoria categoria = new Categoria();
+	                categoria.setNome(txtNome.getText());
+	                categoria.setSubCategoria(categoriaPai);
+	                
+	                categoriaService.inserirCategoria(categoria);
+	                
+	                
+	                //*********************************************************************//
+					//Salvar imagem na pasta
+					try{
+						File imagem_file = new File(caminhoImagem);
+						BufferedImage imagem_buffered = null;
+						imagem_buffered = ImageIO.read( imagem_file );
+						ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensCategoria/categoria"+categoria.getPkCategoria()+".jpg"));
+					}catch (Exception e1) {
+						
+					}
+					//*********************************************************************//
+	                
+	                JOptionPane.showMessageDialog(null, "Categoria inserido com sucesso!!");
+	                clean();
 				}
-				//*********************************************************************//
-                
-                JOptionPane.showMessageDialog(null, "Categoria inserido com sucesso!!");
-                clean();
 			}
 		});
 		
@@ -254,6 +265,14 @@ public class CadastroDeCategoria extends JFrame {
 	 private class Cancelar implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				CadastroDeCategoria.this.dispose();
+			}
+		}
+	 
+	 private class Apagar implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				cboCategoriaPai.removeAllItems();
+				 preencheCombo();
+				 txtNome.setText("");
 			}
 		}
 }
