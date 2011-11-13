@@ -1,6 +1,7 @@
 package br.com.easyShop.telas.cadastros;
 
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -109,6 +111,7 @@ public class CadastroDeUsuario extends JFrame {
     private JLabel lblImagem = new JLabel("");
     private BufferedImage imagem_buffered;
     private JButton btnRemover = new JButton("");
+    private final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
 	/**
 	 * Launch the application.
@@ -183,7 +186,6 @@ public class CadastroDeUsuario extends JFrame {
 		btnCarregarImagem.setBounds(677, 217, 177, 41);
 		pnlCadastro.add(btnCarregarImagem);
 
-		final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBorder(null);
 		tabbedPane.setBounds(21, 21, 636, 180);
 		pnlCadastro.add(tabbedPane);
@@ -484,105 +486,108 @@ public class CadastroDeUsuario extends JFrame {
 			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Pessoa pessoa = new Pessoa();
-				pessoa.setStatus(Constantes.STATUS_ATIVO);
-				pessoa.setClientes(null);
-
-				if(tabbedPane.getSelectedIndex() == 0){
-					PessoaFisica pessoaFisica = new PessoaFisica();
-					pessoaFisica.setApelido(txtApelido.getText());
-					pessoaFisica.setCpf(txtCPF.getText());
-					pessoaFisica.setDataNascimento(new Data(calendarDataDeNasc.getDate()));
-					pessoaFisica.setNome(txtUsuario.getText());
-					pessoaFisica.setRg(txtRG.getText());
-					pessoaFisica.setSexo(obtemSexo(cboSexo.getSelectedIndex()));
-					pessoaFisica.setStatus(Constantes.STATUS_ATIVO);
-					
-					PessoaFisicaService pessoaFisicaService = new PessoaFisicaService();
-					pessoaFisicaService.inserirPessoaFisica(pessoaFisica);
-
-					pessoa.setPessoaFisica(pessoaFisica);
+				
+				if(verificarCamposVazios()==1){
+					String eString = "O(s) campo(s) destacado(s) em Vermelho é(são) obrigatório(s).";
+					JOptionPane.showMessageDialog(null, eString);
+				}
+				else if(verificarCamposErrados()==1){
+						String eString = "O(s) campo(s) destacado(s) Amarelo está(estão) errado(s).";
+						JOptionPane.showMessageDialog(null, eString);
 				}
 				else{
-					PessoaJuridica pessoaJuridica = new PessoaJuridica();
-					pessoaJuridica.setCnpj(txtCNPJ.getText());
-					pessoaJuridica.setInscricaoEstadual(txtInscricaoEstadual.getText());
-					pessoaJuridica.setNomeFantasia(txtFantasia.getText());
-					pessoaJuridica.setRazaoSocial(txtRazao.getText());
-					pessoaJuridica.setStatus(Constantes.STATUS_ATIVO);
-
-					PessoaJuridicaService pessoaJuridicaService = new PessoaJuridicaService();
-					pessoaJuridicaService.inserirPessoaJuridica(pessoaJuridica);
-					
-					pessoa.setPessoaJuridica(pessoaJuridica);
+					Pessoa pessoa = new Pessoa();
+					pessoa.setStatus(Constantes.STATUS_ATIVO);
+					pessoa.setClientes(null);
+	
+					if(tabbedPane.getSelectedIndex() == 0){
+						PessoaFisica pessoaFisica = new PessoaFisica();
+						pessoaFisica.setApelido(txtApelido.getText());
+						pessoaFisica.setCpf(txtCPF.getText());
+						pessoaFisica.setDataNascimento(new Data(calendarDataDeNasc.getDate()));
+						pessoaFisica.setNome(txtUsuario.getText());
+						pessoaFisica.setRg(txtRG.getText());
+						pessoaFisica.setSexo(obtemSexo(cboSexo.getSelectedIndex()));
+						pessoaFisica.setStatus(Constantes.STATUS_ATIVO);
+	
+						pessoa.setPessoaFisica(pessoaFisica);
+					}
+					else{
+						PessoaJuridica pessoaJuridica = new PessoaJuridica();
+						pessoaJuridica.setCnpj(txtCNPJ.getText());
+						pessoaJuridica.setInscricaoEstadual(txtInscricaoEstadual.getText());
+						pessoaJuridica.setNomeFantasia(txtFantasia.getText());
+						pessoaJuridica.setRazaoSocial(txtRazao.getText());
+						pessoaJuridica.setStatus(Constantes.STATUS_ATIVO);
+	
+						pessoa.setPessoaJuridica(pessoaJuridica);
+					}
+	
+					if (cboPais.getSelectedItem() != null) { pais = (Pais) cboPais.getSelectedItem(); }
+					if (cboEstado.getSelectedItem() != null) { estado = (Estado) cboEstado.getSelectedItem(); }
+					estado.setPais(pais);
+					if (cboCidade.getSelectedItem() != null) { cidade = (Cidade) cboCidade.getSelectedItem(); }
+					cidade.setEstado(estado);
+	
+					int t = tabbedPane.getSelectedIndex();
+					System.out.println(t + "....");
+					Endereco endereco = new Endereco();
+					endereco.setBairro(txtBairro.getText());
+					endereco.setCep(txtCEP.getText());
+					endereco.setCidade(cidade);
+					endereco.setComplemento(null);
+					endereco.setLogradouro(txtLogradouro.getText());
+					endereco.setPedidos(null);
+					endereco.setPessoa(pessoa);
+					endereco.setStatus(Constantes.STATUS_ATIVO);
+					endereco.setTipo(TipoEndereco.getIndexTipoEndereco(cboTipo.getSelectedItem().toString()));
+					endereco.setComplemento(txtComplemento.getText());
+					endereco.setNumero(txtNumero.getText());
+	
+					Usuario usuario = new Usuario();
+					usuario.setLogin(txtLogin.getText());
+					usuario.setPessoa(pessoa);
+					usuario.setSenha(txtPassword.getText());
+					usuario.setStatus(Constantes.STATUS_ATIVO);
+	
+					if(tabbedPane.getSelectedIndex() == 0){
+						PessoaFisicaService pessoaFisicaService = new PessoaFisicaService();
+						pessoaFisicaService.inserirPessoaFisica(usuario.getPessoa().getPessoaFisica());
+					}else{
+						PessoaJuridicaService pessoaJuridicaService = new PessoaJuridicaService();
+						pessoaJuridicaService.inserirPessoaJuridica(usuario.getPessoa().getPessoaJuridica());
+					}
+	
+					PessoaService pessoaService = new PessoaService();
+					pessoaService.inserirPessoa(usuario.getPessoa());
+	
+					for(Contato contatoAdd : listaContatos){
+						contato = contatoAdd;
+						contato.setPessoa(pessoa);
+						ContatoService contatoService = new ContatoService();
+						contatoService.salvarContato(contato);
+					}
+	
+					UsuarioService usuarioService = new UsuarioService();
+					usuarioService.salvar(usuario);
+	
+					EnderecoService enderecoService = new EnderecoService();
+					enderecoService.salvar(endereco);
+	
+					//*********************************************************************//
+					//Salvar imagem na pasta
+					try{
+						File imagem_file = new File(caminhoImagem);
+						BufferedImage imagem_buffered = null;
+						imagem_buffered = ImageIO.read( imagem_file );
+						ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensUsuario/usuario"+usuario.getPkUsuario()+".jpg"));
+					}catch (Exception e1) {
+	
+					}
+					//*********************************************************************//
+	
+					JOptionPane.showMessageDialog(null, "Usuário inserido com sucesso!!");
 				}
-				
-				PessoaService pessoaService = new PessoaService();
-				pessoaService.inserirPessoa(pessoa);
-
-				if (cboPais.getSelectedItem() != null) { pais = (Pais) cboPais.getSelectedItem(); }
-				if (cboEstado.getSelectedItem() != null) { estado = (Estado) cboEstado.getSelectedItem(); }
-				estado.setPais(pais);
-				if (cboCidade.getSelectedItem() != null) { cidade = (Cidade) cboCidade.getSelectedItem(); }
-				cidade.setEstado(estado);
-
-				int t = tabbedPane.getSelectedIndex();
-				System.out.println(t + "....");
-				Endereco endereco = new Endereco();
-				endereco.setBairro(txtBairro.getText());
-				endereco.setCep(txtCEP.getText());
-				endereco.setCidade(cidade);
-				endereco.setComplemento(null);
-				endereco.setLogradouro(txtLogradouro.getText());
-				endereco.setPedidos(null);
-				endereco.setPessoa(pessoa);
-				endereco.setStatus(Constantes.STATUS_ATIVO);
-				endereco.setTipo(TipoEndereco.getIndexTipoEndereco(cboTipo.getSelectedItem().toString()));
-				endereco.setComplemento(txtComplemento.getText());
-				endereco.setPkEndereco(1);
-				endereco.setNumero(txtNumero.getText());
-
-				Usuario usuario = new Usuario();
-				usuario.setLogin(txtLogin.getText());
-				usuario.setPessoa(pessoa);
-				usuario.setSenha(txtPassword.getText());
-				usuario.setStatus(Constantes.STATUS_ATIVO);
-
-				if(tabbedPane.getSelectedIndex() == 0){
-					
-				}else{
-					PessoaJuridicaService pessoaJuridicaService = new PessoaJuridicaService();
-					pessoaJuridicaService.inserirPessoaJuridica(usuario.getPessoa().getPessoaJuridica());
-				}
-
-				
-
-				for(Contato contatoAdd : listaContatos){
-					contato = contatoAdd;
-					contato.setPessoa(pessoa);
-					ContatoService contatoService = new ContatoService();
-					contatoService.salvarContato(contato);
-				}
-
-				UsuarioService usuarioService = new UsuarioService();
-				usuarioService.salvar(usuario);
-
-				EnderecoService enderecoService = new EnderecoService();
-				enderecoService.salvar(endereco);
-//
-//				//*********************************************************************//
-//				//Salvar imagem na pasta
-//				try{
-//					File imagem_file = new File(caminhoImagem);
-//					BufferedImage imagem_buffered = null;
-//					imagem_buffered = ImageIO.read( imagem_file );
-//					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensUsuario/usuario"+usuario.getPkUsuario()+".jpg"));
-//				}catch (Exception e1) {
-//
-//				}
-//				//*********************************************************************//
-
-				JOptionPane.showMessageDialog(null, "Usuário inserido com sucesso!!");
 			}
 		});
 
@@ -738,5 +743,90 @@ public class CadastroDeUsuario extends JFrame {
 		 for(Pais pais : paises){
          	cboPais.addItem(pais);
          }
+	}
+	
+	private void destacaVazio(JTextField text){
+		text.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+	}
+	
+	private void normaliza(JTextField text){
+		JTextField jTextField = new JTextField();
+		text.setBorder(jTextField.getBorder());
+	}
+	
+	private void destacaErrado(JTextField text){
+		text.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 2));
+	}
+	
+	private int verificarCamposErrados(){
+		int verificar = 0;
+		
+		if(tabbedPane.getSelectedIndex() == 0){
+			try {@SuppressWarnings("unused")
+			int cpf = Integer.parseInt(txtCPF.getText());normaliza(txtCPF);
+			} catch (Exception e) {verificar = 1;destacaErrado(txtCPF);}
+			
+			if(!((""+txtCPF.getText().length()).equals("11"))){	destacaErrado(txtCPF);verificar = 1;}else{verificar = 0;normaliza(txtCPF);}
+			
+			try {@SuppressWarnings("unused")
+			int rg = Integer.parseInt(txtRG.getText());normaliza(txtRG);
+			} catch (Exception e) {	verificar = 1;destacaErrado(txtRG);}
+			if(!((""+txtRG.getText().length()).equals("9"))){destacaErrado(txtRG);verificar = 1;}else{verificar = 0;normaliza(txtRG);}
+		}
+		else{
+			try {@SuppressWarnings("unused")
+			int cnpj = Integer.parseInt(txtCNPJ.getText());normaliza(txtCNPJ);
+			} catch (Exception e) {	verificar = 1;destacaErrado(txtCNPJ);}
+			if(!((""+txtCNPJ.getText().length()).equals("14"))){destacaErrado(txtCNPJ);verificar = 1;}else{verificar = 0;normaliza(txtCNPJ);}			
+			
+			try {@SuppressWarnings("unused")
+			int cnpj = Integer.parseInt(txtInscricaoEstadual.getText());normaliza(txtInscricaoEstadual);
+			} catch (Exception e) {	verificar = 1;destacaErrado(txtInscricaoEstadual);}
+			if(!((""+txtInscricaoEstadual.getText().length()).equals("12"))){destacaErrado(txtInscricaoEstadual);verificar = 1;}else{verificar = 0;normaliza(txtInscricaoEstadual);}			
+			
+		}
+		
+		try {@SuppressWarnings("unused")
+		int numero = Integer.parseInt(txtNumero.getText());normaliza(txtNumero);
+		} catch (Exception e) {	verificar = 1;destacaErrado(txtNumero);}
+		
+		try {@SuppressWarnings("unused")
+		int cep = Integer.parseInt(txtCEP.getText());normaliza(txtCEP);
+		} catch (Exception e) {	verificar = 1;destacaErrado(txtCEP);}
+		if(!((""+txtCEP.getText().length()).equals("8"))){destacaErrado(txtCEP);verificar = 1;}else{verificar = 0;normaliza(txtCEP);}
+		
+		return verificar;
+	}
+	private int verificarCamposVazios(){
+		int verificar = 0;
+		
+		if(tabbedPane.getSelectedIndex() == 0){
+			if(txtUsuario.getText().equals("")){ destacaVazio(txtUsuario); verificar = 1;}else{normaliza(txtUsuario);}
+			if(txtApelido.getText().equals("")){ destacaVazio(txtApelido); verificar = 1;}else{normaliza(txtApelido);}
+			if(txtCPF.getText().equals("")){ destacaVazio(txtCPF); verificar = 1;}else{normaliza(txtCPF);}
+			if(txtRG.getText().equals("")){ destacaVazio(txtRG); verificar = 1;}else{normaliza(txtRG);}
+			if(calendarDataDeNasc.getDate()==null){
+				calendarDataDeNasc.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			}else{
+				JDateChooser jDate = new JDateChooser();
+				calendarDataDeNasc.setBorder(jDate.getBorder());
+			}
+		}
+		else{
+			if(txtCNPJ.getText().equals("")){ destacaVazio(txtCNPJ); verificar = 1;}else{normaliza(txtCNPJ);}
+			if(txtInscricaoEstadual.getText().equals("")){ destacaVazio(txtInscricaoEstadual); verificar = 1;}else{normaliza(txtInscricaoEstadual);}
+			if(txtRazao.getText().equals("")){ destacaVazio(txtRazao); verificar = 1;}else{normaliza(txtRazao);}
+			if(txtFantasia.getText().equals("")){ destacaVazio(txtFantasia); verificar = 1;}else{normaliza(txtFantasia);}
+		}
+		if(txtLogradouro.getText().equals("")){ destacaVazio(txtLogradouro); verificar = 1;}else{normaliza(txtLogradouro);}
+		if(txtCEP.getText().equals("")){ destacaVazio(txtCEP); verificar = 1;}else{normaliza(txtCEP);}
+		if(txtNumero.getText().equals("")){ destacaVazio(txtNumero); verificar = 1;}else{normaliza(txtNumero);}
+		//if(txt.getText().equals("")){ destaca(txt); verificar = 1;}else{normaliza(txt);}
+		if(txtBairro.getText().equals("")){ destacaVazio(txtBairro); verificar = 1;}else{normaliza(txtBairro);}
+		if(txtComplemento.getText().equals("")){ destacaVazio(txtComplemento); verificar = 1;}else{normaliza(txtComplemento);}
+		if(txtLogin.getText().equals("")){ destacaVazio(txtLogin); verificar = 1;}else{normaliza(txtLogin);}
+		if(txtPassword.getText().equals("")){ destacaVazio(txtPassword); verificar = 1;}else{normaliza(txtPassword);}				
+		
+		return verificar;
 	}
 }

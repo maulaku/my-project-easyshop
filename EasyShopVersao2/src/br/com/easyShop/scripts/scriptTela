@@ -1,6 +1,6 @@
-insert into tela(nome) values("Cadastro de Usu·rio");
+insert into tela(nome) values("Cadastro de Usu√°rio");
 insert into tela(nome) values("Cadastro de Produto");
 insert into tela(nome) values("Cadastro de Categoria");
 insert into tela(nome) values("Cadastro de Marca");
-insert into tela(nome) values("LanÁamento de Permiss„o");
+insert into tela(nome) values("Lan√ßamento de Permiss√£o");
 insert into tela(nome) values("Pesquisar Produto");
