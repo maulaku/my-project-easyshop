@@ -10,13 +10,12 @@ package br.com.easyShop.componentes
 
 	public class ESBotaoAnimado extends MBotao
 	{
-		private var _aumentar:Resize;
-		private var _diminuir:Resize;
+		private var _aumentar:Resize = new Resize();
+		private var _diminuir:Resize = new Resize();
 		private var _labelBotao:String;
 		
 		public function ESBotaoAnimado()
-		{
-			
+		{			
 			_aumentar.duration = 150;
 			_aumentar.widthTo = 150;
 			_aumentar.heightTo = 60;
@@ -38,7 +37,7 @@ package br.com.easyShop.componentes
 			_diminuir.play([evt.currentTarget]);
 		}
 		
-		public function get labelBotao() { return _labelBotao; }
-		public function set labelBotao(label:String) { _labelBotao = label; } 
+		public function get labelBotao():String { return _labelBotao; }
+		public function set labelBotao(label:String):void { _labelBotao = label; } 
 	}
 }

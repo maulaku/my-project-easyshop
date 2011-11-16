@@ -1,3 +1,5 @@
+import br.com.easyShop.componentes.ESBotaoAnimado;
+import br.com.easyShop.componentes.MListaBotao;
 import br.com.easyShop.comunicacao.MRemoteObject;
 import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Cliente;
@@ -24,6 +26,17 @@ public function construtor():void
 {
 	cbBusca.mreServicePesquisa = "ProdutoService.getProdutosNome";
 	MRemoteObject.get("CategoriaService.getTodasCategoriasPai", null, resultCategoria);
+	
+//	var botao:ESBotaoAnimado;
+//	var lista:MListaBotao;
+//	
+//	lista.x = 20;
+//	lista.y = 20;
+//	lista.width = 400;
+//	
+//	botao.label="teste";
+//	
+//	lista.addBotao(botao);
 }
 
 public function resultCategoria(result:ResultJava):void
