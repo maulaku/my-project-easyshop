@@ -69,18 +69,16 @@ public function resultCategoria(result:ResultJava):void
 		Alerta.abrir("Ops, Ocorreu um erro ao carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
 	}
 	
-//	var i:int;
-//	var tam:int = result.lista.length;
-//	var arrayteste:ArrayCollection = result.lista;
-//	var categoria:Categoria = new Categoria();
-//	
-//	for(i=0;i<tam;i++){
-//		
-//	categoria = (Categoria) arrayteste.getItemAt(i,0);  
-//	novoBotao = new MBotao();
-//	novoBotao.label = categoria.nome;          
-//	menuDinamico.addChild(novoBotao);	
-//	}
+	var i:int;
+	var categoria:Categoria = new Categoria();
+	
+	for(i=0;i<result.lista.length;i++){
+		categoria = ((Categoria) (result.lista[i]));  
+		novoBotao = new MBotao();
+		novoBotao.height = 40;
+		novoBotao.label = categoria.nome;          
+		menuDinamico.addChild(novoBotao);	
+	}
 	
 }
 
