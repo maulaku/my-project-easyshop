@@ -17,7 +17,7 @@ public class PessoaFisica
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkPessoaFisica;
+	private long pkPessoaFisica;
 	@Column(length=500)
 	private String nome;
 	@Column(length=500)
@@ -30,7 +30,7 @@ public class PessoaFisica
 	private Data dataNascimento;
 	@Column(length=500)
 	private String sexo;
-	private Integer status = Constantes.STATUS_ATIVO;
+	private int status = Constantes.STATUS_ATIVO;
 
 	@OneToMany(mappedBy="pessoaFisica")
 	private List<Pessoa> pessoas;
@@ -40,8 +40,8 @@ public class PessoaFisica
 	public PessoaFisica() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public Long getPkPessoaFisica() { return pkPessoaFisica; }
-	public void setPkPessoaFisica(Long pkPessoaFisica) { this.pkPessoaFisica = pkPessoaFisica; }
+	public long getPkPessoaFisica() { return pkPessoaFisica; }
+	public void setPkPessoaFisica(long pkPessoaFisica) { this.pkPessoaFisica = pkPessoaFisica; }
 
 	public String getNome() { return nome; }
 	public void setNome(String nome) { this.nome = nome; }
@@ -61,8 +61,8 @@ public class PessoaFisica
 	public String getSexo() { return sexo; }
 	public void setSexo(String sexo) { this.sexo = sexo; }
 
-	public Integer getStatus() { return status; }
-	public void setStatus(Integer status) { this.status = status; }
+	public int getStatus() { return status; }
+	public void setStatus(int status) { this.status = status; }
 
 	public List<Pessoa> getPessoas() { if(pessoas==null) { pessoas = new ArrayList<Pessoa>(); } return pessoas; }
 	public void setPessoas(List<Pessoa> pessoas) { this.pessoas = pessoas; }

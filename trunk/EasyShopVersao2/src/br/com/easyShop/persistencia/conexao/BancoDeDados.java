@@ -3,7 +3,7 @@ package br.com.easyShop.persistencia.conexao;
 import logs.Logs;
 import br.com.easyShop.configuracoes.Configuracoes;
 import br.com.easyShop.persistencia.conexao.pool.PoolJDBC;
-import br.com.easyShop.persistencia.conexao.servidores.MySQLJDBC;
+import br.com.easyShop.persistencia.conexao.servidores.PostgresJDBC;
 import br.com.easyShop.persistencia.conexao.servidores.base.BaseJDBC;
 import flex.messaging.FlexSession;
 
@@ -22,7 +22,7 @@ public class BancoDeDados
 	{
 		try
 		{
-			BaseJDBC conexaoBD = new MySQLJDBC(Configuracoes.propriedades.get("baseUrl"), Configuracoes.propriedades.get("baseBase"), Configuracoes.propriedades.getInt("basePorta"), Configuracoes.propriedades.get("baseLogin"), Configuracoes.propriedades.get("baseSenha"), null);
+			BaseJDBC conexaoBD = new PostgresJDBC(Configuracoes.propriedades.get("baseUrl"), Configuracoes.propriedades.get("baseBase"), Configuracoes.propriedades.getInt("basePorta"), Configuracoes.propriedades.get("baseLogin"), Configuracoes.propriedades.get("baseSenha"), null);
 			poolJDBC = new PoolJDBC(conexaoBD, Configuracoes.propriedades.getInt("tamanhoMinPool"), Configuracoes.propriedades.getInt("tamanhoMaxPool"), Configuracoes.propriedades.getInt("poolgc"), Configuracoes.propriedades.getInt("conexaoTimeOut"));
 			poolJDBC.conectar();
 		} 
@@ -39,7 +39,7 @@ public class BancoDeDados
 	{
 		try
 		{
-			BaseJDBC conexaoBD = new MySQLJDBC(baseUrl, baseBase, basePorta, baseLogin, baseSenha, null);
+			BaseJDBC conexaoBD = new PostgresJDBC(baseUrl, baseBase, basePorta, baseLogin, baseSenha, null);
 			poolJDBC = new PoolJDBC(conexaoBD, minPool, maxPool, poolgc, timeOut);
 			poolJDBC.conectar();
 		} 
@@ -54,15 +54,15 @@ public class BancoDeDados
 	 * <BR><B>A conexao deve ser liberada apos o uso</B>
 	 * @return conexao com o banco de dados
 	 */
-	public static MySQLJDBC getConexao(FlexSession flexSession)
+	public static PostgresJDBC getConexao(FlexSession flexSession)
 	{
 		if(flexSession!=null)
 		{
-			return (poolJDBC!=null) ? (MySQLJDBC)poolJDBC.getConexao() : null;
+			return (poolJDBC!=null) ? (PostgresJDBC)poolJDBC.getConexao() : null;
 		}
 		else
 		{
-			return (poolJDBC!=null) ? (MySQLJDBC)poolJDBC.getConexao() : null;
+			return (poolJDBC!=null) ? (PostgresJDBC)poolJDBC.getConexao() : null;
 		}
 	}
 	

@@ -14,7 +14,7 @@ public class Pais
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkPais;
+	private long pkPais;
 	@Column(length=500)
 	private String nome;
 
@@ -26,17 +26,12 @@ public class Pais
 	public Pais() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public Long getPkPais() { return pkPais; }
-	public void setPkPais(Long pkPais) { this.pkPais = pkPais; }
+	public long getPkPais() { return pkPais; }
+	public void setPkPais(long pkPais) { this.pkPais = pkPais; }
 
 	public String getNome() { return nome; }
 	public void setNome(String nome) { this.nome = nome; }
 
 	public List<Estado> getEstados() { if(estados==null) { estados = new ArrayList<Estado>(); } return estados; }
 	public void setEstados(List<Estado> estados) { this.estados = estados; }
-
-	@Override
-	public String toString() {
-		return nome;
-	}
 }

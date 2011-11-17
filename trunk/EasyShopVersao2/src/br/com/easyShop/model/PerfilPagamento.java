@@ -15,12 +15,12 @@ public class PerfilPagamento
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkPerfilPagamento;
+	private long pkPerfilPagamento;
 	@Column(length=500)
 	private String nome;
 	@Column(length=5000)
 	private String descricao;
-	private Integer status = Constantes.STATUS_ATIVO;
+	private int status = Constantes.STATUS_ATIVO;
 
 	@OneToMany(mappedBy="perfilPagamento")
 	private List<Pedido> pedidos;
@@ -30,8 +30,8 @@ public class PerfilPagamento
 	public PerfilPagamento() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public Long getPkPerfilPagamento() { return pkPerfilPagamento; }
-	public void setPkPerfilPagamento(Long pkPerfilPagamento) { this.pkPerfilPagamento = pkPerfilPagamento; }
+	public long getPkPerfilPagamento() { return pkPerfilPagamento; }
+	public void setPkPerfilPagamento(long pkPerfilPagamento) { this.pkPerfilPagamento = pkPerfilPagamento; }
 
 	public String getNome() { return nome; }
 	public void setNome(String nome) { this.nome = nome; }
@@ -39,8 +39,8 @@ public class PerfilPagamento
 	public String getDescricao() { return descricao; }
 	public void setDescricao(String descricao) { this.descricao = descricao; }
 
-	public Integer getStatus() { return status; }
-	public void setStatus(Integer status) { this.status = status; }
+	public int getStatus() { return status; }
+	public void setStatus(int status) { this.status = status; }
 
 	public List<Pedido> getPedidos() { if(pedidos==null) { pedidos = new ArrayList<Pedido>(); } return pedidos; }
 	public void setPedidos(List<Pedido> pedidos) { this.pedidos = pedidos; }

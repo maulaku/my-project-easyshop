@@ -12,7 +12,7 @@ public class UsuarioTela
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkUsuarioTela;
+	private long pkUsuarioTela;
 
 	@ManyToOne @JoinColumn(name="fkUsuario")
 	private Usuario usuario;
@@ -28,8 +28,8 @@ public class UsuarioTela
 	public UsuarioTela() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public Long getPkUsuarioTela() { return pkUsuarioTela; }
-	public void setPkUsuarioTela(Long pkUsuarioTela) { this.pkUsuarioTela = pkUsuarioTela; }
+	public long getPkUsuarioTela() { return pkUsuarioTela; }
+	public void setPkUsuarioTela(long pkUsuarioTela) { this.pkUsuarioTela = pkUsuarioTela; }
 
 	public Usuario getUsuario() { return usuario; }
 	public void setUsuario(Usuario usuario) { this.usuario = usuario; }

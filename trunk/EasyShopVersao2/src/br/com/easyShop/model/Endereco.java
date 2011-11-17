@@ -17,19 +17,19 @@ public class Endereco
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkEndereco;
+	private long pkEndereco;
 	@Column(length=500)
 	private String logradouro;
 	@Column(length=500)
 	private String numero;
-	private Integer tipo;
+	private int tipo;
 	@Column(length=500)
 	private String bairro;
 	@Column(length=500)
 	private String cep;
 	@Column(length=500)
 	private String complemento;
-	private Integer status = Constantes.STATUS_ATIVO;
+	private int status = Constantes.STATUS_ATIVO;
 
 	@ManyToOne @JoinColumn(name="fkPessoa")
 	private Pessoa pessoa;
@@ -45,8 +45,8 @@ public class Endereco
 	public Endereco() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public Long getPkEndereco() { return pkEndereco; }
-	public void setPkEndereco(Long pkEndereco) { this.pkEndereco = pkEndereco; }
+	public long getPkEndereco() { return pkEndereco; }
+	public void setPkEndereco(long pkEndereco) { this.pkEndereco = pkEndereco; }
 
 	public String getLogradouro() { return logradouro; }
 	public void setLogradouro(String logradouro) { this.logradouro = logradouro; }
@@ -54,8 +54,8 @@ public class Endereco
 	public String getNumero() { return numero; }
 	public void setNumero(String numero) { this.numero = numero; }
 
-	public Integer getTipo() { return tipo; }
-	public void setTipo(Integer tipo) { this.tipo = tipo; }
+	public int getTipo() { return tipo; }
+	public void setTipo(int tipo) { this.tipo = tipo; }
 
 	public String getBairro() { return bairro; }
 	public void setBairro(String bairro) { this.bairro = bairro; }
@@ -66,8 +66,8 @@ public class Endereco
 	public String getComplemento() { return complemento; }
 	public void setComplemento(String complemento) { this.complemento = complemento; }
 
-	public Integer getStatus() { return status; }
-	public void setStatus(Integer status) { this.status = status; }
+	public int getStatus() { return status; }
+	public void setStatus(int status) { this.status = status; }
 
 	public Pessoa getPessoa() { return pessoa; }
 	public void setPessoa(Pessoa pessoa) { this.pessoa = pessoa; }

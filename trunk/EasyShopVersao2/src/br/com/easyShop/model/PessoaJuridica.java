@@ -15,7 +15,7 @@ public class PessoaJuridica
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkPessoaJuridica;
+	private long pkPessoaJuridica;
 	@Column(length=500)
 	private String razaoSocial;
 	@Column(length=500)
@@ -24,7 +24,7 @@ public class PessoaJuridica
 	private String cnpj;
 	@Column(length=500)
 	private String inscricaoEstadual;
-	private Integer status = Constantes.STATUS_ATIVO;
+	private int status = Constantes.STATUS_ATIVO;
 
 	@OneToMany(mappedBy="pessoaJuridica")
 	private List<Pessoa> pessoas;
@@ -34,8 +34,8 @@ public class PessoaJuridica
 	public PessoaJuridica() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public Long getPkPessoaJuridica() { return pkPessoaJuridica; }
-	public void setPkPessoaJuridica(Long pkPessoaJuridica) { this.pkPessoaJuridica = pkPessoaJuridica; }
+	public long getPkPessoaJuridica() { return pkPessoaJuridica; }
+	public void setPkPessoaJuridica(long pkPessoaJuridica) { this.pkPessoaJuridica = pkPessoaJuridica; }
 
 	public String getRazaoSocial() { return razaoSocial; }
 	public void setRazaoSocial(String razaoSocial) { this.razaoSocial = razaoSocial; }
@@ -49,8 +49,8 @@ public class PessoaJuridica
 	public String getInscricaoEstadual() { return inscricaoEstadual; }
 	public void setInscricaoEstadual(String inscricaoEstadual) { this.inscricaoEstadual = inscricaoEstadual; }
 
-	public Integer getStatus() { return status; }
-	public void setStatus(Integer status) { this.status = status; }
+	public int getStatus() { return status; }
+	public void setStatus(int status) { this.status = status; }
 
 	public List<Pessoa> getPessoas() { if(pessoas==null) { pessoas = new ArrayList<Pessoa>(); } return pessoas; }
 	public void setPessoas(List<Pessoa> pessoas) { this.pessoas = pessoas; }

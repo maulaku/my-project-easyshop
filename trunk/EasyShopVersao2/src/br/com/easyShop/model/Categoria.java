@@ -16,7 +16,7 @@ public class Categoria
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkCategoria;
+	private long pkCategoria;
 	@Column(length=500)
 	private String nome;
 	@Column(length=500)
@@ -40,8 +40,8 @@ public class Categoria
 	public Categoria() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public Long getPkCategoria() { return pkCategoria; }
-	public void setPkCategoria(Long pkCategoria) { this.pkCategoria = pkCategoria; }
+	public long getPkCategoria() { return pkCategoria; }
+	public void setPkCategoria(long pkCategoria) { this.pkCategoria = pkCategoria; }
 
 	public String getNome() { return nome; }
 	public void setNome(String nome) { this.nome = nome; }

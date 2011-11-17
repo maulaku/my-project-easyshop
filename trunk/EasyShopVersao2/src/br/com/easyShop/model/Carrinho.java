@@ -15,7 +15,7 @@ public class Carrinho
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkCarrinho;
+	private long pkCarrinho;
 
 	@ManyToOne @JoinColumn(name="fkCliente")
 	private Cliente cliente;
@@ -28,8 +28,8 @@ public class Carrinho
 	public Carrinho() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public Long getPkCarrinho() { return pkCarrinho; }
-	public void setPkCarrinho(Long pkCarrinho) { this.pkCarrinho = pkCarrinho; }
+	public long getPkCarrinho() { return pkCarrinho; }
+	public void setPkCarrinho(long pkCarrinho) { this.pkCarrinho = pkCarrinho; }
 
 	public Cliente getCliente() { return cliente; }
 	public void setCliente(Cliente cliente) { this.cliente = cliente; }
