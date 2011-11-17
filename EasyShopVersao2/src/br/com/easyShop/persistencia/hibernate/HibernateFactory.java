@@ -29,9 +29,9 @@ public class HibernateFactory
 		
 		AnnotationConfiguration cfg = new AnnotationConfiguration();
 		Properties properties = new Properties();
-		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-		properties.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
-		properties.setProperty("hibernate.connection.url", "jdbc:mysql://" + baseURL + ":" + basePorta + "/" + baseBase); //?autoReconnect=true
+		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+		properties.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
+		properties.setProperty("hibernate.connection.url", "jdbc:postgresql://" + baseURL + ":" + basePorta + "/" + baseBase); //?autoReconnect=true
 		properties.setProperty("hibernate.connection.username", baseLogin);
 		properties.setProperty("hibernate.connection.password", baseSenha);
 		cfg.addProperties(properties);

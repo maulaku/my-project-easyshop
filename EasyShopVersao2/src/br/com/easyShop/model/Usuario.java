@@ -17,12 +17,12 @@ public class Usuario
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkUsuario;
+	private long pkUsuario;
 	@Column(length=500)
 	private String login;
 	@Column(length=500)
 	private String senha;
-	private Integer status = Constantes.STATUS_ATIVO;
+	private int status = Constantes.STATUS_ATIVO;
 
 	@ManyToOne @JoinColumn(name="fkPessoa")
 	private Pessoa pessoa;
@@ -35,8 +35,8 @@ public class Usuario
 	public Usuario() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public Long getPkUsuario() { return pkUsuario; }
-	public void setPkUsuario(Long pkUsuario) { this.pkUsuario = pkUsuario; }
+	public long getPkUsuario() { return pkUsuario; }
+	public void setPkUsuario(long pkUsuario) { this.pkUsuario = pkUsuario; }
 
 	public String getLogin() { return login; }
 	public void setLogin(String login) { this.login = login; }
@@ -44,8 +44,8 @@ public class Usuario
 	public String getSenha() { return senha; }
 	public void setSenha(String senha) { this.senha = senha; }
 
-	public Integer getStatus() { return status; }
-	public void setStatus(Integer status) { this.status = status; }
+	public int getStatus() { return status; }
+	public void setStatus(int status) { this.status = status; }
 
 	public Pessoa getPessoa() { return pessoa; }
 	public void setPessoa(Pessoa pessoa) { this.pessoa = pessoa; }

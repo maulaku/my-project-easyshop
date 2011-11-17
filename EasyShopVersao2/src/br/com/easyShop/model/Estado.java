@@ -16,7 +16,7 @@ public class Estado
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkEstado;
+	private long pkEstado;
 	@Column(length=500)
 	private String sigla;
 	@Column(length=500)
@@ -33,8 +33,8 @@ public class Estado
 	public Estado() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public Long getPkEstado() { return pkEstado; }
-	public void setPkEstado(Long pkEstado) { this.pkEstado = pkEstado; }
+	public long getPkEstado() { return pkEstado; }
+	public void setPkEstado(long pkEstado) { this.pkEstado = pkEstado; }
 
 	public String getSigla() { return sigla; }
 	public void setSigla(String sigla) { this.sigla = sigla; }
@@ -47,8 +47,4 @@ public class Estado
 
 	public List<Cidade> getCidades() { if(cidades==null) { cidades = new ArrayList<Cidade>(); } return cidades; }
 	public void setCidades(List<Cidade> cidades) { this.cidades = cidades; }
-	
-	public String toString() {
-		return nome;
-	}
 }

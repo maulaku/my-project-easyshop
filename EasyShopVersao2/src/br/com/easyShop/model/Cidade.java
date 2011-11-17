@@ -16,7 +16,7 @@ public class Cidade
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkCidade;
+	private long pkCidade;
 	@Column(length=500)
 	private String nome;
 
@@ -31,8 +31,8 @@ public class Cidade
 	public Cidade() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public Long getPkCidade() { return pkCidade; }
-	public void setPkCidade(Long pkCidade) { this.pkCidade = pkCidade; }
+	public long getPkCidade() { return pkCidade; }
+	public void setPkCidade(long pkCidade) { this.pkCidade = pkCidade; }
 
 	public String getNome() { return nome; }
 	public void setNome(String nome) { this.nome = nome; }
@@ -42,8 +42,4 @@ public class Cidade
 
 	public List<Endereco> getEnderecos() { if(enderecos==null) { enderecos = new ArrayList<Endereco>(); } return enderecos; }
 	public void setEnderecos(List<Endereco> enderecos) { this.enderecos = enderecos; }
-	
-	public String toString() {
-		return nome;
-	}
 }

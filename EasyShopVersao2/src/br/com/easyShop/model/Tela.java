@@ -14,7 +14,7 @@ public class Tela
 {
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long pkTela;
+	private long pkTela;
 	@Column(length=500)
 	private String nome;
 
@@ -26,8 +26,8 @@ public class Tela
 	public Tela() { }
 
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
-	public Long getPkTela() { return pkTela; }
-	public void setPkTela(Long pkTela) { this.pkTela = pkTela; }
+	public long getPkTela() { return pkTela; }
+	public void setPkTela(long pkTela) { this.pkTela = pkTela; }
 
 	public String getNome() { return nome; }
 	public void setNome(String nome) { this.nome = nome; }
