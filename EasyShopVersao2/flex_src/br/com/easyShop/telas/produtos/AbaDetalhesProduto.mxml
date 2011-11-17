@@ -6,7 +6,7 @@
 		  xmlns:tabela="br.com.mresolucoes.renders.tabela.*"
 		  xmlns:componentes="br.com.easyShop.componentes.*"
 		  xmlns:comboLOD="br.com.easyShop.componentes.comboLOD.*"
-		  width="947" height="1286">
+		  width="947" height="1160" backgroundColor="#FFFFFF">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -14,43 +14,46 @@
 			 fontWeight="normal"
 			 text="Smartphone 3G Samsung Galaxy 5 Wi-Fi Android - Desbloqueado TIM - Câmera 2MP "
 			 textAlign="center" verticalAlign="middle"/>
-	<mx:TabNavigator x="342" y="309" width="529" height="253">
-		<s:NavigatorContent width="100%" height="100%" label="Cartão de Crédito">
-			<s:Label x="44" y="86" height="32" fontSize="16" text="Valor da Parcela"
-					 textAlign="center" verticalAlign="middle"/>
-			<mxml:MComboBox x="171" y="89" width="280"/>
-		</s:NavigatorContent>
-		<s:NavigatorContent width="100%" height="100%" label="Boleto Bancário">
-			<s:Label x="156" y="65" height="32" fontSize="14" text="Valor:"
-					 textAlign="center" verticalAlign="middle"/>
-			<s:Label x="193" y="65" height="28" fontFamily="Verdana" fontSize="21" fontWeight="bold"
-					 text="R$ 24000,00" textAlign="center" verticalAlign="middle"/>
-			<s:Label x="166" y="110" height="38" fontSize="16" text="Desconto de R$ 600,00"
-					 textAlign="center" verticalAlign="middle"/>
-		</s:NavigatorContent>
-	</mx:TabNavigator>
-	<s:Image x="52" y="194" width="265" height="290"/>
-	<s:Label x="54" y="632" width="101" height="27" fontSize="16" fontWeight="bold" text="Descrição"
+	<s:Image x="54" y="70" width="271" height="290" source="@Embed('../../../../../../Imagens/ImagensProduto/produto4.jpg')"/>
+	<s:Label x="46" y="627" width="113" height="27" fontSize="16" fontWeight="bold" text="Caracteristica"
 			 textAlign="center" verticalAlign="middle"/>
-	<mx:HRule x="158" y="642" width="714" height="18"/>
-	<s:BorderContainer x="344" y="71" width="525" height="227">
-		<s:Label x="79" y="33" height="28" fontFamily="Verdana" fontSize="21" fontWeight="bold"
+	<mx:HRule x="167" y="631" width="705" height="18"/>
+	<s:BorderContainer x="344" y="71" width="525" height="288">
+		<s:Label x="79" y="13" height="28" fontFamily="Verdana" fontSize="21" fontWeight="bold"
 				 text="R$ 3000,00" textAlign="center" verticalAlign="middle"/>
-		<s:Label x="39" y="50" height="52" fontSize="16" text="ou 12x  de R$ 250,00 sem juros."
+		<s:Label x="39" y="30" height="52" fontSize="16" text="ou 12x  de R$ 250,00 sem juros."
 				 textAlign="center" verticalAlign="middle"/>
-		<mxml:MBotao x="351" y="38" width="132" height="40" label="Comprar" mreIcone="br.com.easyShop.imagens.botoes.Save.png"/>
-		<mx:HRule x="107" y="111" width="351" height="3"/>
-		<s:Label x="175" y="132" height="38" fontSize="16" text="Calcular o prazo de entrega:"
+		<mxml:MBotao x="351" y="18" width="132" height="40" label="Comprar" mreIcone="br.com.easyShop.imagens.botoes.Save.png"/>
+		<mx:HRule x="86" y="79" width="351" height="3"/>
+		<s:Label x="157" y="90" height="38" fontSize="16" text="Calcular o prazo de entrega:"
 				 textAlign="center" verticalAlign="middle"/>
-		<s:TextInput x="233" y="180" width="148"/>
-		<s:Label x="116" y="177" width="115" height="26" fontSize="16" text="Informe o CEP:"
+		<s:TextInput x="215" y="138" width="148"/>
+		<s:Label x="98" y="135" width="115" height="26" fontSize="16" text="Informe o CEP:"
 				 textAlign="center" verticalAlign="middle"/>
-		<mxml:MBotao x="386" y="179" width="51" height="23" label="OK"/>
+		<mxml:MBotao x="368" y="137" width="51" height="23" label="OK"/>
+		<mx:TabNavigator x="0" y="175" width="523" height="111">
+			<s:NavigatorContent width="100%" height="100%" label="Cartão de Crédito">
+				<s:Label x="52" y="17" height="32" fontSize="16" text="Valor da Parcela"
+						 textAlign="center" verticalAlign="middle"/>
+				<mxml:MComboBox x="179" y="20" width="280"/>
+			</s:NavigatorContent>
+			<s:NavigatorContent width="100%" height="100%" label="Boleto Bancário">
+				<s:Label x="156" y="5" height="32" fontSize="14" text="Valor:"
+						 textAlign="center" verticalAlign="middle"/>
+				<s:Label x="193" y="5" height="28" fontFamily="Verdana" fontSize="21" fontWeight="bold"
+						 text="R$ 24000,00" textAlign="center" verticalAlign="middle"/>
+				<s:Label x="166" y="39" height="38" fontSize="16" text="Desconto de R$ 600,00"
+						 textAlign="center" verticalAlign="middle"/>
+			</s:NavigatorContent>
+		</mx:TabNavigator>
 	</s:BorderContainer>
-	<s:Label x="54" y="632" width="101" height="27" fontSize="16" fontWeight="bold" text="Descrição"
+	<s:Label x="36" y="371" width="101" height="27" fontSize="16" fontWeight="bold" text="Descrição"
 			 textAlign="center" verticalAlign="middle"/>
-	<mx:HRule x="158" y="642" width="714" height="18"/>
-	<s:Label x="54" y="882" width="108" height="27" fontSize="16" fontWeight="bold" text="Caracteristica"
+	<mx:HRule x="138" y="376" width="745" height="18"/>
+	<s:Label x="43" y="880" width="185" height="27" fontSize="16" fontWeight="bold" text="Especificação Técnica"
 			 textAlign="center" verticalAlign="middle"/>
-	<mx:HRule x="173" y="886" width="699" height="18"/>
+	<mx:HRule x="236" y="886" width="636" height="18"/>
+	<s:TextArea x="54" y="405" width="829" height="214"/>
+	<s:TextArea x="53" y="657" width="829" height="214"/>
+	<s:TextArea x="53" y="912" width="829" height="214"/>
 </s:Module>

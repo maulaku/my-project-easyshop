@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
+				width="822" height="458" backgroundAlpha="1.0" backgroundColor="#F1F4F4"
+				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar"
+				title="Meu Carrinho">
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			
+			
+		]]>
+	</fx:Script>
+	
+	<s:BorderContainer x="26" y="21" width="768" height="292" backgroundColor="#F2F2F2">
+		<s:DataGrid id="tblCarrinho" x="22" y="14" width="613" contentBackgroundColor="#F9F9F9"
+					requestedRowCount="5">
+			<s:columns>
+				<s:ArrayList>
+					<s:GridColumn dataField="dataField1" headerText="Produto" width="250"></s:GridColumn>
+					<s:GridColumn dataField="dataField2" headerText="Quantidade" width="120"></s:GridColumn>
+					<s:GridColumn dataField="dataField3" headerText="Valor Unitário" width="120"></s:GridColumn>
+					<s:GridColumn dataField="dataField4" headerText="Valor Parcial" width="120"></s:GridColumn>				
+				</s:ArrayList>
+			</s:columns>
+			<s:typicalItem>
+				<fx:Object dataField1="Sample Data" dataField2="Sample Data" dataField3="Sample Data" dataField4="Sample Data"></fx:Object>
+			</s:typicalItem>
+			<s:ArrayList>
+				
+			</s:ArrayList>
+		</s:DataGrid>
+		<mx:HRule x="22" y="186" width="613" height="13"/>
+		<s:Label x="460" y="207" width="61" height="23" fontFamily="Verdana" fontSize="16"
+				 text="Frete:"/>
+		<s:Label x="415" y="246" width="101" height="23" fontFamily="Verdana" fontSize="16"
+				 text="Valor Total:"/>
+		<mx:HRule x="22" y="226" width="613" height="13"/>
+		<mx:HRule x="22" y="264" width="613" height="13"/>
+		<mx:VRule x="20" y="191" width="6" height="78"/>
+		<mx:VRule x="631" y="191" width="6" height="78"/>
+		<s:Label id="lblFrete" x="512" y="207" fontFamily="Verdana" fontSize="15" fontWeight="bold"
+				 text="R$ 000,00"/>
+		<s:Label id="lblValorTotal" x="512" y="246" fontFamily="Verdana" fontSize="15"
+				 fontWeight="bold" text="R$ 000,00"/>
+		
+		<s:Button id="btnRemover" x="643" y="78" width="113" height="45" label="Remover"
+				  icon="@Embed('../../imagens/botoes/card_remove.png')"/>
+		
+	</s:BorderContainer>
+	<s:Button id="btnContinuarComprando" x="155" y="354" width="210" height="38"
+			  label="Continuar Comprando" fontSize="14" fontWeight="bold"
+			  icon="@Embed('../../imagens/botoes/back.png')"/>
+	<s:Button id="btnFinalizarCompra" x="440" y="354" width="200" height="38"
+			  label="Finalizar Compra" fontSize="14" fontWeight="bold"
+			  icon="@Embed('../../imagens/botoes/money.png')"/>
+	
+</mx:TitleWindow>
