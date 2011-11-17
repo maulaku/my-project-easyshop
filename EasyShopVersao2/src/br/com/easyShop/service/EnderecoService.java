@@ -16,7 +16,7 @@ public class EnderecoService extends BaseServiceAtta {
 
 	public Endereco getEnderecoPessoa(Pessoa pessoa) {
 		try {
-			return new EnderecoDAO().getEnderecoPessoa(pessoa, -1);
+			return new EnderecoDAO().getEnderecoPessoa(pessoa, 3);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

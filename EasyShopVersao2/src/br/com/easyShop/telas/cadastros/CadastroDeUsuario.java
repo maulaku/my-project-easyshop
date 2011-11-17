@@ -41,6 +41,7 @@ import utils.data.Data;
 
 import br.com.easyShop.comunicacao.FlexProxy;
 import br.com.easyShop.comunicacao.JavaFlexRO;
+import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.configuracoes.Configuracoes;
 import br.com.easyShop.model.Cidade;
 import br.com.easyShop.model.Contato;
@@ -486,16 +487,17 @@ public class CadastroDeUsuario extends JFrame {
 			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				PessoaFisicaService pessoaFisicaService = new PessoaFisicaService();
 				
-				if(verificarCamposVazios()==1){
-					String eString = "O(s) campo(s) destacado(s) em Vermelho é(são) obrigatório(s).";
-					JOptionPane.showMessageDialog(null, eString);
-				}
-				else if(verificarCamposErrados()==1){
-						String eString = "O(s) campo(s) destacado(s) Amarelo está(estão) errado(s).";
-						JOptionPane.showMessageDialog(null, eString);
-				}
-				else{
+//				if(verificarCamposVazios()==1){
+//					String eString = "O(s) campo(s) destacado(s) em Vermelho é(são) obrigatório(s).";
+//					JOptionPane.showMessageDialog(null, eString);
+//				}
+//				else if(verificarCamposErrados()==1){
+//						String eString = "O(s) campo(s) destacado(s) Amarelo está(estão) errado(s).";
+//						JOptionPane.showMessageDialog(null, eString);
+//				}
+//				else{
 					Pessoa pessoa = new Pessoa();
 					pessoa.setStatus(Constantes.STATUS_ATIVO);
 					pessoa.setClientes(null);
@@ -510,7 +512,12 @@ public class CadastroDeUsuario extends JFrame {
 						pessoaFisica.setSexo(obtemSexo(cboSexo.getSelectedIndex()));
 						pessoaFisica.setStatus(Constantes.STATUS_ATIVO);
 	
-						pessoa.setPessoaFisica(pessoaFisica);
+						pessoaFisicaService.inserirPessoaFisica(pessoaFisica);
+						
+						ResultJava pessoas = pessoaFisicaService.getTodos(pessoaFisica, 0, 0, "pkpessoafisica");
+						List<?> treco = new ArrayList<PessoaFisica>();
+						treco = pessoas.getLista();
+						pessoa.setPessoaFisica((PessoaFisica) treco.get(treco.size()-1));
 					}
 					else{
 						PessoaJuridica pessoaJuridica = new PessoaJuridica();
@@ -519,26 +526,38 @@ public class CadastroDeUsuario extends JFrame {
 						pessoaJuridica.setNomeFantasia(txtFantasia.getText());
 						pessoaJuridica.setRazaoSocial(txtRazao.getText());
 						pessoaJuridica.setStatus(Constantes.STATUS_ATIVO);
+						
+						PessoaJuridicaService pessoaJuridicaService = new PessoaJuridicaService();
+						pessoaJuridicaService.inserirPessoaJuridica(pessoaJuridica);
 	
-						pessoa.setPessoaJuridica(pessoaJuridica);
+						ResultJava pessoas = pessoaFisicaService.getTodos(pessoaJuridica, 0, 0, "pkpessoajuridica");
+						List<?> treco = new ArrayList<PessoaJuridica>();
+						treco = pessoas.getLista();
+						pessoa.setPessoaJuridica((PessoaJuridica) treco.get(treco.size()-1));
 					}
 	
+					PessoaService pessoaService = new PessoaService();
+					pessoaService.inserirPessoa(pessoa);
+					
+					Pessoa pessoa2 = new Pessoa();
+					ResultJava pessoas = pessoaFisicaService.getTodos(pessoa, 0, 0, "pkpessoa");
+					List<?> treco = new ArrayList<Pessoa>();
+					treco = pessoas.getLista();
+					pessoa2 = ((Pessoa) treco.get(treco.size()-1));				
+					
 					if (cboPais.getSelectedItem() != null) { pais = (Pais) cboPais.getSelectedItem(); }
 					if (cboEstado.getSelectedItem() != null) { estado = (Estado) cboEstado.getSelectedItem(); }
 					estado.setPais(pais);
 					if (cboCidade.getSelectedItem() != null) { cidade = (Cidade) cboCidade.getSelectedItem(); }
 					cidade.setEstado(estado);
 	
-					int t = tabbedPane.getSelectedIndex();
-					System.out.println(t + "....");
 					Endereco endereco = new Endereco();
 					endereco.setBairro(txtBairro.getText());
 					endereco.setCep(txtCEP.getText());
 					endereco.setCidade(cidade);
-					endereco.setComplemento(null);
 					endereco.setLogradouro(txtLogradouro.getText());
 					endereco.setPedidos(null);
-					endereco.setPessoa(pessoa);
+					endereco.setPessoa(pessoa2);
 					endereco.setStatus(Constantes.STATUS_ATIVO);
 					endereco.setTipo(TipoEndereco.getIndexTipoEndereco(cboTipo.getSelectedItem().toString()));
 					endereco.setComplemento(txtComplemento.getText());
@@ -546,24 +565,13 @@ public class CadastroDeUsuario extends JFrame {
 	
 					Usuario usuario = new Usuario();
 					usuario.setLogin(txtLogin.getText());
-					usuario.setPessoa(pessoa);
+					usuario.setPessoa(pessoa2);
 					usuario.setSenha(txtPassword.getText());
 					usuario.setStatus(Constantes.STATUS_ATIVO);
 	
-					if(tabbedPane.getSelectedIndex() == 0){
-						PessoaFisicaService pessoaFisicaService = new PessoaFisicaService();
-						pessoaFisicaService.inserirPessoaFisica(usuario.getPessoa().getPessoaFisica());
-					}else{
-						PessoaJuridicaService pessoaJuridicaService = new PessoaJuridicaService();
-						pessoaJuridicaService.inserirPessoaJuridica(usuario.getPessoa().getPessoaJuridica());
-					}
-	
-					PessoaService pessoaService = new PessoaService();
-					pessoaService.inserirPessoa(usuario.getPessoa());
-	
 					for(Contato contatoAdd : listaContatos){
 						contato = contatoAdd;
-						contato.setPessoa(pessoa);
+						contato.setPessoa(pessoa2);
 						ContatoService contatoService = new ContatoService();
 						contatoService.salvarContato(contato);
 					}
@@ -587,7 +595,7 @@ public class CadastroDeUsuario extends JFrame {
 					//*********************************************************************//
 	
 					JOptionPane.showMessageDialog(null, "Usuário inserido com sucesso!!");
-				}
+				//}
 			}
 		});
 

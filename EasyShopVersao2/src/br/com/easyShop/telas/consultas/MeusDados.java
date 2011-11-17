@@ -674,8 +674,7 @@ public class MeusDados extends JFrame {
 
 	private void preencherDados() {
 
-		try {
-			if (usuario.getPessoa().getPessoaFisica().getNome().equals(null) == false) {
+		if (usuario.getPessoa().getPessoaFisica() != null) {
 				tabbedPane.setSelectedIndex(0);
 				txtUsuario.setText(usuario.getPessoa().getPessoaFisica()
 						.getNome());
@@ -699,16 +698,16 @@ public class MeusDados extends JFrame {
 					cboSexo.addItem("Feminino");
 				}
 			}
-		} catch (Exception e) {
-			tabbedPane.setSelectedIndex(1);
-			txtCNPJ.setText(usuario.getPessoa().getPessoaJuridica().getCnpj());
-			txtInscricaoEstadual.setText(usuario.getPessoa()
-					.getPessoaJuridica().getInscricaoEstadual());
-			txtFantasia.setText(usuario.getPessoa().getPessoaJuridica()
-					.getNomeFantasia());
-			txtRazao.setText(usuario.getPessoa().getPessoaJuridica()
-					.getRazaoSocial());
-		}
+			else{
+				tabbedPane.setSelectedIndex(1);
+				txtCNPJ.setText(usuario.getPessoa().getPessoaJuridica().getCnpj());
+				txtInscricaoEstadual.setText(usuario.getPessoa()
+						.getPessoaJuridica().getInscricaoEstadual());
+				txtFantasia.setText(usuario.getPessoa().getPessoaJuridica()
+						.getNomeFantasia());
+				txtRazao.setText(usuario.getPessoa().getPessoaJuridica()
+						.getRazaoSocial());
+			}
 
 		EnderecoService enderecoService = new EnderecoService();
 		Endereco endereco = new Endereco();

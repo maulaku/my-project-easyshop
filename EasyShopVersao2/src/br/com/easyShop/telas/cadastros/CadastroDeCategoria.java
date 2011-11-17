@@ -29,6 +29,7 @@ import javax.swing.UIManager;
 
 import br.com.easyShop.model.Categoria;
 import br.com.easyShop.service.CategoriaService;
+import br.com.easyShop.utils.Constantes;
 
 import javax.swing.JRadioButton;
 import javax.swing.ImageIcon;
@@ -144,16 +145,19 @@ public class CadastroDeCategoria extends JFrame {
 					Categoria categoriaPai = new Categoria();
 					CategoriaService categoriaService = new CategoriaService();
 					
+					Categoria categoria = new Categoria();
+					categoria.setNome(txtNome.getText());
+					
+					
 					if(rdSub.isSelected() == true){
-						 categoriaPai = (Categoria) cboCategoriaPai.getSelectedItem();
+//						 categoriaPai = (Categoria) cboCategoriaPai.getSelectedItem();
+						categoria.setSubCategoria((Categoria) cboCategoriaPai.getSelectedItem());
+						
 					}
 					else{
-						categoriaPai = null;
+						categoria.setTipo(Constantes.CATEGORIA_PAI);
 					}
 	
-	                Categoria categoria = new Categoria();
-	                categoria.setNome(txtNome.getText());
-	                categoria.setSubCategoria(categoriaPai);
 	                
 	                categoriaService.inserirCategoria(categoria);
 	                

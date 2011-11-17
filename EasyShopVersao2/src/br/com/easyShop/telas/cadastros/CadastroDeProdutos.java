@@ -217,17 +217,14 @@ public class CadastroDeProdutos extends JFrame {
 
 				//*********************************************************************//
 				//Salvar imagem na pasta
-				File imagem_file = new File(caminhoImagem);
-				BufferedImage imagem_buffered = null;
 				try {
-					imagem_buffered = ImageIO.read( imagem_file );
-				} catch (IOException e2) {
-					e2.printStackTrace();
-				}
-				try {
+					File imagem_file = new File(caminhoImagem);
+					BufferedImage imagem_buffered = null;				
+					imagem_buffered = ImageIO.read( imagem_file );					
 					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensProduto/produto"+nextCodigo()+".jpg"));
-				} catch (IOException e1) {
-					e1.printStackTrace();
+				}
+				catch (Exception e2) {
+					
 				}
 				//*********************************************************************//
 
