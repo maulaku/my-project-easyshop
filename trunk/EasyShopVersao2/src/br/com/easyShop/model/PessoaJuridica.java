@@ -54,4 +54,4 @@ public class PessoaJuridica
 
 	public List<Pessoa> getPessoas() { if(pessoas==null) { pessoas = new ArrayList<Pessoa>(); } return pessoas; }
 	public void setPessoas(List<Pessoa> pessoas) { this.pessoas = pessoas; }
-}
+	}

@@ -38,7 +38,7 @@ public class ProdutoService extends BaseServiceAtta {
 
 	public List<Produto> getProdutos() {
 		try {
-			return new ProdutoDAO().getProdutos(-1);
+			return new ProdutoDAO().getProdutos(3);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

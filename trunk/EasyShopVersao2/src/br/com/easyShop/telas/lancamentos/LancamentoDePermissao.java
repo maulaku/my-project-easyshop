@@ -1,27 +1,23 @@
 package br.com.easyShop.telas.lancamentos;
 
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTable;
-import javax.swing.JSeparator;
-import javax.swing.border.BevelBorder;
-import javax.swing.table.DefaultTableModel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTable;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import br.com.easyShop.model.Tela;
 import br.com.easyShop.model.TipoPermissao;
@@ -42,16 +38,14 @@ public class LancamentoDePermissao extends JFrame {
 	private JTable tblTelas;
 	private JTable tblPermissao;
 	private JComboBox cboUsuarios = new JComboBox();
-	private Usuario usuario;
 	private List<Usuario> usuarios;
-	private Tela tela;
 	private final DefaultTableModel modelo = new DefaultTableModel();
 	private final DefaultTableModel modeloPermissao = new DefaultTableModel();
 	private JButton btnAdicionar = new JButton("");
-	private ButtonGroup group = new ButtonGroup();
 	private JComboBox cboTipoDePermissao = new JComboBox();
 	private JButton btnRemover = new JButton("");
 	private JButton btnSalvar = new JButton("Salvar");
+	private JButton btnCancelar = new JButton("Cancelar");
 	
 	/**
 	 * Launch the application.
@@ -77,6 +71,8 @@ public class LancamentoDePermissao extends JFrame {
 		cboUsuarios.addActionListener(new PreencherTabelaTela());
 		btnAdicionar.addActionListener(new Adicionar());
 		btnRemover.addActionListener(new Remover());
+		btnCancelar.addActionListener(new Cancelar());
+		btnSalvar.setIcon(new ImageIcon(LancamentoDePermissao.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Save.png")));
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnSalvar.addActionListener(new Salvar());
 		
@@ -88,12 +84,12 @@ public class LancamentoDePermissao extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		btnSalvar.setBounds(430, 449, 102, 33);
+		btnSalvar.setBounds(430, 449, 124, 33);
 		contentPane.add(btnSalvar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setIcon(new ImageIcon(LancamentoDePermissao.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Close.png")));
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnCancelar.setBounds(296, 449, 102, 33);
+		btnCancelar.setBounds(284, 449, 133, 33);
 		contentPane.add(btnCancelar);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -122,7 +118,7 @@ public class LancamentoDePermissao extends JFrame {
 		contentPane.add(scrollPane_1);
 		
 		modeloPermissao.addColumn("Tela");
-		modeloPermissao.addColumn("Permiss„o");
+		modeloPermissao.addColumn("Permiss√£o");
 		
 		tblPermissao = new JTable(modeloPermissao);
 		tblPermissao.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -210,7 +206,7 @@ public class LancamentoDePermissao extends JFrame {
 				enviar.setTela((Tela)modelo.getValueAt(tblTelas.getSelectedRow(),0));
 				enviar.setUsuario((Usuario)cboUsuarios.getSelectedItem());
 				
-				if(cboTipoDePermissao.getSelectedItem().equals("Leitura")){ //Isso vai mudar, pois no banco est· como o Tipo em inteiro.
+				if(cboTipoDePermissao.getSelectedItem().equals("Leitura")){ //Isso vai mudar, pois no banco estÔøΩ como o Tipo em inteiro.
 					enviar.setTipoPermissao((TipoPermissao) cboTipoDePermissao.getSelectedItem());
 				}else{
 					enviar.setTipoPermissao((TipoPermissao) cboTipoDePermissao.getSelectedItem());
@@ -220,7 +216,7 @@ public class LancamentoDePermissao extends JFrame {
 				modeloPermissao.addRow(new Object[]{enviar,cboTipoDePermissao.getSelectedItem()});
 			}catch (Exception e1) {
 				// TODO: handle exception
-				JOptionPane.showMessageDialog(null, "Selecione a Tela que deseja adcionar ‡ lista de Permissıes");
+				JOptionPane.showMessageDialog(null, "Selecione a Tela que deseja adcionar √† lista de Permiss√µes");
 			}
 		}
 	}
@@ -237,7 +233,7 @@ public class LancamentoDePermissao extends JFrame {
 				modelo.addRow(new Object[]{remover});	
 			}catch (Exception e1) {
 				// TODO: handle exception
-				JOptionPane.showMessageDialog(null, "Selecione a Tela que deseja remover da lista de Permissıes");
+				JOptionPane.showMessageDialog(null, "Selecione a Tela que deseja remover da lista de Permiss√µes");
 			}
 		}
 	}
@@ -259,7 +255,7 @@ public class LancamentoDePermissao extends JFrame {
 						usuarioTelaService.inserirUsuarioTela(adicionar);
 					}
 					
-					JOptionPane.showMessageDialog(null, "Permiss„o(ıes) inserida(s) com sucesso!!");
+					JOptionPane.showMessageDialog(null, "Permiss√£o(√µes) inserida(s) com sucesso!!");
 				}catch (Exception e1) {
 					// TODO: handle exception
 				}
@@ -279,11 +275,17 @@ public class LancamentoDePermissao extends JFrame {
 						usuarioTelaService.inserirUsuarioTela(adicionar);
 					}
 					
-					JOptionPane.showMessageDialog(null, "Permiss„o(ıes) alteradas(s) com sucesso!!");
+					JOptionPane.showMessageDialog(null, "Permiss√£o(√µes) alteradas(s) com sucesso!!");
 				}catch (Exception e1) {
 					// TODO: handle exception
 				}
 			}			
+		}
+	}
+	
+	private class Cancelar implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			LancamentoDePermissao.this.dispose();
 		}
 	}
 }

@@ -2,10 +2,12 @@ import br.com.easyShop.componentes.ESBotaoAnimado;
 import br.com.easyShop.componentes.MListaBotao;
 import br.com.easyShop.comunicacao.MRemoteObject;
 import br.com.easyShop.comunicacao.ResultJava;
+import br.com.easyShop.model.Categoria;
 import br.com.easyShop.model.Cliente;
 import br.com.easyShop.model.Produto;
 import br.com.easyShop.telas.Login;
 import br.com.mresolucoes.componentes.mre.Alerta;
+import br.com.mresolucoes.componentes.mre.MBotao;
 import br.com.mresolucoes.imagens.ImagensUtils;
 
 import flash.events.Event;
@@ -17,7 +19,7 @@ import mx.effects.Effect;
 import mx.effects.WipeDown;
 import mx.managers.PopUpManager;
 
-var painel:Login;
+private var painel:Login;
 
 /**
  * Inicializa os componentes e objetos
@@ -64,6 +66,13 @@ public function lfProduto(item:Object=null, colunm:Object=null):String
 	return item != null ? (item as Produto).nome : "null";
 }
 
+public function escutaBotoes(botao:MBotao):void
+{
+	if(botao == btTeste)
+	{
+		modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
+	}
+}
 protected function btnEntrar_clickHandler(centrado:Boolean):void
 {
 	painel = new Login();

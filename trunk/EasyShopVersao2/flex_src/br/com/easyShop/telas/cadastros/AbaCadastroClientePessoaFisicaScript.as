@@ -6,7 +6,7 @@ import flash.net.FileFilter;
 import flash.net.FileReference;
 
 private var obj_FileReference:FileReference;
-private var myFilter = new FileFilter("Imagens (*.jpg; *.jpeg; *.gif; *.png;","*.jpg; *.jpeg; *.gif; *.png;");
+private var myFilter:FileFilter = new FileFilter("Imagens (*.jpg; *.jpeg; *.gif; *.png;","*.jpg; *.jpeg; *.gif; *.png;");
 
 private function abreJanela(): void{
 	obj_FileReference = new FileReference();

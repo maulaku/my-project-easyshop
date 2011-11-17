@@ -14,9 +14,9 @@ public class Conexao {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, login, senha);
 		} catch (ClassNotFoundException e) {
-			throw new ExcRepositorio("Driver não encontrado: " + e.getMessage());
+			throw new ExcRepositorio("Driver nï¿½o encontrado: " + e.getMessage());
 		} catch (SQLException e) {
-			throw new ExcRepositorio("Erro abrindo conexão: " + e.getMessage());
+			throw new ExcRepositorio("Erro abrindo conexï¿½o: " + e.getMessage());
 		}
 		return con;
 	}

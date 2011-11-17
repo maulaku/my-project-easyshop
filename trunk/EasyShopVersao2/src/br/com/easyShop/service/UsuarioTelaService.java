@@ -25,7 +25,7 @@ public class UsuarioTelaService extends BaseServiceAtta
 	{
 		try
 		{
-			return new UsuarioTelaDAO().getUsuarioTelas(usuario, -1);
+			return new UsuarioTelaDAO().getUsuarioTelas(usuario, 3);
 		} 
 		catch (Exception e)
 		{

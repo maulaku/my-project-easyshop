@@ -35,8 +35,6 @@ public class Login extends JFrame {
 	 */
 	public Login() {
 		super("Login");
-		System.out.println("Iniciando DB...2");
-
 		
 		btnEntrar.addActionListener(new VerificarLogin());
 		btnCancelar.addActionListener(new Cancelar());
@@ -110,6 +108,7 @@ public class Login extends JFrame {
 
 			usuario = usuarioService.getUsuario(getTxtUsuario());
 				
+			if(usuario!=null){
 				if(usuario.getSenha().equals(getPassSenha())){
 					setVisible(false);
 					Janela principal = new Janela(usuario);
@@ -121,6 +120,12 @@ public class Login extends JFrame {
 					setPassSenha("");
 					JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto!");
 				}
+			}
+			else{
+				setTxtUsuario("");
+				setPassSenha("");
+				JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto!");
+			}
 		}
 	}
 	

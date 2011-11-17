@@ -101,4 +101,8 @@ public class Produto
 
 	public List<CarrinhoProduto> getCarrinhoProdutos() { if(carrinhoProdutos==null) { carrinhoProdutos = new ArrayList<CarrinhoProduto>(); } return carrinhoProdutos; }
 	public void setCarrinhoProdutos(List<CarrinhoProduto> carrinhoProdutos) { this.carrinhoProdutos = carrinhoProdutos; }
+	
+	public String toString() {
+		return nome;
+	}
 }
