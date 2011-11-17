@@ -64,12 +64,7 @@
 				 horizontalAlign="center" horizontalScrollPolicy="off" verticalAlign="bottom"
 				 verticalScrollPolicy="off">
 			<s:Button x="1001" y="262" height="40" label="Eletrodomestico" fontFamily="Verdana" fontSize="14" useHandCursor="true" mouseOut="mouseOut(event)" mouseOver="mouseOver(event)"/>
-			<s:Button x="1001" y="262" height="40" label="Cozinha" fontFamily="Verdana" fontSize="14" useHandCursor="true" mouseOut="mouseOut(event)" mouseOver="mouseOver(event)"/>
-			<s:Button height="40" label="Informática" fontFamily="Verdana" fontSize="14"
-					  mouseOut="mouseOut(event)" mouseOver="mouseOver(event)" useHandCursor="true"/>
-			<s:Button x="1001" y="262" height="40" label="Automóvel" fontFamily="Verdana" fontSize="14" useHandCursor="true" mouseOut="mouseOut(event)" mouseOver="mouseOver(event)"/>
-			<s:Button x="1001" y="262" height="40" label="Roupas" fontFamily="Verdana" fontSize="14" useHandCursor="true" mouseOut="mouseOut(event)" mouseOver="mouseOver(event)"/>
-		</mx:HBox>
+			</mx:HBox>
 		
 		<mx:Accordion id="barraLateral" x="25" y="185" width="214" height="556">
 			<s:NavigatorContent width="100%" height="15" label="Eletrodoméstico">
