@@ -14,7 +14,7 @@
 			 fontWeight="normal"
 			 text="Smartphone 3G Samsung Galaxy 5 Wi-Fi Android - Desbloqueado TIM - Câmera 2MP "
 			 textAlign="center" verticalAlign="middle"/>
-	<s:Image x="54" y="70" width="271" height="290" source="@Embed('../../../../../../Imagens/ImagensProduto/produto4.jpg')"/>
+	<s:Image x="53" y="70" width="271" height="290" source="@Embed('../../../../../../Imagens/ImagensProduto/produto4.jpg')"/>
 	<s:Label x="46" y="627" width="113" height="27" fontSize="16" fontWeight="bold" text="Caracteristica"
 			 textAlign="center" verticalAlign="middle"/>
 	<mx:HRule x="167" y="631" width="705" height="18"/>
