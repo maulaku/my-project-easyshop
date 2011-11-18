@@ -14,24 +14,30 @@ import br.com.mresolucoes.renders.tabela.MRGridBotao;
 
 import flash.events.Event;
 import flash.events.MouseEvent;
+import flash.xml.XMLNode;
 
 import mx.collections.ArrayCollection;
 import mx.containers.Panel;
+import mx.containers.VBox;
 import mx.controls.Alert;
 import mx.controls.Button;
+import mx.controls.Tree;
 import mx.core.UIComponent;
 import mx.effects.Effect;
 import mx.effects.WipeDown;
+import mx.events.ChildExistenceChangedEvent;
+import mx.events.ListEvent;
 import mx.managers.PopUpManager;
 import mx.utils.object_proxy;
 
+import org.hamcrest.object.nullValue;
+
 import spark.components.Button;
 import spark.components.NavigatorContent;
-
+import spark.components.gridClasses.GridColumn;
 
 private var painel:Login;
 private var meuCarrinho:MeuCarrinho;
-
 /**
  * Inicializa os componentes e objetos
  */ 
@@ -52,6 +58,7 @@ public function construtor():void
 //	lista.addBotao(botao);
 }
 
+
 public function resultCategoria(result:ResultJava):void
 {
 	try		
@@ -59,6 +66,37 @@ public function resultCategoria(result:ResultJava):void
 		if(result.item != null && (result.item as Boolean)==true)
 		{				
 			cbCategorias.mreDataProvider = result.lista;
+			var categoria:Categoria = new Categoria();
+			var categoria2:Categoria = new Categoria();
+			var i:int;
+			var arr:Array = new Array();
+			
+			for(i=0;i<result.lista.length;i++){
+				categoria = ((Categoria) (result.lista[i]));  
+				var novoBotao:spark.components.Button = new spark.components.Button();
+				novoBotao.height = 40;
+				novoBotao.useHandCursor = true;
+				novoBotao.addEventListener(MouseEvent.MOUSE_OUT,mouseOut);
+				novoBotao.addEventListener(MouseEvent.MOUSE_OVER,mouseOver);
+				novoBotao.label = categoria.nome;          
+				menuDinamico.addChild(novoBotao);
+				
+				var novo:NavigatorContent = new NavigatorContent();
+				novo.height = panelLateral.height;
+				novo.width = panelLateral.width;
+				novo.label = categoria.nome;
+				var grid:VBox = new VBox();
+				novo.addElement(grid);
+				panelLateral.addElement(novo);	
+				
+				var parametros:Array = new Array();
+								
+				parametros.push(categoria);
+				MRemoteObject.get("CategoriaService.getTodasCategoriasSub", parametros, resultSubCategoria);	
+				
+				arr.push(categoria);
+			}
+			myTree.dataProvider = arr;
 		}
 		else
 		{ 
@@ -68,36 +106,43 @@ public function resultCategoria(result:ResultJava):void
 	catch(e:Error)
 	{ 
 		Alerta.abrir("Ops, Ocorreu um erro ao carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
-	}
-	
-	var i:int;
-	var categoria:Categoria = new Categoria();
-	
-	for(i=0;i<result.lista.length;i++){
-		categoria = ((Categoria) (result.lista[i]));  
-		var novoBotao:spark.components.Button = new spark.components.Button();
-		novoBotao.height = 40;
-		novoBotao.useHandCursor = true;
-		novoBotao.addEventListener(MouseEvent.MOUSE_OUT,mouseOut);
-		novoBotao.addEventListener(MouseEvent.MOUSE_OVER,mouseOver);
-		novoBotao.label = categoria.nome;          
-		menuDinamico.addChild(novoBotao);
-		
-		var novo:NavigatorContent = new NavigatorContent();
-		novo.height = panelLateral.height;
-		novo.width = panelLateral.width;
-		novo.label = categoria.nome;
-		panelLateral.addChild(novo);
-//		if(categoria.subCategoria != null){
-//			var novo2:NavigatorContent = new NavigatorContent();
-//			novo2 = (NavigatorContent) panelLateral.getChildAt(i);
-//			
-//			var botao:spark.components.Button = new spark.components.Button();
-//			novo2.addChild(botao);
-//		}
-	}
+	}	
 }
 
+public function resultSubCategoria(result:ResultJava):void
+{
+	
+	try		
+	{		
+		if(result.item != null && (result.item as Boolean)==true)
+		{			
+			var i:int;
+			var categoria:Categoria = new Categoria();
+			var categoria2:Categoria = new Categoria();
+			
+			var array:Array = new Array();
+			for(i=0;i<result.lista.length;i++){
+				categoria = ((Categoria) (result.lista[i]));  
+				var novo:NavigatorContent = new NavigatorContent();
+				var grid:VBox = new VBox();
+				novo = ((NavigatorContent) (panelLateral.getElementAt((categoria.subCategoria.pkCategoria)-1)));
+				grid = ((VBox) (novo.getElementAt(0)));
+				var botao:spark.components.Button = new spark.components.Button();
+				botao.label = categoria.nome;
+				botao.width = panelLateral.width -2;
+				grid.addElement(botao);
+			}	
+		}
+		else
+		{ 
+			Alerta.abrir(result.lista.length > 0 ? result.lista.getItemAt(0) as String : "Ops, Erro ao carregar sub categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
+		}
+	} 
+	catch(e2:Error)
+	{ 
+		Alerta.abrir("Ops, Ocorreu um erro ao carregar sub categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
+	}	
+}
 public function mouseOver(evt:MouseEvent):void{
 	aumentar.play([evt.currentTarget]);
 }
@@ -170,4 +215,19 @@ private function lidaClickadoPessoaFisica(event:Event):void{
 private function lidaClickadoPessoaJuridica(event:Event):void{
 	painel.setVisible(false);
 	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaJuridica.swf");
+}
+
+
+private function tree_itemClick(evt:ListEvent):void {
+	var item:Categoria = ((Categoria) (evt.currentTarget.selectedItem));
+	if (myTree.dataDescriptor.isBranch(item)) {
+		myTree.selectedItem = null;
+	}
+	Alert.show("Nome do objeto: " + item.nome);
+}
+
+private function tree_labelFunc(item:Object):String {
+	var cat:Categoria = new Categoria();
+	cat = ((Categoria) (item));
+	return cat.nome;
 }
