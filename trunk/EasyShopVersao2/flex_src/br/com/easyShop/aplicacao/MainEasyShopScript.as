@@ -26,6 +26,7 @@ import mx.managers.PopUpManager;
 import mx.utils.object_proxy;
 
 import spark.components.Button;
+import spark.components.NavigatorContent;
 
 
 private var painel:Login;
@@ -80,7 +81,20 @@ public function resultCategoria(result:ResultJava):void
 		novoBotao.addEventListener(MouseEvent.MOUSE_OUT,mouseOut);
 		novoBotao.addEventListener(MouseEvent.MOUSE_OVER,mouseOver);
 		novoBotao.label = categoria.nome;          
-		menuDinamico.addChild(novoBotao);	
+		menuDinamico.addChild(novoBotao);
+		
+		var novo:NavigatorContent = new NavigatorContent();
+		novo.height = panelLateral.height;
+		novo.width = panelLateral.width;
+		novo.label = categoria.nome;
+		panelLateral.addChild(novo);
+//		if(categoria.subCategoria != null){
+//			var novo2:NavigatorContent = new NavigatorContent();
+//			novo2 = (NavigatorContent) panelLateral.getChildAt(i);
+//			
+//			var botao:spark.components.Button = new spark.components.Button();
+//			novo2.addChild(botao);
+//		}
 	}
 }
 
