@@ -48,11 +48,7 @@
 			<s:VScrollBar x="963" y="0" width="17" height="559" viewport="{modulo}" id="ScrollBar" visible="false"/>
 		</mxml:MModulo>
 		
-		
-		
 		<mxml:MComboBox id="cbCategorias" x="161" y="155" width="207" labelField="nome"/>
-		
-		
 		
 		<s:Label x="91" y="151" width="65" height="31" color="#F0F2F9" fontFamily="Verdana"
 				 fontSize="15" fontWeight="bold" text="BUSCA" textAlign="center" verticalAlign="middle"/>
@@ -64,28 +60,14 @@
 				 horizontalAlign="center" horizontalScrollPolicy="off" verticalAlign="bottom"
 				 verticalScrollPolicy="off">
 			</mx:HBox>
-		
-		<mx:Accordion id="barraLateral" x="25" y="185" width="214" height="556">
-			<s:NavigatorContent width="100%" height="15" label="Eletrodoméstico">
-				<mx:LinkButton x="47" y="28" label="LinkButton"/>
-				<mx:LinkButton x="47" y="57" label="LinkButton"/>
-				<mx:LinkButton x="47" y="95" label="LinkButton"/>
-				<mx:LinkButton x="47" y="133" label="LinkButton"/>
-				
-			</s:NavigatorContent>
-			<s:NavigatorContent width="100%" height="15" label="Cozinha">
-			</s:NavigatorContent>
-			<s:NavigatorContent width="100%" height="100%" label="Informática">
-			</s:NavigatorContent>
-			<s:NavigatorContent width="100%" height="100%" label="Roupas">
-			</s:NavigatorContent>
-		</mx:Accordion>
 		<mxml:MBotao id="btTeste" x="716" y="24" label="teste" mreClick="escutaBotoes"/>
 		<s:Label x="371" y="1496" width="355" height="19" fontSize="15"
 				 text="Créditos sobre o Site ficaram aqui" textAlign="center" verticalAlign="middle"/>
 		<componentes:MListaBotao id="listaaaa" x="625" y="10" width="241" height="58">
 		</componentes:MListaBotao>
-			
+		<mx:Accordion id="panelLateral" x="23" y="186" width="215" height="377">
+		</mx:Accordion>
+					
 		
 	</s:Panel>
 </s:Application>
