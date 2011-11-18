@@ -63,7 +63,6 @@
 		<mx:HBox id="menuDinamico" x="-5" y="76" width="100%" height="74" clipContent="true"
 				 horizontalAlign="center" horizontalScrollPolicy="off" verticalAlign="bottom"
 				 verticalScrollPolicy="off">
-			<s:Button x="1001" y="262" height="40" label="Eletrodomestico" fontFamily="Verdana" fontSize="14" useHandCursor="true" mouseOut="mouseOut(event)" mouseOver="mouseOver(event)"/>
 			</mx:HBox>
 		
 		<mx:Accordion id="barraLateral" x="25" y="185" width="214" height="556">

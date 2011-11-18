@@ -25,11 +25,11 @@ import mx.effects.WipeDown;
 import mx.managers.PopUpManager;
 import mx.utils.object_proxy;
 
+import spark.components.Button;
+
 
 private var painel:Login;
 private var meuCarrinho:MeuCarrinho;
-private var novoBotao:MBotao;
-private var nomes:Categoria;
 
 /**
  * Inicializa os componentes e objetos
@@ -74,12 +74,14 @@ public function resultCategoria(result:ResultJava):void
 	
 	for(i=0;i<result.lista.length;i++){
 		categoria = ((Categoria) (result.lista[i]));  
-		novoBotao = new MBotao();
+		var novoBotao:spark.components.Button = new spark.components.Button();
 		novoBotao.height = 40;
+		novoBotao.useHandCursor = true;
+		novoBotao.addEventListener(MouseEvent.MOUSE_OUT,mouseOut);
+		novoBotao.addEventListener(MouseEvent.MOUSE_OVER,mouseOver);
 		novoBotao.label = categoria.nome;          
 		menuDinamico.addChild(novoBotao);	
 	}
-	
 }
 
 public function mouseOver(evt:MouseEvent):void{
@@ -89,7 +91,6 @@ public function mouseOver(evt:MouseEvent):void{
 public function mouseOut(evt:MouseEvent):void{
 	diminuir.play([evt.currentTarget]);
 }
-
 
 public function lfProduto(item:Object=null, colunm:Object=null):String
 {
