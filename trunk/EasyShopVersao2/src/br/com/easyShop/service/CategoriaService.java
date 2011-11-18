@@ -112,4 +112,15 @@ public class CategoriaService extends BaseServiceAtta
 			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao buscar categorias\n" + e }));
 		}
 	}
+	
+	public ResultJava getTodasCategoriasSub(Categoria categoria) {
+		try
+		{
+			return new ResultJava(true, new CategoriaDAO().getCategoriasSub(categoria,3));
+		} 
+		catch (Exception e) 
+		{
+			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao buscar sub categorias\n" + e }));
+		}
+	}
 }
