@@ -162,6 +162,12 @@ public function escutaBotoes(botao:MBotao):void
 	{
 		modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
 	}
+	
+//	if(botao == btPedido)
+//	{
+//	//	modulo.mreLoadModule("br/com/easyShop/telas/pedidos/AbaMeuPedido.swf");
+//		modulo.mreLoadModule("br/com/easyShop/telas/cadastrod/AbaCadastroPessoaFisica.swf");
+//	}
 }
 protected function btnEntrar_clickHandler(centrado:Boolean):void
 {
@@ -210,6 +216,12 @@ private function lidaClickadoPessoaFisica(event:Event):void{
 	painel.setVisible(false);
 	ScrollBar.setVisible(true);
 	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaFisica.swf");
+}
+
+private function lidaClickadoMeuPedido(event:Event):void{
+	painel.setVisible(false);
+	ScrollBar.setVisible(true);
+	modulo.mreLoadModule("br/com/easyShop/telas/pedidos/AbaMeuPedido.swf");
 }
 
 private function lidaClickadoPessoaJuridica(event:Event):void{

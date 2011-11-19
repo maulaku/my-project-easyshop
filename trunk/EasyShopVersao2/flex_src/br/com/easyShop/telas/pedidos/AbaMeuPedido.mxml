@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"
+		  xmlns:s="library://ns.adobe.com/flex/spark"
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
+		  xmlns:tabela="br.com.mresolucoes.renders.tabela.*"
+		  width="878" height="512">
+	<fx:Script source="AbaMeuPedidoScript.as" />
+		
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:DataGrid id="tblPedido" x="21" y="82" width="837" height="52"
+				contentBackgroundColor="#F9F9F9" requestedRowCount="1">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn dataField="dataField1" headerText="Código"></s:GridColumn>
+				<s:GridColumn dataField="dataField2" headerText="Produto"></s:GridColumn>
+				<s:GridColumn dataField="dataField3" headerText="Quantidade" ></s:GridColumn>
+				<s:GridColumn dataField="dataField4" headerText="Valor"></s:GridColumn>		
+				<s:GridColumn dataField="dataField4" headerText="Status"></s:GridColumn>		
+			</s:ArrayList>
+		</s:columns>
+		<s:typicalItem>
+			<fx:Object dataField1="Sample Data" dataField2="Sample Data" dataField3="Sample Data" dataField4="Sample Data"></fx:Object>
+		</s:typicalItem>
+		<s:ArrayList>
+			
+		</s:ArrayList>
+	</s:DataGrid>
+	<mxml:MBotao x="24" y="456" width="100" label="Voltar"/>
+	<mxml:MPanel x="21" y="188" width="210" height="95" title="Endereço de entrega">
+	</mxml:MPanel>
+	<mxml:MPanel x="338" y="188" width="209" height="95" title="Endereço de cobrança">
+	</mxml:MPanel>
+	<mxml:MPanel x="659" y="188" width="199" height="95" title="Forma de pagamento">
+	</mxml:MPanel>
+	<s:Label x="25" y="344" fontSize="17" fontWeight="bold" text="Rastrear pedido"/>
+	<s:DataGrid id="tblRastro" x="25" y="370" width="833" height="50"
+				contentBackgroundColor="#F9F9F9" requestedRowCount="1">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn dataField="dataField1" headerText="Pedido realizado" ></s:GridColumn>
+				<s:GridColumn dataField="dataField2" headerText="Pedido autorizado" ></s:GridColumn>
+				<s:GridColumn dataField="dataField3" headerText="Preparado para envio"></s:GridColumn>
+				<s:GridColumn dataField="dataField4" headerText="Produto na transportadora" ></s:GridColumn>
+				<s:GridColumn dataField="dataField4" headerText="Produto entregue" ></s:GridColumn>
+			</s:ArrayList>
+		</s:columns>
+		<s:typicalItem>
+			<fx:Object dataField1="Sample Data" dataField2="Sample Data" dataField3="Sample Data" dataField4="Sample Data"></fx:Object>
+		</s:typicalItem>
+	</s:DataGrid>
+	<s:Label x="296" y="23" fontSize="25" fontWeight="bold" text="Detalhes do Pedido"/>
+</s:Module>
