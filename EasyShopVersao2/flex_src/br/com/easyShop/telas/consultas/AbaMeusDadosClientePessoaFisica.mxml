@@ -4,7 +4,7 @@
 		  xmlns:mx="library://ns.adobe.com/flex/mx"
 		  xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
 		  width="872" height="608">
-	<fx:Script source="AbaCadastroClientePessoaFisicaScript.as" />
+	<fx:Script source="AbaMeusDadosClientePessoaFisicaScript.as" />
 		
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
