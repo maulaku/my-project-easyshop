@@ -18,5 +18,4 @@ public class PedidoService {
 			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao buscar pedido\n" + e }));
 		}
 	}
-
 }

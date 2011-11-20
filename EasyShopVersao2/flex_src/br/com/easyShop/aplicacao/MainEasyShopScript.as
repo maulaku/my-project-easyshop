@@ -1,10 +1,13 @@
 import br.com.easyShop.aplicacao.AccordionItem;
+import br.com.easyShop.aplicacao.MainEasyShop;
 import br.com.easyShop.componentes.ESBotaoAnimado;
 import br.com.easyShop.componentes.MListaBotao;
 import br.com.easyShop.comunicacao.MRemoteObject;
 import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Categoria;
 import br.com.easyShop.model.Cliente;
+import br.com.easyShop.model.Pessoa;
+import br.com.easyShop.model.PessoaFisica;
 import br.com.easyShop.model.Produto;
 import br.com.easyShop.telas.Login;
 import br.com.easyShop.telas.produtos.MeuCarrinho;
@@ -49,12 +52,25 @@ import spark.effects.AddAction;
 
 private var painel:Login;
 private var meuCarrinho:MeuCarrinho;
+
 private static var clienteGlobal:Cliente = new Cliente(); //Cliente Global da Aplicação. Ele é setado pelo Login.
 /**
  * Inicializa os componentes e objetos
  */ 
 
 public static function getClienteGlobal():Cliente{
+	
+	var pessoa:Pessoa = new Pessoa();
+	var pessoaFisica:PessoaFisica = new PessoaFisica();
+	
+	pessoaFisica.pkPessoaFisica =1;
+	pessoa.pessoaFisica = pessoaFisica;
+
+	pessoa.pkPessoa =1;
+	
+	clienteGlobal.pkCliente =1;
+	clienteGlobal.pessoa = pessoa;
+
 	return clienteGlobal;
 }
 
@@ -62,22 +78,6 @@ public function construtor():void
 {
 	cbBusca.mreServicePesquisa = "ProdutoService.getProdutosNome";
 	MRemoteObject.get("CategoriaService.getTodasCategoriasPai", null, resultCategoria);
-	//	
-	//	//accordion.headerRenderer = ((IFactory) (Header));
-	//	
-	//	var acord:AccordionItem = new AccordionItem();
-	//	acord.name = "Teste";
-	//	acord.label = "ahusa";
-	//	acord.image="@Embed('../imagens/aplicacao/user3.png')"
-	//	accordion.addElement(acord);
-	//	var acord2:AccordionItem = new AccordionItem();
-	//	acord2.title = "Teste";
-	//	acord2.image="@Embed('../imagens/aplicacao/user3.png')"
-	//	accordion.addElement(acord2);
-	//	var acord3:AccordionItem = new AccordionItem();
-	//	acord3.title = "Teste";
-	//	acord3.image="@Embed('../imagens/aplicacao/user3.png')"
-	//	accordion.addElement(acord3);
 }
 
 public function resultCategoria(result:ResultJava):void
@@ -187,6 +187,27 @@ protected function btTeste_clickHandler():void
 protected function btnPedido_clickHandler():void
 {
 	modulo.mreLoadModule("br/com/easyShop/telas/pedidos/AbaMeusPedidos.swf");
+}
+
+private function enviaCliente():Cliente{
+	
+	var cliente:Cliente = new Cliente();
+	
+	cliente = MainEasyShop.getClienteGlobal();
+	
+	var pessoa:Pessoa = new Pessoa();
+	var pessoaFisica:PessoaFisica = new PessoaFisica();
+	
+	pessoaFisica.pkPessoaFisica =1;
+	
+	pessoa.pessoaFisica = pessoaFisica;
+	
+	pessoa.pkPessoa =1;
+	
+	cliente.pkCliente =1;
+	cliente.pessoa = pessoa;
+	
+	return cliente;
 }
 
 protected function btnEntrar_clickHandler(centrado:Boolean):void
