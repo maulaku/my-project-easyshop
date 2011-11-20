@@ -49,9 +49,15 @@ import spark.effects.AddAction;
 
 private var painel:Login;
 private var meuCarrinho:MeuCarrinho;
+private static var clienteGlobal:Cliente = new Cliente(); //Cliente Global da Aplicação. Ele é setado pelo Login.
 /**
  * Inicializa os componentes e objetos
  */ 
+
+public static function getClienteGlobal():Cliente{
+	return clienteGlobal;
+}
+
 public function construtor():void
 {
 	cbBusca.mreServicePesquisa = "ProdutoService.getProdutosNome";
@@ -180,7 +186,7 @@ protected function btTeste_clickHandler():void
 
 protected function btnPedido_clickHandler():void
 {
-	modulo.mreLoadModule("br/com/easyShop/telas/pedidos/AbaMeuPedidos.swf");
+	modulo.mreLoadModule("br/com/easyShop/telas/pedidos/AbaMeusPedidos.swf");
 }
 
 protected function btnEntrar_clickHandler(centrado:Boolean):void
