@@ -44,14 +44,14 @@ public class PessoaService extends BaseServiceAtta {
 		}
 	}
 	
-	public ResultJava salvar(Pessoa pessoa) {
-		try
-		{
-			return new ResultJava(new PessoaDAO().salvar(pessoa));
-		} 
-		catch (Exception e) 
-		{
-			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao inserir pessoa!\n" + e }));
-		}
-	}
+//	public ResultJava salvar(Pessoa pessoa) {
+//		try
+//		{
+//			return new ResultJava(new PessoaDAO().inserir(pessoa));
+//		} 
+//		catch (Exception e) 
+//		{
+//			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao inserir pessoa!\n" + e }));
+//		}
+//	}
 }

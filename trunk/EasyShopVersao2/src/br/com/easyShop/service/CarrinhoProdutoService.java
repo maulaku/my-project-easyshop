@@ -1,7 +1,7 @@
 package br.com.easyShop.service;
 
 import br.com.easyShop.model.CarrinhoProduto;
-import br.com.easyShop.persistencia.DAO.UsuarioDAO;
+import br.com.easyShop.persistencia.DAO.CarrinhoProdutoDAO;
 import br.com.easyShop.service.base.BaseServiceAtta;
 
 public class CarrinhoProdutoService extends BaseServiceAtta
@@ -10,12 +10,12 @@ public class CarrinhoProdutoService extends BaseServiceAtta
 	{
 		try 
 		{
-			new UsuarioDAO().salvar(carrinhoProduto);
+			new CarrinhoProdutoDAO().salvar(carrinhoProduto);
 		} 
 		catch (Exception e) 
 		{
 			e.printStackTrace();
 		}
+		
 	}
-
 }
