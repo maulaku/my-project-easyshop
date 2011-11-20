@@ -43,10 +43,11 @@ public class ProdutoDAO extends BaseDAOAtta {
 	}
 
 	public Produto getProduto(int profundidade, long id) throws Exception {
-
+        
+		
 		QuerySQL query = new QuerySQL();
 		query.add("SELECT * ");
-		query.add("FROM produto");
+		query.add("FROM produto ");
 		query.add("WHERE pkProduto = ?", id);
 
 		return obtemUnico(Produto.class, query, profundidade);

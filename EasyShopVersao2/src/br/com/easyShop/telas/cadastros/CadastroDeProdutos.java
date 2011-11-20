@@ -34,6 +34,7 @@ import br.com.easyShop.service.CategoriaService;
 import br.com.easyShop.service.MarcaService;
 import br.com.easyShop.service.ProdutoService;
 import br.com.easyShop.utils.Constantes;
+import javax.swing.JTabbedPane;
 
 public class CadastroDeProdutos extends JFrame {
 
@@ -55,11 +56,13 @@ public class CadastroDeProdutos extends JFrame {
 	private Categoria subCategoria;
 	private JTextField txtCodigo;
 	private Marca marca;
-	private TextArea textArea;
+	private TextArea txtAreaDescricao;
 	private BufferedImage imagem_buffered;
 	private JLabel lblImagem = new JLabel("");
 	private String caminhoImagem;
 	private JButton btnCancelar = new JButton("Cancelar");
+	private TextArea txtAreaCaracteristica = new TextArea();
+	private TextArea txtAreaEspecificacaoTecnica = new TextArea();
 
 
 	/**
@@ -83,8 +86,10 @@ public class CadastroDeProdutos extends JFrame {
 	 * Create the frame.
 	 */
 	public CadastroDeProdutos() {
+		btnCarregarImagem.setBounds(595, 200, 169, 41);
 		btnCarregarImagem.setIcon(new ImageIcon(CadastroDeProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Picture.png")));
 		btnCarregarImagem.addActionListener(new Abrir());
+		btnCancelar.setBounds(604, 365, 160, 41);
 		btnCancelar.addActionListener(new Cancelar());
 
 		setTitle("Cadastro de Produto");
@@ -96,101 +101,90 @@ public class CadastroDeProdutos extends JFrame {
 		ctpCadastroProduto.setLayout(null);
 
 		JLabel lblCategoria = new JLabel("Categoria");
-		lblCategoria.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblCategoria.setBounds(47, 84, 107, 26);
+		lblCategoria.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		ctpCadastroProduto.add(lblCategoria);
 
-		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o");
-		lblDescrio.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblDescrio.setBounds(35, 285, 74, 22);
-		ctpCadastroProduto.add(lblDescrio);
-
 	    cboSubcategoria = new JComboBox();
-		cboSubcategoria.setBounds(130, 84, 186, 26);
+	    cboSubcategoria.setBounds(130, 84, 186, 26);
 		ctpCadastroProduto.add(cboSubcategoria);
 
 		JLabel lblNomeDoProduto = new JLabel("Produto");
-		lblNomeDoProduto.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNomeDoProduto.setBounds(47, 28, 68, 26);
+		lblNomeDoProduto.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		ctpCadastroProduto.add(lblNomeDoProduto);
 
 		txtNome = new JTextField();
-		txtNome.setColumns(10);
 		txtNome.setBounds(110, 31, 269, 26);
+		txtNome.setColumns(10);
 		ctpCadastroProduto.add(txtNome);
 
 		JLabel lblMarca = new JLabel("Marca");
-		lblMarca.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblMarca.setBounds(338, 82, 56, 24);
+		lblMarca.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		ctpCadastroProduto.add(lblMarca);
 
 		JLabel lblPreo = new JLabel("Pre\u00E7o Unit\u00E1rio");
-		lblPreo.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblPreo.setBounds(47, 141, 116, 25);
+		lblPreo.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		ctpCadastroProduto.add(lblPreo);
 
 		txtPreco = new JTextField();
-		txtPreco.setColumns(10);
 		txtPreco.setBounds(162, 141, 56, 26);
+		txtPreco.setColumns(10);
 		ctpCadastroProduto.add(txtPreco);
 
 		JLabel lblQuantidade = new JLabel("Quantidade");
-		lblQuantidade.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblQuantidade.setBounds(228, 138, 96, 27);
+		lblQuantidade.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		ctpCadastroProduto.add(lblQuantidade);
 
 		txtQuantidade = new JTextField();
-		txtQuantidade.setColumns(10);
 		txtQuantidade.setBounds(320, 143, 56, 26);
+		txtQuantidade.setColumns(10);
 		ctpCadastroProduto.add(txtQuantidade);
 
 		JLabel lblGarantia = new JLabel("Garantia (M\u00EAs)");
-		lblGarantia.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblGarantia.setBounds(386, 141, 124, 24);
+		lblGarantia.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		ctpCadastroProduto.add(lblGarantia);
 
 		txtGarantia = new JTextField();
-		txtGarantia.setColumns(10);
 		txtGarantia.setBounds(504, 141, 63, 26);
+		txtGarantia.setColumns(10);
 		ctpCadastroProduto.add(txtGarantia);
 
 		btnCancelar.setIcon(new ImageIcon(CadastroDeProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Close.png")));
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnCancelar.setBounds(604, 365, 160, 41);
 		ctpCadastroProduto.add(btnCancelar);
 
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setBounds(604, 252, 160, 41);
 		btnSalvar.setIcon(new ImageIcon(CadastroDeProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Save.png")));
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnSalvar.setBounds(604, 252, 160, 41);
 		ctpCadastroProduto.add(btnSalvar);
 
 		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.setBounds(604, 308, 160, 41);
 		btnLimpar.setIcon(new ImageIcon(CadastroDeProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Trash.png")));
 		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnLimpar.setBounds(604, 308, 160, 41);
 		ctpCadastroProduto.add(btnLimpar);
 
 		btnCarregarImagem.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnCarregarImagem.setBounds(595, 200, 169, 41);
 		ctpCadastroProduto.add(btnCarregarImagem);
 
-		textArea = new TextArea();
-		textArea.setBounds(113, 200, 456, 206);
-		ctpCadastroProduto.add(textArea);
-
 	    cboMarca = new JComboBox();
-		cboMarca.setBounds(389, 84, 178, 26);
+	    cboMarca.setBounds(389, 84, 178, 26);
 		ctpCadastroProduto.add(cboMarca);
 
 		JLabel lblCdigo = new JLabel("C\u00F3digo");
-		lblCdigo.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblCdigo.setBounds(389, 30, 68, 26);
+		lblCdigo.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		ctpCadastroProduto.add(lblCdigo);
 
 		txtCodigo = new JTextField();
-		txtCodigo.setColumns(10);
 		txtCodigo.setBounds(451, 31, 116, 26);
+		txtCodigo.setColumns(10);
 		txtCodigo.setEditable(false);
 		ctpCadastroProduto.add(txtCodigo);
 
@@ -207,7 +201,9 @@ public class CadastroDeProdutos extends JFrame {
 				Produto produto = new Produto();
 				produto.setCategoria(subCategoria);
 				produto.setCodigo(txtCodigo.getText());
-				produto.setDescricao(textArea.getText());
+				produto.setDescricao(txtAreaDescricao.getText());
+				produto.setCaracteristicas(txtAreaCaracteristica.getText());
+				produto.setEspecificacoesTecnicas(txtAreaEspecificacaoTecnica.getText());
 				produto.setGarantia(Integer.parseInt(txtGarantia.getText()));
 				produto.setMarca(marca);
 				produto.setNome(txtNome.getText());
@@ -245,10 +241,21 @@ public class CadastroDeProdutos extends JFrame {
 		});
 
 		txtCodigo.setText(nextCodigo());
+		lblImagem.setBounds(595, 31, 160, 172);
 
 		lblImagem.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		lblImagem.setBounds(595, 31, 160, 172);
 		ctpCadastroProduto.add(lblImagem);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(47, 189, 520, 217);
+		ctpCadastroProduto.add(tabbedPane);
+		
+				txtAreaDescricao = new TextArea();
+				tabbedPane.addTab("Descri\u00E7\u00E3o", null, txtAreaDescricao, null);
+				
+				tabbedPane.addTab("Caracter\u00EDstica", null, txtAreaCaracteristica, null);
+				
+				tabbedPane.addTab("Especifica\u00E7\u00E3o T\u00E9cnica", null, txtAreaEspecificacaoTecnica, null);
 
 		preencheComboCategoria();
 		preencherComboMarca();
@@ -316,7 +323,7 @@ public class CadastroDeProdutos extends JFrame {
 		 txtNome.setText("");
 		 txtPreco.setText("");
 		 txtQuantidade.setText("");
-		 textArea.setText("");
+		 txtAreaDescricao.setText("");
 	 }
 
 	 private String nextCodigo(){
