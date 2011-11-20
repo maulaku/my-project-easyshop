@@ -1,5 +1,8 @@
 package br.com.easyShop.service;
 
+import java.util.Arrays;
+
+import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Pessoa;
 import br.com.easyShop.model.PessoaFisica;
 import br.com.easyShop.persistencia.DAO.PessoaDAO;
@@ -38,6 +41,17 @@ public class PessoaService extends BaseServiceAtta {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public ResultJava salvar(Pessoa pessoa) {
+		try
+		{
+			return new ResultJava(new PessoaDAO().salvar(pessoa));
+		} 
+		catch (Exception e) 
+		{
+			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao inserir pessoa!\n" + e }));
 		}
 	}
 }

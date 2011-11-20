@@ -5,8 +5,9 @@
 		  xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
 		  xmlns:tabela="br.com.mresolucoes.renders.tabela.*"
 		  width="878" height="512">
+	
 	<fx:Script source="AbaMeuPedidoScript.as" />
-		
+	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -53,4 +54,7 @@
 		</s:typicalItem>
 	</s:DataGrid>
 	<s:Label x="296" y="23" fontSize="25" fontWeight="bold" text="Detalhes do Pedido"/>
+	
+	
+	
 </s:Module>

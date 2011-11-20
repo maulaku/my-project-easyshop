@@ -25,7 +25,7 @@ public class Constantes
 	public static final int TIPO_APARTAMENTO=3232;
 
 	//TIPO DE ENDERE�OS
-	public static final String RESIDENCIA="Resid�ncia";
+	public static final String RESIDENCIA="Residência";
 	public static final String COMERCIAL="Comercial";
 	public static final String APARTAMENTO="Apartamento";
 
