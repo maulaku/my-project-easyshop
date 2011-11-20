@@ -161,7 +161,7 @@ private function inserirContatoTabela():void{
 
 private function deleteLinha(linha:int):void {
 	
-	if(linha>0 && linha<dados.length) {
+	if(linha>=0 && linha<dados.length) {
 		dados.removeItemAt(linha);
 		dados.refresh();
 	}
