@@ -19,10 +19,15 @@ import flash.net.FileReference;
 
 import mx.charts.chartClasses.DataDescription;
 import mx.collections.ArrayCollection;
+import mx.collections.ArrayList;
 import mx.collections.IList;
+import mx.controls.Alert;
 
 private var obj_FileReference:FileReference;
 private var myFilter:FileFilter = new FileFilter("Imagens (*.jpg; *.jpeg; *.gif; *.png;","*.jpg; *.jpeg; *.gif; *.png;");
+
+[Bindable]
+public var dados:ArrayCollection = new ArrayCollection();
 
 public function construtor():void
 {
@@ -140,6 +145,29 @@ private function listarEstados(event:Event):void{
 	var arr:Array = new Array();
 	arr.push((Pais) (item));
 	MRemoteObject.get("EstadoService.getTodosEstados", arr, preencherEstado);
+}
+
+private function inserirContatoTabela():void{
+	
+	     var temp:Object;
+
+		 temp=new Object();
+		 temp.campo1=cboContato.selectedItem;
+		 temp.campo2=txtContato.text;
+
+		 dados.addItem(temp);
+		 txtContato.text="";
+}
+
+private function deleteLinha(linha:int):void {
+	
+	if(linha>0 && linha<dados.length) {
+		dados.removeItemAt(linha);
+		dados.refresh();
+	}
+	else {
+		Alert.show("Selecione a linha primeiro")
+	}
 }
 
 private function labelPais(item:Object):String {
