@@ -45,16 +45,16 @@
 			 textAlign="left" verticalAlign="middle"/>
 	<s:Label x="371" y="418" width="40" height="24" fontFamily="Verdana" fontSize="18" text="Tipo"
 			 textAlign="left" verticalAlign="middle"/>
-	<mx:ComboBox id="tipo" x="409" y="417" width="137" fontSize="18"/>
-	<s:Label x="59" y="467" width="40" height="24" fontFamily="Verdana" fontSize="18" text="País"
+	<mxml:MComboBox id="tipo" x="409" y="417" width="137" fontSize="18"/>
+	<s:Label x="64" y="467" width="40" height="24" fontFamily="Verdana" fontSize="18" text="País"
 			 textAlign="left" verticalAlign="middle"/>
-	<mxml:MComboBox id="cboPais" x="101" y="467" width="92" fontSize="18" labelFunction="labelPais"/>
-	<s:Label x="200" y="467" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Estado"
+	<mxml:MComboBox id="cboPais" x="64" y="488" width="130" fontSize="18" labelFunction="labelPais" change="listarEstados(event)"/>
+	<s:Label x="212" y="467" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Estado" 
 			 textAlign="left" verticalAlign="middle"/>
-	<mx:ComboBox id="cboEstado" x="263" y="466" width="89" fontSize="18" labelFunction="labelEstado"/>
-	<s:Label x="356" y="466" width="74" height="24" fontFamily="Verdana" fontSize="18" text="Cidade"
+	<mxml:MComboBox id="cboEstado" x="212" y="487" width="155" fontSize="18" labelFunction="labelEstado" change="listarCidades(event)"/>
+	<s:Label x="379" y="467" width="74" height="24" fontFamily="Verdana" fontSize="18" text="Cidade"
 			 textAlign="left" verticalAlign="middle"/>
-	<mxml:MComboBox id="cboCidade" x="421" y="466" width="125" fontSize="18" labelFunction="labelCidade"/>
+	<mxml:MComboBox id="cboCidade" x="380" y="488" width="166" fontSize="18" labelFunction="labelCidade"/>
 	<s:Label x="59" y="550" width="85" height="24" fontFamily="Verdana" fontSize="18" text="Contato"
 			 textAlign="left" verticalAlign="middle"/>
 	<mxml:MComboBox id="cboContato" x="135" y="550" width="107" fontSize="18"/>

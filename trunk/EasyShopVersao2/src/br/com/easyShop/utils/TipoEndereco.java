@@ -5,7 +5,7 @@ public class TipoEndereco {
 	public static String getNomeTipo(int tipo) {
 
 		if (tipo == Constantes.TIPO_RESIDENCIA) {
-			return "Resid�ncia";
+			return "Residência";
 		} else if (tipo == Constantes.TIPO_COMERCIAL) {
 			return "Comercial";
 		} else if (tipo == Constantes.TIPO_APARTAMENTO) {
