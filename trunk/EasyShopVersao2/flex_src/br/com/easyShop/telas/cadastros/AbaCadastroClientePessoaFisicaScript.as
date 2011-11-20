@@ -105,6 +105,24 @@ protected function Salvar():void
 	pessoaFisica.cpf = cpf.text;
 	pessoaFisica.rg = rg.text;
 	pessoaFisica.dataNascimento = dataDeNascimento.selectedDate;
+	
+	var i:int;
+	var temp:Object;
+	
+	for(i =0; i < dados.length; i++){
+		
+		contato.contato = dados.getItemAt(i,0).toString();
+		
+	//	contato.tipo = dados.getItemAt(i,1).;
+		//contato.pessoa(pessoa);
+		temp=new Object();
+		temp.campo1=cboContato.selectedItem;
+		temp.campo2=txtContato.text;
+		
+	}
+	
+	
+	
 
 	pessoa.pessoaFisica = pessoaFisica;
 
