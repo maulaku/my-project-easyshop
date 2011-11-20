@@ -119,6 +119,23 @@ protected function Salvar():void
 	pessoaFisica.rg = rg.text;
 	pessoaFisica.dataNascimento = dataDeNascimento.selectedDate;
 	
+	var arrPessoaFisica:Array = new Array();
+	arrPessoaFisica.push(pessoaFisica);
+	MRemoteObject.get("PessoaFisicaService.inserirPessoaFisica", arrPessoaFisica);
+	
+	pessoaFisica.pkPessoaFisica = 1; ////////Apagar
+	
+	pessoa.pessoaJuridica = null;
+	pessoa.foto = null;
+	pessoa.status = 0;
+	pessoa.pessoaFisica = pessoaFisica;
+	
+	var arrPessoa:Array = new Array();
+	arrPessoa.push(pessoa);
+	MRemoteObject.get("PessoaService.inserirPessoa", arrPessoa);
+	
+	pessoa.pkPessoa = 1; ///////////////Apagar
+	
 	var i:int;
 	var temp:Object;
 	
@@ -128,9 +145,9 @@ protected function Salvar():void
 		contato.tipo = cboContato.mreGetSelectedItem().tipo;
 		contato.pessoa = pessoa;
 		
-		temp=new Object();
-		temp.campo1=cboContato.selectedItem;
-		temp.campo2=txtContato.text;
+		var arrContato:Array = new Array();
+		arrContato.push(contato);
+		MRemoteObject.get("ContatoService.salvarContato", arrContato);
 	}
 	
 	endereco.bairro = bairro.text;
@@ -142,22 +159,20 @@ protected function Salvar():void
 	endereco.pessoa = pessoa;
 	endereco.tipo = tipo.mreGetSelectedItem().tipo;
 
-	pessoa.pessoaFisica = pessoaFisica;
-
-	cliente.pessoa = pessoa;
-
-	var arrPessoaFisica:Array = new Array();
-	arrPessoaFisica.push(pessoaFisica);
+	var arrEndereco:Array = new Array();
+	arrEndereco.push(endereco);
+	MRemoteObject.get("EnderecoService.salvar", arrEndereco);
 	
-	var arrPessoa:Array = new Array();
-	arrPessoa.push(pessoa);
+	
+	cliente.pessoa = pessoa;
 	
 	var arrCliente:Array = new Array();
 	arrCliente.push(cliente);
-
-	MRemoteObject.get("PessoaFisicaService.salvar", arrPessoaFisica);
-	MRemoteObject.get("PessoaService.salvar", arrPessoa);
-	MRemoteObject.get("ClienteService.salvar", arrCliente);
+	
+	MRemoteObject.get("ClienteService.inserirCliente", arrCliente);
+	
+	Alert.show("Cliente inserido com sucesso!!");
+	
 }
 
 private function preencherPais(result:ResultJava):void{

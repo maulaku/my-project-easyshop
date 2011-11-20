@@ -24,15 +24,15 @@ public class PessoaFisicaService extends BaseServiceAtta {
 		}
 	}
 	
-	public ResultJava salvar(PessoaFisica pessoaFisica) {
-		try
-		{
-			return new ResultJava(new PessoaFisicaDAO().salvar(pessoaFisica));
-		} 
-		catch (Exception e) 
-		{
-			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao inserir pessoa!\n" + e }));
-		}
-	}
+//	public ResultJava salvar(PessoaFisica pessoaFisica) {
+//		try
+//		{
+//			return new ResultJava(new PessoaFisicaDAO().inserir(pessoaFisica));
+//		} 
+//		catch (Exception e) 
+//		{
+//			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao inserir pessoa fisica!\n" + e }));
+//		}
+//	}
 
 }
