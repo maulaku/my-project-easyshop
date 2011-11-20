@@ -5,7 +5,7 @@
 		  xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
 		  width="878" height="624">
 		
-	<fx:Script source="AbaCadastroClientePessoaJuridicaScript.as" />
+	<fx:Script source="AbaMeusDadosClientePessoaJuridicaScript.as" />
 		
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->

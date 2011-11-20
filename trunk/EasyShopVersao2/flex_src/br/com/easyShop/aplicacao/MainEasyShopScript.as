@@ -42,6 +42,7 @@ import org.hamcrest.object.nullValue;
 import org.osmf.events.DisplayObjectEvent;
 
 import spark.components.Button;
+import spark.components.Label;
 import spark.components.NavigatorContent;
 import spark.components.gridClasses.GridColumn;
 import spark.effects.AddAction;
@@ -55,22 +56,22 @@ public function construtor():void
 {
 	cbBusca.mreServicePesquisa = "ProdutoService.getProdutosNome";
 	MRemoteObject.get("CategoriaService.getTodasCategoriasPai", null, resultCategoria);
-//	
-//	//accordion.headerRenderer = ((IFactory) (Header));
-//	
-//	var acord:AccordionItem = new AccordionItem();
-//	acord.name = "Teste";
-//	acord.label = "ahusa";
-//	acord.image="@Embed('../imagens/aplicacao/user3.png')"
-//	accordion.addElement(acord);
-//	var acord2:AccordionItem = new AccordionItem();
-//	acord2.title = "Teste";
-//	acord2.image="@Embed('../imagens/aplicacao/user3.png')"
-//	accordion.addElement(acord2);
-//	var acord3:AccordionItem = new AccordionItem();
-//	acord3.title = "Teste";
-//	acord3.image="@Embed('../imagens/aplicacao/user3.png')"
-//	accordion.addElement(acord3);
+	//	
+	//	//accordion.headerRenderer = ((IFactory) (Header));
+	//	
+	//	var acord:AccordionItem = new AccordionItem();
+	//	acord.name = "Teste";
+	//	acord.label = "ahusa";
+	//	acord.image="@Embed('../imagens/aplicacao/user3.png')"
+	//	accordion.addElement(acord);
+	//	var acord2:AccordionItem = new AccordionItem();
+	//	acord2.title = "Teste";
+	//	acord2.image="@Embed('../imagens/aplicacao/user3.png')"
+	//	accordion.addElement(acord2);
+	//	var acord3:AccordionItem = new AccordionItem();
+	//	acord3.title = "Teste";
+	//	acord3.image="@Embed('../imagens/aplicacao/user3.png')"
+	//	accordion.addElement(acord3);
 }
 
 public function resultCategoria(result:ResultJava):void
@@ -102,14 +103,13 @@ public function resultCategoria(result:ResultJava):void
 				acord.label = categoria.nome;
 				acord.image= "@Embed('../imagens/aplicacao/fundo.png')";
 				acord.styleName = "gradientHeader";
-//				var grid:VBox = new VBox();
-//				acord.addElement(grid);
+				//				var grid:VBox = new VBox();
+				//				acord.addElement(grid);
 				accordion.addElement(acord);
 				
 				var parametros:Array = new Array();
-								
 				parametros.push(categoria);
-				//MRemoteObject.get("CategoriaService.getTodasCategoriasSub", parametros, resultSubCategoria);	
+				MRemoteObject.get("CategoriaService.getTodasCategoriasSub", parametros, resultSubCategoria);	
 				
 				arr.push(categoria);
 			}
@@ -138,20 +138,17 @@ public function resultSubCategoria(result:ResultJava):void
 		{			
 			var i:int;
 			var categoria:Categoria = new Categoria();
-			var categoria2:Categoria = new Categoria();
-			
+			var grid:VBox = new VBox();
+			var novo:AccordionItem = new AccordionItem();
 			var array:Array = new Array();
 			for(i=0;i<result.lista.length;i++){
 				categoria = ((Categoria) (result.lista[i]));  
-				var novo:NavigatorContent = new NavigatorContent();
-				var grid:VBox = new VBox();
-				novo = ((NavigatorContent) (accordion.getElementAt((categoria.subCategoria.pkCategoria)-1)));
-				grid = ((VBox) (novo.getElementAt(0)));
-				var botao:spark.components.Button = new spark.components.Button();
-				botao.label = categoria.nome;
-				botao.width = accordion.width;
-				grid.addElement(botao);
+				novo = ((AccordionItem) (accordion.getElementAt((categoria.subCategoria.pkCategoria)-1)));
+				var label:Label = new Label();
+				label.text = categoria.nome;
+				grid.addElement(label);
 			}	
+			novo.addElement(grid);
 		}
 		else
 		{ 
@@ -183,7 +180,7 @@ protected function btTeste_clickHandler():void
 
 protected function btnPedido_clickHandler():void
 {
-	modulo.mreLoadModule("br/com/easyShop/telas/pedidos/AbaMeusPedidos.swf");
+	modulo.mreLoadModule("br/com/easyShop/telas/pedidos/AbaMeuPedidos.swf");
 }
 
 protected function btnEntrar_clickHandler(centrado:Boolean):void
@@ -220,7 +217,7 @@ public static function centralizarTela(componente:UIComponent):void {
 		componente.x = componente.screen.x + (diferencaLargura / 2);
 		
 		componente.y = componente.screen.y + (diferencaAltura / 2);
-
+		
 	}
 }
 

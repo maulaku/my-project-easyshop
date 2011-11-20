@@ -62,7 +62,7 @@ public class ProdutoService extends BaseServiceAtta {
 		}
 	}
 	
-	public ResultJava getProdutosd(int id) {
+	public ResultJava getProdutosId(int id) {
 		long id2 = 5;
 		
 		try {
