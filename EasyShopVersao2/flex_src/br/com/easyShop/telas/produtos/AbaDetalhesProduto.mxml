@@ -6,52 +6,51 @@
 		  xmlns:tabela="br.com.mresolucoes.renders.tabela.*"
 		  xmlns:componentes="br.com.easyShop.componentes.*"
 		  xmlns:comboLOD="br.com.easyShop.componentes.comboLOD.*"
-		  width="947" height="1160" backgroundColor="#FFFFFF">
+		  width="947" height="1160" backgroundColor="#FFFFFF" creationComplete="construtor(5)">
+	
 	<fx:Declarations>
+		<s:RadioButtonGroup id="radiogroup1"/>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<fx:Script source="AbaDetalhesProduto.as" />
-	<s:Label id="nomeProduto" x="9" y="10" width="941" height="57" fontFamily="Verdana" fontSize="20"
-			 fontWeight="normal" textAlign="center" verticalAlign="middle"/>
-	<s:Image x="53" y="70" width="271" height="290" source="@Embed('../../../../../../Imagens/ImagensProduto/produto4.jpg')"/>
-	<s:Label x="46" y="627" width="113" height="27" fontSize="16" fontWeight="bold" text="Caracteristica"
+	<s:Label id="nomeProduto" x="9" y="10" width="941" height="57" fontFamily="Arial" fontSize="23"
+			 fontWeight="bold" textAlign="center" verticalAlign="middle"/>
+	<s:Image id="imagem" x="53" y="70" width="271" height="290" smooth="true" smoothingQuality="high"
+			 source="@Embed('../../../../../../Imagens/ImagensProduto/produto4.jpg')"/>
+	<s:Label x="46" y="656" width="113" height="27" fontSize="16" fontWeight="bold" text="Caracteristica"
 			 textAlign="center" verticalAlign="middle"/>
 	<mx:HRule x="167" y="631" width="705" height="18"/>
-	<s:BorderContainer x="344" y="71" width="525" height="288">
-		<s:Label id="preco" x="173" y="28" height="28" color="#FC0C0C" fontFamily="Verdana"
-				 fontSize="21" fontWeight="bold" text="R$ " textAlign="center"
-				 verticalAlign="middle"/>
-		<mxml:MBotao x="351" y="18" width="132" height="40" label="Comprar" mreIcone="br.com.easyShop.imagens.botoes.Save.png"/>
-		<mx:HRule x="86" y="79" width="351" height="3"/>
-		<s:Label x="157" y="90" height="38" fontSize="16" text="Calcular o prazo de entrega:"
+	<s:BorderContainer x="344" y="71" width="525" height="316">
+		<s:Label id="preco" x="211" y="22" height="28" color="#FC0C0C" fontFamily="Arial"
+				 fontSize="21" fontWeight="bold" textAlign="center" verticalAlign="middle"/>
+		<mx:HRule x="86" y="71" width="351" height="3"/>
+		<s:Label x="213" y="129" height="32" fontSize="16" text="Valor da Parcela"
 				 textAlign="center" verticalAlign="middle"/>
-		<s:TextInput x="215" y="138" width="148"/>
-		<s:Label x="98" y="135" width="115" height="26" fontSize="16" text="Informe o CEP:"
+		<mxml:MComboBox id="cboParcelamento" x="332" y="131" width="183" fontSize="16"/>
+		<s:Label id="boletoValor" x="312" y="169" height="28" fontFamily="Arial" fontSize="21"
+				 fontWeight="bold" textAlign="center" verticalAlign="middle"/>
+		<s:Button id="btnAdicionarAoCarrinho" x="136" y="243" width="264" height="48"
+				  label="Adicionar ao Carrinho" fontSize="14" fontWeight="bold"
+				  icon="@Embed('../../imagens/botoes/card_add.png')" click="btnAdicionarAoCarrinho_clickHandler(event)"/>
+		<s:Label x="123" y="21" height="32" fontSize="16" text="Por apenas:"
 				 textAlign="center" verticalAlign="middle"/>
-		<mxml:MBotao x="368" y="137" width="51" height="23" label="OK"/>
-		<mx:TabNavigator x="0" y="175" width="523" height="111">
-			<s:NavigatorContent width="100%" height="100%" label="Cartão de Crédito">
-				<s:Label x="52" y="17" height="32" fontSize="16" text="Valor da Parcela"
-						 textAlign="center" verticalAlign="middle"/>
-				<mxml:MComboBox id="cboParcelamento" x="179" y="20" width="280"/>
-			</s:NavigatorContent>
-			<s:NavigatorContent width="100%" height="100%" label="Boleto Bancário">
-				<s:Label x="156" y="5" height="32" fontSize="14" text="Valor:"
-						 textAlign="center" verticalAlign="middle"/>
-				<s:Label id="boletoValor" x="193" y="5" height="28" fontFamily="Verdana"
-						 fontSize="21" fontWeight="bold" textAlign="center" verticalAlign="middle"/>
-				<s:Label id="boletoDesconto" x="166" y="39" height="38" fontSize="16"
-						 textAlign="center" verticalAlign="middle"/>
-			</s:NavigatorContent>
-		</mx:TabNavigator>
+		<s:Label x="177" y="92" height="32" fontSize="16" text="Forma de Pagamento:"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="213" y="169" height="32" fontSize="16" text="Valor à Vista"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:RadioButton id="cartaoDeCredito" x="10" y="131" label="Cartão de Crédito/Débito:"
+					   fontFamily="Arial" fontSize="16" groupName="radiogroup1"/>
+		<s:RadioButton id="boletoBancario" x="10" y="158" height="47" label="Boleto Bancário:"
+					   fontFamily="Arial" fontSize="16" groupName="radiogroup1"/>
+		<mx:HRule x="86" y="214" width="351" height="3"/>
 	</s:BorderContainer>
-	<s:Label x="36" y="371" width="101" height="27" fontSize="16" fontWeight="bold" text="Descrição"
+	<s:Label x="36" y="400" width="101" height="27" fontSize="16" fontWeight="bold" text="Descrição"
 			 textAlign="center" verticalAlign="middle"/>
-	<mx:HRule x="138" y="376" width="745" height="18"/>
-	<s:Label x="43" y="880" width="185" height="27" fontSize="16" fontWeight="bold" text="Especificação Técnica"
+	<mx:HRule x="138" y="405" width="745" height="18"/>
+	<s:Label x="43" y="909" width="185" height="27" fontSize="16" fontWeight="bold" text="Especificação Técnica"
 			 textAlign="center" verticalAlign="middle"/>
 	<mx:HRule x="236" y="886" width="636" height="18"/>
-	<s:TextArea id="descricao" x="54" y="405" width="829" height="214"/>
-	<s:TextArea id="caracteristica" x="53" y="657" width="829" height="214"/>
-	<s:TextArea id="especificacaoTecnica" x="53" y="912" width="829" height="214"/>
+	<s:TextArea id="descricao" x="54" y="434" width="829" height="214"/>
+	<s:TextArea id="caracteristica" x="53" y="686" width="829" height="214"/>
+	<s:TextArea id="especificacaoTecnica" x="53" y="941" width="829" height="214"/>
 </s:Module>
