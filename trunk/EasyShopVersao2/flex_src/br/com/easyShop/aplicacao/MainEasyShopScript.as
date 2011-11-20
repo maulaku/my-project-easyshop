@@ -28,6 +28,8 @@ import mx.effects.WipeDown;
 import mx.events.ChildExistenceChangedEvent;
 import mx.events.ListEvent;
 import mx.managers.PopUpManager;
+import mx.messaging.management.ObjectName;
+import mx.utils.ObjectUtil;
 import mx.utils.object_proxy;
 
 import org.hamcrest.object.nullValue;
@@ -57,7 +59,6 @@ public function construtor():void
 //	
 //	lista.addBotao(botao);
 }
-
 
 public function resultCategoria(result:ResultJava):void
 {
@@ -156,19 +157,16 @@ public function lfProduto(item:Object=null, colunm:Object=null):String
 	return item != null ? (item as Produto).nome : "null";
 }
 
-public function escutaBotoes(botao:MBotao):void
+protected function btTeste_clickHandler():void
 {
-	if(botao == btTeste)
-	{
-		modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
-	}
-	
-//	if(botao == btPedido)
-//	{
-//	//	modulo.mreLoadModule("br/com/easyShop/telas/pedidos/AbaMeuPedido.swf");
-//		modulo.mreLoadModule("br/com/easyShop/telas/cadastrod/AbaCadastroPessoaFisica.swf");
-//	}
+	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
 }
+
+protected function btnPedido_clickHandler():void
+{
+	modulo.mreLoadModule("br/com/easyShop/telas/pedidos/AbaMeuPedido.swf");
+}
+
 protected function btnEntrar_clickHandler(centrado:Boolean):void
 {
 	painel = new Login();
@@ -216,12 +214,6 @@ private function lidaClickadoPessoaFisica(event:Event):void{
 	painel.setVisible(false);
 	ScrollBar.setVisible(true);
 	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaFisica.swf");
-}
-
-private function lidaClickadoMeuPedido(event:Event):void{
-	painel.setVisible(false);
-	ScrollBar.setVisible(true);
-	modulo.mreLoadModule("br/com/easyShop/telas/pedidos/AbaMeuPedido.swf");
 }
 
 private function lidaClickadoPessoaJuridica(event:Event):void{
