@@ -19,6 +19,17 @@ public class CidadeService extends BaseServiceAtta {
 			return null;
 		}
 	}
+	
+	public ResultJava getTodasCidadesEstado(Estado estado) {
+		try
+		{
+			return new ResultJava(true, new CidadeDAO().getCidades(estado, -1));
+		} 
+		catch (Exception e) 
+		{
+			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao buscar cidades\n" + e }));
+		}
+	}
 
 	public ResultJava getTodasCidades(Estado estado) {
 		try {

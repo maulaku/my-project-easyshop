@@ -6,8 +6,30 @@
 			   xmlns:comboLOD="br.com.easyShop.componentes.comboLOD.*"
 			   xmlns:tabela="br.com.mresolucoes.renders.tabela.*"
 			   width="1200" height="1580" backgroundAlpha="1.0"
-			   creationComplete="construtor()" pageTitle="EasyShop" xmlns:componentes="br.com.easyShop.componentes.*" xmlns:model="br.com.easyShop.model.*" xmlns:ns="http://hamcrest.org/2009/mxml">
+			   creationComplete="construtor()" pageTitle="EasyShop" xmlns:componentes="br.com.easyShop.componentes.*" xmlns:model="br.com.easyShop.model.*" xmlns:ns="http://hamcrest.org/2009/mxml"
+			   xmlns:flexlib="http://code.google.com/p/flexlib/">
 	<fx:Style source="MainEasyShop.css"/>
+	
+	<fx:Style>
+		.mainBox {
+		padding-top:10;
+		padding-left:10;
+		padding-right:10;
+		vertical-gap:0;	
+		}
+		
+		.title {
+		font-weight: bold;
+		color: #333333;
+		font-size: 16;	
+		}
+		
+		.description {
+		font-weight: normal;
+		color: #666666;
+		font-size: 12;	
+		}
+	</fx:Style>
 	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
@@ -20,17 +42,7 @@
 		<mx:Resize id="diminuir" duration="200" widthTo="120" heightTo="40"/>
 	
 	</fx:Declarations>
-	
-	<fx:Script>
-		<![CDATA[
-			
-			import mx.controls.Alert;
-			
-			
-			
-		]]>
-	</fx:Script>
-	
+
 	<fx:Script source="MainEasyShopScript.as" />
 	
 	<s:Panel id="panelPrincipal" x="2" y="1" width="1273" height="1565">
@@ -69,12 +81,17 @@
 		<mxml:MBotao id="btTeste" x="716" y="24" label="teste" click="btTeste_clickHandler()"/>
 		<s:Label x="371" y="1496" width="355" height="19" fontSize="15"
 				 text="Créditos sobre o Site ficaram aqui" textAlign="center" verticalAlign="middle"/>
-		<mx:Accordion id="panelLateral" x="22" y="190" width="215" height="408">
-		</mx:Accordion>
-		<mx:Tree id="myTree" x="22" y="901" width="220" height="244" fontSize="17"
-				 itemClick="tree_itemClick(event);" labelField="@label"
-				 labelFunction="tree_labelFunc" showRoot="false"/>
 		
 		<s:Button id="btnPedido" x="645" y="23" label="Pedido" click="btnPedido_clickHandler()"/>
+		
+		<mx:Panel id="panelCategorias" x="33" y="185" width="206" height="515" fontSize="15"
+				  styleName="Panel" textAlign="center" title="Categorias" verticalAlign="middle">
+			<flexlib:VAccordion id="accordion" headerLocation="below"
+								resizeToContent="true" styleName="VAccordion" height="100%"
+								width="100%"
+								headerHeight="32"
+								borderStyle="none">			
+			</flexlib:VAccordion>
+		</mx:Panel>
 	</s:Panel>
 </s:Application>

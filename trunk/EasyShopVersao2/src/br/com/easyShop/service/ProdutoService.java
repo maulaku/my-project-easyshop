@@ -18,7 +18,7 @@ public class ProdutoService extends BaseServiceAtta {
 		}
 	}
 
-	public Produto getProduto(long id) {
+	public Produto getProduto(int id) {
 		try {
 			return new ProdutoDAO().getProduto(-1, id);
 		} catch (Exception e) {
@@ -58,7 +58,18 @@ public class ProdutoService extends BaseServiceAtta {
 			return new ResultJava(new ProdutoDAO().getProdutosNome(nome, -1));
 		} catch (Exception e) {
 			return new ResultJava(false, Arrays
-					.asList(new String[] { "Erro ão buscar produtos" }));
+					.asList(new String[] { "Erro ao buscar produtos" }));
+		}
+	}
+	
+	public ResultJava getProdutosd(int id) {
+		long id2 = 5;
+		
+		try {
+			return new ResultJava(new ProdutoDAO().getProduto(-1, id2));
+		} catch (Exception e) {
+			return new ResultJava(false, Arrays
+					.asList(new String[] { "Erro ao buscar produtos" }));
 		}
 	}
 }
