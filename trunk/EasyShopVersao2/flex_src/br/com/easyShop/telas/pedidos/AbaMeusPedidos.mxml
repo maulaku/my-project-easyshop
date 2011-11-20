@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"
+		  xmlns:s="library://ns.adobe.com/flex/spark"
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
+		  xmlns:tabela="br.com.mresolucoes.renders.tabela.*"
+		  width="786" height="434">
+	
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:DataGrid id="tblCarrinho" x="79" y="21" width="606" height="228"
+				contentBackgroundColor="#F9F9F9" requestedRowCount="5">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn dataField="dataField1" headerText="Código" width="120"></s:GridColumn>
+				<s:GridColumn dataField="dataField2" headerText="Produto" width="120"></s:GridColumn>
+				<s:GridColumn dataField="dataField3" headerText="Quantidade" width="120"></s:GridColumn>
+				<s:GridColumn dataField="dataField4" headerText="Valor" width="120"></s:GridColumn>		
+				<s:GridColumn dataField="dataField4" headerText="Status" width="120"></s:GridColumn>		
+			</s:ArrayList>
+		</s:columns>
+		<s:typicalItem>
+			<fx:Object dataField1="Sample Data" dataField2="Sample Data" dataField3="Sample Data" dataField4="Sample Data"></fx:Object>
+		</s:typicalItem>
+		<s:ArrayList>
+			
+		</s:ArrayList>
+	</s:DataGrid>
+	<mxml:MBotao x="83" y="272" width="100" label="Voltar"/>
+</s:Module>

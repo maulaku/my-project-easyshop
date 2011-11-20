@@ -183,7 +183,7 @@ protected function btTeste_clickHandler():void
 
 protected function btnPedido_clickHandler():void
 {
-	modulo.mreLoadModule("br/com/easyShop/telas/pedidos/AbaMeuPedido.swf");
+	modulo.mreLoadModule("br/com/easyShop/telas/pedidos/AbaMeusPedidos.swf");
 }
 
 protected function btnEntrar_clickHandler(centrado:Boolean):void
