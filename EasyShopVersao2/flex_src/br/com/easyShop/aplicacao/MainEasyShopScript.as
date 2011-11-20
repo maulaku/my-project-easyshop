@@ -109,6 +109,7 @@ public function resultCategoria(result:ResultJava):void
 				acord.label = categoria.nome;
 				acord.image= "@Embed('../imagens/aplicacao/fundo.png')";
 				acord.styleName = "gradientHeader";
+				//acord.addEventListener(MouseEvent.MOUSE_OVER,fakeMouseClick);
 				//				var grid:VBox = new VBox();
 				//				acord.addElement(grid);
 				accordion.addElement(acord);
@@ -119,6 +120,7 @@ public function resultCategoria(result:ResultJava):void
 				
 				arr.push(categoria);
 			}
+			accordion.addEventListener(MouseEvent.MOUSE_OVER,fakeMouseClick);
 		}
 		else
 		{ 
@@ -134,7 +136,9 @@ public function resultCategoria(result:ResultJava):void
 
 private function fakeMouseClick(event:MouseEvent):void {
 	var clickEvent:MouseEvent = new MouseEvent(MouseEvent.CLICK, true, false, event.localX, event.localY);
+	this.dispatchEvent(clickEvent);
 }
+
 
 public function resultSubCategoria(result:ResultJava):void
 {
