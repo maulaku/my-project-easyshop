@@ -36,6 +36,7 @@ public function construtor():void
 	preencherSexo();
 	preencherEndereco();
 	preencherContato();
+	
 }
 
 private function preencherSexo():void{
