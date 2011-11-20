@@ -5,8 +5,6 @@
 		  xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
 		  width="872" height="856" backgroundColor="#FFFFFF" creationComplete="construtor()">
 
-	
-	
 	<fx:Script source="AbaCadastroClientePessoaFisicaScript.as" />
 		
 	<fx:Declarations>

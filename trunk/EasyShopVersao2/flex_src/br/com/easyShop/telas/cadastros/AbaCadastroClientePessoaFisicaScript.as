@@ -29,14 +29,26 @@ private var myFilter:FileFilter = new FileFilter("Imagens (*.jpg; *.jpeg; *.gif;
 [Bindable]
 public var dados:ArrayCollection = new ArrayCollection();
 
+public var tiposContato:ArrayCollection = new ArrayCollection([
+	{nome:Constantes.instance.CONTATO_TELEFONE, tipo:Constantes.instance.TIPO_CONTATO_TELEFONE},
+	{nome:Constantes.instance.CONTATO_CELULAR, tipo:Constantes.instance.TIPO_CONTATO_CELULAR},
+	{nome:Constantes.instance.CONTATO_FAX, tipo:Constantes.instance.TIPO_CONTATO_FAX},
+	{nome:Constantes.instance.CONTATO_EMAIL, tipo:Constantes.instance.TIPO_CONTATO_EMAIL}]);
+
+public var tiposEndereco:ArrayCollection = new ArrayCollection([
+	{nome:Constantes.instance.RESIDENCIA, tipo:Constantes.instance.TIPO_RESIDENCIA},
+	{nome:Constantes.instance.APARTAMENTO, tipo:Constantes.instance.TIPO_APARTAMENTO},
+	{nome:Constantes.instance.COMERCIAL, tipo:Constantes.instance.TIPO_COMERCIAL}]);
+
+
 public function construtor():void
 {
 	MRemoteObject.get("PaisService.getTodosPaises", null, preencherPais);
 
-	preencherSexo();
-	preencherEndereco();
-	preencherContato();
+	cboContato.dataProvider = tiposContato;
+	tipo.dataProvider = tiposEndereco
 	
+	preencherSexo();
 }
 
 private function preencherSexo():void{
@@ -113,17 +125,22 @@ protected function Salvar():void
 	for(i =0; i < dados.length; i++){
 		
 		contato.contato = dados.getItemAt(i,0).toString();
+		contato.tipo = cboContato.mreGetSelectedItem().tipo;
+		contato.pessoa = pessoa;
 		
-	//	contato.tipo = dados.getItemAt(i,1).;
-		//contato.pessoa(pessoa);
 		temp=new Object();
 		temp.campo1=cboContato.selectedItem;
 		temp.campo2=txtContato.text;
-		
 	}
 	
-	
-	
+	endereco.bairro = bairro.text;
+	endereco.cep = cep.text;
+	endereco.cidade = cboCidade.mreGetSelectedItem();
+	endereco.complemento = complemento.text;
+	endereco.logradouro = logradouro.text;
+	endereco.numero = numero.text;
+	endereco.pessoa = pessoa;
+	endereco.tipo = tipo.mreGetSelectedItem().tipo;
 
 	pessoa.pessoaFisica = pessoaFisica;
 
@@ -137,11 +154,10 @@ protected function Salvar():void
 	
 	var arrCliente:Array = new Array();
 	arrCliente.push(cliente);
-	
+
 	MRemoteObject.get("PessoaFisicaService.salvar", arrPessoaFisica);
 	MRemoteObject.get("PessoaService.salvar", arrPessoa);
 	MRemoteObject.get("ClienteService.salvar", arrCliente);
-	
 }
 
 private function preencherPais(result:ResultJava):void{
