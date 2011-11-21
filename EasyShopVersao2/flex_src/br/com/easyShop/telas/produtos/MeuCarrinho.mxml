@@ -4,9 +4,9 @@
 				xmlns:s="library://ns.adobe.com/flex/spark"
 				xmlns:mx="library://ns.adobe.com/flex/mx"
 				xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
-				width="782" height="598" backgroundAlpha="1.0" backgroundColor="#F1F4F4"
-				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar"
-				title="Meu Carrinho">
+				width="782" height="454" backgroundAlpha="1.0" backgroundColor="#F1F4F4"
+				close="PopUpManager.removePopUp(this)" dropShadowVisible="true" layout="absolute"
+				removedEffect="fechar" title="Meu Carrinho">
 	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
@@ -58,7 +58,7 @@
 			  label="Continuar Comprando" fontSize="14" fontWeight="bold"
 			  icon="@Embed('../../imagens/botoes/back.png')"/>
 	<s:Button id="btnFinalizarCompra" x="440" y="354" width="200" height="38"
-			  label="Finalizar Compra" fontSize="14" fontWeight="bold"
+			  label="Finalizar Carrinho" fontSize="14" fontWeight="bold"
 			  icon="@Embed('../../imagens/botoes/money.png')"/>
 	
 </mx:TitleWindow>
