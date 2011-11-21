@@ -41,6 +41,6 @@ public class Marca
 	public void setProdutos(List<Produto> produtos) { this.produtos = produtos; }
 	
 	public String toString() {
-		return nome;
+	 return nome;
 	}
 }

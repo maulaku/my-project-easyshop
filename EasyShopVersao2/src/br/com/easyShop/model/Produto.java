@@ -41,13 +41,13 @@ public class Produto
 	private Categoria categoria;
 
 	@OneToMany(mappedBy="produto")
-	private List<PedidoProduto> pedidoProdutos;
+	private List<CarrinhoProduto> carrinhoProdutos;
 
 	@OneToMany(mappedBy="produto")
 	private List<DesejoProduto> desejoProdutos;
 
 	@OneToMany(mappedBy="produto")
-	private List<CarrinhoProduto> carrinhoProdutos;
+	private List<PedidoProduto> pedidoProdutos;
 
 
 	/*-*-*-* Construtores *-*-*-*/
@@ -93,16 +93,16 @@ public class Produto
 	public Categoria getCategoria() { return categoria; }
 	public void setCategoria(Categoria categoria) { this.categoria = categoria; }
 
-	public List<PedidoProduto> getPedidoProdutos() { if(pedidoProdutos==null) { pedidoProdutos = new ArrayList<PedidoProduto>(); } return pedidoProdutos; }
-	public void setPedidoProdutos(List<PedidoProduto> pedidoProdutos) { this.pedidoProdutos = pedidoProdutos; }
+	public List<CarrinhoProduto> getCarrinhoProdutos() { if(carrinhoProdutos==null) { carrinhoProdutos = new ArrayList<CarrinhoProduto>(); } return carrinhoProdutos; }
+	public void setCarrinhoProdutos(List<CarrinhoProduto> carrinhoProdutos) { this.carrinhoProdutos = carrinhoProdutos; }
 
 	public List<DesejoProduto> getDesejoProdutos() { if(desejoProdutos==null) { desejoProdutos = new ArrayList<DesejoProduto>(); } return desejoProdutos; }
 	public void setDesejoProdutos(List<DesejoProduto> desejoProdutos) { this.desejoProdutos = desejoProdutos; }
 
-	public List<CarrinhoProduto> getCarrinhoProdutos() { if(carrinhoProdutos==null) { carrinhoProdutos = new ArrayList<CarrinhoProduto>(); } return carrinhoProdutos; }
-	public void setCarrinhoProdutos(List<CarrinhoProduto> carrinhoProdutos) { this.carrinhoProdutos = carrinhoProdutos; }
+	public List<PedidoProduto> getPedidoProdutos() { if(pedidoProdutos==null) { pedidoProdutos = new ArrayList<PedidoProduto>(); } return pedidoProdutos; }
+	public void setPedidoProdutos(List<PedidoProduto> pedidoProdutos) { this.pedidoProdutos = pedidoProdutos; }
 	
 	public String toString() {
-		return nome;
+		  return nome;
 	}
 }

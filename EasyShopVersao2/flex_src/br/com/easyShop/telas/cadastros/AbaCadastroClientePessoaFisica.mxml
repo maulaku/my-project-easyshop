@@ -10,7 +10,6 @@
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->		
 	</fx:Declarations>
-
 	
 	<mxml:MCaixaTexto id="nome" x="113" y="41" width="433" fontSize="18"/>
 	<s:Label x="58" y="41" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Nome"

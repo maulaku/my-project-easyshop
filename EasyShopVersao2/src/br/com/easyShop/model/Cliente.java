@@ -24,18 +24,22 @@ public class Cliente
 
 	@ManyToOne @JoinColumn(name="fkPessoa")
 	private Pessoa pessoa;
-
-	@OneToMany(mappedBy="cliente")
-	private List<Preferencia> preferencias;
-
-	@OneToMany(mappedBy="cliente")
-	private List<Desejo> desejos;
+	@Column(length=500)
+	private String login;
+	@Column(length=500)
+	private String senha;
 
 	@OneToMany(mappedBy="cliente")
 	private List<Carrinho> carrinhos;
 
 	@OneToMany(mappedBy="cliente")
+	private List<Desejo> desejos;
+
+	@OneToMany(mappedBy="cliente")
 	private List<Pedido> pedidos;
+
+	@OneToMany(mappedBy="cliente")
+	private List<Preferencia> preferencias;
 
 
 	/*-*-*-* Construtores *-*-*-*/
@@ -54,15 +58,25 @@ public class Cliente
 	public Pessoa getPessoa() { return pessoa; }
 	public void setPessoa(Pessoa pessoa) { this.pessoa = pessoa; }
 
-	public List<Preferencia> getPreferencias() { if(preferencias==null) { preferencias = new ArrayList<Preferencia>(); } return preferencias; }
-	public void setPreferencias(List<Preferencia> preferencias) { this.preferencias = preferencias; }
+	public String getLogin() { return login; }
+	public void setLogin(String login) { this.login = login; }
 
-	public List<Desejo> getDesejos() { if(desejos==null) { desejos = new ArrayList<Desejo>(); } return desejos; }
-	public void setDesejos(List<Desejo> desejos) { this.desejos = desejos; }
+	public String getSenha() { return senha; }
+	public void setSenha(String senha) { this.senha = senha; }
 
 	public List<Carrinho> getCarrinhos() { if(carrinhos==null) { carrinhos = new ArrayList<Carrinho>(); } return carrinhos; }
 	public void setCarrinhos(List<Carrinho> carrinhos) { this.carrinhos = carrinhos; }
 
+	public List<Desejo> getDesejos() { if(desejos==null) { desejos = new ArrayList<Desejo>(); } return desejos; }
+	public void setDesejos(List<Desejo> desejos) { this.desejos = desejos; }
+
 	public List<Pedido> getPedidos() { if(pedidos==null) { pedidos = new ArrayList<Pedido>(); } return pedidos; }
 	public void setPedidos(List<Pedido> pedidos) { this.pedidos = pedidos; }
+
+	public List<Preferencia> getPreferencias() { if(preferencias==null) { preferencias = new ArrayList<Preferencia>(); } return preferencias; }
+	public void setPreferencias(List<Preferencia> preferencias) { this.preferencias = preferencias; }
+	
+	public String toString() {
+	   return login;
+	}
 }
