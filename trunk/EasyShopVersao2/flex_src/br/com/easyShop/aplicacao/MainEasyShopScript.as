@@ -6,10 +6,12 @@ import br.com.easyShop.comunicacao.MRemoteObject;
 import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Categoria;
 import br.com.easyShop.model.Cliente;
+import br.com.easyShop.model.Desejo;
 import br.com.easyShop.model.Pessoa;
 import br.com.easyShop.model.PessoaFisica;
 import br.com.easyShop.model.Produto;
 import br.com.easyShop.telas.Login;
+import br.com.easyShop.telas.desejos.AbaMeuDesejo;
 import br.com.easyShop.telas.produtos.MeuCarrinho;
 import br.com.mresolucoes.componentes.mre.Alerta;
 import br.com.mresolucoes.componentes.mre.MBotao;
@@ -52,6 +54,7 @@ import spark.effects.AddAction;
 
 private var painel:Login;
 private var meuCarrinho:MeuCarrinho;
+private var meuDesejo:AbaMeuDesejo;
 
 private static var clienteGlobal:Cliente = new Cliente(); //Cliente Global da Aplicação. Ele é setado pelo Login.
 /**
@@ -266,4 +269,15 @@ private function lidaClickadoPessoaFisica(event:Event):void{
 private function lidaClickadoPessoaJuridica(event:Event):void{
 	painel.setVisible(false);
 	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaJuridica.swf");
+}
+
+protected function btnDesejo_clickHandler(event:MouseEvent):void
+{
+	meuCarrinho = new MeuCarrinho();
+	meuDesejo = new AbaMeuDesejo();
+	meuDesejo.showCloseButton=true;
+	meuDesejo.setVisible(true);
+	PopUpManager.addPopUp(meuDesejo, this, true);
+	
+	centralizarTela(meuDesejo);
 }

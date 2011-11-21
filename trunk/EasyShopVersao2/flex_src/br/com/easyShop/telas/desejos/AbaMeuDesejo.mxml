@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
+				width="552" height="416" backgroundAlpha="1.0" backgroundColor="#F1F4F4"
+				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar"
+				title="Meus desejos">
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			
+			
+		]]>
+	</fx:Script>
+	
+	<s:BorderContainer x="26" y="21" width="496" height="275" backgroundColor="#F2F2F2">
+		<s:DataGrid id="tblCarrinho" x="38" y="14" width="279" height="233"
+					contentBackgroundColor="#F9F9F9" requestedRowCount="5">
+			<s:columns>
+				<s:ArrayList>
+					<s:GridColumn dataField="dataField1" headerText="Produto" width="150"></s:GridColumn>
+					<s:GridColumn dataField="dataField3" headerText="Valor Unitário" width="120"></s:GridColumn>			
+				</s:ArrayList>
+			</s:columns>
+			<s:typicalItem>
+				<fx:Object dataField1="Sample Data" dataField2="Sample Data" dataField3="Sample Data" dataField4="Sample Data"></fx:Object>
+			</s:typicalItem>
+		</s:DataGrid>
+		
+		<s:Button id="btnRemover" x="341" y="15" width="113" height="45" label="Remover"
+				  icon="@Embed('../../imagens/botoes/card_remove.png')"/>
+		<s:Button id="btnComprar" x="341" y="88" width="113" height="45" label="Comprar"
+				  icon="@Embed('../../imagens/botoes/card_add.png'"/>
+		
+	</s:BorderContainer>
+	<s:Button id="btnContinuarComprando" x="28" y="311" width="210" height="38"
+			  label="Continuar Comprando" fontSize="14" fontWeight="bold"
+			  icon="@Embed('../../imagens/botoes/back.png')"/>
+	
+</mx:TitleWindow>

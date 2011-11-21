@@ -49,17 +49,16 @@
 		
 		
 		<s:Image x="-15" y="-130" width="1306" height="682" smooth="true" source="@Embed('../imagens/aplicacao/fundo.png')"/>
+		<s:Image id="btnCarrinho1" x="904" y="-18" width="70" height="64" buttonMode="true" smooth="true" smoothingQuality="high"
+				 source="@Embed('../imagens/aplicacao/icone_carrinho.png')" click="btnCarrinho_clickHandler(event)"/>
 		
 		<s:Image x="-64" y="-95" width="650" height="319" scaleMode="stretch" smooth="true"
 				 smoothingQuality="high" source="@Embed('../imagens/aplicacao/nomEasy.png')"/>
 		
-		<s:Image x="902" y="-56" width="413" height="123" smooth="true" smoothingQuality="high"
-				 source="@Embed('../imagens/aplicacao/fundoBotao.png')"/>
+		<s:Image id="btnDesejo" x="1077" y="-13" width="83" height="59" buttonMode="true" smooth="true" smoothingQuality="high"
+				 source="@Embed('../imagens/aplicacao/desejo.png')" click="btnDesejo_clickHandler(event)"/>
 		
-		<s:Image id="btnCarrinho" x="1021" y="-18" width="70" height="64" buttonMode="true" smooth="true" smoothingQuality="high"
-				 source="@Embed('../imagens/aplicacao/icone_carrinho.png')" click="btnCarrinho_clickHandler(event)"/>
-		
-		<s:Image x="941" y="-19" buttonMode="true" click="btnEntrar_clickHandler(true)" smooth="true"
+		<s:Image x="832" y="-18" buttonMode="true" click="btnEntrar_clickHandler(true)" smooth="true"
 				 smoothingQuality="high" source="@Embed('../imagens/aplicacao/user3.png')"/>
 		
 		<mxml:MModulo  id="modulo" x="238" y="186" width="947" height="1286" >
@@ -78,11 +77,9 @@
 				 horizontalAlign="center" horizontalScrollPolicy="off" verticalAlign="bottom"
 				 verticalScrollPolicy="off">
 			</mx:HBox>
-		<mxml:MBotao id="btTeste" x="716" y="24" label="teste" click="btTeste_clickHandler()"/>
+		<mxml:MBotao id="btTeste" x="748" y="10" label="teste" click="btTeste_clickHandler()"/>
 		<s:Label x="371" y="1496" width="355" height="19" fontSize="15"
 				 text="Créditos sobre o Site ficaram aqui" textAlign="center" verticalAlign="middle"/>
-		
-		<s:Button id="btnPedido" x="645" y="23" label="Pedido" click="btnPedido_clickHandler()"/>
 		
 		<mx:Panel id="panelCategorias" x="33" y="185" width="206" height="515" fontSize="15"
 				  styleName="Panel" textAlign="center" title="Categorias" verticalAlign="middle">
@@ -93,5 +90,8 @@
 								borderStyle="none">			
 			</flexlib:VAccordion>
 		</mx:Panel>
+		<s:Image id="btnPedido" x="999" y="-18" width="70" height="64" buttonMode="true"
+				 click="btnPedido_clickHandler()" smooth="true" smoothingQuality="high"
+				 source="@Embed('../imagens/aplicacao/pedidos.png')"/>
 	</s:Panel>
 </s:Application>
