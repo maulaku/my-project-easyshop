@@ -40,4 +40,7 @@ public class UsuarioTela
 	public TipoPermissao getTipoPermissao() { return tipoPermissao; }
 	public void setTipoPermissao(TipoPermissao tipoPermissao) { this.tipoPermissao = tipoPermissao; }
 	
+	public String toString() {
+		return usuario.getLogin();
+	}
 }

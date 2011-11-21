@@ -1,8 +1,5 @@
 package br.com.easyShop.service;
 
-import java.util.Arrays;
-
-import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Pessoa;
 import br.com.easyShop.model.PessoaFisica;
 import br.com.easyShop.persistencia.DAO.PessoaDAO;

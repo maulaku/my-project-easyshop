@@ -26,6 +26,4 @@ public class EnderecoService extends BaseServiceAtta {
 	public void atualizar(Endereco endereco) {
 		salvar(endereco);
 	}
-
-
 }

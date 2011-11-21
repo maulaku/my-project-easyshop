@@ -44,6 +44,6 @@ public class Cidade
 	public void setEnderecos(List<Endereco> enderecos) { this.enderecos = enderecos; }
 	
 	public String toString() {
-		  return nome;
+		return nome;
 	}
 }

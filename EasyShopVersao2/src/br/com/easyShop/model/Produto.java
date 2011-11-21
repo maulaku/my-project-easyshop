@@ -103,6 +103,6 @@ public class Produto
 	public void setPedidoProdutos(List<PedidoProduto> pedidoProdutos) { this.pedidoProdutos = pedidoProdutos; }
 	
 	public String toString() {
-		  return nome;
+		return nome;
 	}
 }

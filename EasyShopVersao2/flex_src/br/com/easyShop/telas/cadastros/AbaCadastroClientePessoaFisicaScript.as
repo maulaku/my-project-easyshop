@@ -8,9 +8,11 @@ import br.com.easyShop.model.Estado;
 import br.com.easyShop.model.Pais;
 import br.com.easyShop.model.Pessoa;
 import br.com.easyShop.model.PessoaFisica;
+import br.com.easyShop.model.Usuario;
 import br.com.easyShop.utils.Constantes;
 import br.com.mresolucoes.componentes.mre.Alerta;
 import br.com.mresolucoes.componentes.mre.MBotao;
+import br.com.mresolucoes.imagens.ImagensUtils;
 
 import flash.events.Event;
 import flash.events.MouseEvent;
@@ -45,8 +47,8 @@ public function construtor():void
 {
 	MRemoteObject.get("PaisService.getTodosPaises", null, preencherPais);
 
-	cboContato.dataProvider = tiposContato;
-	tipo.dataProvider = tiposEndereco
+	cboContato.mreDataProvider = tiposContato;
+	tipo.mreDataProvider = tiposEndereco
 
 	preencherSexo();
 }
@@ -108,9 +110,10 @@ protected function Salvar():void
 {
 	var cliente:Cliente = new Cliente();
 	var endereco:Endereco = new Endereco();
-	var contato:Contato = new Contato();
 	var pessoaFisica:PessoaFisica = new PessoaFisica();
 	var pessoa:Pessoa = new Pessoa();
+	var usuario:Usuario = new Usuario();
+	var i:int;
 	
 	pessoaFisica.apelido = apelido.text;
 	pessoaFisica.nome = nome.text;
@@ -118,37 +121,10 @@ protected function Salvar():void
 	pessoaFisica.cpf = cpf.text;
 	pessoaFisica.rg = rg.text;
 	pessoaFisica.dataNascimento = dataDeNascimento.selectedDate;
+	pessoaFisica.status = Constantes.instance.STATUS_ATIVO;
 	
-	var arrPessoaFisica:Array = new Array();
-	arrPessoaFisica.push(pessoaFisica);
-	MRemoteObject.get("PessoaFisicaService.inserirPessoaFisica", arrPessoaFisica);
-	
-	pessoaFisica.pkPessoaFisica = 1; ////////Apagar
-	
-	pessoa.pessoaJuridica = null;
-	pessoa.foto = null;
-	pessoa.status = 0;
+	pessoa.status = Constantes.instance.STATUS_ATIVO;
 	pessoa.pessoaFisica = pessoaFisica;
-	
-	var arrPessoa:Array = new Array();
-	arrPessoa.push(pessoa);
-	MRemoteObject.get("PessoaService.inserirPessoa", arrPessoa);
-	
-	pessoa.pkPessoa = 1; ///////////////Apagar
-	
-	var i:int;
-	var temp:Object;
-	
-	for(i =0; i < dados.length; i++){
-		
-		contato.contato = dados.getItemAt(i,0).toString();
-		contato.tipo = cboContato.mreGetSelectedItem().tipo;
-		contato.pessoa = pessoa;
-		
-		var arrContato:Array = new Array();
-		arrContato.push(contato);
-		MRemoteObject.get("ContatoService.salvarContato", arrContato);
-	}
 	
 	endereco.bairro = bairro.text;
 	endereco.cep = cep.text;
@@ -158,21 +134,43 @@ protected function Salvar():void
 	endereco.numero = numero.text;
 	endereco.pessoa = pessoa;
 	endereco.tipo = tipo.mreGetSelectedItem().tipo;
-
-	var arrEndereco:Array = new Array();
-	arrEndereco.push(endereco);
-	MRemoteObject.get("EnderecoService.salvar", arrEndereco);
+	endereco.status = Constantes.instance.STATUS_ATIVO;
 	
+	pessoa.enderecos.addItem(endereco);
+	
+	for(i =0; i < dados.length; i++){
+		var contato:Contato = new Contato();
+		contato.contato = dados.getItemAt(i,0).toString();
+		contato.tipo = cboContato.mreGetSelectedItem().tipo;
+		contato.pessoa = pessoa;
+		contato.status = Constantes.instance.STATUS_ATIVO;
+		
+		pessoa.contatos.addItem(contato);
+	}
+	
+	usuario.login = login.text;
+	usuario.senha = senha.text;
+	usuario.pessoa = pessoa;
+	usuario.status = Constantes.instance.STATUS_ATIVO;
+	
+	pessoa.usuarios.addItem(usuario);
 	
 	cliente.pessoa = pessoa;
+	cliente.status = Constantes.instance.STATUS_ATIVO;
 	
-	var arrCliente:Array = new Array();
-	arrCliente.push(cliente);
-	
-	MRemoteObject.get("ClienteService.inserirCliente", arrCliente);
-	
-	Alert.show("Cliente inserido com sucesso!!");
-	
+	MRemoteObject.get("ClienteService.salvarCliente",[cliente],confirmarCadastro);
+}
+
+public function confirmarCadastro(result:ResultJava):void
+{
+	try		
+	{
+			Alerta.abrir("Cliente cadastrado com sucesso!", "EasyShop", null, null, null, ImagensUtils.FELIZ);	
+	} 
+	catch(e:Error)
+	{ 
+		Alerta.abrir("Ops, Ocorreu um erro ao cadastrar o Cliente!", "EasyShop", null, null, null, ImagensUtils.INFO);
+	}	
 }
 
 private function preencherPais(result:ResultJava):void{

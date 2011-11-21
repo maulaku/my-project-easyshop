@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" 
-	width="100%" height="140" 
-	verticalAlign="middle" horizontalAlign="center" 
-	showEffect="Fade" 
-	verticalScrollPolicy="off" horizontalScrollPolicy="off">
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
+		 width="100%" height="140" horizontalAlign="center" horizontalScrollPolicy="off"
+		 mouseOver="vbox1_mouseOverHandler(event)" showEffect="Fade" styleName="mainBox"
+		 verticalAlign="middle" verticalScrollPolicy="off">
+	
+	<mx:Style source="MainEasyShop.css"/>
 	
 	<mx:Script>
 		<![CDATA[
@@ -15,6 +16,13 @@
 			
 			[Bindable]
 			public var title:String;
+			
+			protected function vbox1_mouseOverHandler(event:MouseEvent):void
+			{
+				var clickEvent:MouseEvent = new MouseEvent(MouseEvent.CLICK, true, false, event.localX, event.localY);
+				this.dispatchEvent(clickEvent);
+			}
+			
 		]]>
 	</mx:Script>
 	

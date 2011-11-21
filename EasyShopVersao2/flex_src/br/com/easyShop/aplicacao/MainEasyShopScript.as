@@ -28,30 +28,18 @@ import mx.managers.PopUpManager;
 
 import spark.components.Button;
 import spark.components.Label;
+import mx.utils.ObjectUtil;
 
 private var painel:Login;
 private var meuCarrinho:MeuCarrinho;
 private var meuDesejo:AbaMeuDesejo;
-public var produtoAux:Produto;
 
-private static var clienteGlobal:Cliente = new Cliente(); //Cliente Global da Aplicação. Ele é setado pelo Login.
+private static var clienteGlobal:Cliente; //Cliente Global da Aplicação. Ele é setado pelo Login.
 /**
  * Inicializa os componentes e objetos
  */ 
 
 public static function getClienteGlobal():Cliente{
-	
-	var pessoa:Pessoa = new Pessoa();
-	var pessoaFisica:PessoaFisica = new PessoaFisica();
-	
-	pessoaFisica.pkPessoaFisica =1;
-	pessoa.pessoaFisica = pessoaFisica;
-
-	pessoa.pkPessoa =1;
-	
-	clienteGlobal.pkCliente =1;
-	clienteGlobal.pessoa = pessoa;
-
 	return clienteGlobal;
 }
 
@@ -138,7 +126,7 @@ public function resultCategoria(result:ResultJava):void
 				
 				arr.push(categoria);
 			}
-			accordion.addEventListener(MouseEvent.MOUSE_OVER,fakeMouseClick);
+			//accordion.addEventListener(MouseEvent.MOUSE_OVER,fakeMouseClick);
 		}
 		else
 		{ 
@@ -154,9 +142,8 @@ public function resultCategoria(result:ResultJava):void
 
 private function fakeMouseClick(event:MouseEvent):void {
 	var clickEvent:MouseEvent = new MouseEvent(MouseEvent.CLICK, true, false, event.localX, event.localY);
-	this.dispatchEvent(clickEvent);
+	//dispatchEvent(clickEvent);
 }
-
 
 /* Listeners Modulos */
 public function carregarModuloProduto(object:Object):void
@@ -217,6 +204,11 @@ public function mouseOver(evt:MouseEvent):void{
 
 public function mouseOut(evt:MouseEvent):void{
 	diminuir.play([evt.currentTarget]);
+}
+
+public function lfProduto(item:Object=null, colunm:Object=null):String
+{
+	return item != null ? (item as Produto).nome : "null";
 }
 
 protected function btTeste_clickHandler():void
@@ -306,8 +298,9 @@ public function lfProduto(item:Object=null, colunm:Object=null):String
 }
 
 private function lidaClickadoLogin(event:Event):void{
-	Alert.show("O botão Login do painel dbConf foi clickado!!\nO texto escrito nos campos\n user: "+event.currentTarget.txtUsuario.text+"\npass: "+event.currentTarget.txtSenha.text+"\n\nCerto ??");
-	painel.setVisible(false);
+	var arr:Array = new Array();
+	arr.push(event.currentTarget.txtUsuario.text);
+	MRemoteObject.get("ClienteService.getCliente", arr, verificarLogin);
 }
 
 private function lidaClickadoPessoaFisica(event:Event):void{
@@ -320,6 +313,34 @@ private function lidaClickadoPessoaJuridica(event:Event):void{
 	painel.setVisible(false);
 	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaJuridica.swf");
 }
+
+public function verificarLogin(result:ResultJava):void
+{
+	try		
+	{	
+		var cliente:Cliente = new Cliente();
+		var senhaPainel:String;
+		var senhaCliente:String;
+		cliente = ((Cliente) (result.item));
+		senhaPainel = painel.txtSenha.text;
+		senhaCliente = cliente.senha;
+		Alert.show("Comparação = " + senhaCliente + "==" + senhaCliente);
+		if(ObjectUtil.stringCompare(senhaCliente,senhaPainel)){
+			painel.setVisible(false);
+			Alert.show("2Comparação = " + senhaCliente + "==" + senhaCliente);
+			clienteGlobal = cliente;
+		}
+		else{
+			//Alert.show("O botão Login do painel dbConf foi clickado!!\nO texto escrito nos campos\n user: "+event.currentTarget.txtUsuario.text+"\npass: "+event.currentTarget.txtSenha.text+"\n\nCerto ??");
+			Alert.show("Cliente ou Senha incorreta!");
+		}
+	} 
+	catch(e:Error)
+	{ 
+		Alerta.abrir("Ops, Ocorreu um erro ao carregar clientes", "EasyShop", null, null, null, ImagensUtils.INFO);
+	}	
+}
+
 
 protected function btnDesejo_clickHandler(event:MouseEvent):void
 {

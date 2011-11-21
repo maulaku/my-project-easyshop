@@ -1,3 +1,13 @@
+/* ***************************NOVO BD ********************************* */
+INSERT INTO pais (nome) VALUES ('Brasil');
+
+INSERT INTO estado (sigla, nome,fkPais) VALUES ('AC', 'Acre', 01);
+
+INSERT INTO cidade (pkCidade, fkEstado, nome) VALUES (0001, 01, 'Acrelândia');
+/* ********************************************************************* */
+
+
+
 INSERT INTO `pais` (`nome`) VALUES ('Brasil');
 
 INSERT INTO `estado` (`sigla`, `nome`,`fkPais`) VALUES ('AC', 'Acre', 01);
