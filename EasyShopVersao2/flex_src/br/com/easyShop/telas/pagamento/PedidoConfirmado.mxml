@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
+				width="770" height="436" backgroundAlpha="1.0" backgroundColor="#F1F4F4"
+				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar"
+				title="Pedido Confirmado">
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			
+			
+		]]>
+	</fx:Script>
+	<s:Button id="btnContinuarComprando" x="450" y="342" width="230" height="38"
+			  label="Voltar para o Site" fontSize="14" fontWeight="bold"
+			  icon="@Embed('../../imagens/botoes/back.png')"/>
+	<s:RadioButtonGroup id="radiogroup1" />
+	<s:Label x="160" y="30" width="441" height="33" fontSize="27" fontWeight="bold" text="Parabéns"
+			 textAlign="center" verticalAlign="middle"/>
+	<s:Label x="112" y="71" width="537" height="33" fontSize="27" fontWeight="normal" text="Seu pedido foi enviado com sucesso!"
+			 textAlign="center" verticalAlign="middle"/>
+	<s:BorderContainer x="229" y="133" width="302" height="124" backgroundColor="#29A0D8"
+					   dropShadowVisible="true">
+		<s:Label x="50" y="35" height="22" fontSize="17" fontWeight="normal"
+				 text="O número de seu Pedido é:" textAlign="center" verticalAlign="middle"/>
+		<s:Label x="109" y="68" fontSize="23" fontWeight="bold" text="000001"/>
+	</s:BorderContainer>
+	<mx:HRule x="82" y="301" width="605" height="14"/>
+	<s:Label x="80" y="351" height="22" fontSize="17" fontWeight="normal"
+			 text="*Acompanhe seu Pedido na tela Meus Pedidos" textAlign="center" verticalAlign="middle"/>
+	
+	
+</mx:TitleWindow>

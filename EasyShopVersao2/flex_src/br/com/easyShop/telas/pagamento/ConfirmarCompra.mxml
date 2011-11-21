@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
+				width="858" height="552" backgroundAlpha="1.0" backgroundColor="#F1F4F4"
+				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar"
+				title="Confirmar Compra">
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			
+			
+		]]>
+	</fx:Script>
+	<s:Button id="btnContinuarComprando" x="124" y="452" width="248" height="38"
+			  label="Voltar para o Meu Carrinho" fontSize="14" fontWeight="bold"
+			  icon="@Embed('../../imagens/botoes/back.png')"/>
+	<s:Button id="btnFinalizarCompra" x="474" y="456" width="249" height="38"
+			  label="Confirmar Compra" fontSize="14" fontWeight="bold"
+			  icon="@Embed('../../imagens/botoes/money.png')"/>
+	<s:RadioButtonGroup id="radiogroup1" />
+	<s:BorderContainer x="32" y="26" width="387" height="194" backgroundAlpha="0.47">
+		<s:Label x="100" y="20" fontSize="20" fontWeight="normal" text="Dados do Pagamento"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="32" y="154" fontSize="18" fontWeight="normal" text="Valor Total à Pagar:"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="32" y="103" fontSize="18" fontWeight="normal" text="Valor do Frete:"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="32" y="64" fontSize="18" fontWeight="normal" text="Valor Total dos Produtos:"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="241" y="64" fontSize="18" fontWeight="bold" text="R$ "
+				 textAlign="left" verticalAlign="middle"/>
+		<s:Label x="241" y="103" fontSize="18" fontWeight="bold" text="R$ "
+				 textAlign="left" verticalAlign="middle"/>
+		<s:Label x="241" y="154" fontSize="18" fontWeight="bold" text="R$ "
+				 textAlign="left" verticalAlign="middle"/>
+		<mx:HRule x="38" y="134" width="310" height="11"/>
+	</s:BorderContainer>
+	<s:BorderContainer x="436" y="26" width="387" height="194" backgroundAlpha="0.47">
+		<s:Label x="100" y="20" fontSize="20" fontWeight="normal" text="Forma do Pagamento"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="76" y="141" fontSize="18" fontWeight="normal" text="Parcelamento:"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="147" y="110" fontSize="18" fontWeight="normal" text="Valor:"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label id="formaDePagamento" x="32" y="65" width="323" height="21" fontSize="18"
+				 fontWeight="normal" textAlign="center" verticalAlign="middle"/>
+		<s:Label id="valor" x="203" y="112" fontSize="18" fontWeight="bold" text="R$ "
+				 textAlign="left" verticalAlign="middle"/>
+		<s:Label id="quantidadeParcelamento" x="203" y="137" width="48" fontSize="18"
+				 fontWeight="bold" textAlign="left" verticalAlign="middle"/>
+	</s:BorderContainer>
+	<s:BorderContainer x="32" y="236" width="791" height="187">
+		<s:Label x="314" y="10" fontSize="20" fontWeight="normal" text="Dados de Entrega"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="10" y="45" fontSize="18" fontWeight="normal" text="Logradouro:"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="11" y="75" fontSize="18" fontWeight="normal" text="CEP:"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="551" y="45" fontSize="18" fontWeight="normal" text="Bairro:"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="10" y="105" fontSize="18" fontWeight="normal" text="Cidade:"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="270" y="105" fontSize="18" fontWeight="normal" text="Estado:"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="563" y="104" fontSize="18" fontWeight="normal" text="País:"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="436" y="45" fontSize="18" fontWeight="normal" text="Nº:"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="233" y="75" fontSize="18" fontWeight="normal" text="Complemento:"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="501" y="74" fontSize="18" fontWeight="normal" text="Tipo:"
+				 textAlign="center" verticalAlign="middle"/>
+		<mx:HRule x="82" y="132" width="626" height="13"/>
+		<s:Label x="209" y="154" fontSize="18" fontWeight="normal" text="Prazo de Entrega:"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label id="logradouro" x="112" y="41" width="316" fontSize="18" fontWeight="normal"
+				 textAlign="left" verticalAlign="middle"/>
+		<s:Label id="cep" x="61" y="70" width="164" fontSize="18" fontWeight="normal"
+				 textAlign="left" verticalAlign="middle"/>
+		<s:Label id="cidade" x="81" y="101" width="181" fontSize="18" fontWeight="normal"
+				 textAlign="left" verticalAlign="middle"/>
+		<s:Label id="estado" x="339" y="102" width="216" fontSize="18" fontWeight="normal"
+				 textAlign="left" verticalAlign="middle"/>
+		<s:Label id="tipo" x="549" y="70" width="230" fontSize="18" fontWeight="normal"
+				 textAlign="left" verticalAlign="middle"/>
+		<s:Label id="bairro" x="613" y="42" width="166" fontSize="18" fontWeight="normal"
+				 textAlign="left" verticalAlign="middle"/>
+		<s:Label id="numero" x="464" y="41" width="79" fontSize="18" fontWeight="normal"
+				 textAlign="left" verticalAlign="middle"/>
+		<s:Label id="complemento" x="354" y="73" width="134" fontSize="18" fontWeight="normal"
+				 textAlign="left" verticalAlign="middle"/>
+		<s:Label id="pais" x="612" y="101" width="166" fontSize="18" fontWeight="normal"
+				 textAlign="left" verticalAlign="middle"/>
+		<s:Label id="prazoEntrega" x="363" y="152" width="292" fontSize="18" fontWeight="normal"
+				 textAlign="left" verticalAlign="middle"/>
+	</s:BorderContainer>
+	
+	
+</mx:TitleWindow>
