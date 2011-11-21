@@ -1,60 +1,38 @@
 import br.com.easyShop.aplicacao.AccordionItem;
 import br.com.easyShop.aplicacao.MainEasyShop;
-import br.com.easyShop.componentes.ESBotaoAnimado;
-import br.com.easyShop.componentes.MListaBotao;
+import br.com.easyShop.componentes.modulo.ModuloItem;
 import br.com.easyShop.comunicacao.MRemoteObject;
 import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Categoria;
 import br.com.easyShop.model.Cliente;
-import br.com.easyShop.model.Desejo;
 import br.com.easyShop.model.Pessoa;
 import br.com.easyShop.model.PessoaFisica;
 import br.com.easyShop.model.Produto;
 import br.com.easyShop.telas.Login;
 import br.com.easyShop.telas.desejos.AbaMeuDesejo;
+import br.com.easyShop.telas.produtos.AbaDetalhesProduto;
 import br.com.easyShop.telas.produtos.MeuCarrinho;
+import br.com.easyShop.utils.Constantes;
 import br.com.mresolucoes.componentes.mre.Alerta;
-import br.com.mresolucoes.componentes.mre.MBotao;
+import br.com.mresolucoes.componentes.mre.MModulo;
 import br.com.mresolucoes.imagens.ImagensUtils;
-import br.com.mresolucoes.renders.tabela.MRGridBotao;
+import br.com.mresolucoes.utils.NumberUtil;
 
 import flash.events.Event;
 import flash.events.MouseEvent;
-import flash.xml.XMLNode;
 
-import flashx.textLayout.tlf_internal;
-
-import mx.collections.ArrayCollection;
-import mx.containers.Panel;
 import mx.containers.VBox;
 import mx.controls.Alert;
-import mx.controls.Button;
-import mx.controls.Tree;
-import mx.core.IFactory;
 import mx.core.UIComponent;
-import mx.core.mx_internal;
-import mx.effects.Effect;
-import mx.effects.WipeDown;
-import mx.events.ChildExistenceChangedEvent;
-import mx.events.ListEvent;
 import mx.managers.PopUpManager;
-import mx.messaging.management.ObjectName;
-import mx.utils.ObjectUtil;
-import mx.utils.object_proxy;
-
-import org.flexunit.internals.namespaces.classInternal;
-import org.hamcrest.object.nullValue;
-import org.osmf.events.DisplayObjectEvent;
 
 import spark.components.Button;
 import spark.components.Label;
-import spark.components.NavigatorContent;
-import spark.components.gridClasses.GridColumn;
-import spark.effects.AddAction;
 
 private var painel:Login;
 private var meuCarrinho:MeuCarrinho;
 private var meuDesejo:AbaMeuDesejo;
+public var produtoAux:Produto;
 
 private static var clienteGlobal:Cliente = new Cliente(); //Cliente Global da Aplicação. Ele é setado pelo Login.
 /**
@@ -81,6 +59,43 @@ public function construtor():void
 {
 	cbBusca.mreServicePesquisa = "ProdutoService.getProdutosNome";
 	MRemoteObject.get("CategoriaService.getTodasCategoriasPai", null, resultCategoria);
+	MRemoteObject.get("ProdutoService.getProdutosPromocao", null, resultProduto);
+}
+
+public function resultProduto(result:ResultJava):void
+{
+	try		
+	{		
+		if(result != null)
+		{							
+			var produto:Produto = new Produto();
+			
+			for(var i:int=0;i<result.lista.length;i++)
+			{
+				produto = result.lista.getItemAt(i) as Produto;  
+				var item:ModuloItem = new ModuloItem();
+				
+				item.nome = produto.nome;
+				item.preco = NumberUtil.toString(produto.preco, 2);
+				item.funcaoBotao = carregarModuloProduto;
+				item.produto = produto;
+				item.imagemSource = Constantes.instance.ENDERECO_IMAGEM_PRODUTO+"1.png";
+				
+				grPainelModulos.addModulo(item);
+			}
+			grPainelModulos.visible = true;
+		}
+		else
+		{ 
+			Alerta.abrir(result.lista.length > 0 ? result.lista.getItemAt(0) as String : "Ops, Erro ao carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
+		}
+		
+	} 
+	catch(e:Error)
+	{ 
+		Alerta.abrir("Ops, Ocorreu um erro ao carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
+	}
+	
 }
 
 public function resultCategoria(result:ResultJava):void
@@ -143,6 +158,29 @@ private function fakeMouseClick(event:MouseEvent):void {
 }
 
 
+/* Listeners Modulos */
+public function carregarModuloProduto(object:Object):void
+{
+	produtoAux = object as Produto;
+	grPainelModulos.visible=false;
+	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf", teste);
+}
+
+
+public function teste(mod:MModulo=null):void
+{
+	for (var i:int=0; i<mod.numChildren; i++)
+	{
+		if (mod.getChildAt(i) is AbaDetalhesProduto)
+		{
+			//			(mod.getChildAt(i) as AbaDetalhesProduto).carregarProduto(produtoAux);	
+			
+			//painel navegação
+			//passar a chamada pra dentro do componente
+		}
+	}
+}
+
 public function resultSubCategoria(result:ResultJava):void
 {
 	try		
@@ -179,11 +217,6 @@ public function mouseOver(evt:MouseEvent):void{
 
 public function mouseOut(evt:MouseEvent):void{
 	diminuir.play([evt.currentTarget]);
-}
-
-public function lfProduto(item:Object=null, colunm:Object=null):String
-{
-	return item != null ? (item as Produto).nome : "null";
 }
 
 protected function btTeste_clickHandler():void
@@ -253,6 +286,23 @@ public static function centralizarTela(componente:UIComponent):void {
 		componente.y = componente.screen.y + (diferencaAltura / 2);
 		
 	}
+}
+
+/* Label Function */
+public function lfProduto(item:Object=null, colunm:Object=null):String
+{
+	try
+	{
+		if (item != null && item is Produto)
+		{
+			return (item as Produto).nome;					
+		}
+	}
+	catch(e:Error)
+	{
+		Alerta.abrir("Ops, ocorreu um erro", "Easy Shop", null, null, null, ImagensUtils.INFO);
+	}
+	return "";
 }
 
 private function lidaClickadoLogin(event:Event):void{
