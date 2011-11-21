@@ -30,10 +30,10 @@ private var myFilter:FileFilter = new FileFilter("Imagens (*.jpg; *.jpeg; *.gif;
 public var dados:ArrayCollection = new ArrayCollection();
 
 public var tiposContato:ArrayCollection = new ArrayCollection([
-	{nome:Constantes.instance.CONTATO_TELEFONE, tipo:Constantes.instance.TIPO_CONTATO_TELEFONE},
-	{nome:Constantes.instance.CONTATO_CELULAR, tipo:Constantes.instance.TIPO_CONTATO_CELULAR},
-	{nome:Constantes.instance.CONTATO_FAX, tipo:Constantes.instance.TIPO_CONTATO_FAX},
-	{nome:Constantes.instance.CONTATO_EMAIL, tipo:Constantes.instance.TIPO_CONTATO_EMAIL}]);
+	{nome:"Telefone", tipo:Constantes.instance.TIPO_CONTATO_TELEFONE},
+	{nome:"Celular", tipo:Constantes.instance.TIPO_CONTATO_CELULAR},
+	{nome:"Fax", tipo:Constantes.instance.TIPO_CONTATO_FAX},
+	{nome:"Email", tipo:Constantes.instance.TIPO_CONTATO_EMAIL}]);
 
 public var tiposEndereco:ArrayCollection = new ArrayCollection([
 	{nome:Constantes.instance.RESIDENCIA, tipo:Constantes.instance.TIPO_RESIDENCIA},
@@ -47,7 +47,7 @@ public function construtor():void
 
 	cboContato.dataProvider = tiposContato;
 	tipo.dataProvider = tiposEndereco
-	
+
 	preencherSexo();
 }
 

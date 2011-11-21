@@ -36,6 +36,6 @@ public class TipoPermissao
 	public void setUsuarioTelas(List<UsuarioTela> usuarioTelas) { this.usuarioTelas = usuarioTelas; }
 	
 	public String toString() {
-		return nome;
+	   return nome;
 	}
 }
