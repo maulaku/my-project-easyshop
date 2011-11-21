@@ -46,7 +46,7 @@
 			 textAlign="left" verticalAlign="middle"/>
 	<s:Label x="371" y="418" width="40" height="24" fontFamily="Verdana" fontSize="18" text="Tipo"
 			 textAlign="left" verticalAlign="middle"/>
-	<mxml:MComboBox id="tipo" x="409" y="417" width="137" fontSize="18"/>
+	<mxml:MComboBox id="tipo" x="409" y="417" width="137" fontSize="18" labelField="nome"/>
 	<s:Label x="64" y="467" width="40" height="24" fontFamily="Verdana" fontSize="18" text="País"
 			 textAlign="left" verticalAlign="middle"/>
 	<mxml:MComboBox id="cboPais" x="64" y="488" width="130" fontSize="18" labelFunction="labelPais" change="listarEstados(event)"/>
@@ -69,7 +69,7 @@
 			</mx:columns>
 		</mx:DataGrid>
 
-	<mxml:MCaixaTexto id="cliente" x="250" y="745" width="169" fontSize="18"/>
+	<mxml:MCaixaTexto id="login" x="250" y="745" width="169" fontSize="18"/>
 	<s:Label x="182" y="746" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Cliente"
 			 textAlign="left" verticalAlign="middle"/>
 	<mxml:MCaixaTexto id="senha" x="250" y="786" width="169" fontSize="18"/>

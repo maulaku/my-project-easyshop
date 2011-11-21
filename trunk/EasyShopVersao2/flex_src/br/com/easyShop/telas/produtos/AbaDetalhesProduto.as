@@ -25,7 +25,7 @@ private var produto:Produto = new Produto();
 public function construtor(id:int):void
 {
 	var arr:Array = new Array();
-	arr.push(5);
+	arr.push(4); //Mudar no produto Service!!!!!!!!!!!!!!!!!!!
 	MRemoteObject.get("ProdutoService.getProdutosId", arr, preencherDetalhesDoProduto);
 }
 
@@ -62,12 +62,23 @@ protected function btnAdicionarAoCarrinho_clickHandler(event:MouseEvent):void
 {
 	var carrinho:Carrinho = new Carrinho();
 	var carrinhoProduto:CarrinhoProduto = new CarrinhoProduto();
+	var parametrosCarrinho:Array = new Array();
+	var parametrosCarrinhoProduto:Array = new Array();
 	
 	carrinho.cliente = ((Cliente) (MainEasyShop.getClienteGlobal()));
+	parametrosCarrinho.push(carrinho);
+	MRemoteObject.gets("CarrinhoService.inserir", parametrosCarrinho);
 	
+	carrinho.pkCarrinho = 1;
 	carrinhoProduto.carrinho = carrinho;
 	carrinhoProduto.produto = produto;
 	carrinhoProduto.quantidade = 1;
+	
+	parametrosCarrinhoProduto.push(carrinhoProduto);
+	MRemoteObject.gets("CarrinhoProdutoService.inserir", parametrosCarrinhoProduto);
+	
+	Alert.show("Produto inserido com sucesso!");
+	
 }
 
 

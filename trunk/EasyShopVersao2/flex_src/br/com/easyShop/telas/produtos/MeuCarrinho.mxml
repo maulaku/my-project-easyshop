@@ -4,7 +4,7 @@
 				xmlns:s="library://ns.adobe.com/flex/spark"
 				xmlns:mx="library://ns.adobe.com/flex/mx"
 				xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
-				width="822" height="458" backgroundAlpha="1.0" backgroundColor="#F1F4F4"
+				width="782" height="598" backgroundAlpha="1.0" backgroundColor="#F1F4F4"
 				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar"
 				title="Meu Carrinho">
 	
@@ -20,15 +20,16 @@
 		]]>
 	</fx:Script>
 	
-	<s:BorderContainer x="26" y="21" width="768" height="292" backgroundColor="#F2F2F2">
-		<s:DataGrid id="tblCarrinho" x="22" y="14" width="613" contentBackgroundColor="#F9F9F9"
+	<s:BorderContainer x="26" y="21" width="718" height="292" backgroundColor="#F2F2F2">
+		<s:DataGrid id="tblCarrinho" x="22" y="14" width="670" contentBackgroundColor="#F9F9F9"
 					requestedRowCount="5">
 			<s:columns>
 				<s:ArrayList>
-					<s:GridColumn dataField="dataField1" headerText="Produto" width="250"></s:GridColumn>
-					<s:GridColumn dataField="dataField2" headerText="Quantidade" width="120"></s:GridColumn>
-					<s:GridColumn dataField="dataField3" headerText="Valor Unitário" width="120"></s:GridColumn>
-					<s:GridColumn dataField="dataField4" headerText="Valor Parcial" width="120"></s:GridColumn>				
+					<s:GridColumn dataField="campo1" headerText="Produto" width="250"></s:GridColumn>
+					<s:GridColumn dataField="campo2" headerText="Quantidade" width="120"></s:GridColumn>
+					<s:GridColumn dataField="campo3" headerText="Valor Unitário" width="120"></s:GridColumn>
+					<s:GridColumn dataField="campo4" headerText="Valor Parcial" width="120"></s:GridColumn>		
+					<s:GridColumn dataField="campo5" headerText="Excluir" width="50"></s:GridColumn>		
 				</s:ArrayList>
 			</s:columns>
 			<s:typicalItem>
@@ -38,22 +39,19 @@
 				
 			</s:ArrayList>
 		</s:DataGrid>
-		<mx:HRule x="22" y="186" width="613" height="13"/>
-		<s:Label x="460" y="207" width="61" height="23" fontFamily="Verdana" fontSize="16"
+		<mx:HRule x="56" y="184" width="613" height="13"/>
+		<s:Label x="494" y="205" width="61" height="23" fontFamily="Verdana" fontSize="16"
 				 text="Frete:"/>
-		<s:Label x="415" y="246" width="101" height="23" fontFamily="Verdana" fontSize="16"
+		<s:Label x="449" y="244" width="101" height="23" fontFamily="Verdana" fontSize="16"
 				 text="Valor Total:"/>
-		<mx:HRule x="22" y="226" width="613" height="13"/>
-		<mx:HRule x="22" y="264" width="613" height="13"/>
-		<mx:VRule x="20" y="191" width="6" height="78"/>
-		<mx:VRule x="631" y="191" width="6" height="78"/>
-		<s:Label id="lblFrete" x="512" y="207" fontFamily="Verdana" fontSize="15" fontWeight="bold"
+		<mx:HRule x="56" y="224" width="613" height="13"/>
+		<mx:HRule x="56" y="262" width="613" height="13"/>
+		<mx:VRule x="54" y="189" width="6" height="78"/>
+		<mx:VRule x="665" y="189" width="6" height="78"/>
+		<s:Label id="lblFrete" x="546" y="205" fontFamily="Verdana" fontSize="15" fontWeight="bold"
 				 text="R$ 000,00"/>
-		<s:Label id="lblValorTotal" x="512" y="246" fontFamily="Verdana" fontSize="15"
+		<s:Label id="lblValorTotal" x="546" y="244" fontFamily="Verdana" fontSize="15"
 				 fontWeight="bold" text="R$ 000,00"/>
-		
-		<s:Button id="btnRemover" x="643" y="78" width="113" height="45" label="Remover"
-				  icon="@Embed('../../imagens/botoes/card_remove.png')"/>
 		
 	</s:BorderContainer>
 	<s:Button id="btnContinuarComprando" x="155" y="354" width="210" height="38"

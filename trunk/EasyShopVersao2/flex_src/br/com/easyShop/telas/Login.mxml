@@ -5,7 +5,7 @@
 				xmlns:mx="library://ns.adobe.com/flex/mx"
 				width="580" height="300" backgroundAlpha="1.0" backgroundColor="#E0E3E3"
 				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar">
-	
+	<fx:Script source="LoginScript.as" />
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -24,36 +24,5 @@
 			   fontFamily="Verdana" fontSize="15" click="clickadoPessoaFisica()"/>
 	<mx:Button id="btnLogin1" x="425" y="138" width="129" height="29" label="Pessoa Jurídica"
 			   fontFamily="Verdana" fontSize="15" click="clickadoPessoaJuridica()"/>
-	
-	<fx:Script>
-		<![CDATA[
-			import mx.managers.PopUpManager;
-			
-			protected function btnEntrar_clickHandler(centrado:Boolean):void
-			{
-				// TODO Auto-generated method stub
-				var painel:Login = new Login();
-				painel.showCloseButton=true;
-				PopUpManager.addPopUp(painel, this, true);
-				
-				if(centrado==true) PopUpManager.centerPopUp(painel);
-			}
-			
-			protected function clickadoPessoaFisica():void
-			{
-				this.dispatchEvent(new Event("clickadoPessoaFisica"));			
-			}
-			
-			private function clickadoLogin():void {
-				this.dispatchEvent(new Event("clickadoLogin"));
-			}
-			
-			protected function clickadoPessoaJuridica():void
-			{
-				this.dispatchEvent(new Event("clickadoPessoaJuridica"));
-			}
-			
-		]]>
-	</fx:Script>
 	
 </mx:TitleWindow>

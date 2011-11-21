@@ -1,6 +1,7 @@
 package br.com.easyShop.model
 {
 	import br.com.easyShop.utils.Constantes;
+	
 	import mx.collections.ArrayCollection;
 
 	[RemoteClass(alias="br.com.easyShop.model.Cliente")]
@@ -11,6 +12,8 @@ package br.com.easyShop.model
 		public var codigo:String;
 		public var status:int = Constantes.instance.STATUS_ATIVO;
 		public var pessoa:Pessoa;
+		public var login:String;
+		public var senha:String;
 
 		[ArrayElementType("br.com.easyShop.model.Preferencia")]
 		private var _preferencias:ArrayCollection;

@@ -12,22 +12,22 @@
 	
 	<fx:Style>
 		.mainBox {
-		padding-top:10;
-		padding-left:10;
-		padding-right:10;
-		vertical-gap:0;	
+			padding-top:10;
+			padding-left:10;
+			padding-right:10;
+			vertical-gap:0;	
 		}
 		
 		.title {
-		font-weight: bold;
-		color: #333333;
-		font-size: 16;	
+			font-weight: bold;
+			color: #333333;
+			font-size: 16;	
 		}
 		
 		.description {
-		font-weight: normal;
-		color: #666666;
-		font-size: 12;	
+			font-weight: normal;
+			color: #666666;
+			font-size: 12;	
 		}
 	</fx:Style>
 	
@@ -38,22 +38,22 @@
 			<mx:Fade />
 		</mx:Parallel>
 		
-		<mx:Resize id="aumentar" duration="150" widthTo="200" heightTo="60"/>
-		<mx:Resize id="diminuir" duration="200" widthTo="120" heightTo="40"/>
-	
+		<mx:Resize id="aumentar" duration="150" widthTo="150" heightTo="60"/>
+		<mx:Resize id="diminuir" duration="200" widthTo="90" heightTo="40"/>
+		
 	</fx:Declarations>
-
+	
 	<fx:Script source="MainEasyShopScript.as" />
 	
 	<s:Panel id="panelPrincipal" x="2" y="1" width="1273" height="1565">
 		
 		<modulo:PainelModulo id="grPainelModulos" x="240" y="186" visible="false" showEffect="{anAparecer}" hideEffect="{anSumir}"  />
 		
-		<s:Image x="-15" y="-130" width="1306" height="682" smooth="true" source="@Embed('../imagens/aplicacao/fundo.png')"/>
+		<s:Image x="-126" y="-103" width="1493" height="682" smooth="true" source="@Embed('../imagens/aplicacao/fundo.png')"/>
 		<s:Image id="btnCarrinho1" x="904" y="-18" width="70" height="64" buttonMode="true" smooth="true" smoothingQuality="high"
 				 source="@Embed('../imagens/aplicacao/icone_carrinho.png')" click="btnCarrinho_clickHandler(event)"/>
 		
-		<s:Image x="-64" y="-95" width="650" height="319" scaleMode="stretch" smooth="true"
+		<s:Image x="-64" y="-96" width="650" height="319" scaleMode="stretch" smooth="true"
 				 smoothingQuality="high" source="@Embed('../imagens/aplicacao/nomEasy.png')"/>
 		
 		<s:Image id="btnDesejo" x="1077" y="-13" width="83" height="59" buttonMode="true" smooth="true" smoothingQuality="high"
@@ -77,12 +77,13 @@
 		<mx:HBox id="menuDinamico" x="-5" y="76" width="100%" height="74" clipContent="true"
 				 horizontalAlign="center" horizontalScrollPolicy="off" verticalAlign="bottom"
 				 verticalScrollPolicy="off">
-			</mx:HBox>
-		<mxml:MBotao id="btTeste" x="748" y="10" label="teste" click="btTeste_clickHandler()"/>
+		</mx:HBox>
+		<mxml:MBotao id="btTeste" x="641" y="3" width="149" height="31" label="Detalhes do Produto"
+					 click="btTeste_clickHandler()"/>
 		<s:Label x="371" y="1496" width="355" height="19" fontSize="15"
 				 text="Créditos sobre o Site ficaram aqui" textAlign="center" verticalAlign="middle"/>
 		
-		<mx:Panel id="panelCategorias" x="33" y="185" width="206" height="515" fontSize="15"
+		<mx:Panel id="panelCategorias" x="33" y="185" width="206" height="580" fontSize="15"
 				  styleName="Panel" textAlign="center" title="Categorias" verticalAlign="middle">
 			<flexlib:VAccordion id="accordion" headerLocation="below"
 								resizeToContent="true" styleName="VAccordion" height="100%"

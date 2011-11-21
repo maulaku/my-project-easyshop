@@ -24,10 +24,6 @@ public class Cliente
 
 	@ManyToOne @JoinColumn(name="fkPessoa")
 	private Pessoa pessoa;
-	@Column(length=500)
-	private String login;
-	@Column(length=500)
-	private String senha;
 
 	@OneToMany(mappedBy="cliente")
 	private List<Carrinho> carrinhos;
@@ -58,12 +54,6 @@ public class Cliente
 	public Pessoa getPessoa() { return pessoa; }
 	public void setPessoa(Pessoa pessoa) { this.pessoa = pessoa; }
 
-	public String getLogin() { return login; }
-	public void setLogin(String login) { this.login = login; }
-
-	public String getSenha() { return senha; }
-	public void setSenha(String senha) { this.senha = senha; }
-
 	public List<Carrinho> getCarrinhos() { if(carrinhos==null) { carrinhos = new ArrayList<Carrinho>(); } return carrinhos; }
 	public void setCarrinhos(List<Carrinho> carrinhos) { this.carrinhos = carrinhos; }
 
@@ -75,8 +65,4 @@ public class Cliente
 
 	public List<Preferencia> getPreferencias() { if(preferencias==null) { preferencias = new ArrayList<Preferencia>(); } return preferencias; }
 	public void setPreferencias(List<Preferencia> preferencias) { this.preferencias = preferencias; }
-	
-	public String toString() {
-	   return login;
-	}
 }

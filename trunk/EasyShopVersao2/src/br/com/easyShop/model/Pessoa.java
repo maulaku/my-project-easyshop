@@ -29,9 +29,6 @@ public class Pessoa
 	private PessoaFisica pessoaFisica;
 
 	@OneToMany(mappedBy="pessoa")
-	private List<Cliente> clientes;
-
-	@OneToMany(mappedBy="pessoa")
 	private List<Contato> contatos;
 
 	@OneToMany(mappedBy="pessoa")
@@ -39,6 +36,9 @@ public class Pessoa
 
 	@OneToMany(mappedBy="pessoa")
 	private List<Usuario> usuarios;
+
+	@OneToMany(mappedBy="pessoa")
+	private List<Cliente> clientes;
 
 
 	/*-*-*-* Construtores *-*-*-*/
@@ -60,9 +60,6 @@ public class Pessoa
 	public PessoaFisica getPessoaFisica() { return pessoaFisica; }
 	public void setPessoaFisica(PessoaFisica pessoaFisica) { this.pessoaFisica = pessoaFisica; }
 
-	public List<Cliente> getClientes() { if(clientes==null) { clientes = new ArrayList<Cliente>(); } return clientes; }
-	public void setClientes(List<Cliente> clientes) { this.clientes = clientes; }
-
 	public List<Contato> getContatos() { if(contatos==null) { contatos = new ArrayList<Contato>(); } return contatos; }
 	public void setContatos(List<Contato> contatos) { this.contatos = contatos; }
 
@@ -72,4 +69,6 @@ public class Pessoa
 	public List<Usuario> getUsuarios() { if(usuarios==null) { usuarios = new ArrayList<Usuario>(); } return usuarios; }
 	public void setUsuarios(List<Usuario> usuarios) { this.usuarios = usuarios; }
 
+	public List<Cliente> getClientes() { if(clientes==null) { clientes = new ArrayList<Cliente>(); } return clientes; }
+	public void setClientes(List<Cliente> clientes) { this.clientes = clientes; }
 }
