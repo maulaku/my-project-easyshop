@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
+		 width="298" height="184">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			[Bindable]
+			private var _funcaoBotao:Function=null;
+			[Bindable]
+			private var _imagemSource:String;
+			[Bindable]
+			private var _nome:String;
+			[Bindable]
+			private var _preco:String;
+			[Bindable]
+			private var _produto:Object;
+			
+			public function escutaBotoes(botao:MBotao):void
+			{
+				if (_funcaoBotao != null) 
+				{
+					_funcaoBotao(_produto);
+				}
+			}
+			
+			public function get funcaoBotao():Function { return _funcaoBotao; }
+			public function set funcaoBotao(funcao:Function):void { _funcaoBotao = funcao; }
+			public function get imagemSource():String { return _imagemSource; }
+			public function set imagemSource(imagemSource:String):void { _imagemSource = imagemSource; }
+			public function get nome():String { return _nome; }
+			public function set nome(nome:String):void { _nome = nome; }
+			public function get preco():String { return _preco; }
+			public function set preco(preco:String):void { _preco = preco; }
+			public function get produto():Object { return _produto; }
+			public function set produto(produto:Object):void { _produto = produto; }
+		]]>
+	</fx:Script>
+	<s:Label id="lbNome" x="155" y="11" width="133" fontFamily="Verdana" fontSize="25" text="{_nome}" textAlign="right"/>
+	<s:Label id="lbPreco" x="155" y="86" width="133" fontFamily="Verdana" fontSize="18" text="{_preco}" textAlign="right"/>
+	<mxml:MBotao id="btEspiar" x="218" y="153" label="Espiar" mreClick="{escutaBotoes}"/>
+	<s:Image id="imagemProduto" x="12" y="11" width="135" height="163" source="{_imagemSource}"/>
+</s:Group>

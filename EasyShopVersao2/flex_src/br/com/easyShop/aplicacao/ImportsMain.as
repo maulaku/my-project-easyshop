@@ -1,7 +1,5 @@
 package br.com.easyShop.aplicacao
 {
-	import br.com.easyShop.model.*;
-
 	public class ImportsMain
 	{
 //		public static var carrinho:Carrinho = null;
