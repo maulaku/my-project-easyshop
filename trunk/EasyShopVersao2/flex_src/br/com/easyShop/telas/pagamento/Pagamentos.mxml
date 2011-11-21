@@ -34,12 +34,12 @@
 				 textAlign="center" verticalAlign="middle"/>
 		<s:Label x="25" y="63" fontSize="21" fontWeight="normal" text="Valor Total dos Produtos:"
 				 textAlign="center" verticalAlign="middle"/>
-		<s:Label x="602" y="63" fontSize="21" fontWeight="bold" text="R$ "
-				 textAlign="center" verticalAlign="middle"/>
-		<s:Label x="602" y="102" fontSize="21" fontWeight="bold" text="R$ "
-				 textAlign="center" verticalAlign="middle"/>
-		<s:Label x="602" y="153" fontSize="21" fontWeight="bold" text="R$ "
-				 textAlign="center" verticalAlign="middle"/>
+		<s:Label id="valorTotalProdutos" x="602" y="63" fontSize="21" fontWeight="bold" text="R$ "
+				 textAlign="left" verticalAlign="middle"/>
+		<s:Label id="valorFrete" x="602" y="102" fontSize="21" fontWeight="bold" text="R$ "
+				 textAlign="left" verticalAlign="middle"/>
+		<s:Label id="valorTotalPagar" x="602" y="153" fontSize="21" fontWeight="bold" text="R$ "
+				 textAlign="left" verticalAlign="middle"/>
 		<s:Label x="265" y="63" fontSize="21" fontWeight="normal" text="....................................................."
 				 textAlign="center" verticalAlign="middle"/>
 		<s:Label x="265" y="63" fontSize="21" fontWeight="normal" text="....................................................."
@@ -50,11 +50,11 @@
 		<s:Label x="211" y="153" width="372" fontSize="21" fontWeight="normal"
 				 text="............................................................." textAlign="center"
 				 verticalAlign="middle"/>
-		<s:Label x="167" y="195" fontSize="21" fontWeight="normal" text="Valor Parcelado em "
+		<s:Label x="167" y="195" fontSize="21" fontWeight="normal" text="Valor do Parcelado: "
 				 textAlign="center" verticalAlign="middle"/>
-		<s:Label x="357" y="195" fontSize="21" fontWeight="bold" text="R$ "
+		<s:Label id="valorDoParcelamento" x="357" y="195" fontSize="21" fontWeight="bold" text="R$ "
 				 textAlign="center" verticalAlign="middle"/>
-		<mx:HRule x="593" y="133" width="154" height="11"/>
+		<mx:HRule x="36" y="133" width="687" height="11"/>
 	</s:BorderContainer>
 	<s:RadioButtonGroup id="radiogroup1" />
 	<s:BorderContainer x="23" y="286" width="785" height="336" backgroundAlpha="0.0"
