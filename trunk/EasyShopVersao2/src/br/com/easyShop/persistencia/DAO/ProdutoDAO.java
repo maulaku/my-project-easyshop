@@ -10,6 +10,7 @@ import br.com.easyShop.persistencia.conexao.BancoDeDados;
 import br.com.easyShop.persistencia.conexao.servidores.base.BaseJDBC;
 import br.com.easyShop.persistencia.utils.QuerySQL;
 import br.com.easyShop.persistencia.utils.ResultSQL;
+import br.com.easyShop.utils.Constantes;
 
 public class ProdutoDAO extends BaseDAOAtta {
 
@@ -31,20 +32,19 @@ public class ProdutoDAO extends BaseDAOAtta {
 	 * @return lista de produtos
 	 * @throws Exception
 	 */
-	public List<Produto> getProdutosNome(String nome, int profundidade)
-			throws Exception {
+	public List<Produto> getProdutosNome(String nome, int profundidade)throws Exception
+	{
 		QuerySQL query = new QuerySQL();
 
 		query.add("SELECT *");
 		query.add(" FROM Produto");
-		query.add(" WHERE nome like '%?%'", nome);
+		query.add(" WHERE nome like ?", "%" + nome + "%");
 
 		return obtem(Produto.class, query, profundidade);
 	}
 
 	public Produto getProduto(int profundidade, long id) throws Exception {
-        
-		
+
 		QuerySQL query = new QuerySQL();
 		query.add("SELECT * ");
 		query.add("FROM produto ");
@@ -68,4 +68,15 @@ public class ProdutoDAO extends BaseDAOAtta {
 		return (Long) resultSQL.get(0, 0);
 	}
 
+	public List<Produto> getProdutosPromocao() throws Exception
+	{
+		QuerySQL query = new QuerySQL();
+		
+		query.add("SELECT *");
+		query.add(" FROM produto");
+		query.add(" WHERE promocao = ?", true);
+		query.add(" AND status = ?", Constantes.STATUS_ATIVO);
+		
+		return obtem(Produto.class, query, -1);
+	}
 }
