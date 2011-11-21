@@ -72,4 +72,17 @@ public class ProdutoService extends BaseServiceAtta {
 					.asList(new String[] { "Erro ao buscar produtos" }));
 		}
 	}
+	
+	
+	public ResultJava getProdutosPromocao() 
+	{
+		try 
+		{
+			return new ResultJava(new ProdutoDAO().getProdutosPromocao());
+		} 
+		catch (Exception e) 
+		{
+			return new ResultJava(false, Arrays.asList(new String[] { "Erro ão buscar produtos" }));
+		}
+	}
 }
