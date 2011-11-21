@@ -47,8 +47,6 @@
 	
 	<s:Panel id="panelPrincipal" x="2" y="1" width="1273" height="1565">
 		
-		<modulo:PainelModulo id="grPainelModulos" x="240" y="186" visible="false" showEffect="{anAparecer}" hideEffect="{anSumir}"  />
-		
 		<s:Image x="-126" y="-103" width="1493" height="682" smooth="true" source="@Embed('../imagens/aplicacao/fundo.png')"/>
 		<s:Image id="btnCarrinho1" x="904" y="-18" width="70" height="64" buttonMode="true" smooth="true" smoothingQuality="high"
 				 source="@Embed('../imagens/aplicacao/icone_carrinho.png')" click="btnCarrinho_clickHandler(event)"/>

@@ -10,7 +10,8 @@ import br.com.easyShop.model.PessoaFisica;
 import br.com.easyShop.model.Produto;
 import br.com.easyShop.telas.Login;
 import br.com.easyShop.telas.desejos.AbaMeuDesejo;
-import br.com.easyShop.telas.produtos.AbaDetalhesProduto;
+//import br.com.easyShop.telas.produtos.AbaDetalhesProduto;
+//<modulo:PainelModulo id="grPainelModulos" x="240" y="186" visible="false" showEffect="{anAparecer}" hideEffect="{anSumir}"  />
 import br.com.easyShop.telas.produtos.MeuCarrinho;
 import br.com.easyShop.utils.Constantes;
 import br.com.mresolucoes.componentes.mre.Alerta;
@@ -47,44 +48,44 @@ public function construtor():void
 {
 	cbBusca.mreServicePesquisa = "ProdutoService.getProdutosNome";
 	MRemoteObject.get("CategoriaService.getTodasCategoriasPai", null, resultCategoria);
-	MRemoteObject.get("ProdutoService.getProdutosPromocao", null, resultProduto);
+//	MRemoteObject.get("ProdutoService.getProdutosPromocao", null, resultProduto);
 }
 
-public function resultProduto(result:ResultJava):void
-{
-	try		
-	{		
-		if(result != null)
-		{							
-			var produto:Produto = new Produto();
-			
-			for(var i:int=0;i<result.lista.length;i++)
-			{
-				produto = result.lista.getItemAt(i) as Produto;  
-				var item:ModuloItem = new ModuloItem();
-				
-				item.nome = produto.nome;
-				item.preco = NumberUtil.toString(produto.preco, 2);
-				item.funcaoBotao = carregarModuloProduto;
-				item.produto = produto;
-				item.imagemSource = Constantes.instance.ENDERECO_IMAGEM_PRODUTO+"1.png";
-				
-				grPainelModulos.addModulo(item);
-			}
-			grPainelModulos.visible = true;
-		}
-		else
-		{ 
-			Alerta.abrir(result.lista.length > 0 ? result.lista.getItemAt(0) as String : "Ops, Erro ao carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
-		}
-		
-	} 
-	catch(e:Error)
-	{ 
-		Alerta.abrir("Ops, Ocorreu um erro ao carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
-	}
-	
-}
+//public function resultProduto(result:ResultJava):void
+//{
+//	try		
+//	{		
+//		if(result != null)
+//		{							
+//			var produto:Produto = new Produto();
+//			
+//			for(var i:int=0;i<result.lista.length;i++)
+//			{
+//				produto = result.lista.getItemAt(i) as Produto;  
+//				var item:ModuloItem = new ModuloItem();
+//				
+//				item.nome = produto.nome;
+//				item.preco = NumberUtil.toString(produto.preco, 2);
+//				item.funcaoBotao = carregarModuloProduto;
+//				item.produto = produto;
+//				item.imagemSource = Constantes.instance.ENDERECO_IMAGEM_PRODUTO+"1.png";
+//				
+//				grPainelModulos.addModulo(item);
+//			}
+//			grPainelModulos.visible = true;
+//		}
+//		else
+//		{ 
+//			Alerta.abrir(result.lista.length > 0 ? result.lista.getItemAt(0) as String : "Ops, Erro ao carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
+//		}
+//		
+//	} 
+//	catch(e:Error)
+//	{ 
+//		Alerta.abrir("Ops, Ocorreu um erro ao carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
+//	}
+//	
+//}
 
 public function resultCategoria(result:ResultJava):void
 {
@@ -146,27 +147,27 @@ private function fakeMouseClick(event:MouseEvent):void {
 }
 
 /* Listeners Modulos */
-public function carregarModuloProduto(object:Object):void
-{
-	produtoAux = object as Produto;
-	grPainelModulos.visible=false;
-	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf", teste);
-}
-
-
-public function teste(mod:MModulo=null):void
-{
-	for (var i:int=0; i<mod.numChildren; i++)
-	{
-		if (mod.getChildAt(i) is AbaDetalhesProduto)
-		{
-			//			(mod.getChildAt(i) as AbaDetalhesProduto).carregarProduto(produtoAux);	
-			
-			//painel navegação
-			//passar a chamada pra dentro do componente
-		}
-	}
-}
+//public function carregarModuloProduto(object:Object):void
+//{
+//	produtoAux = object as Produto;
+//	grPainelModulos.visible=false;
+//	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf", teste);
+//}
+//
+//
+//public function teste(mod:MModulo=null):void
+//{
+//	for (var i:int=0; i<mod.numChildren; i++)
+//	{
+//		if (mod.getChildAt(i) is AbaDetalhesProduto)
+//		{
+//			//			(mod.getChildAt(i) as AbaDetalhesProduto).carregarProduto(produtoAux);	
+//			
+//			//painel navegação
+//			//passar a chamada pra dentro do componente
+//		}
+//	}
+//}
 
 public function resultSubCategoria(result:ResultJava):void
 {
@@ -281,21 +282,21 @@ public static function centralizarTela(componente:UIComponent):void {
 }
 
 /* Label Function */
-public function lfProduto(item:Object=null, colunm:Object=null):String
-{
-	try
-	{
-		if (item != null && item is Produto)
-		{
-			return (item as Produto).nome;					
-		}
-	}
-	catch(e:Error)
-	{
-		Alerta.abrir("Ops, ocorreu um erro", "Easy Shop", null, null, null, ImagensUtils.INFO);
-	}
-	return "";
-}
+//public function lfProduto(item:Object=null, colunm:Object=null):String
+//{
+//	try
+//	{
+//		if (item != null && item is Produto)
+//		{
+//			return (item as Produto).nome;					
+//		}
+//	}
+//	catch(e:Error)
+//	{
+//		Alerta.abrir("Ops, ocorreu um erro", "Easy Shop", null, null, null, ImagensUtils.INFO);
+//	}
+//	return "";
+//}
 
 private function lidaClickadoLogin(event:Event):void{
 	var arr:Array = new Array();

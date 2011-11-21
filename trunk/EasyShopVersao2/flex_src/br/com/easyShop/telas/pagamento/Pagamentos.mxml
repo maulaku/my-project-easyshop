@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
+				width="832" height="760" backgroundAlpha="1.0" backgroundColor="#F1F4F4"
+				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar"
+				title="Pagamentos">
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			
+			
+		]]>
+	</fx:Script>
+	<s:Button id="btnContinuarComprando" x="90" y="659" width="248" height="38"
+			  label="Voltar para o Meu Carrinho" fontSize="14" fontWeight="bold"
+			  icon="@Embed('../../imagens/botoes/back.png')"/>
+	<s:Button id="btnFinalizarCompra" x="476" y="659" width="249" height="38"
+			  label="  Avançar" fontSize="14" fontWeight="bold"
+			  icon="@Embed('../../imagens/botoes/next.png')"/>
+	<s:BorderContainer x="32" y="26" width="763" height="231" backgroundAlpha="0.47">
+		<s:Label x="250" y="17" fontSize="24" fontWeight="normal" text="Dados do Pagamento"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="25" y="153" fontSize="21" fontWeight="normal" text="Valor Total à Pagar:"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="25" y="102" fontSize="21" fontWeight="normal" text="Valor do Frete:"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="25" y="63" fontSize="21" fontWeight="normal" text="Valor Total dos Produtos:"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="602" y="63" fontSize="21" fontWeight="bold" text="R$ "
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="602" y="102" fontSize="21" fontWeight="bold" text="R$ "
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="602" y="153" fontSize="21" fontWeight="bold" text="R$ "
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="265" y="63" fontSize="21" fontWeight="normal" text="....................................................."
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="265" y="63" fontSize="21" fontWeight="normal" text="....................................................."
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="171" y="102" width="412" fontSize="21" fontWeight="normal"
+				 text="...................................................................." textAlign="center"
+				 verticalAlign="middle"/>
+		<s:Label x="211" y="153" width="372" fontSize="21" fontWeight="normal"
+				 text="............................................................." textAlign="center"
+				 verticalAlign="middle"/>
+		<s:Label x="167" y="195" fontSize="21" fontWeight="normal" text="Valor Parcelado em "
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="357" y="195" fontSize="21" fontWeight="bold" text="R$ "
+				 textAlign="center" verticalAlign="middle"/>
+		<mx:HRule x="593" y="133" width="154" height="11"/>
+	</s:BorderContainer>
+	<s:RadioButtonGroup id="radiogroup1" />
+	<s:BorderContainer x="23" y="286" width="785" height="336" backgroundAlpha="0.0"
+					   contentBackgroundAlpha="0.0">
+		<s:Image x="240" y="52" height="26" smooth="true" smoothingQuality="high"
+				 source="@Embed('../../imagens/botoes/mastercard_png.png')"/>
+		<s:Image x="60" y="52" width="53" height="27" smooth="true" smoothingQuality="high"
+				 source="@Embed('../../imagens/botoes/cartao-visa.png')"/>
+		<s:Image x="433" y="52" height="27" smooth="true" smoothingQuality="high"
+				 source="@Embed('../../imagens/botoes/diners_club.png')"/>
+		<s:Image x="616" y="50" smooth="true" smoothingQuality="high"
+				 source="@Embed('../../imagens/botoes/hipercard.png')"/>
+		<s:RadioButton id="hipercard" x="595" y="56" groupName="radiogroup1"/>
+		<s:RadioButton id="dinesclub" x="412" y="56" groupName="radiogroup1"/>
+		<s:RadioButton id="mastercard" x="221" y="56" groupName="radiogroup1"/>
+		<s:RadioButton id="visa" x="37" y="56" groupName="radiogroup1"/>
+		<s:Label x="297" y="10" fontSize="24" fontWeight="normal" text="Cartão de Crédito"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Label x="21" y="131" fontSize="17" text="CPF/CNPJ do Títular"/>
+		<s:Label x="21" y="98" fontSize="17" text="Número do Cartão"/>
+		<s:Label x="21" y="160" fontSize="17" text="Válidade"/>
+		<s:Label x="412" y="98" fontSize="17" text="Nome do Títular"/>
+		<s:Label x="412" y="131" fontSize="17" text="Código de Segurança"/>
+		<s:TextInput x="163" y="92" width="206"/>
+		<s:TextInput x="183" y="125" width="186"/>
+		<mx:DateField x="97" y="155" width="137" showToday="false"/>
+		<mx:VRule x="389" y="85"/>
+		<s:TextInput x="532" y="92" width="230"/>
+		<s:TextInput x="581" y="125" width="67"/>
+		<s:Label x="322" y="236" fontSize="24" fontWeight="normal" text="Boleto Bancário"
+				 textAlign="center" verticalAlign="middle"/>
+		<s:Image x="216" y="262" width="116" height="58" smooth="true" smoothingQuality="high"
+				 source="@Embed('../../imagens/botoes/boleto.png')"/>
+		<s:Label x="340" y="283" fontSize="17" text="Somente para pagamento à vista"/>
+		<s:RadioButton id="boleto" x="205" y="282" groupName="radiogroup1"/>
+		<mx:HRule x="240" y="205" width="309" height="8"/>
+	</s:BorderContainer>
+	
+	
+</mx:TitleWindow>
