@@ -36,5 +36,8 @@ package br.com.easyShop.utils
 		public var CONTATO_TELEFONE:String="Telefone";
 		public var CONTATO_FAX:String="Fax";
 		public var CONTATO_CELULAR:String="Celular";
+		
+		//Source imagens
+		public var ENDERECO_IMAGEM_PRODUTO:String = "br/com/easyShop/imagens/aplicacao/produtos/";
 	}
 }
