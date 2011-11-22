@@ -33,6 +33,8 @@
     <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaFisica.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaFisica.mxml"/>
     <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/Login/Logout.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/Login/Logout.mxml"/>
     <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/pagamento/ConfirmarCompra.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/pagamento/ConfirmarCompra.mxml"/>
+    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/pagamento/Pagamentos.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/pagamento/Pagamentos.mxml"/>
+    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/pagamento/PedidoConfirmado.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/pagamento/PedidoConfirmado.mxml"/>
   </modules>
   <buildCSSFiles/>
   <flashCatalyst validateFlashCatalystCompatibility="false"/>

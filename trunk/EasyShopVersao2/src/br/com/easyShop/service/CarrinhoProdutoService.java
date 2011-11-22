@@ -1,6 +1,10 @@
 package br.com.easyShop.service;
 
+import java.util.Arrays;
+
+import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.CarrinhoProduto;
+import br.com.easyShop.model.Cliente;
 import br.com.easyShop.persistencia.DAO.CarrinhoProdutoDAO;
 import br.com.easyShop.service.base.BaseServiceAtta;
 
@@ -16,6 +20,16 @@ public class CarrinhoProdutoService extends BaseServiceAtta
 		{
 			e.printStackTrace();
 		}
-		
+	}
+	
+	public ResultJava getCarrinhoProdutos(Cliente cliente) {
+		try
+		{
+			return new ResultJava(new CarrinhoProdutoDAO().getCarrinhoProdutos(cliente, 3));
+		} 
+		catch (Exception e) 
+		{
+			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao buscar carrinho produtos!\n" + e }));
+		}
 	}
 }

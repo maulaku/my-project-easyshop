@@ -52,36 +52,31 @@
 		<modulo:PainelModulo id="grPainelModulos" visible="true" x="240" y="186" width="945" height="579" hideEffect="{anSumir}" showEffect="{anAparecer}"/>
 		
 		<s:Image x="-126" y="-103" width="1493" height="682" smooth="true" source="@Embed('../imagens/aplicacao/fundo.png')"/>
-		<s:Image id="btnCarrinho1" x="904" y="-18" width="70" height="64" buttonMode="true" smooth="true" smoothingQuality="high" toolTip="Meu Carrinho"
+		<s:Image id="btnCarrinho" x="840" y="-14" width="70" height="64" buttonMode="true" smooth="true" smoothingQuality="high" toolTip="Meu Carrinho"
 				 source="@Embed('../imagens/aplicacao/icone_carrinho.png')" click="btnCarrinho_clickHandler(event)"/>
 		
 		<s:Image x="-64" y="-96" width="650" height="319" scaleMode="stretch" smooth="true"
 				 smoothingQuality="high" source="@Embed('../imagens/aplicacao/nomEasy.png')"/>
 		
-		<s:Image id="btnDesejo" x="1077" y="-13" width="83" height="59" buttonMode="true" smooth="true" smoothingQuality="high" toolTip="Meus Desejos"
+		<s:Image id="btnDesejo" x="1013" y="-9" width="83" height="59" buttonMode="true" smooth="true" smoothingQuality="high" toolTip="Meus Desejos"
 				 source="@Embed('../imagens/aplicacao/desejo.png')" click="btnDesejo_clickHandler(event)"/>
-		
-		<s:Image x="832" y="-18" buttonMode="true" click="btnEntrar_clickHandler(true)" smooth="true" toolTip="Entrar/Cadastrar"
-				 smoothingQuality="high" source="@Embed('../imagens/aplicacao/user3.png')"/>
 		
 		<mxml:MModulo  id="modulo" x="238" y="186" width="947" height="1286" >
 			<s:VScrollBar x="963" y="0" width="17" height="559" viewport="{modulo}" id="ScrollBar" visible="false"/>
 		</mxml:MModulo>
 		
-		<mxml:MComboBox id="cbCategorias" x="161" y="155" width="207" labelField="nome"/>
+		<mxml:MComboBox id="cbCategorias" x="161" y="152" width="207" labelField="nome"/>
 		
-		<s:Label x="91" y="151" width="65" height="31" color="#F0F2F9" fontFamily="Verdana"
+		<s:Label x="91" y="148" width="65" height="31" color="#F0F2F9" fontFamily="Verdana"
 				 fontSize="15" fontWeight="bold" text="BUSCA" textAlign="center" verticalAlign="middle"/>
-		<comboLOD:MComboLOD id="cbBusca" x="371" y="156" width="659" height="22"
+		<comboLOD:MComboLOD id="cbBusca" x="371" y="153" width="659" height="22"
 							mreLabelFunction="lfProduto" mreMinimoCaracteres="3"/>
-		<s:Button x="1033" y="154" height="25" label="Buscar" fontFamily="Verdana" fontSize="14"/>
+		<s:Button x="1033" y="151" height="25" label="Buscar" fontFamily="Verdana" fontSize="14"/>
 		
-		<mx:HBox id="menuDinamico" x="-5" y="76" width="100%" height="74" clipContent="true"
+		<mx:HBox id="menuDinamico" x="-5" y="68" width="100%" height="74" clipContent="true"
 				 horizontalAlign="center" horizontalScrollPolicy="off" verticalAlign="bottom"
 				 verticalScrollPolicy="off">
 		</mx:HBox>
-		<mxml:MBotao id="btTeste" x="641" y="3" width="149" height="31" label="Detalhes do Produto"
-					 click="btTeste_clickHandler()"/>
 		<s:Label x="371" y="1496" width="355" height="19" fontSize="15"
 				 text="Créditos sobre o Site ficaram aqui" textAlign="center" verticalAlign="middle"/>
 		
@@ -94,8 +89,11 @@
 								borderStyle="none">			
 			</flexlib:VAccordion>
 		</mx:Panel>
-		<s:Image id="btnPedido" x="999" y="-18" width="70" height="64" buttonMode="true" toolTip="Meus Pedidos"
+		<s:Image id="btnPedido" x="935" y="-14" width="70" height="64" buttonMode="true" toolTip="Meus Pedidos"
 				 click="btnPedido_clickHandler()" smooth="true" smoothingQuality="high"
 				 source="@Embed('../imagens/aplicacao/pedidos.png')"/>
+		<s:Image x="1101" y="-15" buttonMode="true"
+				 click="btnEntrar_clickHandler(true)" smooth="true" smoothingQuality="high"
+				 source="@Embed('../imagens/aplicacao/user3.png')" toolTip="Entrar/Cadastrar"/>
 	</s:Panel>
 </s:Application>

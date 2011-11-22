@@ -12,6 +12,9 @@ import br.com.easyShop.model.Usuario;
 import br.com.easyShop.telas.Login.Login;
 import br.com.easyShop.telas.Login.Logout;
 import br.com.easyShop.telas.desejos.AbaMeuDesejo;
+import br.com.easyShop.telas.pagamento.ConfirmarCompra;
+import br.com.easyShop.telas.pagamento.Pagamentos;
+import br.com.easyShop.telas.pagamento.PedidoConfirmado;
 import br.com.easyShop.telas.produtos.AbaDetalhesProduto;
 import br.com.easyShop.telas.produtos.MeuCarrinho;
 import br.com.easyShop.utils.Constantes;
@@ -38,6 +41,9 @@ private var painelLogin:Login;
 private var painelLogout:Logout;
 private var meuCarrinho:MeuCarrinho;
 private var meuDesejo:AbaMeuDesejo;
+private var painelPagamentos:Pagamentos;
+private var confirmarCompra:ConfirmarCompra;
+private var pedidoConfirmado:PedidoConfirmado;
 
 private var produtoAux:Produto;
 
@@ -62,6 +68,9 @@ public function construtor():void
 {
 	clienteGlobal = null;
 	usuarioGlobal = null;
+	btnCarrinho.visible = false;
+	btnDesejo.visible = false;
+	btnPedido.visible = false;
 	cbBusca.mreServicePesquisa = "ProdutoService.getProdutosNome";
 	MRemoteObject.get("CategoriaService.getTodasCategoriasPai", null, resultCategoria);
 	MRemoteObject.get("ProdutoService.getProdutosPromocao", null, resultProduto);
@@ -167,7 +176,7 @@ private function fakeMouseClick(event:MouseEvent):void {
 public function carregarModuloProduto(object:Object):void
 {
 	produtoAux = object as Produto;
-//	grPainelModulos.visible=false;
+	//	grPainelModulos.visible=false;
 	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf", teste);
 }
 
@@ -288,23 +297,69 @@ protected function btnCarrinho_clickHandler(event:MouseEvent):void
 	meuCarrinho = new MeuCarrinho();
 	meuCarrinho.showCloseButton=true;
 	meuCarrinho.setVisible(true);
+	meuCarrinho.addEventListener("clickadoFinalizarCarrinho", btnPagamentos_clickHandler);
+	meuCarrinho.addEventListener("clickadoContinuarComprando", continuarComprando);
 	PopUpManager.addPopUp(meuCarrinho, this, true);
 	
 	centralizarTela(meuCarrinho);
 }
 
-public static function centralizarTela(componente:UIComponent):void {
+private function btnPagamentos_clickHandler(event:Event):void
+{
+	meuCarrinho.visible = false;
+	painelPagamentos = new Pagamentos();
+	painelPagamentos.showCloseButton=true;
+	painelPagamentos.setVisible(true);
+	painelPagamentos.addEventListener("clickadoAvancar", clickadoAvancar);
+	painelPagamentos.addEventListener("clickadoVoltarMeuCarrinho", clickadoVoltarMeuCarrinho);
+	PopUpManager.addPopUp(painelPagamentos, this, true);
 	
+	centralizarTela(painelPagamentos);
+}
+
+private function clickadoAvancar(event:Event):void
+{
+	painelPagamentos.visible = false;
+	confirmarCompra = new ConfirmarCompra();
+	confirmarCompra.showCloseButton=true;
+	confirmarCompra.setVisible(true);
+	confirmarCompra.addEventListener("clickadoConfirmarCompra", clickadoConfirmarCompra);
+	confirmarCompra.addEventListener("clickadoVoltarMeuCarrinho", clickadoVoltarMeuCarrinho);
+	PopUpManager.addPopUp(confirmarCompra, this, true);
+	
+	centralizarTela(confirmarCompra);
+}
+
+private function clickadoConfirmarCompra(event:Event):void
+{
+	confirmarCompra.visible = false;
+	pedidoConfirmado = new PedidoConfirmado();
+	pedidoConfirmado.showCloseButton=true;
+	pedidoConfirmado.setVisible(true);
+	PopUpManager.addPopUp(pedidoConfirmado, this, true);
+	
+	centralizarTela(pedidoConfirmado);
+}
+
+private function clickadoVoltarMeuCarrinho(event:Event):void
+{
+	meuCarrinho.visible = true;
+	painelPagamentos.visible = false;
+	confirmarCompra.visible = false
+}
+
+private function continuarComprando(event:Event):void
+{
+	meuCarrinho.visible = false;
+	meuCarrinho = null;
+}
+
+public static function centralizarTela(componente:UIComponent):void {
 	if (componente != null) {
-		
 		var diferencaLargura:Number = componente.screen.width - componente.width;
-		
 		var diferencaAltura:Number = componente.screen.height - componente.height - 900;
-		
 		componente.x = componente.screen.x + (diferencaLargura / 2);
-		
 		componente.y = componente.screen.y + (diferencaAltura / 2);
-		
 	}
 }
 
@@ -329,6 +384,9 @@ private function lidaClickadoLogout(event:Event):void{
 	clienteGlobal = null;
 	usuarioGlobal = null;
 	painelLogout.setVisible(false);
+	btnCarrinho.visible = false;
+	btnDesejo.visible = false;
+	btnPedido.visible = false;
 }
 
 private function lidaClickadoLogin(event:Event):void{
@@ -376,6 +434,9 @@ public function verificarLogin2(result:ResultJava):void
 		if((ObjectUtil.stringCompare(senhaCliente,senhaPainel))==0){
 			painelLogin.setVisible(false);
 			usuarioGlobal = usuario;
+			btnCarrinho.visible = true;
+			btnDesejo.visible = true;
+			btnPedido.visible = true;
 		}
 		else{
 			clienteGlobal = null;
