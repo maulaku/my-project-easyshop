@@ -8,10 +8,9 @@ import br.com.easyShop.model.Cliente;
 import br.com.easyShop.model.Pessoa;
 import br.com.easyShop.model.PessoaFisica;
 import br.com.easyShop.model.Produto;
+import br.com.easyShop.model.Usuario;
 import br.com.easyShop.telas.Login;
 import br.com.easyShop.telas.desejos.AbaMeuDesejo;
-//import br.com.easyShop.telas.produtos.AbaDetalhesProduto;
-//<modulo:PainelModulo id="grPainelModulos" x="240" y="186" visible="false" showEffect="{anAparecer}" hideEffect="{anSumir}"  />
 import br.com.easyShop.telas.produtos.MeuCarrinho;
 import br.com.easyShop.utils.Constantes;
 import br.com.mresolucoes.componentes.mre.Alerta;
@@ -26,10 +25,12 @@ import mx.containers.VBox;
 import mx.controls.Alert;
 import mx.core.UIComponent;
 import mx.managers.PopUpManager;
+import mx.utils.ObjectUtil;
+
+import org.flexunit.internals.namespaces.classInternal;
 
 import spark.components.Button;
 import spark.components.Label;
-import mx.utils.ObjectUtil;
 
 private var painel:Login;
 private var meuCarrinho:MeuCarrinho;
@@ -320,15 +321,17 @@ public function verificarLogin(result:ResultJava):void
 	try		
 	{	
 		var cliente:Cliente = new Cliente();
+		var usuario:Usuario = new Usuario();
 		var senhaPainel:String;
 		var senhaCliente:String;
-		cliente = ((Cliente) (result.item));
+		cliente = ((Cliente) (result.lista[0]));
 		senhaPainel = painel.txtSenha.text;
-		senhaCliente = cliente.senha;
-		Alert.show("Comparação = " + senhaCliente + "==" + senhaCliente);
+		usuario = ((Usuario) (cliente.pessoa.usuarios.getItemAt(0)));
+		senhaCliente = usuario.senha;
+		Alert.show("Comparação = " + senhaCliente + "==" + senhaPainel);
 		if(ObjectUtil.stringCompare(senhaCliente,senhaPainel)){
 			painel.setVisible(false);
-			Alert.show("2Comparação = " + senhaCliente + "==" + senhaCliente);
+			Alert.show("2Comparação = " + senhaCliente + "==" + senhaPainel);
 			clienteGlobal = cliente;
 		}
 		else{
