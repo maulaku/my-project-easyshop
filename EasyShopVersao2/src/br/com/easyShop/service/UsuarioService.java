@@ -46,6 +46,4 @@ public class UsuarioService extends BaseServiceAtta
 			return null;
 		}
 	}
-
-	
 }
