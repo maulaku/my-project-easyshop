@@ -167,7 +167,7 @@ private function fakeMouseClick(event:MouseEvent):void {
 public function carregarModuloProduto(object:Object):void
 {
 	produtoAux = object as Produto;
-	grPainelModulos.visible=false;
+//	grPainelModulos.visible=false;
 	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf", teste);
 }
 
@@ -224,11 +224,6 @@ public function mouseOver(evt:MouseEvent):void{
 
 public function mouseOut(evt:MouseEvent):void{
 	diminuir.play([evt.currentTarget]);
-}
-
-public function lfProduto(item:Object=null, colunm:Object=null):String
-{
-	return item != null ? (item as Produto).nome : "null";
 }
 
 protected function btTeste_clickHandler():void
@@ -314,21 +309,21 @@ public static function centralizarTela(componente:UIComponent):void {
 }
 
 /* Label Function */
-//public function lfProduto(item:Object=null, colunm:Object=null):String
-//{
-//	try
-//	{
-//		if (item != null && item is Produto)
-//		{
-//			return (item as Produto).nome;					
-//		}
-//	}
-//	catch(e:Error)
-//	{
-//		Alerta.abrir("Ops, ocorreu um erro", "Easy Shop", null, null, null, ImagensUtils.INFO);
-//	}
-//	return "";
-//}
+public function lfProduto(item:Object=null, colunm:Object=null):String
+{
+	try
+	{
+		if (item != null && item is Produto)
+		{
+			return (item as Produto).nome;					
+		}
+	}
+	catch(e:Error)
+	{
+		Alerta.abrir("Ops, ocorreu um erro", "Easy Shop", null, null, null, ImagensUtils.INFO);
+	}
+	return "";
+}
 
 private function lidaClickadoLogout(event:Event):void{
 	clienteGlobal = null;
