@@ -200,6 +200,7 @@ private function inserirContatoTabela():void{
 	     var temp:Object;
 
 		 temp=new Object();
+		 temp.campo1
 		 temp.campo1=cboContato.selectedItem;
 		 temp.campo2=txtContato.text;
 

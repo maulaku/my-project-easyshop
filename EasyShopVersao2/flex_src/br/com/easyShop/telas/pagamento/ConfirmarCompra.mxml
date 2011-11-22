@@ -12,19 +12,14 @@
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	
-	<fx:Script>
-		<![CDATA[
-			import mx.managers.PopUpManager;
-			
-			
-		]]>
-	</fx:Script>
+	<fx:Script source="ConfirmarCompraScript.as"/>
+	
 	<s:Button id="btnContinuarComprando" x="124" y="452" width="248" height="38"
 			  label="Voltar para o Meu Carrinho" fontSize="14" fontWeight="bold"
-			  icon="@Embed('../../imagens/botoes/back.png')"/>
+			  icon="@Embed('../../imagens/botoes/back.png')" click="btnContinuarComprando_clickHandler(event)"/>
 	<s:Button id="btnFinalizarCompra" x="474" y="456" width="249" height="38"
 			  label="Confirmar Compra" fontSize="14" fontWeight="bold"
-			  icon="@Embed('../../imagens/botoes/money.png')"/>
+			  icon="@Embed('../../imagens/botoes/money.png')" click="btnFinalizarCompra_clickHandler(event)"/>
 	<s:RadioButtonGroup id="radiogroup1" />
 	<s:BorderContainer x="32" y="26" width="387" height="194" backgroundAlpha="0.47">
 		<s:Label x="100" y="20" fontSize="20" fontWeight="normal" text="Dados do Pagamento"

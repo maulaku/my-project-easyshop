@@ -16,12 +16,15 @@
 		<![CDATA[
 			import mx.managers.PopUpManager;
 			
-			
+			protected function btnContinuarComprando_clickHandler(event:MouseEvent):void
+			{
+				this.visible = false;
+			}
 		]]>
 	</fx:Script>
 	<s:Button id="btnContinuarComprando" x="450" y="342" width="230" height="38"
 			  label="Voltar para o Site" fontSize="14" fontWeight="bold"
-			  icon="@Embed('../../imagens/botoes/back.png')"/>
+			  icon="@Embed('../../imagens/botoes/back.png')" click="btnContinuarComprando_clickHandler(event)"/>
 	<s:RadioButtonGroup id="radiogroup1" />
 	<s:Label x="160" y="30" width="441" height="33" fontSize="27" fontWeight="bold" text="Parabéns"
 			 textAlign="center" verticalAlign="middle"/>

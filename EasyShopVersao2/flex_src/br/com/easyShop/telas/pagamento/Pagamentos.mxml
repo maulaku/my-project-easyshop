@@ -4,60 +4,55 @@
 				xmlns:s="library://ns.adobe.com/flex/spark"
 				xmlns:mx="library://ns.adobe.com/flex/mx"
 				xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
-				width="832" height="760" backgroundAlpha="1.0" backgroundColor="#F1F4F4"
+				width="852" height="694" backgroundAlpha="1.0" backgroundColor="#F1F4F4"
 				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar"
 				title="Pagamentos">
-	
+		
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	
-	<fx:Script>
-		<![CDATA[
-			import mx.managers.PopUpManager;
-			
-			
-		]]>
-	</fx:Script>
-	<s:Button id="btnContinuarComprando" x="90" y="659" width="248" height="38"
+	<fx:Script source="PagamentosScript.as"/>
+	
+	<s:Button id="btnContinuarComprando" x="103" y="608" width="248" height="38"
 			  label="Voltar para o Meu Carrinho" fontSize="14" fontWeight="bold"
-			  icon="@Embed('../../imagens/botoes/back.png')"/>
-	<s:Button id="btnFinalizarCompra" x="476" y="659" width="249" height="38"
+			  icon="@Embed('../../imagens/botoes/back.png')" click="btnContinuarComprando_clickHandler(event)"/>
+	<s:Button id="btnFinalizarCompra" x="479" y="608" width="249" height="38"
 			  label="  Avançar" fontSize="14" fontWeight="bold"
-			  icon="@Embed('../../imagens/botoes/next.png')"/>
-	<s:BorderContainer x="32" y="26" width="763" height="231" backgroundAlpha="0.47">
-		<s:Label x="250" y="17" fontSize="24" fontWeight="normal" text="Dados do Pagamento"
+			  icon="@Embed('../../imagens/botoes/next.png')" click="btnFinalizarCompra_clickHandler(event)"/>
+	<s:BorderContainer x="44" y="16" width="763" height="231" backgroundAlpha="0.47">
+		<s:Label x="250" y="6" fontSize="24" fontWeight="normal" text="Dados do Pagamento"
 				 textAlign="center" verticalAlign="middle"/>
-		<s:Label x="25" y="153" fontSize="21" fontWeight="normal" text="Valor Total à Pagar:"
+		<s:Label x="25" y="132" fontSize="21" fontWeight="normal" text="Valor Total à Pagar:"
 				 textAlign="center" verticalAlign="middle"/>
-		<s:Label x="25" y="102" fontSize="21" fontWeight="normal" text="Valor do Frete:"
+		<s:Label x="25" y="81" fontSize="21" fontWeight="normal" text="Valor do Frete:"
 				 textAlign="center" verticalAlign="middle"/>
-		<s:Label x="25" y="63" fontSize="21" fontWeight="normal" text="Valor Total dos Produtos:"
+		<s:Label x="25" y="42" fontSize="21" fontWeight="normal" text="Valor Total dos Produtos:"
 				 textAlign="center" verticalAlign="middle"/>
-		<s:Label id="valorTotalProdutos" x="602" y="63" fontSize="21" fontWeight="bold" text="R$ "
+		<s:Label id="valorTotalProdutos" x="602" y="42" fontSize="21" fontWeight="bold" text="R$ "
 				 textAlign="left" verticalAlign="middle"/>
-		<s:Label id="valorFrete" x="602" y="102" fontSize="21" fontWeight="bold" text="R$ "
+		<s:Label id="valorFrete" x="602" y="81" fontSize="21" fontWeight="bold" text="R$ "
 				 textAlign="left" verticalAlign="middle"/>
-		<s:Label id="valorTotalPagar" x="602" y="153" fontSize="21" fontWeight="bold" text="R$ "
+		<s:Label id="valorTotalPagar" x="602" y="132" fontSize="21" fontWeight="bold" text="R$ "
 				 textAlign="left" verticalAlign="middle"/>
-		<s:Label x="265" y="63" fontSize="21" fontWeight="normal" text="....................................................."
+		<s:Label x="265" y="42" fontSize="21" fontWeight="normal" text="....................................................."
 				 textAlign="center" verticalAlign="middle"/>
-		<s:Label x="265" y="63" fontSize="21" fontWeight="normal" text="....................................................."
+		<s:Label x="265" y="42" fontSize="21" fontWeight="normal" text="....................................................."
 				 textAlign="center" verticalAlign="middle"/>
-		<s:Label x="171" y="102" width="412" fontSize="21" fontWeight="normal"
+		<s:Label x="171" y="81" width="412" fontSize="21" fontWeight="normal"
 				 text="...................................................................." textAlign="center"
 				 verticalAlign="middle"/>
-		<s:Label x="211" y="153" width="372" fontSize="21" fontWeight="normal"
+		<s:Label x="211" y="132" width="372" fontSize="21" fontWeight="normal"
 				 text="............................................................." textAlign="center"
 				 verticalAlign="middle"/>
-		<s:Label x="167" y="195" fontSize="21" fontWeight="normal" text="Valor do Parcelado: "
+		<s:Label x="167" y="174" fontSize="21" fontWeight="normal" text="Valor do Parcelado: "
 				 textAlign="center" verticalAlign="middle"/>
-		<s:Label id="valorDoParcelamento" x="357" y="195" fontSize="21" fontWeight="bold" text="R$ "
+		<s:Label id="valorDoParcelamento" x="357" y="174" fontSize="21" fontWeight="bold" text="R$ "
 				 textAlign="center" verticalAlign="middle"/>
-		<mx:HRule x="36" y="133" width="687" height="11"/>
+		<mx:HRule x="36" y="112" width="687" height="11"/>
 	</s:BorderContainer>
 	<s:RadioButtonGroup id="radiogroup1" />
-	<s:BorderContainer x="23" y="286" width="785" height="336" backgroundAlpha="0.0"
+	<s:BorderContainer x="33" y="255" width="785" height="336" backgroundAlpha="0.0"
 					   contentBackgroundAlpha="0.0">
 		<s:Image x="240" y="52" height="26" smooth="true" smoothingQuality="high"
 				 source="@Embed('../../imagens/botoes/mastercard_png.png')"/>
