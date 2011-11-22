@@ -11,8 +11,9 @@ public class ClienteDAO extends BaseDAOAtta{
 	    	QuerySQL query = new QuerySQL();
 			
 			 query.add("SELECT *");
-			 query.add(" FROM Cliente");
-			 query.add(" WHERE login = ?", nome);
+			 query.add(" FROM cliente,usuario");
+			 query.add(" WHERE usuario.login = ?", nome);
+			 query.add(" AND usuario.fkpessoa = cliente.fkpessoa");
 			 
 			 return obtemUnico(Cliente.class, query, profundidade);
 	    }

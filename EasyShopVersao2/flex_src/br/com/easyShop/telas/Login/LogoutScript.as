@@ -1,12 +1,17 @@
-import br.com.easyShop.telas.Login;
+import br.com.easyShop.aplicacao.MainEasyShop;
+import br.com.easyShop.telas.Login.Login;
 
 import flash.events.Event;
 
 import mx.managers.PopUpManager;
 
+public function construtor():void
+{
+	bemVindo.text = bemVindo.text + MainEasyShop.getUsurioGlobal().login;
+}
+
 protected function btnEntrar_clickHandler(centrado:Boolean):void
 {
-	// TODO Auto-generated method stub
 	var painel:Login = new Login();
 	painel.showCloseButton=true;
 	PopUpManager.addPopUp(painel, this, true);
@@ -19,8 +24,8 @@ protected function clickadoPessoaFisica():void
 	this.dispatchEvent(new Event("clickadoPessoaFisica"));			
 }
 
-private function clickadoLogin():void {
-	this.dispatchEvent(new Event("clickadoLogin"));
+private function clickadoLogout():void {
+	this.dispatchEvent(new Event("clickadoLogout"));
 }
 
 protected function clickadoPessoaJuridica():void

@@ -29,4 +29,15 @@ public class UsuarioDAO extends BaseDAOAtta
 		 
 		 return obtemUnico(Usuario.class, query, profundidade);
     }
+    
+    public Usuario getUsuarioId(long id, int profundidade) throws Exception
+    {
+    	QuerySQL query = new QuerySQL();
+		
+		 query.add("SELECT *");
+		 query.add(" FROM Usuario");
+		 query.add(" WHERE fkpessoa = ?", id);
+		 
+		 return obtemUnico(Usuario.class, query, profundidade);
+    }
 }

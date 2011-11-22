@@ -9,7 +9,8 @@ import br.com.easyShop.model.Pessoa;
 import br.com.easyShop.model.PessoaFisica;
 import br.com.easyShop.model.Produto;
 import br.com.easyShop.model.Usuario;
-import br.com.easyShop.telas.Login;
+import br.com.easyShop.telas.Login.Login;
+import br.com.easyShop.telas.Login.Logout;
 import br.com.easyShop.telas.desejos.AbaMeuDesejo;
 import br.com.easyShop.telas.produtos.MeuCarrinho;
 import br.com.easyShop.utils.Constantes;
@@ -32,11 +33,14 @@ import org.flexunit.internals.namespaces.classInternal;
 import spark.components.Button;
 import spark.components.Label;
 
-private var painel:Login;
+private var painelLogin:Login;
+private var painelLogout:Logout;
 private var meuCarrinho:MeuCarrinho;
 private var meuDesejo:AbaMeuDesejo;
 
 private static var clienteGlobal:Cliente; //Cliente Global da Aplicação. Ele é setado pelo Login.
+private static var usuarioGlobal:Usuario; //Usuario Global da Aplicação. Ele é setado pelo Login.
+
 /**
  * Inicializa os componentes e objetos
  */ 
@@ -45,8 +49,14 @@ public static function getClienteGlobal():Cliente{
 	return clienteGlobal;
 }
 
+public static function getUsurioGlobal():Usuario{
+	return usuarioGlobal;
+}
+
 public function construtor():void
 {
+	clienteGlobal = null;
+	usuarioGlobal = null;
 	cbBusca.mreServicePesquisa = "ProdutoService.getProdutosNome";
 	MRemoteObject.get("CategoriaService.getTodasCategoriasPai", null, resultCategoria);
 //	MRemoteObject.get("ProdutoService.getProdutosPromocao", null, resultProduto);
@@ -246,15 +256,28 @@ private function enviaCliente():Cliente{
 
 protected function btnEntrar_clickHandler(centrado:Boolean):void
 {
-	painel = new Login();
-	painel.showCloseButton=true;
-	painel.setVisible(true);
-	painel.addEventListener("clickadoLogin", lidaClickadoLogin);
-	painel.addEventListener("clickadoPessoaFisica", lidaClickadoPessoaFisica);
-	painel.addEventListener("clickadoPessoaJuridica", lidaClickadoPessoaJuridica);
-	PopUpManager.addPopUp(painel, this, true);
-	
-	centralizarTela(painel);
+	if(clienteGlobal==null){
+		painelLogin = new Login();
+		painelLogin.showCloseButton=true;
+		painelLogin.setVisible(true);
+		painelLogin.addEventListener("clickadoLogin", lidaClickadoLogin);
+		painelLogin.addEventListener("clickadoPessoaFisica", lidaClickadoPessoaFisica);
+		painelLogin.addEventListener("clickadoPessoaJuridica", lidaClickadoPessoaJuridica);
+		PopUpManager.addPopUp(painelLogin, this, true);
+		
+		centralizarTela(painelLogin);
+	}
+	else{
+		painelLogout = new Logout();
+		painelLogout.showCloseButton=true;
+		painelLogout.setVisible(true);
+		painelLogout.addEventListener("clickadoLogout", lidaClickadoLogout);
+		painelLogout.addEventListener("clickadoPessoaFisica", lidaClickadoPessoaFisica);
+		painelLogout.addEventListener("clickadoPessoaJuridica", lidaClickadoPessoaJuridica);
+		PopUpManager.addPopUp(painelLogout, this, true);
+		
+		centralizarTela(painelLogout);
+	}
 }
 
 protected function btnCarrinho_clickHandler(event:MouseEvent):void
@@ -299,20 +322,26 @@ public static function centralizarTela(componente:UIComponent):void {
 //	return "";
 //}
 
+private function lidaClickadoLogout(event:Event):void{
+	clienteGlobal = null;
+	usuarioGlobal = null;
+	painelLogout.setVisible(false);
+}
+
 private function lidaClickadoLogin(event:Event):void{
-	var arr:Array = new Array();
-	arr.push(event.currentTarget.txtUsuario.text);
-	MRemoteObject.get("ClienteService.getCliente", arr, verificarLogin);
+	MRemoteObject.get("ClienteService.getCliente",[event.currentTarget.txtUsuario.text], verificarLogin);
 }
 
 private function lidaClickadoPessoaFisica(event:Event):void{
-	painel.setVisible(false);
+	painelLogin.setVisible(false);
+	painelLogout.setVisible(false);
 	ScrollBar.setVisible(true);
 	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaFisica.swf");
 }
 
 private function lidaClickadoPessoaJuridica(event:Event):void{
-	painel.setVisible(false);
+	painelLogin.setVisible(false);
+	painelLogout.setVisible(false);
 	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaJuridica.swf");
 }
 
@@ -321,30 +350,41 @@ public function verificarLogin(result:ResultJava):void
 	try		
 	{	
 		var cliente:Cliente = new Cliente();
+		cliente = ((Cliente) (result.item));
+		MRemoteObject.get("UsuarioService.getUsuarioId",[cliente.pessoa.pkPessoa], verificarLogin2);
+		clienteGlobal = cliente;
+	} 
+	catch(e:Error)
+	{ 
+		Alerta.abrir("Cliente ou Senha inválida", "EasyShop", null, null, null, ImagensUtils.ATENCAO);
+	}	
+}
+
+public function verificarLogin2(result:ResultJava):void
+{
+	try		
+	{	
 		var usuario:Usuario = new Usuario();
 		var senhaPainel:String;
 		var senhaCliente:String;
-		cliente = ((Cliente) (result.lista[0]));
-		senhaPainel = painel.txtSenha.text;
-		usuario = ((Usuario) (cliente.pessoa.usuarios.getItemAt(0)));
+		senhaPainel = painelLogin.txtSenha.text;
+		usuario = ((Usuario) (result.item));
 		senhaCliente = usuario.senha;
-		Alert.show("Comparação = " + senhaCliente + "==" + senhaPainel);
-		if(ObjectUtil.stringCompare(senhaCliente,senhaPainel)){
-			painel.setVisible(false);
-			Alert.show("2Comparação = " + senhaCliente + "==" + senhaPainel);
-			clienteGlobal = cliente;
+		if((ObjectUtil.stringCompare(senhaCliente,senhaPainel))==0){
+			painelLogin.setVisible(false);
+			usuarioGlobal = usuario;
 		}
 		else{
-			//Alert.show("O botão Login do painel dbConf foi clickado!!\nO texto escrito nos campos\n user: "+event.currentTarget.txtUsuario.text+"\npass: "+event.currentTarget.txtSenha.text+"\n\nCerto ??");
-			Alert.show("Cliente ou Senha incorreta!");
+			clienteGlobal = null;
+			Alerta.abrir("Cliente ou Senha inválida", "EasyShop", null, null, null, ImagensUtils.ATENCAO);
 		}
 	} 
 	catch(e:Error)
 	{ 
-		Alerta.abrir("Ops, Ocorreu um erro ao carregar clientes", "EasyShop", null, null, null, ImagensUtils.INFO);
+		clienteGlobal = null;
+		Alerta.abrir("Cliente ou Senha inválida", "EasyShop", null, null, null, ImagensUtils.ATENCAO);
 	}	
 }
-
 
 protected function btnDesejo_clickHandler(event:MouseEvent):void
 {
