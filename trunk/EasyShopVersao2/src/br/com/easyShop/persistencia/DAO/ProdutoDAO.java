@@ -38,7 +38,7 @@ public class ProdutoDAO extends BaseDAOAtta {
 
 		query.add("SELECT *");
 		query.add(" FROM Produto");
-		query.add(" WHERE nome like ?", "%" + nome + "%");
+		query.add(" WHERE UPPER(nome) like UPPER(?)", "%" + nome + "%");
 
 		return obtem(Produto.class, query, profundidade);
 	}

@@ -6,51 +6,39 @@
 		  xmlns:tabela="br.com.mresolucoes.renders.tabela.*"
 		  xmlns:componentes="br.com.easyShop.componentes.*"
 		  xmlns:comboLOD="br.com.easyShop.componentes.comboLOD.*"
-		  width="947" height="1160" backgroundColor="#FFFFFF" creationComplete="construtor(5)">
+		  width="947" height="1160" backgroundColor="#FFFFFF" creationComplete="construtor()">
 	
 	<fx:Declarations>
-		<s:RadioButtonGroup id="radiogroup1"/>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	<fx:Script source="AbaDetalhesProduto.as" />
-	<s:Label id="nomeProduto" x="9" y="10" width="941" height="57" fontFamily="Arial" fontSize="23"
-			 fontWeight="bold" textAlign="center" verticalAlign="middle"/>
-	<s:Image id="imagem" x="53" y="70" width="271" height="290" smooth="true" smoothingQuality="high"
-			 source="@Embed('../../../../../../Imagens/ImagensProduto/produto4.jpg')"/>
-	<s:Label x="46" y="656" width="113" height="27" fontSize="16" fontWeight="bold" text="Caracteristica"
-			 textAlign="center" verticalAlign="middle"/>
+	<fx:Script source="AbaDetalhesProdutoScript.as" />
+	<s:Label id="lbNomeProduto" x="9" y="10" width="941" height="57" fontFamily="Arial" fontSize="23" fontWeight="bold" textAlign="center" verticalAlign="middle"/>
+	<s:Image id="imagemProduto" x="53" y="70" width="283" height="317" smooth="true" smoothingQuality="high"/>
+	<s:Label x="46" y="656" width="123" height="27" fontSize="16" fontWeight="bold" text="Características:" textAlign="center" verticalAlign="middle"/>
 	<mx:HRule x="167" y="631" width="705" height="18"/>
 	<s:BorderContainer x="344" y="71" width="525" height="316">
-		<s:Label id="preco" x="211" y="22" height="28" color="#FC0C0C" fontFamily="Arial"
-				 fontSize="21" fontWeight="bold" textAlign="center" verticalAlign="middle"/>
+		<s:Label id="lbPreco" x="211" y="22" width="237" height="28" color="#FC0C0C" fontFamily="Arial" fontSize="21" fontWeight="bold" textAlign="center" verticalAlign="middle"/>
 		<mx:HRule x="86" y="71" width="351" height="3"/>
-		<s:Label x="213" y="129" height="32" fontSize="16" text="Valor da Parcela"
+		<s:Label x="211" y="129" height="32" fontSize="16" text="Valor da Parcela:"
 				 textAlign="center" verticalAlign="middle"/>
-		<mxml:MComboBox id="cboParcelamento" x="332" y="131" width="183" fontSize="16"/>
-		<s:Label id="boletoValor" x="312" y="169" height="28" fontFamily="Arial" fontSize="21"
-				 fontWeight="bold" textAlign="center" verticalAlign="middle"/>
-		<s:Button id="btnAdicionarAoCarrinho" x="136" y="243" width="264" height="48"
-				  label="Adicionar ao Carrinho" fontSize="14" fontWeight="bold"
-				  icon="@Embed('../../imagens/botoes/card_add.png')" click="btnAdicionarAoCarrinho_clickHandler(event)"/>
-		<s:Label x="123" y="21" height="32" fontSize="16" text="Por apenas:"
-				 textAlign="center" verticalAlign="middle"/>
-		<s:Label x="177" y="92" height="32" fontSize="16" text="Forma de Pagamento:"
-				 textAlign="center" verticalAlign="middle"/>
-		<s:Label x="213" y="169" height="32" fontSize="16" text="Valor à Vista"
-				 textAlign="center" verticalAlign="middle"/>
-		<s:RadioButton id="cartaoDeCredito" x="10" y="131" label="Cartão de Crédito/Débito:"
-					   fontFamily="Arial" fontSize="16" groupName="radiogroup1"/>
-		<s:RadioButton id="boletoBancario" x="10" y="158" height="47" label="Boleto Bancário:"
-					   fontFamily="Arial" fontSize="16" groupName="radiogroup1"/>
+		<mxml:MComboBox id="cbParcelamento" x="332" y="131" width="183" fontSize="16"/>
+		<s:Label id="lbValorBoleto" x="332" y="169" width="181" height="28" fontFamily="Arial" fontSize="21" fontWeight="bold" textAlign="center" verticalAlign="middle"/>
+		<mxml:MBotao id="btAdicionarCarrinho" x="290" y="256" width="223" height="48" label="Adicionar ao Carrinho" fontSize="14" fontWeight="bold" icon="@Embed('../../imagens/botoes/card_add.png')" mreClick="escutaBotoes"/>
+		<s:Label x="123" y="21" height="32" fontSize="16" text="Por apenas:" textAlign="center" verticalAlign="middle"/>
+		<s:Label x="177" y="92" height="32" fontSize="16" text="Forma de Pagamento:" textAlign="center" verticalAlign="middle"/>
+		<s:Label x="236" y="169" height="32" fontSize="16" text="Valor à Vista:" textAlign="center" verticalAlign="middle"/>
+		<s:RadioButton id="rbCartaoCredito" x="10" y="131" label="Cartão de Crédito:" fontFamily="Arial" fontSize="16"/>
+		<s:RadioButton id="rbBoletoBancario" x="10" y="158" height="47" label="Boleto Bancário:" fontFamily="Arial" fontSize="16"/>
 		<mx:HRule x="86" y="214" width="351" height="3"/>
+		<s:Button id="btContinuarComprando" x="10" y="256" width="210" height="48" label="Continuar Comprando" fontSize="14" fontWeight="bold" icon="@Embed('../../imagens/botoes/back.png')"/>
 	</s:BorderContainer>
-	<s:Label x="36" y="400" width="101" height="27" fontSize="16" fontWeight="bold" text="Descrição"
-			 textAlign="center" verticalAlign="middle"/>
+	<s:Label x="36" y="400" width="101" height="27" fontSize="16" fontWeight="bold" text="Descrição:" textAlign="center" verticalAlign="middle"/>
 	<mx:HRule x="138" y="405" width="745" height="18"/>
-	<s:Label x="43" y="909" width="185" height="27" fontSize="16" fontWeight="bold" text="Especificação Técnica"
-			 textAlign="center" verticalAlign="middle"/>
+	<s:Label x="43" y="909" width="195" height="27" fontSize="16" fontWeight="bold" text="Especificações Técnicas:" textAlign="center" verticalAlign="middle"/>
 	<mx:HRule x="236" y="886" width="636" height="18"/>
-	<s:TextArea id="descricao" x="54" y="434" width="829" height="214"/>
-	<s:TextArea id="caracteristica" x="53" y="686" width="829" height="214"/>
-	<s:TextArea id="especificacaoTecnica" x="53" y="941" width="829" height="214"/>
+	<s:TextArea id="ctDescricao" x="54" y="434" width="829" height="214" enabled="false"/>
+	<s:TextArea id="ctCaracteristicas" x="54" y="682" width="829" height="214" enabled="false"/>
+	<mx:HRule x="178" y="659" width="704" height="18"/>
+	<mx:HRule x="241" y="911" width="642" height="18"/>
+	<s:TextArea id="ctEspecificacaoTecnica" x="54" y="937" width="829" height="214" enabled="false"/>
 </s:Module>

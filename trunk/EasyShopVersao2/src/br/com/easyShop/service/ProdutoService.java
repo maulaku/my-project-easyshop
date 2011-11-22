@@ -54,11 +54,14 @@ public class ProdutoService extends BaseServiceAtta {
 	 * @return lista de produtos
 	 */
 	public ResultJava getProdutosNome(String nome) {
-		try {
+		try 
+		{
 			return new ResultJava(new ProdutoDAO().getProdutosNome(nome, -1));
-		} catch (Exception e) {
-			return new ResultJava(false, Arrays
-					.asList(new String[] { "Erro ao buscar produtos" }));
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+			return new ResultJava(false);
 		}
 	}
 	

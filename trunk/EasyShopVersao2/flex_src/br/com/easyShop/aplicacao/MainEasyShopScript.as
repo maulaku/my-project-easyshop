@@ -12,6 +12,7 @@ import br.com.easyShop.model.Usuario;
 import br.com.easyShop.telas.Login.Login;
 import br.com.easyShop.telas.Login.Logout;
 import br.com.easyShop.telas.desejos.AbaMeuDesejo;
+import br.com.easyShop.telas.produtos.AbaDetalhesProduto;
 import br.com.easyShop.telas.produtos.MeuCarrinho;
 import br.com.easyShop.utils.Constantes;
 import br.com.mresolucoes.componentes.mre.Alerta;
@@ -38,6 +39,8 @@ private var painelLogout:Logout;
 private var meuCarrinho:MeuCarrinho;
 private var meuDesejo:AbaMeuDesejo;
 
+private var produtoAux:Produto;
+
 private static var clienteGlobal:Cliente; //Cliente Global da Aplicação. Ele é setado pelo Login.
 private static var usuarioGlobal:Usuario; //Usuario Global da Aplicação. Ele é setado pelo Login.
 
@@ -45,11 +48,13 @@ private static var usuarioGlobal:Usuario; //Usuario Global da Aplicação. Ele �
  * Inicializa os componentes e objetos
  */ 
 
-public static function getClienteGlobal():Cliente{
+public static function getClienteGlobal():Cliente
+{
 	return clienteGlobal;
 }
 
-public static function getUsurioGlobal():Usuario{
+public static function getUsurioGlobal():Usuario
+{
 	return usuarioGlobal;
 }
 
@@ -59,44 +64,45 @@ public function construtor():void
 	usuarioGlobal = null;
 	cbBusca.mreServicePesquisa = "ProdutoService.getProdutosNome";
 	MRemoteObject.get("CategoriaService.getTodasCategoriasPai", null, resultCategoria);
-//	MRemoteObject.get("ProdutoService.getProdutosPromocao", null, resultProduto);
+	MRemoteObject.get("ProdutoService.getProdutosPromocao", null, resultProduto);
 }
 
-//public function resultProduto(result:ResultJava):void
-//{
-//	try		
-//	{		
-//		if(result != null)
-//		{							
-//			var produto:Produto = new Produto();
-//			
-//			for(var i:int=0;i<result.lista.length;i++)
-//			{
-//				produto = result.lista.getItemAt(i) as Produto;  
-//				var item:ModuloItem = new ModuloItem();
-//				
-//				item.nome = produto.nome;
-//				item.preco = NumberUtil.toString(produto.preco, 2);
-//				item.funcaoBotao = carregarModuloProduto;
-//				item.produto = produto;
-//				item.imagemSource = Constantes.instance.ENDERECO_IMAGEM_PRODUTO+"1.png";
-//				
-//				grPainelModulos.addModulo(item);
-//			}
-//			grPainelModulos.visible = true;
-//		}
-//		else
-//		{ 
-//			Alerta.abrir(result.lista.length > 0 ? result.lista.getItemAt(0) as String : "Ops, Erro ao carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
-//		}
-//		
-//	} 
-//	catch(e:Error)
-//	{ 
-//		Alerta.abrir("Ops, Ocorreu um erro ao carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
-//	}
-//	
-//}
+/* Listerners Java */
+public function resultProduto(result:ResultJava):void
+{
+	try		
+	{		
+		if(result != null)
+		{							
+			var produto:Produto = new Produto();
+			
+			for(var i:int=0;i<result.lista.length;i++)
+			{
+				produto = result.lista.getItemAt(i) as Produto;  
+				var item:ModuloItem = new ModuloItem();
+				
+				item.nome = produto.nome;
+				item.preco = NumberUtil.toString(produto.preco, 2);
+				item.funcaoBotao = carregarModuloProduto;
+				item.produto = produto;
+				item.imagemSource = Constantes.instance.ENDERECO_IMAGEM_PRODUTO+"1.png";
+				
+				grPainelModulos.addModulo(item);
+			}
+			grPainelModulos.visible = true;
+		}
+		else
+		{ 
+			Alerta.abrir(result.lista.length > 0 ? result.lista.getItemAt(0) as String : "Ops, Erro ao carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
+		}
+		
+	} 
+	catch(e:Error)
+	{ 
+		Alerta.abrir("Ops, Ocorreu um erro ao carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
+	}
+	
+}
 
 public function resultCategoria(result:ResultJava):void
 {
@@ -158,27 +164,29 @@ private function fakeMouseClick(event:MouseEvent):void {
 }
 
 /* Listeners Modulos */
-//public function carregarModuloProduto(object:Object):void
-//{
-//	produtoAux = object as Produto;
-//	grPainelModulos.visible=false;
-//	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf", teste);
-//}
-//
-//
-//public function teste(mod:MModulo=null):void
-//{
-//	for (var i:int=0; i<mod.numChildren; i++)
-//	{
-//		if (mod.getChildAt(i) is AbaDetalhesProduto)
-//		{
-//			//			(mod.getChildAt(i) as AbaDetalhesProduto).carregarProduto(produtoAux);	
-//			
-//			//painel navegação
-//			//passar a chamada pra dentro do componente
-//		}
-//	}
-//}
+public function carregarModuloProduto(object:Object):void
+{
+	produtoAux = object as Produto;
+	grPainelModulos.visible=false;
+	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf", teste);
+}
+
+
+public function teste(mod:MModulo=null):void
+{
+	for (var i:int=0; i<mod.numChildren; i++)
+	{
+		if (mod.getChildAt(i) is AbaDetalhesProduto)
+		{
+			var result:ResultJava = new ResultJava();
+			result.item = produtoAux;
+			(mod.getChildAt(i) as AbaDetalhesProduto).carregarProduto(result);	
+			
+			//painel navegação
+			//passar a chamada pra dentro do componente
+		}
+	}
+}
 
 public function resultSubCategoria(result:ResultJava):void
 {
