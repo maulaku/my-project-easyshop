@@ -25,7 +25,6 @@ public class ProdutoDAO extends BaseDAOAtta {
 
 	/**
 	 * Buscas os produtos atraés do nome
-	 *
 	 * @author Jean
 	 * @param nome
 	 * @param profundidade

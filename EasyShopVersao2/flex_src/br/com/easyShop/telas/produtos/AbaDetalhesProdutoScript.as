@@ -6,6 +6,7 @@ import br.com.easyShop.model.Carrinho;
 import br.com.easyShop.model.CarrinhoProduto;
 import br.com.easyShop.model.Cliente;
 import br.com.easyShop.model.Produto;
+import br.com.easyShop.utils.Constantes;
 import br.com.mresolucoes.componentes.mre.Alerta;
 import br.com.mresolucoes.componentes.mre.MBotao;
 import br.com.mresolucoes.imagens.ImagensUtils;
@@ -29,7 +30,7 @@ public function construtor():void
 {
 //	var arr:Array = new Array();
 //	arr.push(4); //Mudar no produto Service!!!!!!!!!!!!!!!!!!!
-//	MRemoteObject.get("ProdutoService.getProdutosId", arr, preencherDetalhesDoProduto);
+	MRemoteObject.get("ProdutoService.getProdutosId", null, carregarProduto);
 	novo();
 }
 
@@ -55,7 +56,7 @@ public function carregarProduto(result:ResultJava):void
 			ctCaracteristicas.text = produto.caracteristicas;
 			ctEspecificacaoTecnica.text = produto.descricao;
 			lbPreco.text = "R$: " + NumberUtil.toString(produto.preco, 2);
-//			imagemProduto.source = produto.
+			imagemProduto.source = Constantes.instance.ENDERECO_IMAGEM_PRODUTO+"1.png";
 			
 //			var parcelamentoString:String;
 //			var arr:ArrayCollection = new ArrayCollection();
