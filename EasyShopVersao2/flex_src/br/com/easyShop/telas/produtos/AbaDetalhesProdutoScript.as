@@ -80,23 +80,33 @@ public function adicionarCarrinho():void
 {
 	var carrinho:Carrinho = new Carrinho();
 	var carrinhoProduto:CarrinhoProduto = new CarrinhoProduto();
-	var parametrosCarrinho:Array = new Array();
-	var parametrosCarrinhoProduto:Array = new Array();
 	
 	carrinho.cliente = ((Cliente) (MainEasyShop.getClienteGlobal()));
-	parametrosCarrinho.push(carrinho);
-	MRemoteObject.gets("CarrinhoService.inserir", parametrosCarrinho);
 	
-	carrinho.pkCarrinho = 1;
 	carrinhoProduto.carrinho = carrinho;
 	carrinhoProduto.produto = produto;
 	carrinhoProduto.quantidade = 1;
 	
-	parametrosCarrinhoProduto.push(carrinhoProduto);
-	MRemoteObject.gets("CarrinhoProdutoService.inserir", parametrosCarrinhoProduto);
-	
-	Alert.show("Produto inserido com sucesso!");
-	
+	MRemoteObject.get("CarrinhoProdutoService.inserirCarrinho",[carrinhoProduto],resultado);	
+}
+
+public function resultado(result:ResultJava):void
+{
+	try		
+	{		
+		if(result.item != null && (result.item as Boolean)==true)
+		{			
+			Alerta.abrir("Produto inserido com sucesso!", "EasyShop", null, null, null, ImagensUtils.FELIZ);
+		}
+		else
+		{ 
+			Alerta.abrir(result.lista.length > 0 ? result.lista.getItemAt(0) as String : "Ops, Erro ao enviar para o carrinho", "EasyShop", null, null, null, ImagensUtils.INFO);
+		}
+	} 
+	catch(e2:Error)
+	{ 
+		Alerta.abrir("Ops, Ocorreu um erro ao salvar no carrinho", "EasyShop", null, null, null, ImagensUtils.INFO);
+	}	
 }
 
 /*Listerners Componentes */

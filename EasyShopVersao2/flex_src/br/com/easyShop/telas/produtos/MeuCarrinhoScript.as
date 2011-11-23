@@ -23,8 +23,8 @@ public function resultCarrinho(result:ResultJava):void
 {
 	try		
 	{		
-		if(result != null)
-		{
+//		if(result != null)
+//		{
 			var i:int;
 			var carrinhoProduto:CarrinhoProduto;
 			var temp:Object;
@@ -42,18 +42,17 @@ public function resultCarrinho(result:ResultJava):void
 				
 				dados.addItem(temp);
 			}
-		}
-		else
-		{ 
-			Alerta.abrir(result.lista.length > 0 ? result.lista.getItemAt(0) as String : "Ops, Erro ao carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
-		}
+//		}
+//		else
+//		{ 
+//			Alerta.abrir(result.lista.length > 0 ? result.lista.getItemAt(0) as String : "Ops, Erro ao carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
+//		}
 		
 	} 
 	catch(e:Error)
 	{ 
 		Alerta.abrir("Ops, Ocorreu um erro ao carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
 	}
-	
 }
 
 protected function btnFinalizarCarrinho_clickHandler(event:MouseEvent):void

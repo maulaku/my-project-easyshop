@@ -217,7 +217,7 @@ public class CadastroDeProdutos extends JFrame {
 					File imagem_file = new File(caminhoImagem);
 					BufferedImage imagem_buffered = null;				
 					imagem_buffered = ImageIO.read( imagem_file );					
-					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensProduto/produto"+nextCodigo()+".jpg"));
+					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensProduto/"+nextCodigo()+".jpg"));
 				}
 				catch (Exception e2) {
 					
@@ -279,7 +279,7 @@ public class CadastroDeProdutos extends JFrame {
 					lblImagem.setIcon(new ImageIcon("Imagens/ImagensProduto/CadastroDeProduto.jpg"));
 					caminhoImagem = fc.getSelectedFile().toString();
 				} catch (IOException e1) {
-					JOptionPane.showMessageDialog(null, "Arquivo selecionado n�o � uma imagem!");
+					JOptionPane.showMessageDialog(null, "Arquivo selecionado não é uma imagem!");
 				}
 				//*********************************************************************//
 

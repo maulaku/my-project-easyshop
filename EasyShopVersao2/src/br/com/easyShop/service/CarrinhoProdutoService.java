@@ -22,6 +22,20 @@ public class CarrinhoProdutoService extends BaseServiceAtta
 		}
 	}
 	
+	public ResultJava inserirCarrinho(CarrinhoProduto carrinhoProduto) {
+		try
+		{
+			CarrinhoService carrinhoService = new CarrinhoService();
+			carrinhoService.inserir(carrinhoProduto.getCarrinho());
+			
+			return new ResultJava(new CarrinhoProdutoDAO().salvar(carrinhoProduto));
+		} 
+		catch (Exception e) 
+		{
+			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao enviar carrinho produtos!\n" + e }));
+		}
+	}
+	
 	public ResultJava getCarrinhoProdutos(Cliente cliente) {
 		try
 		{
