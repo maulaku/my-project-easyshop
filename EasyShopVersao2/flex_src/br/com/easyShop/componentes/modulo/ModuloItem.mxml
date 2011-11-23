@@ -23,7 +23,7 @@
 			
 			public function escutaBotoes(botao:MBotao):void
 			{
-				if (_funcaoBotao != null) 
+				if (botao == btEspiar && _funcaoBotao != null) 
 				{
 					_funcaoBotao(_produto);
 				}

@@ -49,8 +49,7 @@
 	
 	<s:Panel id="panelPrincipal" x="2" y="1" width="1273" height="1565">
 		
-		<modulo:PainelModulo id="grPainelModulos" visible="true" x="240" y="186" width="945" height="579" hideEffect="{anSumir}" showEffect="{anAparecer}"/>
-		
+				
 		<s:Image x="-126" y="-103" width="1493" height="682" smooth="true" source="@Embed('../imagens/aplicacao/fundo.png')"/>
 		<s:Image id="btnCarrinho" x="840" y="-14" width="70" height="64" buttonMode="true" smooth="true" smoothingQuality="high" toolTip="Meu Carrinho"
 				 source="@Embed('../imagens/aplicacao/icone_carrinho.png')" click="btnCarrinho_clickHandler(event)"/>
@@ -60,6 +59,7 @@
 		
 		<s:Image id="btnDesejo" x="1013" y="-9" width="83" height="59" buttonMode="true" smooth="true" smoothingQuality="high" toolTip="Meus Desejos"
 				 source="@Embed('../imagens/aplicacao/desejo.png')" click="btnDesejo_clickHandler(event)"/>
+		
 		
 		<mxml:MModulo  id="modulo" x="238" y="186" width="947" height="1286" >
 			<s:VScrollBar x="963" y="0" width="17" height="559" viewport="{modulo}" id="ScrollBar" visible="false"/>
@@ -73,6 +73,7 @@
 							mreLabelFunction="lfProduto" mreMinimoCaracteres="3"/>
 		<s:Button x="1033" y="151" height="25" label="Buscar" fontFamily="Verdana" fontSize="14"/>
 		
+		<modulo:PainelModulo id="grPainelModulos" visible="true" x="240" y="186" width="945" height="579" hideEffect="{anSumir}" showEffect="{anAparecer}"/>
 		<mx:HBox id="menuDinamico" x="-5" y="68" width="100%" height="74" clipContent="true"
 				 horizontalAlign="center" horizontalScrollPolicy="off" verticalAlign="bottom"
 				 verticalScrollPolicy="off">
