@@ -30,8 +30,8 @@ public function construtor():void
 {
 //	var arr:Array = new Array();
 //	arr.push(4); //Mudar no produto Service!!!!!!!!!!!!!!!!!!!
-	MRemoteObject.get("ProdutoService.getProdutosId", null, carregarProduto);
-	novo();
+//	MRemoteObject.get("ProdutoService.getProdutosId", null, carregarProduto);
+//	novo();
 }
 
 public function novo():void
@@ -56,7 +56,7 @@ public function carregarProduto(result:ResultJava):void
 			ctCaracteristicas.text = produto.caracteristicas;
 			ctEspecificacaoTecnica.text = produto.descricao;
 			lbPreco.text = "R$: " + NumberUtil.toString(produto.preco, 2);
-			imagemProduto.source = Constantes.instance.ENDERECO_IMAGEM_PRODUTO+"1.png";
+			imagemProduto.source = Constantes.instance.ENDERECO_IMAGEM_PRODUTO+NumberUtil.toString(produto.pkProduto)+".jpg";
 			
 //			var parcelamentoString:String;
 //			var arr:ArrayCollection = new ArrayCollection();
