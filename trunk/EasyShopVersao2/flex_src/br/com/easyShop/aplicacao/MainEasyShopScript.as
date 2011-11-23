@@ -27,12 +27,9 @@ import flash.events.Event;
 import flash.events.MouseEvent;
 
 import mx.containers.VBox;
-import mx.controls.Alert;
 import mx.core.UIComponent;
 import mx.managers.PopUpManager;
 import mx.utils.ObjectUtil;
-
-import org.flexunit.internals.namespaces.classInternal;
 
 import spark.components.Button;
 import spark.components.Label;
@@ -84,9 +81,8 @@ public function resultProduto(result:ResultJava):void
 		if(result != null)
 		{							
 			var produto:Produto = new Produto();
-			
 			for(var i:int=0;i<result.lista.length;i++)
-			{
+			{				
 				produto = result.lista.getItemAt(i) as Produto;  
 				var item:ModuloItem = new ModuloItem();
 				
@@ -98,6 +94,7 @@ public function resultProduto(result:ResultJava):void
 				
 				grPainelModulos.addModulo(item);
 			}
+			
 			grPainelModulos.visible = true;
 		}
 		else
