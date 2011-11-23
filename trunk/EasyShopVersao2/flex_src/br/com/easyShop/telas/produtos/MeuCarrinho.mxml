@@ -4,7 +4,7 @@
 				xmlns:s="library://ns.adobe.com/flex/spark"
 				xmlns:mx="library://ns.adobe.com/flex/mx"
 				xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
-				width="782" height="512" backgroundAlpha="1.0" backgroundColor="#F1F4F4"
+				width="782" height="512" backgroundAlpha="0.39" backgroundColor="#F1F4F4"
 				close="PopUpManager.removePopUp(this)" dropShadowVisible="true" layout="absolute"
 				removedEffect="fechar" title="Meu Carrinho">
 	
@@ -14,7 +14,8 @@
 	
 	<fx:Script source="MeuCarrinhoScript.as" />
 	
-	<s:BorderContainer x="26" y="21" width="718" height="292" backgroundColor="#F2F2F2">
+	<s:BorderContainer x="26" y="21" width="718" height="292" backgroundAlpha="0.52"
+					   backgroundColor="#F2F2F2">
 
 		<mx:DataGrid x="24" y="19" width="663" height="157" id="tblCarrinho" dataProvider="{dados}" >
 			<mx:columns>

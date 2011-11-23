@@ -226,7 +226,7 @@ public class EditarProdutos extends JFrame {
 						e2.printStackTrace();
 					}
 					try {
-						ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensProduto/produto"+produto.getPkProduto()+".jpg"));
+						ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensProduto/"+produto.getPkProduto()+".jpg"));
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
@@ -282,7 +282,7 @@ public class EditarProdutos extends JFrame {
 					lblImagem.setIcon(new ImageIcon("Imagens/ImagensProduto/CadastroDeProduto.jpg"));
 					caminhoImagem = fc.getSelectedFile().toString();
 				} catch (IOException e1) {
-					JOptionPane.showMessageDialog(null, "Arquivo selecionado n�o � uma imagem!");
+					JOptionPane.showMessageDialog(null, "Arquivo selecionado não é uma imagem!");
 				}
 				//*********************************************************************//
 
@@ -326,7 +326,7 @@ public class EditarProdutos extends JFrame {
 			}
 
 			try {
-				File imagem_file = new File("Imagens/ImagensProduto/produto"+ produto.getPkProduto() + ".jpg");
+				File imagem_file = new File("Imagens/ImagensProduto/"+ produto.getPkProduto() + ".jpg");
 				imagem_buffered = null;
 
 				try {

@@ -96,5 +96,6 @@
 		<s:Image x="1101" y="-15" buttonMode="true"
 				 click="btnEntrar_clickHandler(true)" smooth="true" smoothingQuality="high"
 				 source="@Embed('../imagens/aplicacao/user3.png')" toolTip="Entrar/Cadastrar"/>
+		<s:Button x="594" y="10" label="Detalhes Do Produto" click="btTeste_clickHandler()"/>
 	</s:Panel>
 </s:Application>
