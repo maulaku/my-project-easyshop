@@ -10,8 +10,13 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import br.com.easyShop.comunicacao.ResultJava;
+			import br.com.easyShop.model.Produto;
+			import br.com.easyShop.telas.produtos.AbaDetalhesProduto;
+			import br.com.mresolucoes.componentes.mre.MModulo;
+			
 			[Bindable]
-			private var _funcaoBotao:Function=null;
+			private var _modulo:MModulo;
 			[Bindable]
 			private var _imagemSource:String;
 			[Bindable]
@@ -19,30 +24,47 @@
 			[Bindable]
 			private var _preco:String;
 			[Bindable]
-			private var _produto:Object;
+			private var _produto:Produto;
 			
 			public function escutaBotoes(botao:MBotao):void
 			{
-				if (botao == btEspiar && _funcaoBotao != null) 
+				if (botao == btEspiar) 
 				{
-					_funcaoBotao(_produto);
+//					_modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf", carregaModulo);
+					_modulo.mreLoadModule("br/com/easyShop/telas/produtos/TesteAba.swf", carregaModulo);	
 				}
 			}
 			
-			public function get funcaoBotao():Function { return _funcaoBotao; }
-			public function set funcaoBotao(funcao:Function):void { _funcaoBotao = funcao; }
+			public function carregaModulo(mod:MModulo=null):void
+			{
+				for (var i:int=0; i<mod.numChildren; i++)
+				{
+//					if (mod.getChildAt(i) is AbaDetalhesProduto)
+//					{
+//						var result:ResultJava = new ResultJava();
+//						result.item = _produto;
+//						(mod.getChildAt(i) as AbaDetalhesProduto).carregarProduto(result);	
+//						break;
+//						//painel navegação
+//						//passar a chamada pra dentro do componente
+//					}
+				}
+			}
+			
+			public function get modulo():MModulo { return _modulo; }
+			public function set modulo(modulo:MModulo):void { _modulo = modulo; }
 			public function get imagemSource():String { return _imagemSource; }
 			public function set imagemSource(imagemSource:String):void { _imagemSource = imagemSource; }
 			public function get nome():String { return _nome; }
 			public function set nome(nome:String):void { _nome = nome; }
 			public function get preco():String { return _preco; }
 			public function set preco(preco:String):void { _preco = preco; }
-			public function get produto():Object { return _produto; }
-			public function set produto(produto:Object):void { _produto = produto; }
+			public function get produto():Produto { return _produto; }
+			public function set produto(produto:Produto):void { _produto = produto; }
 		]]>
 	</fx:Script>
 	<s:Label id="lbNome" x="155" y="11" width="133" fontFamily="Verdana" fontSize="25" text="{_nome}" textAlign="right"/>
 	<s:Label id="lbPreco" x="155" y="86" width="133" fontFamily="Verdana" fontSize="18" text="{_preco}" textAlign="right"/>
-	<mxml:MBotao id="btEspiar" x="218" y="153" label="Espiar" mreClick="{escutaBotoes}"/>
+	<mxml:MBotao id="btEspiar" x="218" y="153" label="Espiar" mreClick="escutaBotoes"/>
 	<s:Image id="imagemProduto" x="12" y="11" width="135" height="163" source="{_imagemSource}"/>
 </s:Group>
