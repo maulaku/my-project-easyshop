@@ -263,7 +263,7 @@ private function enviaCliente():Cliente{
 	return cliente;
 }
 
-protected function btnEntrar_clickHandler(centrado:Boolean):void
+protected function btnEntrar_clickHandler():void
 {
 	if(clienteGlobal==null){
 		painelLogin = new Login();

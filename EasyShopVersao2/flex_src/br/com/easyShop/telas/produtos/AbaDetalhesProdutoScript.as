@@ -19,6 +19,7 @@ import mx.collections.ArrayCollection;
 import mx.controls.Alert;
 import mx.controls.Button;
 import mx.controls.Image;
+import mx.core.UIComponent;
 
 import org.flexunit.internals.namespaces.classInternal;
 
@@ -30,8 +31,8 @@ public function construtor():void
 {
 //	var arr:Array = new Array();
 //	arr.push(4); //Mudar no produto Service!!!!!!!!!!!!!!!!!!!
-//	MRemoteObject.get("ProdutoService.getProdutosId", null, carregarProduto);
-//	novo();
+	MRemoteObject.get("ProdutoService.getProdutosId", null, carregarProduto);
+	novo();
 }
 
 public function novo():void
@@ -76,32 +77,32 @@ public function carregarProduto(result:ResultJava):void
 	}	
 }
 
-public function adicionarCarrinho():void
+public function adicionarCarrinho2():void
 {
-	var carrinho:Carrinho = new Carrinho();
-	var carrinhoProduto:CarrinhoProduto = new CarrinhoProduto();
-	
-	carrinho.cliente = ((Cliente) (MainEasyShop.getClienteGlobal()));
-	
-	carrinhoProduto.carrinho = carrinho;
-	carrinhoProduto.produto = produto;
-	carrinhoProduto.quantidade = 1;
-	
-	MRemoteObject.get("CarrinhoProdutoService.inserirCarrinho",[carrinhoProduto],resultado);	
+	if(MainEasyShop.getClienteGlobal()!=null)
+	{
+		var carrinho:Carrinho = new Carrinho();
+		var carrinhoProduto:CarrinhoProduto = new CarrinhoProduto();
+		
+		carrinho.cliente = ((Cliente) (MainEasyShop.getClienteGlobal()));
+		
+		carrinhoProduto.carrinho = carrinho;
+		carrinhoProduto.produto = produto;
+		carrinhoProduto.quantidade = 1;
+		
+		MRemoteObject.get("CarrinhoProdutoService.inserirCarrinho",[carrinhoProduto],resultado);
+	}
+	else
+	{
+		Alerta.abrir("Faça o Login primeiro", "EasyShop", null, null, null, ImagensUtils.FELIZ);
+	}
 }
 
 public function resultado(result:ResultJava):void
 {
 	try		
 	{		
-		if(result.item != null && (result.item as Boolean)==true)
-		{			
-			Alerta.abrir("Produto inserido com sucesso!", "EasyShop", null, null, null, ImagensUtils.FELIZ);
-		}
-		else
-		{ 
-			Alerta.abrir(result.lista.length > 0 ? result.lista.getItemAt(0) as String : "Ops, Erro ao enviar para o carrinho", "EasyShop", null, null, null, ImagensUtils.INFO);
-		}
+		Alerta.abrir("Produto inserido com sucesso!", "EasyShop", null, null, null, ImagensUtils.FELIZ);
 	} 
 	catch(e2:Error)
 	{ 
@@ -109,25 +110,25 @@ public function resultado(result:ResultJava):void
 	}	
 }
 
-/*Listerners Componentes */
-public function escutaBotoes(botao:MBotao):void
-{
-	try
-	{
-		if (botao==btAdicionarCarrinho)
-		{
-			adicionarCarrinho();
-		}
-		else if (botao==btContinuarComprando)
-		{
-			
-		}
-	}
-	catch(e:Error)
-	{
-		Alerta.abrir("Ocorreu um erro, contate o administrador..", "Detalhes do Produto", null, null, null, ImagensUtils.INFO);
-	}
-}
+///*Listerners Componentes */
+//public function escutaBotoes(botao:MBotao):void
+//{
+//	try
+//	{
+//		if (botao==btAdicionarCarrinho)
+//		{
+//			adicionarCarrinho();
+//		}
+//		else if (botao==btContinuarComprando)
+//		{
+//			
+//		}
+//	}
+//	catch(e:Error)
+//	{
+//		Alerta.abrir("Ocorreu um erro, contate o administrador..", "Detalhes do Produto", null, null, null, ImagensUtils.INFO);
+//	}
+//}
 
 
 
