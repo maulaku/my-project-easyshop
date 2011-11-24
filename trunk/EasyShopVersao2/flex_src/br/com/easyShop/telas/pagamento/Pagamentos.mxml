@@ -6,7 +6,7 @@
 				xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
 				width="852" height="694" backgroundAlpha="1.0" backgroundColor="#F1F4F4"
 				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar"
-				title="Pagamentos">
+				title="Pagamentos" creationComplete="construtor()">
 		
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
@@ -45,11 +45,10 @@
 		<s:Label x="211" y="132" width="372" fontSize="21" fontWeight="normal"
 				 text="............................................................." textAlign="center"
 				 verticalAlign="middle"/>
-		<s:Label x="167" y="174" fontSize="21" fontWeight="normal" text="Valor do Parcelado: "
-				 textAlign="center" verticalAlign="middle"/>
-		<s:Label id="valorDoParcelamento" x="357" y="174" fontSize="21" fontWeight="bold" text="R$ "
+		<s:Label x="140" y="174" fontSize="21" fontWeight="normal" text="Valor do Parcelado: "
 				 textAlign="center" verticalAlign="middle"/>
 		<mx:HRule x="36" y="112" width="687" height="11"/>
+		<s:ComboBox id="cboParcelamento" x="329" y="172" width="271" selectedIndex="0"/>
 	</s:BorderContainer>
 	<s:RadioButtonGroup id="radiogroup1" />
 	<s:BorderContainer x="33" y="255" width="785" height="336" backgroundAlpha="0.0"
@@ -65,7 +64,7 @@
 		<s:RadioButton id="hipercard" x="595" y="56" groupName="radiogroup1"/>
 		<s:RadioButton id="dinesclub" x="412" y="56" groupName="radiogroup1"/>
 		<s:RadioButton id="mastercard" x="221" y="56" groupName="radiogroup1"/>
-		<s:RadioButton id="visa" x="37" y="56" groupName="radiogroup1"/>
+		<s:RadioButton id="visa" x="37" y="56" groupName="radiogroup1" selected="true"/>
 		<s:Label x="297" y="10" fontSize="24" fontWeight="normal" text="Cartão de Crédito"
 				 textAlign="center" verticalAlign="middle"/>
 		<s:Label x="21" y="131" fontSize="17" text="CPF/CNPJ do Títular"/>

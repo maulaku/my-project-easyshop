@@ -281,8 +281,8 @@ protected function btnEntrar_clickHandler():void
 		painelLogout.showCloseButton=true;
 		painelLogout.setVisible(true);
 		painelLogout.addEventListener("clickadoLogout", lidaClickadoLogout);
-		painelLogout.addEventListener("clickadoPessoaFisica", lidaClickadoPessoaFisica);
-		painelLogout.addEventListener("clickadoPessoaJuridica", lidaClickadoPessoaJuridica);
+		painelLogout.addEventListener("clickadoPessoaFisica", lidaClickadoPessoaFisica2);
+		painelLogout.addEventListener("clickadoPessoaJuridica", lidaClickadoPessoaJuridica2);
 		PopUpManager.addPopUp(painelLogout, this, true);
 		
 		centralizarTela(painelLogout);
@@ -392,13 +392,20 @@ private function lidaClickadoLogin(event:Event):void{
 
 private function lidaClickadoPessoaFisica(event:Event):void{
 	painelLogin.setVisible(false);
-	painelLogout.setVisible(false);
-	ScrollBar.setVisible(true);
 	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaFisica.swf");
 }
 
 private function lidaClickadoPessoaJuridica(event:Event):void{
 	painelLogin.setVisible(false);
+	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaJuridica.swf");
+}
+
+private function lidaClickadoPessoaFisica2(event:Event):void{
+	painelLogout.setVisible(false);
+	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaFisica.swf");
+}
+
+private function lidaClickadoPessoaJuridica2(event:Event):void{
 	painelLogout.setVisible(false);
 	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaJuridica.swf");
 }

@@ -1,7 +1,11 @@
 package br.com.easyShop.service;
 
+import java.util.Arrays;
+
+import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Endereco;
 import br.com.easyShop.model.Pessoa;
+import br.com.easyShop.persistencia.DAO.ClienteDAO;
 import br.com.easyShop.persistencia.DAO.EnderecoDAO;
 import br.com.easyShop.service.base.BaseServiceAtta;
 
@@ -25,5 +29,16 @@ public class EnderecoService extends BaseServiceAtta {
 
 	public void atualizar(Endereco endereco) {
 		salvar(endereco);
+	}
+	
+	public ResultJava getEnderecosCliente(Pessoa pessoa) {
+		try
+		{
+			return new ResultJava(new EnderecoDAO().getEnderecosPessoa(pessoa, 3));
+		} 
+		catch (Exception e) 
+		{
+			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao buscar enderecos!\n" + e }));
+		}
 	}
 }

@@ -48,7 +48,7 @@ public function construtor():void
 	MRemoteObject.get("PaisService.getTodosPaises", null, preencherPais);
 
 	cboContato.mreDataProvider = tiposContato;
-	tipo.mreDataProvider = tiposEndereco
+	tipo.mreDataProvider = tiposEndereco;
 
 	preencherSexo();
 }
