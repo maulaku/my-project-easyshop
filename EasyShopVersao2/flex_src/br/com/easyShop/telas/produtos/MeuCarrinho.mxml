@@ -4,9 +4,9 @@
 				xmlns:s="library://ns.adobe.com/flex/spark"
 				xmlns:mx="library://ns.adobe.com/flex/mx"
 				xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
-				width="782" height="512" backgroundAlpha="0.39" backgroundColor="#F1F4F4"
+				width="782" height="548" backgroundAlpha="0.39" backgroundColor="#F1F4F4"
 				close="PopUpManager.removePopUp(this)" dropShadowVisible="true" layout="absolute"
-				removedEffect="fechar" title="Meu Carrinho">
+				removedEffect="fechar" title="Meu Carrinho" creationComplete="construtor()" >
 	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
@@ -14,7 +14,7 @@
 	
 	<fx:Script source="MeuCarrinhoScript.as" />
 	
-	<s:BorderContainer x="26" y="21" width="718" height="292" backgroundAlpha="0.52"
+	<s:BorderContainer x="26" y="21" width="718" height="332" backgroundAlpha="0.52"
 					   backgroundColor="#F2F2F2">
 
 		<mx:DataGrid x="24" y="19" width="663" height="157" id="tblCarrinho" dataProvider="{dados}" >
@@ -27,30 +27,37 @@
 			</mx:columns>
 		</mx:DataGrid>
 		
-		<mx:HRule x="56" y="184" width="613" height="13"/>
-		<s:Label x="494" y="205" width="61" height="23" fontFamily="Verdana" fontSize="16"
-				 text="Frete:"/>
-		<s:Label x="449" y="244" width="101" height="23" fontFamily="Verdana" fontSize="16"
-				 text="Valor Total:"/>
+		<mx:HRule x="56" y="186" width="613" height="13"/>
+		<s:Label x="390" y="200" width="152" height="23" fontFamily="Verdana" fontSize="16"
+				 text="Frete:" textAlign="right" verticalAlign="middle"/>
+		<s:Label x="390" y="239" width="152" height="23" fontFamily="Verdana" fontSize="16"
+				 text="Valor do Carrinho:" textAlign="right" verticalAlign="middle"/>
 		<mx:HRule x="56" y="224" width="613" height="13"/>
 		<mx:HRule x="56" y="262" width="613" height="13"/>
-		<mx:VRule x="54" y="189" width="6" height="78"/>
-		<mx:VRule x="665" y="189" width="6" height="78"/>
-		<s:Label id="lblFrete" x="546" y="205" fontFamily="Verdana" fontSize="15" fontWeight="bold"
-				 text="R$ 000,00"/>
-		<s:Label id="lblValorTotal" x="546" y="244" fontFamily="Verdana" fontSize="15"
-				 fontWeight="bold" text="R$ 000,00"/>
+		<mx:VRule x="54" y="191" width="6" height="114"/>
+		<mx:VRule x="665" y="191" width="4" height="114"/>
+		<s:Label id="lblFrete" x="546" y="204" fontFamily="Verdana" fontSize="15" fontWeight="bold"
+				 textAlign="left" verticalAlign="middle"/>
+		<s:Label id="lblValorCarrinho" x="546" y="243" fontFamily="Verdana" fontSize="15"
+				 fontWeight="bold" textAlign="left" verticalAlign="middle"/>
+		<mx:HRule x="56" y="299" width="613" height="13"/>
+		<s:Label x="390" y="276" width="152" height="23" fontFamily="Verdana" fontSize="16"
+				 fontWeight="bold" text="Valor Total:" textAlign="right" verticalAlign="middle"/>
+		<s:Label id="lblValorTotal" x="547" y="279" fontFamily="Verdana" fontSize="16"
+				 fontWeight="bold" textAlign="left" verticalAlign="middle"/>
+		
 		
 	</s:BorderContainer>
-	<s:Button id="btnContinuarComprando" x="143" y="417" width="210" height="38"
+	<s:Button id="btnContinuarComprando" x="143" y="451" width="210" height="38"
 			  label="Continuar Comprando" fontSize="14" fontWeight="bold"
 			  icon="@Embed('../../imagens/botoes/back.png')" click="btnContinuarComprando_clickHandler(event)"/>
-	<s:Button id="btnFinalizarCompra" x="428" y="417" width="200" height="38"
+	<s:Button id="btnFinalizarCompra" x="428" y="451" width="200" height="38"
 			  label="Finalizar Carrinho" fontSize="14" fontWeight="bold"
 			  icon="@Embed('../../imagens/botoes/money.png')" click="btnFinalizarCarrinho_clickHandler(event)"/>
-	<s:ComboBox id="cboEnderecoEntrega" x="387" y="342" width="206"/>
-	<s:Label x="188" y="342" width="201" height="23" fontFamily="Verdana" fontSize="18"
+	<s:Label x="171" y="376" width="201" height="23" fontFamily="Verdana" fontSize="18"
 			 text="Endereço de Entrega:" textAlign="center" verticalAlign="middle"/>
-	<mx:HRule x="235" y="383" width="311" height="17"/>
+	<mx:HRule x="235" y="417" width="311" height="17"/>
+	<mxml:MComboBox id="cboEnderecoEntrega" x="380" y="376" width="231"/>
+	<s:Image id="ima" x="85" y="410" source="@Embed('../../imagens/botoes/Erase.png')"/>
 	
 </mx:TitleWindow>
