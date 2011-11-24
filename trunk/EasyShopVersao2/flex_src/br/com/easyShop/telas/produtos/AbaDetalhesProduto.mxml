@@ -12,24 +12,31 @@
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<fx:Script source="AbaDetalhesProdutoScript.as" />
-	<s:Label id="lbNomeProduto" x="9" y="10" width="941" height="57" textAlign="center" verticalAlign="middle"/>
+	<s:Label id="lbNomeProduto" x="9" y="10" width="941" height="57" fontSize="27" fontWeight="bold"
+			 textAlign="center" verticalAlign="middle"/>
 	<s:Image id="imagemProduto" x="53" y="70" width="283" height="317" />
 	<s:Label x="46" y="656" width="123" height="27" fontSize="16" fontWeight="bold" text="Características:" textAlign="center" verticalAlign="middle"/>
 	<mx:HRule x="167" y="631" width="705" height="18"/>
 	<s:BorderContainer x="344" y="71" width="525" height="316">
-		<s:Label id="lbPreco" x="211" y="22" width="237" height="28" fontFamily="Arial" fontSize="21" fontWeight="bold" textAlign="center" verticalAlign="middle"/>
+		<s:Label id="lbPreco" x="211" y="22" width="237" height="28" color="#EA0F0F"
+				 fontFamily="Arial" fontSize="23" fontWeight="bold" textAlign="left"
+				 verticalAlign="middle"/>
 		<mx:HRule x="86" y="71" width="351" height="3"/>
-		<s:Label x="211" y="129" height="32" fontSize="16" text="Valor da Parcela:" textAlign="center" verticalAlign="middle"/>
-		<mxml:MComboBox id="cbParcelamento" x="332" y="131" width="183" fontSize="16"/>
-		<s:Label id="lbValorBoleto" x="332" y="169" width="181" height="28" fontFamily="Arial" fontSize="21" fontWeight="bold" textAlign="center" verticalAlign="middle"/>
-		<mxml:MBotao id="btAdicionarCarrinho" x="290" y="256" width="223" height="48" label="Adicionar ao Carrinho" fontSize="14" fontWeight="bold" />
-		<s:Label x="123" y="21" height="32" fontSize="16" text="Por apenas:" textAlign="center" verticalAlign="middle"/>
-		<s:Label x="177" y="92" height="32" fontSize="16" text="Forma de Pagamento:" textAlign="center" verticalAlign="middle"/>
-		<s:Label x="236" y="169" height="32" fontSize="16" text="Valor à Vista:" textAlign="center" verticalAlign="middle"/>
-		<mxml:MRadioButton id="rbCartaoCredito" x="10" y="131" label="Cartão de Crédito:" fontFamily="Arial" fontSize="16"/>
-		<mxml:MRadioButton id="rbBoletoBancario" x="10" y="158" height="47" label="Boleto Bancário:" fontFamily="Arial" fontSize="16"/>
-		<mx:HRule x="86" y="214" width="351" height="3"/>
-		<s:Button id="btContinuarComprando" x="10" y="256" width="210" height="48" label="Continuar Comprando" fontSize="14" fontWeight="bold" />
+		<s:Label x="186" y="129" height="32" fontSize="16" text="Valor da Parcela:" textAlign="center" verticalAlign="middle"/>
+		<mxml:MComboBox id="cbParcelamento" x="307" y="131" width="183" fontSize="16"/>
+		<s:Label id="lbValorBoleto" x="283" y="169" width="181" height="28" fontFamily="Arial" fontSize="21" fontWeight="bold" textAlign="center" verticalAlign="middle"/>
+		<s:Label x="179" y="20" height="32" fontSize="16" text="Por:" textAlign="center" verticalAlign="middle"/>
+		<s:Label x="167" y="82" height="32" fontSize="19" text="Forma de Pagamento:" textAlign="center" verticalAlign="middle"/>
+		<s:Label x="187" y="169" height="32" fontSize="16" text="Valor à Vista:" textAlign="center" verticalAlign="middle"/>
+		<mxml:MRadioButton id="rbCartaoCredito" x="30" y="131" label="Cartão de Crédito:" fontFamily="Arial" fontSize="16" selected="true"/>
+		<mxml:MRadioButton id="rbBoletoBancario" x="30" y="158" height="47" label="Boleto Bancário:" fontFamily="Arial" fontSize="16"/>
+		<mx:HRule x="86" y="221" width="351" height="3"/>
+		<s:Button id="btContinuarComprando" x="14" y="261" width="211" height="37"
+				  label="Continuar Comprando" fontSize="14" fontWeight="normal"
+				  icon="../../imagens/botoes/back.png"/>
+		<s:Image id="adicionarCarrinho" x="267" y="252" width="242" smooth="true"
+				 smoothingQuality="high" source="@Embed('../../imagens/botoes/adicionar-carrinho.png')" click="adicionarCarrinho2()"/>
+		
 	</s:BorderContainer>
 	<s:Label x="36" y="400" width="101" height="27" fontSize="16" fontWeight="bold" text="Descrição:" textAlign="center" verticalAlign="middle"/>
 	<mx:HRule x="138" y="405" width="745" height="18"/>
