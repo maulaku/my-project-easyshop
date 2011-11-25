@@ -30,6 +30,8 @@ private var myFilter:FileFilter = new FileFilter("Imagens (*.jpg; *.jpeg; *.gif;
 
 [Bindable]
 public var dados:ArrayCollection = new ArrayCollection();
+[Bindable]
+public var dadosEndereco:ArrayCollection = new ArrayCollection();
 
 public var tiposContato:ArrayCollection = new ArrayCollection([
 	{nome:"Telefone", tipo:Constantes.instance.TIPO_CONTATO_TELEFONE},
@@ -48,8 +50,10 @@ public function construtor():void
 	MRemoteObject.get("PaisService.getTodosPaises", null, preencherPais);
 
 	cboContato.mreDataProvider = tiposContato;
-	tipo.mreDataProvider = tiposEndereco;
+	cboTipo.mreDataProvider = tiposEndereco;
 
+	cboContato.selectedIndex = 0;
+	cboTipo.selectedIndex = 0;
 	preencherSexo();
 }
 
@@ -58,6 +62,7 @@ private function preencherSexo():void{
 	arr.addItem("Masculino");
 	arr.addItem("Feminino");
 	sexo.dataProvider = arr;
+	sexo.selectedIndex = 0;
 }
 
 private function preencherEndereco():void{
@@ -65,7 +70,7 @@ private function preencherEndereco():void{
 	arr.addItem(Constantes.instance.RESIDENCIA);
 	arr.addItem(Constantes.instance.APARTAMENTO);
 	arr.addItem(Constantes.instance.COMERCIAL);
-	tipo.dataProvider = arr;
+	cboTipo.dataProvider = arr;
 }
 
 private function preencherContato():void{
@@ -109,7 +114,6 @@ private function indexTipoEndereco(tipo:String):void{
 protected function Salvar():void
 {
 	var cliente:Cliente = new Cliente();
-	var endereco:Endereco = new Endereco();
 	var pessoaFisica:PessoaFisica = new PessoaFisica();
 	var pessoa:Pessoa = new Pessoa();
 	var usuario:Usuario = new Usuario();
@@ -126,22 +130,33 @@ protected function Salvar():void
 	pessoa.status = Constantes.instance.STATUS_ATIVO;
 	pessoa.pessoaFisica = pessoaFisica;
 	
-	endereco.bairro = bairro.text;
-	endereco.cep = cep.text;
-	endereco.cidade = cboCidade.mreGetSelectedItem();
-	endereco.complemento = complemento.text;
-	endereco.logradouro = logradouro.text;
-	endereco.numero = numero.text;
-	endereco.pessoa = pessoa;
-	endereco.tipo = tipo.mreGetSelectedItem().tipo;
-	endereco.status = Constantes.instance.STATUS_ATIVO;
+	for(i=0;i<dadosEndereco.length;i++)
+	{
+		var endereco:Endereco = new Endereco();
+		var obj:Object = new Object();
+		obj = dadosEndereco[i];
+		
+		endereco.bairro = obj.campo3;
+		endereco.cep = obj.campo5;
+		endereco.cidade = obj.campo7;
+		endereco.complemento = obj.campo6;
+		endereco.logradouro = obj.campo2;
+		endereco.numero = obj.campo4;
+		endereco.pessoa = pessoa;
+		endereco.tipo = obj.campo1.tipo;
+		endereco.status = Constantes.instance.STATUS_ATIVO;
+		
+		pessoa.enderecos.addItem(endereco);
+	}
 	
-	pessoa.enderecos.addItem(endereco);
 	
 	for(i =0; i < dados.length; i++){
 		var contato:Contato = new Contato();
-		contato.contato = dados.getItemAt(i,0).toString();
-		contato.tipo = cboContato.mreGetSelectedItem().tipo;
+		var obj2:Object = new Object();
+		obj2 = dados[i];
+		
+		contato.contato = obj2.campo2;
+		contato.tipo = obj2.campo1.tipo;
 		contato.pessoa = pessoa;
 		contato.status = Constantes.instance.STATUS_ATIVO;
 		
@@ -200,12 +215,14 @@ private function inserirContatoTabela():void{
 	     var temp:Object;
 
 		 temp=new Object();
-		 temp.campo1
 		 temp.campo1=cboContato.selectedItem;
+		 temp.campo1label = labelContato(cboContato.selectedItem);
 		 temp.campo2=txtContato.text;
 
 		 dados.addItem(temp);
 		 txtContato.text="";
+		 
+		 cboContato.removeChild(cboContato.selectedItem);
 }
 
 private function deleteLinha(linha:int):void {
@@ -213,6 +230,47 @@ private function deleteLinha(linha:int):void {
 	if(linha>=0 && linha<dados.length) {
 		dados.removeItemAt(linha);
 		dados.refresh();
+	}
+	else {
+		Alert.show("Selecione a linha primeiro")
+	}
+}
+
+private function inserirEnderecoTabela():void{
+	var temp:Object = new Object();
+	var label:Object = new Object();
+	
+	temp.campo1 = cboTipo.selectedItem;
+	label = ((Object) (cboTipo.selectedItem));
+	temp.campo1label = label.nome;
+	temp.campo2 = logradouro.text;
+	temp.campo3 = bairro.text;
+	temp.campo4 = numero.text;
+	temp.campo5 = cep.text;
+	temp.campo6 = complemento.text;
+	temp.campo7 = cboCidade.selectedItem;
+	temp.campo7label = labelCidade(cboCidade.selectedItem);
+	temp.campo8 = cboEstado.selectedItem;
+	temp.campo8label = labelEstado(cboEstado.selectedItem);
+	temp.campo9 = cboPais.selectedItem;
+	temp.campo9label = labelPais(cboPais.selectedItem);
+	
+	dadosEndereco.addItem(temp);
+	txtContato.text = "";
+	logradouro.text = "";
+	bairro.text = "";
+	numero.text = "";
+	cep.text = "";
+	complemento.text = "";
+	
+	cboTipo.removeChild(cboTipo.selectedItem);
+}
+
+private function deleteEnderecoLinha(linha:int):void {
+	
+	if(linha>=0 && linha<dadosEndereco.length) {
+		dadosEndereco.removeItemAt(linha);
+		dadosEndereco.refresh();
 	}
 	else {
 		Alert.show("Selecione a linha primeiro")
@@ -243,4 +301,12 @@ private function labelCidade(item:Object):String {
 	var cat:Cidade = new Cidade();
 	cat = ((Cidade) (item));
 	return cat.nome;
+}
+
+private function labelTipo(item:Object):String {
+	return item.nome;
+}
+
+private function labelContato(item:Object):String {
+	return item.nome;
 }

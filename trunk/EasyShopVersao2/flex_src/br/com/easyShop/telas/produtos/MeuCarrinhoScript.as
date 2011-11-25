@@ -26,11 +26,23 @@ private var i:int;
 private static var frete:int;
 [Bindable]
 private static var total:int;
+[Bindable]
+private static var enderecoSelecionado:int;
+[Bindable]
+private static var enderecoEscolhido:Endereco;
 
 public function construtor():void
 {
 	MRemoteObject.get("CarrinhoProdutoService.getCarrinhoProdutos", [MainEasyShop.getClienteGlobal()], resultCarrinho);
 	MRemoteObject.get("EnderecoService.getEnderecosCliente", [MainEasyShop.getClienteGlobal().pessoa], resultEnderecos);
+}
+
+public static function getEnderecoSelecionado():int{
+	return enderecoSelecionado;
+}
+
+public static function getEnderecoEscolhido():Endereco{
+	return enderecoEscolhido;
 }
 
 public static function getValorCarrinho():int{
@@ -62,7 +74,7 @@ public function resultCarrinho(result:ResultJava):void
 				temp.campo2 = "1";
 				temp.campo3 = "R$ " + carrinhoProduto.produto.preco;
 				temp.campo4 = "R$ " + carrinhoProduto.produto.preco;
-				temp.campo5 = ima;
+				temp.campo5 = "Remover";
 				
 				dados.addItem(temp);	
 				total = total + carrinhoProduto.produto.preco;
@@ -97,15 +109,7 @@ public function resultEnderecos(result:ResultJava):void
 			
 			for(i=0;i<result.lista.length;i++){
 				endereco = ((Endereco) (result.lista[i]));
-				if((endereco.tipo) == (Constantes.instance.TIPO_RESIDENCIA)){
-					arr.addItem(Constantes.instance.RESIDENCIA);
-				}
-				if((endereco.tipo) == (Constantes.instance.TIPO_APARTAMENTO)){
-					arr.addItem(Constantes.instance.APARTAMENTO);
-				}
-				if((endereco.tipo) == (Constantes.instance.TIPO_COMERCIAL)){
-					arr.addItem(Constantes.instance.COMERCIAL);
-				}
+				arr.addItem(endereco);
 			}
 			cboEnderecoEntrega.mreDataProvider = arr;
 			cboEnderecoEntrega.selectedIndex = 0;
@@ -124,6 +128,8 @@ public function resultEnderecos(result:ResultJava):void
 
 protected function btnFinalizarCarrinho_clickHandler(event:MouseEvent):void
 {
+	enderecoSelecionado = cboEnderecoEntrega.selectedIndex;
+	enderecoEscolhido = cboEnderecoEntrega.selectedItem;
 	this.dispatchEvent(new Event("clickadoFinalizarCarrinho"));	
 }
 
@@ -141,4 +147,20 @@ private function deleteLinha(linha:int):void {
 	else {
 		Alert.show("Selecione a linha primeiro")
 	}
+}
+
+private function labelEndereco(item:Object):String {
+	var endereco:Endereco = new Endereco();
+	endereco = ((Endereco) (item));
+	
+	if((endereco.tipo) == (Constantes.instance.TIPO_RESIDENCIA)){
+		return (Constantes.instance.RESIDENCIA);
+	}
+	if((endereco.tipo) == (Constantes.instance.TIPO_APARTAMENTO)){
+		return (Constantes.instance.APARTAMENTO);
+	}
+	if((endereco.tipo) == (Constantes.instance.TIPO_COMERCIAL)){
+		return (Constantes.instance.COMERCIAL);
+	}
+	return "";
 }

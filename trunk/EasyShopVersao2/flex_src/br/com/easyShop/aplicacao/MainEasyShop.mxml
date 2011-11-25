@@ -60,9 +60,9 @@
 		<s:Image id="btnDesejo" x="1013" y="-9" width="83" height="59" buttonMode="true" smooth="true" smoothingQuality="high" toolTip="Meus Desejos"
 				 source="@Embed('../imagens/aplicacao/desejo.png')" click="btnDesejo_clickHandler(event)"/>
 		
-		
-		<mxml:MModulo  id="modulo" x="238" y="186" width="947" height="1286" >
-			<s:VScrollBar x="963" y="0" width="17" height="559" viewport="{modulo}" id="ScrollBar" visible="false"/>
+		<modulo:PainelModulo id="grPainelModulos" visible="true" x="240" y="186" width="945" height="579" hideEffect="{anSumir}" showEffect="{anAparecer}">
+		</modulo:PainelModulo>
+		<mxml:MModulo id="modulo" x="242" y="187" width="947" height="1253">
 		</mxml:MModulo>
 		
 		<mxml:MComboBox id="cbCategorias" x="161" y="152" width="207" labelField="nome"/>
@@ -73,7 +73,6 @@
 							mreLabelFunction="lfProduto" mreMinimoCaracteres="3"/>
 		<s:Button x="1033" y="151" height="25" label="Buscar" fontFamily="Verdana" fontSize="14"/>
 		
-		<modulo:PainelModulo id="grPainelModulos" visible="true" x="240" y="186" width="945" height="579" hideEffect="{anSumir}" showEffect="{anAparecer}"/>
 		<mx:HBox id="menuDinamico" x="-5" y="68" width="100%" height="74" clipContent="true"
 				 horizontalAlign="center" horizontalScrollPolicy="off" verticalAlign="bottom"
 				 verticalScrollPolicy="off">
@@ -81,7 +80,7 @@
 		<s:Label x="371" y="1496" width="355" height="19" fontSize="15"
 				 text="Créditos sobre o Site ficaram aqui" textAlign="center" verticalAlign="middle"/>
 		
-		<mx:Panel id="panelCategorias" x="33" y="185" width="206" height="580" fontSize="15"
+		<mx:Panel id="panelCategorias" x="30" y="185" width="206" height="580" fontSize="15"
 				  styleName="Panel" textAlign="center" title="Categorias" verticalAlign="middle">
 			<flexlib:VAccordion id="accordion" headerLocation="below"
 								resizeToContent="true" styleName="VAccordion" height="100%"
