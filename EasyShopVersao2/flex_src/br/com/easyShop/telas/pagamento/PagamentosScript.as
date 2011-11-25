@@ -1,5 +1,6 @@
 import br.com.easyShop.aplicacao.MainEasyShop;
 import br.com.easyShop.telas.produtos.MeuCarrinho;
+import br.com.mresolucoes.componentes.mre.MComboBox;
 
 import flash.errors.IllegalOperationError;
 import flash.events.Event;
@@ -13,6 +14,11 @@ import mx.controls.DateField;
 import mx.managers.PopUpManager;
 
 import org.flexunit.internals.namespaces.classInternal;
+
+import spark.components.RadioButton;
+
+[Bindable]
+public static var resp:int;
 
 public function construtor():void
 {
@@ -33,9 +39,22 @@ public function construtor():void
 	
 	cboParcelamento.dataProvider = arr;
 	cboParcelamento.selectedIndex = 0;
+	visa.selected = true;
 }
+
+public static function getSelecaoFormaPagamento():int{
+	return resp;
+}
+
 protected function btnFinalizarCompra_clickHandler(event:MouseEvent):void
 {
+	if(boleto.selected){
+		resp 0;
+	}
+	else{
+		resp = (cboParcelamento.selectedIndex + 1);
+	}
+	
 	this.dispatchEvent(new Event("clickadoAvancar"));
 }
 

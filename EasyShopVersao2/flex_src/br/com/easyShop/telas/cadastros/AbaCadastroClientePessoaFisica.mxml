@@ -3,7 +3,7 @@
 		  xmlns:s="library://ns.adobe.com/flex/spark"
 		  xmlns:mx="library://ns.adobe.com/flex/mx"
 		  xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
-		  width="872" height="856" backgroundColor="#FFFFFF" creationComplete="construtor()">
+		  width="872" height="1034" backgroundColor="#FFFFFF" creationComplete="construtor()">
 
 	<fx:Script source="AbaCadastroClientePessoaFisicaScript.as" />
 		
@@ -29,78 +29,102 @@
 	<s:Label x="363" y="145" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Sexo"
 			 textAlign="left" verticalAlign="middle"/>
 	<mxml:MComboBox id="sexo" x="409" y="145" width="137" fontSize="18"/>
-	<s:Label x="59" y="321" width="107" height="24" fontFamily="Verdana" fontSize="18" text="Logradouro"
+	<s:Label x="144" y="518" width="40" height="24" fontFamily="Verdana" fontSize="18" text="Tipo"
 			 textAlign="left" verticalAlign="middle"/>
-	<mxml:MCaixaTexto id="logradouro" x="164" y="319" width="381" fontSize="18"/>
-	<mxml:MCaixaTexto id="numero" x="485" y="369" width="61" fontSize="18"/>
-	<s:Label x="459" y="370" width="27" height="24" fontFamily="Verdana" fontSize="18" text="Nº"
+	<mxml:MComboBox id="cboTipo" x="182" y="517" width="192" fontSize="18" labelField="nome"/>
+	<s:Label x="63" y="732" width="85" height="24" fontFamily="Verdana" fontSize="18" text="Contato"
 			 textAlign="left" verticalAlign="middle"/>
-	<mxml:MCaixaTexto id="cep" x="220" y="270" width="198" fontSize="18"/>
-	<s:Label x="181" y="272" width="40" height="24" fontFamily="Verdana" fontSize="18" text="CEP"
-			 textAlign="left" verticalAlign="middle"/>
-	<s:Label x="59" y="373" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Bairro"
-			 textAlign="left" verticalAlign="middle"/>
-	<mxml:MCaixaTexto id="bairro" x="115" y="369" width="327" fontSize="18"/>
-	<mxml:MCaixaTexto id="complemento" x="184" y="417" width="183" fontSize="18"/>
-	<s:Label x="59" y="420" width="135" height="24" fontFamily="Verdana" fontSize="18" text="Complemento"
-			 textAlign="left" verticalAlign="middle"/>
-	<s:Label x="371" y="418" width="40" height="24" fontFamily="Verdana" fontSize="18" text="Tipo"
-			 textAlign="left" verticalAlign="middle"/>
-	<mxml:MComboBox id="tipo" x="409" y="417" width="137" fontSize="18" labelField="nome"/>
-	<s:Label x="64" y="467" width="40" height="24" fontFamily="Verdana" fontSize="18" text="País"
-			 textAlign="left" verticalAlign="middle"/>
-	<mxml:MComboBox id="cboPais" x="64" y="488" width="130" fontSize="18" labelFunction="labelPais" change="listarEstados(event)"/>
-	<s:Label x="212" y="467" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Estado" 
-			 textAlign="left" verticalAlign="middle"/>
-	<mxml:MComboBox id="cboEstado" x="212" y="487" width="155" fontSize="18" labelFunction="labelEstado" change="listarCidades(event)"/>
-	<s:Label x="379" y="467" width="74" height="24" fontFamily="Verdana" fontSize="18" text="Cidade"
-			 textAlign="left" verticalAlign="middle"/>
-	<mxml:MComboBox id="cboCidade" x="380" y="488" width="166" fontSize="18" labelFunction="labelCidade"/>
-	<s:Label x="59" y="550" width="85" height="24" fontFamily="Verdana" fontSize="18" text="Contato"
-			 textAlign="left" verticalAlign="middle"/>
-	<mxml:MComboBox id="cboContato" x="135" y="550" width="107" fontSize="18"/>
-	<mxml:MCaixaTexto id="txtContato" x="245" y="550" width="240" fontSize="18"/>
+	<mxml:MComboBox id="cboContato" labelFunction="labelContato" x="139" y="732" width="107" fontSize="18"/>
+	<mxml:MCaixaTexto id="txtContato" x="249" y="732" width="240" fontSize="18"/>
 	
 	
-		<mx:DataGrid x="135" y="582" width="352" height="80" id="dataGrid1" dataProvider="{dados}" >
+		<mx:DataGrid x="139" y="764" width="352" height="80" id="dataGrid1" dataProvider="{dados}" >
 			<mx:columns>
-				<mx:DataGridColumn headerText="Tipo" dataField="campo1"/>
+				<mx:DataGridColumn headerText="Tipo" dataField="campo1label"/>
 				<mx:DataGridColumn headerText="Contato" dataField="campo2"/>
 			</mx:columns>
 		</mx:DataGrid>
 
-	<mxml:MCaixaTexto id="login" x="250" y="745" width="169" fontSize="18"/>
-	<s:Label x="182" y="746" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Cliente"
+	<mxml:MCaixaTexto id="login" x="254" y="927" width="169" fontSize="18"/>
+	<s:Label x="186" y="928" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Cliente"
 			 textAlign="left" verticalAlign="middle"/>
-	<mxml:MCaixaTexto id="senha" x="250" y="786" width="169" fontSize="18"/>
-	<s:Label x="185" y="787" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Senha"
+	<mxml:MCaixaTexto id="senha" x="254" y="968" width="169" fontSize="18"/>
+	<s:Label x="189" y="969" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Senha"
 			 textAlign="left" verticalAlign="middle"/>
-	<mx:HRule x="128" y="704" width="358" height="5"/>
+	<mx:HRule x="132" y="886" width="358" height="5"/>
 	
 	<s:Image id="lblImagem" x="644" y="110" width="170" height="186" smooth="true" smoothingQuality="high"
 			 source="@Embed('../../imagens/aplicacao/user.png')"/>
 	
-	<s:Button id="adicionar" x="488" y="550" width="29" height="25"
+	<s:Button id="adicionar" x="492" y="732" width="29" height="25"
 			  click="inserirContatoTabela()" icon="@Embed('../../imagens/botoes/Create.png')"/>
 	
-	<s:Button id="remover" x="519" y="550" width="29" height="25"
+	<s:Button id="remover" x="523" y="732" width="29" height="25"
 			  icon="@Embed('../../imagens/botoes/Remove.png')" click="deleteLinha(dataGrid1.selectedIndex);" />
 
 	
-	<s:Button id="carregarImagem" x="633" y="302" width="190" height="44" label="Carregar Imagem"
-			  click="abreJanela()" icon="@Embed('../../imagens/botoes/Picture.png')"/>
+	<s:Button id="carregarImagem" x="629" y="300" width="198" height="44" label="Carregar Imagem"
+			  click="abreJanela()" fontFamily="Verdana" fontSize="12"
+			  icon="@Embed('../../imagens/botoes/Picture.png')"/>
 	
-	<s:Button id="salvar" x="655" y="398" width="152" height="35" label="Salvar"
-			  click="Salvar()" icon="@Embed('../../imagens/botoes/Save.png')"/>
+	<s:Button id="salvar" x="655" y="398" width="152" height="35" label="Salvar" click="Salvar()"
+			  fontFamily="Verdana" fontSize="18" icon="@Embed('../../imagens/botoes/Save.png')"/>
 	
-	<s:Button id="limpar" x="656" y="457" width="151" height="36" label="Limpar"
-			  icon="@Embed('../../imagens/botoes/Trash.png')"/>
+	<s:Button id="limpar" x="656" y="457" width="151" height="36" label="Limpar" fontFamily="Verdana"
+			  fontSize="18" icon="@Embed('../../imagens/botoes/Trash.png')"/>
 	
 	<s:Button id="cancelar" x="655" y="517" width="151" height="37" label="Cancelar"
-			  icon="@Embed('../../imagens/botoes/Close.png')"/>
+			  fontFamily="Verdana" fontSize="18" icon="@Embed('../../imagens/botoes/Close.png')"/>
 	
 	
 	<mx:VRule x="594" y="91" width="3" height="535"/>
-	<mx:HRule x="99" y="515" width="406" height="10"/>
+	<mx:HRule x="101" y="695" width="406" height="10"/>
 	<mx:HRule x="99" y="239" width="406" height="10"/>
+	<s:BorderContainer x="44" y="262" width="525" height="229">
+		<s:Label x="18" y="17" width="107" height="24" fontFamily="Verdana" fontSize="18" text="Logradouro"
+				 textAlign="left" verticalAlign="middle"/>
+		<mxml:MCaixaTexto id="logradouro" x="123" y="15" width="381" fontSize="18"/>
+		<mxml:MCaixaTexto id="numero" x="444" y="65" width="61" fontSize="18"/>
+		<s:Label x="418" y="66" width="27" height="24" fontFamily="Verdana" fontSize="18" text="Nº"
+				 textAlign="left" verticalAlign="middle"/>
+		<mxml:MCaixaTexto id="cep" x="57" y="118" width="198" fontSize="18"/>
+		<s:Label x="18" y="120" width="40" height="24" fontFamily="Verdana" fontSize="18" text="CEP"
+				 textAlign="left" verticalAlign="middle"/>
+		<s:Label x="18" y="69" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Bairro"
+				 textAlign="left" verticalAlign="middle"/>
+		<mxml:MCaixaTexto id="bairro" x="74" y="65" width="327" fontSize="18"/>
+		<mxml:MCaixaTexto id="complemento" x="392" y="118" width="116" fontSize="18"/>
+		<s:Label x="263" y="121" width="135" height="24" fontFamily="Verdana" fontSize="18" text="Complemento"
+				 textAlign="left" verticalAlign="middle"/>
+		<s:Label x="23" y="162" width="40" height="24" fontFamily="Verdana" fontSize="18" text="País"
+				 textAlign="left" verticalAlign="middle"/>
+		<mxml:MComboBox id="cboPais" x="23" y="183" width="130" fontSize="18" labelFunction="labelPais" change="listarEstados(event)"/>
+		<s:Label x="171" y="163" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Estado" 
+				 textAlign="left" verticalAlign="middle"/>
+		<mxml:MComboBox id="cboEstado" x="171" y="183" width="155" fontSize="18" labelFunction="labelEstado" change="listarCidades(event)"/>
+		<s:Label x="338" y="163" width="74" height="24" fontFamily="Verdana" fontSize="18" text="Cidade"
+				 textAlign="left" verticalAlign="middle"/>
+		<mxml:MComboBox id="cboCidade" x="339" y="184" width="166" fontSize="18" labelFunction="labelCidade"/>
+	</s:BorderContainer>
+	<s:Label x="41" y="603" width="393" height="25" fontSize="11"
+			 text="  *Digite abaixo os dados do endereço, e clique em adicionar." textAlign="left"
+			 verticalAlign="middle"/>
+	
+	<mx:DataGrid x="44" y="563" width="525" height="103" id="tblEnderecos" dataProvider="{dadosEndereco}" >
+		<mx:columns>
+			<mx:DataGridColumn headerText="Tipo" dataField="campo1label" width="50"/>
+			<mx:DataGridColumn headerText="Logradouro" dataField="campo2" width="130"/>
+			<mx:DataGridColumn headerText="Bairro" dataField="campo3" width="70"/>
+			<mx:DataGridColumn headerText="Nº" dataField="campo4" width="30"/>
+			<mx:DataGridColumn headerText="CEP" dataField="campo5" width="60"/>
+			<mx:DataGridColumn headerText="Comple." dataField="campo6" width="60"/>
+			<mx:DataGridColumn headerText="Cidade" dataField="campo7label" width="70"/>
+			<mx:DataGridColumn headerText="Estado" dataField="campo8label" width="70"/>
+			<mx:DataGridColumn headerText="País" dataField="campo9label" width="50"/>
+		</mx:columns>
+	</mx:DataGrid>
+	<s:Button id="adicionarEndereco" x="392" y="517" width="29" height="25"
+			  click="inserirEnderecoTabela()" icon="@Embed('../../imagens/botoes/Create.png')"/>
+	<s:Button id="removerEndereco" x="425" y="517" width="29" height="25"
+			  icon="@Embed('../../imagens/botoes/Remove.png')" click="deleteEnderecoLinha(tblEnderecos.selectedIndex);" />
 </s:Module>

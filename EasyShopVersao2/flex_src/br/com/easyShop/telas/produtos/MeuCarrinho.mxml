@@ -57,7 +57,6 @@
 	<s:Label x="171" y="376" width="201" height="23" fontFamily="Verdana" fontSize="18"
 			 text="Endereço de Entrega:" textAlign="center" verticalAlign="middle"/>
 	<mx:HRule x="235" y="417" width="311" height="17"/>
-	<mxml:MComboBox id="cboEnderecoEntrega" x="380" y="376" width="231"/>
-	<s:Image id="ima" x="85" y="410" source="@Embed('../../imagens/botoes/Erase.png')"/>
+	<mxml:MComboBox id="cboEnderecoEntrega" x="380" y="376" width="231" labelFunction="labelEndereco"/>
 	
 </mx:TitleWindow>
