@@ -19,7 +19,7 @@
 
 		<mx:DataGrid x="24" y="19" width="663" height="157" id="tblCarrinho" dataProvider="{dados}" >
 			<mx:columns>
-				<mx:DataGridColumn dataField="campo1" headerText="Produto" width="250"/>
+				<mx:DataGridColumn dataField="campo1label" headerText="Produto" width="250"/>
 				<mx:DataGridColumn dataField="campo2" headerText="Quantidade" width="120"/>
 				<mx:DataGridColumn dataField="campo3" headerText="Valor Unitário" width="120"/>
 				<mx:DataGridColumn dataField="campo4" headerText="Valor Parcial" width="120"/>

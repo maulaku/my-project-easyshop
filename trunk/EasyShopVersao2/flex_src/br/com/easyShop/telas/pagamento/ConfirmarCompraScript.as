@@ -1,12 +1,21 @@
 import br.com.easyShop.aplicacao.MainEasyShop;
+import br.com.easyShop.comunicacao.MRemoteObject;
+import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Endereco;
+import br.com.easyShop.model.Pedido;
+import br.com.easyShop.model.PedidoProduto;
+import br.com.easyShop.model.PerfilPagamento;
+import br.com.easyShop.model.Produto;
 import br.com.easyShop.telas.pagamento.Pagamentos;
 import br.com.easyShop.telas.produtos.MeuCarrinho;
 import br.com.easyShop.utils.Constantes;
+import br.com.mresolucoes.componentes.mre.Alerta;
+import br.com.mresolucoes.imagens.ImagensUtils;
 
 import flash.events.Event;
 import flash.events.MouseEvent;
 
+import mx.collections.ArrayCollection;
 import mx.managers.PopUpManager;
 
 public function construtor():void
@@ -56,5 +65,62 @@ protected function btnContinuarComprando_clickHandler(event:MouseEvent):void
 
 protected function btnFinalizarCompra_clickHandler(event:MouseEvent):void
 {
-	this.dispatchEvent(new Event("clickadoConfirmarCompra"));
+	var pedido:Pedido = new Pedido();
+	var perfilPagamento:PerfilPagamento = new PerfilPagamento();
+	var pedidosProdutos:ArrayCollection = new ArrayCollection();
+	var i:int;
+	var aux:int;
+	
+	if(Pagamentos.getSelecaoFormaPagamento()==0){
+		perfilPagamento.nome = "Boleto Bancário";
+	}
+	else{
+		perfilPagamento.nome = "Cartão de Crédito";
+	}
+	perfilPagamento.descricao = Pagamentos.getDescricaoPagamento();
+	perfilPagamento.status = Constantes.instance.STATUS_ATIVO;
+	
+	pedido.perfilPagamento = perfilPagamento;
+	pedido.cliente = MainEasyShop.getClienteGlobal();
+	pedido.endereco = MeuCarrinho.getEnderecoEscolhido();
+	pedido.total = (MeuCarrinho.getValorCarrinho() + MeuCarrinho.getValorFrete());
+	pedido.status = Constantes.instance.STATUS_ATIVO;
+	
+	var dataDoPedido:Date = new Date();
+	pedido.dataPedido = dataDoPedido;
+	pedido.dataEntrega = dataDoPedido;
+	
+	aux = MeuCarrinho.getCarrinho().length;
+	
+	for(i=0;i<aux;i++){
+		var pedidoProduto:PedidoProduto = new PedidoProduto();
+		
+		pedidoProduto.produto = ((Produto) (MeuCarrinho.getCarrinho()[i].campo1));
+		pedidoProduto.quantidade = MeuCarrinho.getCarrinho()[i].campo2;
+		pedidoProduto.pedido = pedido;
+		
+		pedidosProdutos.addItem(pedidoProduto);
+	}
+	
+	pedido.pedidoProdutos = pedidosProdutos;
+	
+	MRemoteObject.get("PedidoService.salvarPedido", [pedido], resultPedidos);
+}
+
+public function resultPedidos(result:ResultJava):void
+{
+	try		
+	{	
+		if(result==null){
+			this.dispatchEvent(new Event("clickadoConfirmarCompra"));
+		}
+		else{
+			Alerta.abrir("Ops, Ocorreu um erro ao salvar pedidos", "EasyShop", null, null, null, ImagensUtils.INFO);
+		}
+		
+	} 
+	catch(e:Error)
+	{ 
+		Alerta.abrir("Ops, Ocorreu um erro ao salvar pedidos", "EasyShop", null, null, null, ImagensUtils.INFO);
+	}
 }

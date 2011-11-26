@@ -5,7 +5,6 @@ import java.util.Arrays;
 import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Endereco;
 import br.com.easyShop.model.Pessoa;
-import br.com.easyShop.persistencia.DAO.ClienteDAO;
 import br.com.easyShop.persistencia.DAO.EnderecoDAO;
 import br.com.easyShop.service.base.BaseServiceAtta;
 

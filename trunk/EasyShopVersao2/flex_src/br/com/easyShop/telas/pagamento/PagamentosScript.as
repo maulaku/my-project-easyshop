@@ -19,6 +19,16 @@ import spark.components.RadioButton;
 
 [Bindable]
 public static var resp:int;
+[Bindable]
+public static var descricaoPagamento:String;
+
+public static function getSelecaoFormaPagamento():int{
+	return resp;
+}
+
+public static function getDescricaoPagamento():String{
+	return descricaoPagamento;
+}
 
 public function construtor():void
 {
@@ -42,19 +52,25 @@ public function construtor():void
 	visa.selected = true;
 }
 
-public static function getSelecaoFormaPagamento():int{
-	return resp;
-}
-
 protected function btnFinalizarCompra_clickHandler(event:MouseEvent):void
 {
+	var valor: int = MeuCarrinho.getValorCarrinho() + MeuCarrinho.getValorFrete();
+	var nomeCartao:String;
+	
 	if(boleto.selected){
 		resp 0;
+		descricaoPagamento = "Parcelado em 1x de R$ " + valor + " sem juros.";
 	}
 	else{
+		if(visa.selected) nomeCartao = "Visa";
+		else if(mastercard.selected) nomeCartao = "MasterCard";
+		else if(hipercard.selected) nomeCartao = "HiperCard";
+		else nomeCartao = "DinesClub";
+		
 		resp = (cboParcelamento.selectedIndex + 1);
+		descricaoPagamento = "Parcelado em " + (cboParcelamento.selectedIndex + 1) + "x de R$ " +  (valor/(cboParcelamento.selectedIndex + 1)) + " sem juros. Nome do cartão: " + nomeCartao + ". Número do Cartão: " + numeroCartao.text;
 	}
-	
+
 	this.dispatchEvent(new Event("clickadoAvancar"));
 }
 

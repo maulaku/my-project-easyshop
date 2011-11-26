@@ -3,6 +3,7 @@ import br.com.easyShop.comunicacao.MRemoteObject;
 import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.CarrinhoProduto;
 import br.com.easyShop.model.Endereco;
+import br.com.easyShop.model.Produto;
 import br.com.easyShop.utils.Constantes;
 import br.com.mresolucoes.componentes.mre.Alerta;
 import br.com.mresolucoes.imagens.ImagensUtils;
@@ -30,6 +31,8 @@ private static var total:int;
 private static var enderecoSelecionado:int;
 [Bindable]
 private static var enderecoEscolhido:Endereco;
+[Bindable]
+private static var carrinho:ArrayCollection;
 
 public function construtor():void
 {
@@ -39,6 +42,10 @@ public function construtor():void
 
 public static function getEnderecoSelecionado():int{
 	return enderecoSelecionado;
+}
+
+public static function getCarrinho():ArrayCollection{
+	return carrinho;
 }
 
 public static function getEnderecoEscolhido():Endereco{
@@ -62,15 +69,16 @@ public function resultCarrinho(result:ResultJava):void
 			var i:int;
 			var carrinhoProduto:CarrinhoProduto;
 			var temp:Object;
-//			var imagem:Image = new Image();
-//			imagem.source();
-//			imagem.addEventListener(MouseEvent.CLICK,deleteLinha);
+			//			var imagem:Image = new Image();
+			//			imagem.source();
+			//			imagem.addEventListener(MouseEvent.CLICK,deleteLinha);
 			for(i=0;i<result.lista.length;i++)
 			{
 				carrinhoProduto = new CarrinhoProduto();
 				carrinhoProduto = ((CarrinhoProduto) (result.lista[i]));
 				temp = new Object();
-				temp.campo1 = carrinhoProduto.produto.nome;
+				temp.campo1 = carrinhoProduto.produto;
+				temp.campo1label = carrinhoProduto.produto.nome;
 				temp.campo2 = "1";
 				temp.campo3 = "R$ " + carrinhoProduto.produto.preco;
 				temp.campo4 = "R$ " + carrinhoProduto.produto.preco;
@@ -130,6 +138,7 @@ protected function btnFinalizarCarrinho_clickHandler(event:MouseEvent):void
 {
 	enderecoSelecionado = cboEnderecoEntrega.selectedIndex;
 	enderecoEscolhido = cboEnderecoEntrega.selectedItem;
+	carrinho = dados;
 	this.dispatchEvent(new Event("clickadoFinalizarCarrinho"));	
 }
 
