@@ -72,7 +72,7 @@
 		<s:Label x="21" y="160" fontSize="17" text="Válidade"/>
 		<s:Label x="412" y="98" fontSize="17" text="Nome do Títular"/>
 		<s:Label x="412" y="131" fontSize="17" text="Código de Segurança"/>
-		<s:TextInput x="163" y="92" width="206"/>
+		<s:TextInput id="numeroCartao" x="163" y="92" width="206"/>
 		<s:TextInput x="183" y="125" width="186"/>
 		<mx:DateField x="97" y="155" width="137" showToday="false"/>
 		<mx:VRule x="389" y="85"/>

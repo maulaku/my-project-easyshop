@@ -5,8 +5,9 @@ import java.util.Arrays;
 import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Pedido;
 import br.com.easyShop.persistencia.DAO.PedidoProdutoDAO;
+import br.com.easyShop.service.base.BaseServiceAtta;
 
-public class PedidoProdutoService {
+public class PedidoProdutoService extends BaseServiceAtta {
 	
 	public ResultJava getPedidosProdutoCliente(Pedido pedido) {
 		try
@@ -18,5 +19,4 @@ public class PedidoProdutoService {
 			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao buscar pedidoProduto\n" + e }));
 		}
 	}
-
 }
