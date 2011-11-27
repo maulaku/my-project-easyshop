@@ -4,7 +4,7 @@ public class Constantes
 {
 	//STATUS NO BANCO
 	public static final int STATUS_ATIVO=0;
-	public static final int STATUS_REMOVIDO=9999;
+	public static final int STATUS_REMOVIDO=999;
 
 	//TIPOS DE PERMISS�O
 	public static final int TIPO_PERMISSAO_LEITURA=2220;

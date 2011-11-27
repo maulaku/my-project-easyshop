@@ -11,7 +11,7 @@
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<mxml:MCaixaTexto id="ctTeste" x="107" y="41" width="126" fontSize="18"/>
-	<s:Label x="59" y="42" width="65" height="24" fontFamily="Verdana" fontSize="18" text="CNPJ"
+	<s:Label x="59" y="42" width="65" height="24" fontFamily="Verdana" fontSize="18" text="CNPJ" 
 			 textAlign="left" verticalAlign="middle"/>
 	<s:Label x="58" y="192" width="107" height="24" fontFamily="Verdana" fontSize="18" text="Logradouro"
 			 textAlign="left" verticalAlign="middle"/>
@@ -19,7 +19,7 @@
 	<mxml:MCaixaTexto id="ctTeste3" x="351" y="190" width="35" fontSize="18"/>
 	<s:Label x="327" y="191" width="27" height="24" fontFamily="Verdana" fontSize="18" text="Nº"
 			 textAlign="left" verticalAlign="middle"/>
-	<mxml:MCaixaTexto id="ctTeste4" x="428" y="190" width="119" fontSize="18"/>
+	<mxml:MCaixaTexto id="ctTeste4" x="428" y="190" width="119" fontSize="18" mreMascara="#####-###"/>
 	<s:Label x="389" y="192" width="40" height="24" fontFamily="Verdana" fontSize="18" text="CEP"
 			 textAlign="left" verticalAlign="middle"/>
 	<s:Label x="58" y="242" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Bairro"

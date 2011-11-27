@@ -15,6 +15,8 @@
 			import br.com.easyShop.telas.produtos.AbaDetalhesProduto;
 			import br.com.mresolucoes.componentes.mre.MModulo;
 			
+			import flexunit.framework.Test;
+			
 			[Bindable]
 			private var _modulo:MModulo;
 			[Bindable]
@@ -30,25 +32,24 @@
 			{
 				if (botao == btEspiar) 
 				{
-//					_modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf", carregaModulo);
-					_modulo.mreLoadModule("br/com/easyShop/telas/produtos/TesteAba.swf", carregaModulo);	
+					_modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");	
 				}
 			}
 			
 			public function carregaModulo(mod:MModulo=null):void
 			{
-				for (var i:int=0; i<mod.numChildren; i++)
-				{
-//					if (mod.getChildAt(i) is AbaDetalhesProduto)
+//				for (var i:int=0; i<mod.numChildren; i++)
+//				{
+//					if (mod.getChildAt(i) is TesteAba)
 //					{
 //						var result:ResultJava = new ResultJava();
 //						result.item = _produto;
-//						(mod.getChildAt(i) as AbaDetalhesProduto).carregarProduto(result);	
+//						(mod.getChildAt(i) as TesteAba).carregarProduto(result);	
 //						break;
 //						//painel navegação
 //						//passar a chamada pra dentro do componente
 //					}
-				}
+//				}
 			}
 			
 			public function get modulo():MModulo { return _modulo; }
