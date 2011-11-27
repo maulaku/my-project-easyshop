@@ -89,6 +89,7 @@ public function adicionarCarrinho2():void
 		carrinhoProduto.carrinho = carrinho;
 		carrinhoProduto.produto = produto;
 		carrinhoProduto.quantidade = 1;
+		carrinhoProduto.status = Constantes.instance.STATUS_ATIVO;
 		
 		MRemoteObject.get("CarrinhoProdutoService.inserirCarrinho",[carrinhoProduto],resultado);
 	}

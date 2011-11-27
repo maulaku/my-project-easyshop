@@ -1,6 +1,7 @@
 import br.com.easyShop.aplicacao.MainEasyShop;
 import br.com.easyShop.comunicacao.MRemoteObject;
 import br.com.easyShop.comunicacao.ResultJava;
+import br.com.easyShop.model.CarrinhoProduto;
 import br.com.easyShop.model.Endereco;
 import br.com.easyShop.model.Pedido;
 import br.com.easyShop.model.PedidoProduto;
@@ -14,9 +15,12 @@ import br.com.mresolucoes.imagens.ImagensUtils;
 
 import flash.events.Event;
 import flash.events.MouseEvent;
+import flash.sampler.NewObjectSample;
 
 import mx.collections.ArrayCollection;
 import mx.managers.PopUpManager;
+
+import org.flexunit.internals.namespaces.classInternal;
 
 public function construtor():void
 {
@@ -104,7 +108,27 @@ protected function btnFinalizarCompra_clickHandler(event:MouseEvent):void
 	
 	pedido.pedidoProdutos = pedidosProdutos;
 	
-	MRemoteObject.get("PedidoService.salvarPedido", [pedido], resultPedidos);	
+	MRemoteObject.get("CarrinhoProdutoService.atualizaCarrinhoProdutos", [MainEasyShop.getClienteGlobal()], resultCarrinho);
+	MRemoteObject.get("PedidoService.salvarPedido", [pedido], resultPedidos);
+}
+
+public function resultCarrinho(result:ResultJava):void
+{
+	try		
+	{		
+		if(result == null)
+		{
+		}
+		else
+		{ 
+			Alerta.abrir(result.lista.length > 0 ? result.lista.getItemAt(0) as String : "Ops, Erro ao atualizar carrinho produtos", "EasyShop", null, null, null, ImagensUtils.INFO);
+		}
+		
+	} 
+	catch(e:Error)
+	{ 
+		Alerta.abrir("Ops, Ocorreu um erro ao carrinho produtos", "EasyShop", null, null, null, ImagensUtils.INFO);
+	}
 }
 
 public function resultPedidos(result:ResultJava):void

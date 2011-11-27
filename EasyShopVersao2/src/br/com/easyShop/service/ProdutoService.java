@@ -66,7 +66,7 @@ public class ProdutoService extends BaseServiceAtta {
 	}
 	
 	public ResultJava getProdutosId() {
-		long id2 = 5;
+		long id2 = 1;
 		
 		try {
 			return new ResultJava(new ProdutoDAO().getProduto(-1, id2));
