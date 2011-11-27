@@ -59,7 +59,7 @@
 				 source="@Embed('../imagens/aplicacao/icone_carrinho.png')" click="btnCarrinho_clickHandler(event)"/>
 		
 		<s:Image x="-64" y="-96" width="650" height="319" scaleMode="stretch" smooth="true"
-				 smoothingQuality="high" source="@Embed('../imagens/aplicacao/nomEasy.png')"/>
+				 smoothingQuality="high" source="@Embed('../imagens/aplicacao/nomEasy.png')" click="construtor()" toolTip="Início"/>
 		
 		<s:Image id="btnDesejo" x="1013" y="-9" width="83" height="59" buttonMode="true" smooth="true" smoothingQuality="high" toolTip="Meus Desejos"
 				 source="@Embed('../imagens/aplicacao/desejo.png')" click="btnDesejo_clickHandler(event)"/>
