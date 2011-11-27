@@ -40,7 +40,7 @@ public function resultPedido(result:ResultJava):void
 					break;
 				}
 			}
-			
+	
 			lblNumeroPedido.text = "" + zeros + "" + nome;
 		}
 		else
