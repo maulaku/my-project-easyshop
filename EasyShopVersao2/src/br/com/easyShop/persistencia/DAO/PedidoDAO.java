@@ -17,5 +17,5 @@ public class PedidoDAO extends BaseDAOAtta{
 		query.add(" WHERE fkCliente = ?", cliente.getPkCliente());
 
 		return obtem(Pedido.class, query, profundidade);
-	}	
+	}		
 }

@@ -104,7 +104,7 @@ protected function btnFinalizarCompra_clickHandler(event:MouseEvent):void
 	
 	pedido.pedidoProdutos = pedidosProdutos;
 	
-	MRemoteObject.get("PedidoService.salvarPedido", [pedido], resultPedidos);
+	MRemoteObject.get("PedidoService.salvarPedido", [pedido], resultPedidos);	
 }
 
 public function resultPedidos(result:ResultJava):void
