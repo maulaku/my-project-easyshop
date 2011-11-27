@@ -63,6 +63,7 @@ public static function getUsurioGlobal():Usuario
 
 public function construtor():void
 {
+	
 	clienteGlobal = null;
 	usuarioGlobal = null;
 	btnCarrinho.visible = false;
@@ -90,7 +91,7 @@ public function resultProduto(result:ResultJava):void
 				item.preco = NumberUtil.toString(produto.preco, 2);
 				item.modulo = modulo;
 				item.produto = produto;
-				item.imagemSource = Constantes.instance.ENDERECO_IMAGEM_PRODUTO+"1.png";
+				item.imagemSource = Constantes.instance.ENDERECO_IMAGEM_PRODUTO+NumberUtil.toString(produto.pkProduto)+".jpg";
 				
 				grPainelModulos.addModulo(item);
 			}
@@ -168,31 +169,6 @@ private function fakeMouseClick(event:MouseEvent):void {
 	var clickEvent:MouseEvent = new MouseEvent(MouseEvent.CLICK, true, false, event.localX, event.localY);
 	//dispatchEvent(clickEvent);
 }
-
-/* Listeners Modulos */
-//public function carregarModuloProduto(object:Object):void
-//{
-//	produtoAux = object as Produto;
-//	//	grPainelModulos.visible=false;
-//	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf", teste);
-//}
-
-
-//public function teste(mod:MModulo=null):void
-//{
-//	for (var i:int=0; i<mod.numChildren; i++)
-//	{
-//		if (mod.getChildAt(i) is AbaDetalhesProduto)
-//		{
-//			var result:ResultJava = new ResultJava();
-//			result.item = produtoAux;
-//			(mod.getChildAt(i) as AbaDetalhesProduto).carregarProduto(result);	
-//			
-//			//painel navegação
-//			//passar a chamada pra dentro do componente
-//		}
-//	}
-//}
 
 public function resultSubCategoria(result:ResultJava):void
 {
