@@ -27,11 +27,17 @@
 			private var _preco:String;
 			[Bindable]
 			private var _produto:Produto;
+			[Bindable]
+			public static var produtoGlobal:Produto;
 			
+			public static function getProdutoGlobal():Produto{
+				return produtoGlobal;
+			}
 			public function escutaBotoes(botao:MBotao):void
 			{
 				if (botao == btEspiar) 
 				{
+					produtoGlobal = _produto;
 					_modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");	
 				}
 			}

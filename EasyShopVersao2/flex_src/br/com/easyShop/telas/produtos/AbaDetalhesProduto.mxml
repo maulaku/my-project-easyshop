@@ -3,40 +3,45 @@
 		  xmlns:s="library://ns.adobe.com/flex/spark"
 		  xmlns:mx="library://ns.adobe.com/flex/mx"
 		  xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
-		  width="947" height="1160" creationComplete="construtor()">
+		  width="947" height="1182" creationComplete="construtor()">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	
 	<fx:Script source="AbaDetalhesProdutoScript.as" />
 	
-	<mxml:MPanel title="Detalhes do Produto" x="0" y="0" width="100%" height="100%">
-		<s:Label id="lbNomeProduto" x="10" y="0" width="925" height="27" />
-		<s:Image x="50" y="35" width="285" height="324"/>
-		<s:BorderContainer x="344" y="38" width="525" height="322">
+	<mxml:MPanel title="Detalhes do Produto" x="0" y="0" width="100%" height="1182">
+		<s:Label id="lbNomeProduto" x="10" y="6" width="925" height="44" fontFamily="Arial"
+				 fontSize="32" fontWeight="bold" text="Teste" textAlign="center"
+				 verticalAlign="middle"/>
+		<s:Image x="50" y="52" width="285" height="324"/>
+		<s:BorderContainer x="344" y="55" width="525" height="322">
 			<s:Label id="lbPreco" x="211" y="22" width="237" height="28" color="#EA0F0F" fontFamily="Arial" fontSize="23" fontWeight="bold" textAlign="left" verticalAlign="middle"/>
 			<mx:HRule x="86" y="71" width="351" height="3"/>
-			<s:Label x="186" y="129" height="32" fontSize="16" text="Valor da Parcela:" textAlign="center" verticalAlign="middle"/>
-			<mxml:MComboBox id="cbParcelamento" x="307" y="131" width="183" fontSize="16"/>
-			<s:Label id="lbValorBoleto" x="283" y="169" width="181" height="28" fontFamily="Arial" fontSize="21" fontWeight="bold" textAlign="center" verticalAlign="middle"/>
+			<s:Label x="186" y="145" height="32" fontSize="16" text="Valor da Parcela:" textAlign="center" verticalAlign="middle"/>
+			<mxml:MComboBox id="cbParcelamento" x="307" y="147" width="183" fontSize="16"/>
+			<s:Label id="lbValorBoleto" x="283" y="185" width="181" height="28" fontFamily="Arial" fontSize="21" fontWeight="bold" textAlign="center" verticalAlign="middle"/>
 			<s:Label x="179" y="20" height="32" fontSize="16" text="Por:" textAlign="center" verticalAlign="middle"/>
 				
-			<s:Label x="187" y="169" height="32" fontSize="16" text="Valor à Vista:" textAlign="center" verticalAlign="middle"/>
-			<mxml:MRadioButton id="rbCartaoCredito" x="30" y="131" label="Cartão de Crédito:" fontFamily="Arial" fontSize="16" selected="true"/>
-			<mxml:MRadioButton id="rbBoletoBancario" x="30" y="158" height="47" label="Boleto Bancário:" fontFamily="Arial" fontSize="16"/>
-			<mx:HRule x="86" y="221" width="351" height="3"/>
+			<s:Label x="187" y="185" height="32" fontSize="16" text="Valor à Vista:" textAlign="center" verticalAlign="middle"/>
+			<mxml:MRadioButton id="rbCartaoCredito" x="30" y="147" label="Cartão de Crédito:" fontFamily="Arial" fontSize="16" selected="true"/>
+			<mxml:MRadioButton id="rbBoletoBancario" x="30" y="174" height="47" label="Boleto Bancário:" fontFamily="Arial" fontSize="16"/>
+			<mx:HRule x="86" y="229" width="351" height="3"/>
 			<mxml:MBotao id="btContinuarComprando" x="14" y="264" width="211" height="37" label="Continuar Comprando" fontSize="14" fontWeight="normal" mreIcone="br/com/easyShop/imagens/botoes/back.png" mreClick="escutaBotoes"/>
-			<s:Image id="adicionarCarrinho" x="267" y="255" width="242" smooth="true" smoothingQuality="high" source="@Embed('../../imagens/botoes/adicionar-carrinho.png')"/>			
+			<s:Image id="adicionarCarrinho" click="adicionarCarrinho2()" buttonMode="true" x="267" y="255" width="242" smooth="true" smoothingQuality="high" source="@Embed('../../imagens/botoes/adicionar-carrinho.png')"/>			
+			<s:Label x="137" y="95" height="32" fontSize="16" text="Quantidade desejada:" textAlign="center" verticalAlign="middle"/>
+			<s:TextInput id="txtQuantidade" x="299" y="95" width="102" height="27" fontSize="16"
+						 text="1" textAlign="center"/>
 		</s:BorderContainer>
-		<s:Label x="10" y="372" width="89" height="16" text="Descrição:" fontSize="18"/>
-		<mx:HRule x="107" y="371" width="817" height="18"/>
-		<s:TextArea id="ctDescricao" x="5" y="391" width="919" height="230" enabled="false"/>
-		<mx:HRule x="149" y="631" width="775" height="18"/>
-		<s:Label x="10" y="886" width="207" height="16" text="Especificações Técnicas:" fontSize="18"/>
-		<s:Label x="11" y="630" width="130" height="16" text="Características:" fontSize="18"/>
-		<s:TextArea id="ctCaracteristicas" x="5" y="648" width="919" height="230" enabled="false"/>
-		<mx:HRule x="225" y="884" width="699" height="18"/>
-		<s:TextArea id="ctEspecificacoesTecnicas" x="5" y="905" width="919" height="230" enabled="false"/>
+		<s:Label x="10" y="389" width="89" height="16" text="Descrição:" fontSize="18"/>
+		<mx:HRule x="107" y="388" width="817" height="18"/>
+		<s:TextArea id="ctDescricao" x="5" y="408" width="919" height="230" enabled="false"/>
+		<mx:HRule x="149" y="646" width="775" height="18"/>
+		<s:Label x="10" y="901" width="207" height="16" text="Especificações Técnicas:" fontSize="18"/>
+		<s:Label x="11" y="645" width="130" height="16" text="Características:" fontSize="18"/>
+		<s:TextArea id="ctCaracteristicas" x="5" y="665" width="919" height="230" enabled="false"/>
+		<mx:HRule x="225" y="899" width="699" height="18"/>
+		<s:TextArea id="ctEspecificacoesTecnicas" x="5" y="922" width="919" height="230" enabled="false"/>
 		
 		
 	</mxml:MPanel>
