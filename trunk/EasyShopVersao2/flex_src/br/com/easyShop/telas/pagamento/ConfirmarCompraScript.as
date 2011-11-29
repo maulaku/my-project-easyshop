@@ -18,7 +18,10 @@ import flash.events.MouseEvent;
 import flash.sampler.NewObjectSample;
 
 import mx.collections.ArrayCollection;
+import mx.core.mx_internal;
+import mx.events.CalendarLayoutChangeEvent;
 import mx.managers.PopUpManager;
+import mx.utils.object_proxy;
 
 import org.flexunit.internals.namespaces.classInternal;
 
@@ -92,7 +95,11 @@ protected function btnFinalizarCompra_clickHandler(event:MouseEvent):void
 	
 	var dataDoPedido:Date = new Date();
 	pedido.dataPedido = dataDoPedido;
-	pedido.dataEntrega = dataDoPedido;
+	var currentDate:Number = (dataDoPedido.day + 5); //Dia
+	var currentMonth:Number = dataDoPedido.month; //Mês
+	var currentYear:Number = dataDoPedido.fullYear; //Ano
+	var dataDeEntrega:Date = new Date(currentYear, currentMonth, currentDate);
+	pedido.dataEntrega = dataDeEntrega;
 	
 	aux = MeuCarrinho.getCarrinho().length;
 	
@@ -141,7 +148,6 @@ public function resultPedidos(result:ResultJava):void
 		else{
 			Alerta.abrir("Ops, Ocorreu um erro ao salvar pedidos", "EasyShop", null, null, null, ImagensUtils.INFO);
 		}
-		
 	} 
 	catch(e:Error)
 	{ 

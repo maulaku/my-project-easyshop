@@ -47,25 +47,25 @@ public class LancamentoDePermissao extends JFrame {
 	private JButton btnSalvar = new JButton("Salvar");
 	private JButton btnCancelar = new JButton("Cancelar");
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LancamentoDePermissao frame = new LancamentoDePermissao();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+//	/**
+//	 * Launch the application.
+//	 */
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					LancamentoDePermissao frame = new LancamentoDePermissao();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
+//
+//	/**
+//	 * Create the frame.
+//	 */
 	public LancamentoDePermissao() {
 		cboUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		cboUsuarios.addActionListener(new PreencherTabelaTela());
@@ -147,7 +147,9 @@ public class LancamentoDePermissao extends JFrame {
 		
 		usuarios = usuarioService.getUsuarios();
 		for(Usuario usuario : usuarios){
-			cboUsuarios.addItem(usuario);
+			if(usuario.getPessoa().getClientes()==null){
+				cboUsuarios.addItem(usuario);
+			}
 		}
 	}
 	

@@ -4,7 +4,7 @@
 				xmlns:s="library://ns.adobe.com/flex/spark"
 				xmlns:mx="library://ns.adobe.com/flex/mx"
 				xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
-				width="782" height="548" backgroundAlpha="0.39" backgroundColor="#F1F4F4"
+				width="768" height="548" backgroundAlpha="0.39" backgroundColor="#F1F4F4"
 				close="PopUpManager.removePopUp(this)" dropShadowVisible="true" layout="absolute"
 				removedEffect="fechar" title="Meu Carrinho" creationComplete="construtor()" >
 	
@@ -14,16 +14,16 @@
 	
 	<fx:Script source="MeuCarrinhoScript.as" />
 	
-	<s:BorderContainer x="26" y="21" width="718" height="332" backgroundAlpha="0.52"
+	<s:BorderContainer x="26" y="21" width="710" height="332" backgroundAlpha="0.52"
 					   backgroundColor="#F2F2F2">
 
-		<mx:DataGrid x="24" y="19" width="663" height="157" id="tblCarrinho" dataProvider="{dados}" >
+		<mx:DataGrid x="24" y="19" width="664" height="157" id="tblCarrinho" dataProvider="{dados}" >
 			<mx:columns>
 				<mx:DataGridColumn dataField="campo1label" headerText="Produto" width="250"/>
 				<mx:DataGridColumn dataField="campo2" headerText="Quantidade" width="120"/>
 				<mx:DataGridColumn dataField="campo3" headerText="Valor Unitário" width="120"/>
 				<mx:DataGridColumn dataField="campo4" headerText="Valor Parcial" width="120"/>
-				<mx:DataGridColumn dataField="campo5" headerText="Excluir" width="50"/>
+				<mx:DataGridColumn dataField="campo5" headerText="Imagem" width="120"/>
 			</mx:columns>
 		</mx:DataGrid>
 		
@@ -44,8 +44,7 @@
 		<s:Label x="390" y="276" width="152" height="23" fontFamily="Verdana" fontSize="16"
 				 fontWeight="bold" text="Valor Total:" textAlign="right" verticalAlign="middle"/>
 		<s:Label id="lblValorTotal" x="547" y="279" fontFamily="Verdana" fontSize="16"
-				 fontWeight="bold" textAlign="left" verticalAlign="middle"/>
-		
+				 fontWeight="bold" textAlign="left" verticalAlign="middle"/>	
 		
 	</s:BorderContainer>
 	<s:Button id="btnContinuarComprando" x="143" y="451" width="210" height="38"

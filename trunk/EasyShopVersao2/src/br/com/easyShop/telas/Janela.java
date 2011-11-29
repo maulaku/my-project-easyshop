@@ -468,8 +468,8 @@ public class Janela extends JFrame implements ActionListener {
 			imagem_buffered = null;
 			
 			try {
-				imagem_buffered = ImageIO.read(imagem_file );
-			} catch (IOException e2) {
+				imagem_buffered = ImageIO.read(imagem_file);
+			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
 

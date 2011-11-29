@@ -27,7 +27,7 @@ public class UsuarioService extends BaseServiceAtta
 	{
 		try
 		{
-			return new UsuarioDAO().getUsuarios(-1);
+			return new UsuarioDAO().getUsuarios(3);
 		} 
 		catch (Exception e)
 		{
