@@ -10,30 +10,6 @@
 			   xmlns:flexlib="http://code.google.com/p/flexlib/" xmlns:modulo="br.com.easyShop.componentes.modulo.*">
 	<fx:Style source="MainEasyShop.css"/>
 	
-	<fx:Style>
-		.mainBox {
-			padding-top:10;
-			padding-left:10;
-			padding-right:10;
-			vertical-gap:0;	
-		}
-		
-		.title {
-			font-weight: bold;
-			color: #333333;
-			font-size: 16;	
-		}
-		
-		.description {
-			font-weight: normal;
-			color: #666666;
-			font-size: 12;	
-		}
-		global
-		{
-			font-weight: normal;
-		}
-	</fx:Style>
 	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
