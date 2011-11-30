@@ -33,7 +33,7 @@ private static var enderecoSelecionado:int;
 private static var enderecoEscolhido:Endereco;
 [Bindable]
 private static var carrinho:ArrayCollection;
-
+ 
 public function construtor():void
 {
 	MRemoteObject.get("CarrinhoProdutoService.getCarrinhoProdutos", [MainEasyShop.getClienteGlobal()], resultCarrinho);

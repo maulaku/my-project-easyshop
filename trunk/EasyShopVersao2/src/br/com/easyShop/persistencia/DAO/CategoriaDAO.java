@@ -29,6 +29,17 @@ public class CategoriaDAO extends BaseDAOAtta{
 		
 		return obtem(Categoria.class, query, profundidade);		
 	}
+	
+	public List<Categoria> getCategoriasSubString(Long categoria, int profundidade) throws Exception
+	{
+		QuerySQL query = new QuerySQL();
+			
+		query.add("SELECT *");
+		query.add(" FROM Categoria");
+		query.add(" WHERE fkCategoria = ?", categoria);
+		
+		return obtem(Categoria.class, query, profundidade);		
+	}
 
 	public List<Categoria> getCategorias(int profundidade) throws Exception
 	{

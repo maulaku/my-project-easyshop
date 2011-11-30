@@ -38,6 +38,17 @@ public class CategoriaService extends BaseServiceAtta
 			e.printStackTrace();
 		}
 	}
+	
+	public void atualizarCategoria(Categoria categoria) {
+		try 
+		{
+			new CategoriaDAO().alterar(categoria);
+		}
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+	}
 
 	public List<Categoria> getSubCategorias(Categoria categoria) 
 	{
@@ -105,7 +116,7 @@ public class CategoriaService extends BaseServiceAtta
 	public ResultJava getTodasCategoriasPai() {
 		try
 		{
-			return new ResultJava(true, new CategoriaDAO().getTodasCategoriasTipo(Constantes.CATEGORIA_PAI, -1));
+			return new ResultJava(true, new CategoriaDAO().getTodasCategoriasTipo(Constantes.CATEGORIA_PAI, 3));
 		} 
 		catch (Exception e) 
 		{
@@ -117,6 +128,19 @@ public class CategoriaService extends BaseServiceAtta
 		try
 		{
 			return new ResultJava(true, new CategoriaDAO().getCategoriasSub(categoria,3));
+		} 
+		catch (Exception e) 
+		{
+			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao buscar sub categorias\n" + e }));
+		}
+	}
+	
+	public ResultJava getTodasCategoriasSubString(String s) {
+		Long categoria = Long.parseLong(s);
+		
+		try
+		{
+			return new ResultJava(true, new CategoriaDAO().getCategoriasSubString(categoria,3));
 		} 
 		catch (Exception e) 
 		{

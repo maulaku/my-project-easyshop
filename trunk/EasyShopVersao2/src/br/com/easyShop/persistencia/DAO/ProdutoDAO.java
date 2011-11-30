@@ -4,6 +4,7 @@ import java.util.List;
 
 import flex.messaging.FlexContext;
 
+import br.com.easyShop.model.Categoria;
 import br.com.easyShop.model.Produto;
 import br.com.easyShop.persistencia.DAO.baseDAO.BaseDAOAtta;
 import br.com.easyShop.persistencia.conexao.BancoDeDados;
@@ -74,6 +75,18 @@ public class ProdutoDAO extends BaseDAOAtta {
 		query.add("SELECT *");
 		query.add(" FROM produto");
 		query.add(" WHERE promocao = ?", true);
+		query.add(" AND status = ?", Constantes.STATUS_ATIVO);
+		
+		return obtem(Produto.class, query, -1);
+	}
+	
+	public List<Produto> getProdutosCategoria(Long pkCategoria) throws Exception
+	{
+		QuerySQL query = new QuerySQL();
+		
+		query.add("SELECT *");
+		query.add(" FROM produto");
+		query.add(" WHERE fkcategoria = ?", pkCategoria);
 		query.add(" AND status = ?", Constantes.STATUS_ATIVO);
 		
 		return obtem(Produto.class, query, -1);

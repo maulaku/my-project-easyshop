@@ -20,6 +20,6 @@
 			   fontFamily="Verdana" fontSize="15" click="clickadoPessoaFisica()"/>
 	<mx:Button id="btnPessoaJeridica" x="473" y="159" width="129" height="29" label="Pessoa Jurídica"
 			   fontFamily="Verdana" fontSize="15" click="clickadoPessoaJuridica()"/>
-	<s:Image x="90" y="66" width="157" height="172" source="@Embed('../../../../../../Imagens/ImagensProduto/produto4.jpg')"/>
+	<s:Image x="90" y="66" width="157" height="172" source="@Embed('../../../../../../Imagens/ImagensProduto/4.jpg')"/>
 	
 </mx:TitleWindow>
