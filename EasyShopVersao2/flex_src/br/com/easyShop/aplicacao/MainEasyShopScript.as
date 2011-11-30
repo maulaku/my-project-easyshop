@@ -1,6 +1,7 @@
 import br.com.easyShop.aplicacao.AccordionItem;
+import br.com.easyShop.aplicacao.ImportsMain;
 import br.com.easyShop.aplicacao.MainEasyShop;
-import br.com.easyShop.componentes.modulo.ModuloItem;
+import br.com.easyShop.componentes.modulo.ProdutoItem;
 import br.com.easyShop.comunicacao.MRemoteObject;
 import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Categoria;
@@ -15,11 +16,9 @@ import br.com.easyShop.telas.desejos.AbaMeuDesejo;
 import br.com.easyShop.telas.pagamento.ConfirmarCompra;
 import br.com.easyShop.telas.pagamento.Pagamentos;
 import br.com.easyShop.telas.pagamento.PedidoConfirmado;
-import br.com.easyShop.telas.produtos.AbaDetalhesProduto;
 import br.com.easyShop.telas.produtos.MeuCarrinho;
 import br.com.easyShop.utils.Constantes;
 import br.com.mresolucoes.componentes.mre.Alerta;
-import br.com.mresolucoes.componentes.mre.MModulo;
 import br.com.mresolucoes.imagens.ImagensUtils;
 import br.com.mresolucoes.utils.NumberUtil;
 
@@ -42,7 +41,7 @@ private var painelPagamentos:Pagamentos;
 private var confirmarCompra:ConfirmarCompra;
 private var pedidoConfirmado:PedidoConfirmado;
 
-private var produtoAux:Produto;
+private var importsMain:ImportsMain = null;
 
 private static var clienteGlobal:Cliente; //Cliente Global da Aplicação. Ele é setado pelo Login.
 private static var usuarioGlobal:Usuario; //Usuario Global da Aplicação. Ele é setado pelo Login.
@@ -85,7 +84,7 @@ public function resultProduto(result:ResultJava):void
 			for(var i:int=0;i<result.lista.length;i++)
 			{				
 				produto = result.lista.getItemAt(i) as Produto;  
-				var item:ModuloItem = new ModuloItem();
+				var item:ProdutoItem = new ProdutoItem();
 				
 				item.nome = produto.nome;
 				item.preco = NumberUtil.toString(produto.preco, 2);
@@ -169,6 +168,7 @@ private function fakeMouseClick(event:MouseEvent):void {
 	var clickEvent:MouseEvent = new MouseEvent(MouseEvent.CLICK, true, false, event.localX, event.localY);
 	//dispatchEvent(clickEvent);
 }
+
 
 public function resultSubCategoria(result:ResultJava):void
 {

@@ -1,30 +1,40 @@
 package br.com.easyShop.aplicacao
 {
+	import br.com.easyShop.model.*;
+	import br.com.easyShop.telas.produtos.AbaDetalhesProduto;
+	import br.com.easyShop.utils.GlobalEasyShop;
+	import br.com.mresolucoes.componentes.mre.Alerta;
+	import br.com.mresolucoes.componentes.mre.MModulo;
+
 	public class ImportsMain
 	{
-//		public static var carrinho:Carrinho = null;
-//		public static var carrinhoProduto:CarrinhoProduto = null;
-//		public static var categoria:Categoria = null;
-//		public static var cidade:Cidade = null;
-//		public static var cliente:Cliente = null;
-//		public static var contato:Contato = null;
-//		public static var desejo:Desejo = null;
-//		public static var desejoProduto:DesejoProduto = null;
-//		public static var endereco:Endereco = null;
-//		public static var estado:Estado = null;
-//		public static var marca:Marca = null;
-//		public static var pais:Pais = null;
-//		public static var pedido:Pedido = null;
-//		public static var pedidoProduto:PedidoProduto = null;
-//		public static var perfilPagamento:PerfilPagamento = null;
-//		public static var pessoa:Pessoa = null;
-//		public static var pessoaFisica:PessoaFisica = null;
-//		public static var pessoaJuridica:PessoaJuridica = null;
-//		public static var preferencia:Preferencia = null;
-//		public static var produto:Produto = null;
-//		public static var tela:Tela = null;
-//		public static var tipoPermissao:TipoPermissao = null;
-//		public static var usuario:Usuario = null;
-//		public static var usuarioTela:UsuarioTela = null;
+		public var alerta:Alerta = null;
+		public var mModulo:MModulo = null;
+		public var global:GlobalEasyShop = null;
+		public var abaDetalhesProduto:AbaDetalhesProduto = null;
+		public var carrinho:Carrinho = null;
+		public var carrinhoProduto:CarrinhoProduto = null;
+		public var categoria:Categoria = null;
+		public var cidade:Cidade = null;
+		public var cliente:Cliente = null;
+		public var contato:Contato = null;
+		public var desejo:Desejo = null;
+		public var desejoProduto:DesejoProduto = null;
+		public var endereco:Endereco = null;
+		public var estado:Estado = null;
+		public var marca:Marca = null;
+		public var pais:Pais = null;
+		public var pedido:Pedido = null;
+		public var pedidoProduto:PedidoProduto = null;
+		public var perfilPagamento:PerfilPagamento = null;
+		public var pessoa:Pessoa = null;
+		public var pessoaFisica:PessoaFisica = null;
+		public var pessoaJuridica:PessoaJuridica = null;
+		public var preferencia:Preferencia = null;
+		public var produto:Produto = null;
+		public var tela:Tela = null;
+		public var tipoPermissao:TipoPermissao = null;
+		public var usuario:Usuario = null;
+		public var usuarioTela:UsuarioTela = null;
 	}
 }
