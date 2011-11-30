@@ -14,10 +14,10 @@
 	<mxml:MCaixaTexto id="nome" x="113" y="41" width="433" fontSize="18"/>
 	<s:Label x="58" y="41" width="65" height="24" fontFamily="Verdana" fontSize="18" text="Nome"
 			 textAlign="left" verticalAlign="middle"/>
-	<mxml:MCaixaTexto id="cpf" x="105" y="191" width="196" fontSize="18" mreMascara="###.###.###-##"/>
+	<mxml:MCaixaTexto id="cpf" x="105" y="191" width="196" fontSize="18" mreMascara="#########-##"/>
 	<s:Label x="61" y="191" width="53" height="24" fontFamily="Verdana" fontSize="18" text="CPF"
 			 textAlign="left" verticalAlign="middle"/>
-	<mxml:MCaixaTexto id="rg" x="339" y="191" width="208" fontSize="18" mreMascara="##.###.###-#"/>
+	<mxml:MCaixaTexto id="rg" x="339" y="191" width="208" fontSize="18" mreMascara="########-#"/>
 	<s:Label x="309" y="192" width="30" height="24" fontFamily="Verdana" fontSize="18" text="RG"
 			 textAlign="left" verticalAlign="middle"/>
 	<mxml:MCaixaTexto id="apelido" x="126" y="91" width="316" fontSize="18"/>
@@ -84,7 +84,7 @@
 		<s:Label x="18" y="17" width="107" height="24" fontFamily="Verdana" fontSize="18" text="Logradouro"
 				 textAlign="left" verticalAlign="middle"/>
 		<mxml:MCaixaTexto id="logradouro" x="123" y="15" width="381" fontSize="18"/>
-		<mxml:MCaixaTexto id="numero" x="444" y="65" width="61" fontSize="18"/>
+		<mxml:MCaixaTexto id="numero" x="444" y="65" width="61" fontSize="18" mreValidarTipo="numInteiro"/>
 		<s:Label x="418" y="66" width="27" height="24" fontFamily="Verdana" fontSize="18" text="Nº"
 				 textAlign="left" verticalAlign="middle"/>
 		<mxml:MCaixaTexto id="cep" x="57" y="118" width="198" fontSize="18" mreMascara="#####-###"/>

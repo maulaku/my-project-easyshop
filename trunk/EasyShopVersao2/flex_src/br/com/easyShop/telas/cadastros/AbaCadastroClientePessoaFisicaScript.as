@@ -122,8 +122,8 @@ protected function Salvar():void
 	pessoaFisica.apelido = apelido.text;
 	pessoaFisica.nome = nome.text;
 	pessoaFisica.sexo = sexo.selectedItem;
-	pessoaFisica.cpf = cpf.text;
-	pessoaFisica.rg = rg.text;
+	pessoaFisica.cpf = cpf.mreTextoSemMascara;
+	pessoaFisica.rg = rg.mreTextoSemMascara;
 	pessoaFisica.dataNascimento = dataDeNascimento.selectedDate;
 	pessoaFisica.status = Constantes.instance.STATUS_ATIVO;
 	
@@ -246,7 +246,7 @@ private function inserirEnderecoTabela():void{
 	temp.campo2 = logradouro.text;
 	temp.campo3 = bairro.text;
 	temp.campo4 = numero.text;
-	temp.campo5 = cep.text;
+	temp.campo5 = cep.mreTextoSemMascara;
 	temp.campo6 = complemento.text;
 	temp.campo7 = cboCidade.selectedItem;
 	temp.campo7label = labelCidade(cboCidade.selectedItem);
