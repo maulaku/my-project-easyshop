@@ -8,10 +8,11 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -39,11 +40,8 @@ import br.com.easyShop.telas.cadastros.CadastroDeMarca;
 import br.com.easyShop.telas.cadastros.CadastroDeProdutos;
 import br.com.easyShop.telas.cadastros.CadastroDeUsuario;
 import br.com.easyShop.telas.consultas.MeusDados;
-import br.com.easyShop.telas.consultas.PesquisarProduto;
 import br.com.easyShop.telas.edicao.EditarProdutos;
 import br.com.easyShop.telas.lancamentos.LancamentoDePermissao;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class Janela extends JFrame implements ActionListener {
 

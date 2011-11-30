@@ -1,29 +1,19 @@
 
 import br.com.easyShop.aplicacao.MainEasyShop;
-import br.com.easyShop.componentes.modulo.ModuloItem;
 import br.com.easyShop.comunicacao.MRemoteObject;
 import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Carrinho;
 import br.com.easyShop.model.CarrinhoProduto;
 import br.com.easyShop.model.Cliente;
 import br.com.easyShop.model.Produto;
-import br.com.easyShop.utils.Constantes;
+import br.com.easyShop.utils.GlobalEasyShop;
 import br.com.mresolucoes.componentes.mre.Alerta;
 import br.com.mresolucoes.componentes.mre.MBotao;
 import br.com.mresolucoes.imagens.ImagensUtils;
-import br.com.mresolucoes.utils.NumberUtil;
 import br.com.mresolucoes.utils.TelaUtil;
 
-import flash.globalization.NumberFormatter;
-
-import flashx.textLayout.formats.Float;
-
 import mx.collections.ArrayCollection;
-import mx.controls.Alert;
 import mx.events.CloseEvent;
-
-import spark.formatters.NumberFormatter;
-import spark.formatters.supportClasses.NumberFormatterBase;
 
 private var produto:Produto = new Produto();
 
@@ -51,7 +41,7 @@ public function carregarProduto():void
 	
 	try		
 	{					
-			produto = ModuloItem.getProdutoGlobal();
+			produto = GlobalEasyShop.PRODUTO;
 			lbNomeProduto.text = produto.nome;
 			ctDescricao.text = produto.descricao;
 			ctCaracteristicas.text = produto.caracteristicas;
@@ -63,23 +53,22 @@ public function carregarProduto():void
 			lbPreco.text = "R$: " + ((Math.round(produto.preco)*100)/100);
 //			imagemProduto.source = Constantes.instance.ENDERECO_IMAGEM_PRODUTO+NumberUtil.toString(produto.pkProduto)+".jpg";
 			
-		    var tiposParcelamento:ArrayCollection = new ArrayCollection;
-			
-			for(i=1;i<13;i++){
-				str = "R$ " + ((Math.round(produto.preco/i)*100)/100);
-				
-				tiposParcelamento.addItem(str);
-			}
-			
-			cbParcelamento.dataProvider = tiposParcelamento;
+//		    var tiposParcelamento:ArrayCollection = new ArrayCollection;
+//			
+//			for(i=1;i<13;i++){
+//				str = "R$ " + ((Math.round(produto.preco/i)*100)/100);
+//				
+//				tiposParcelamento.addItem(str);
+//			}
+//			
+//			cbParcelamento.dataProvider = tiposParcelamento;
 			
 //			tiposParcelamento
 //			[{nome:"1 x "+NumberUtil.toString(produto.preco, 2)+" sem juros"};
 //			{nome:"1 x "+NumberUtil.toString(produto.preco, 2)+" sem juros"};
 //			]);
 			
-			txtQuantidade.text = "1";
-			txtQuantidade.showInAutomationHierarchy = true;
+			ctQuantidade.text = "1";
 	} 
 	catch(e:Error)
 	{ 
@@ -96,11 +85,11 @@ public function adicionarCarrinho2():void
 		
 		try
 		{
-			qtd = parseInt(txtQuantidade.text);
+			qtd = parseInt(ctQuantidade.text);
 		} 
 		catch(error:Error) 
 		{
-			txtQuantidade.showInAutomationHierarchy = true;
+			ctQuantidade.showInAutomationHierarchy = true;
 			qtd = -1;
 			Alerta.abrir("Por favor, digite um valor válido", "EasyShop", null, null, null, ImagensUtils.INFO);
 		}
