@@ -142,7 +142,6 @@ public class CadastroDeCategoria extends JFrame {
 					JTextField jTextField = new JTextField();
 					txtNome.setBorder(jTextField.getBorder());
 					
-					Categoria categoriaPai = new Categoria();
 					CategoriaService categoriaService = new CategoriaService();
 					
 					Categoria categoria = new Categoria();
