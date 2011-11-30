@@ -34,11 +34,11 @@ package br.com.easyShop.componentes.modulo
 		 * Adiciona um Modulo no painel
 		 * @param painelModuloItem
 		 */ 
-		public function addModulo(testeItem:ModuloItem):void
+		public function addModulo(item:ProdutoItem):void
 		{
 			try
 			{
-				this.addElement(testeItem);
+				this.addElement(item);
 			}
 			catch(e:Error) { throw e; } 
 		}
