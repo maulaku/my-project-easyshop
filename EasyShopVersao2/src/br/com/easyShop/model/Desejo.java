@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Column;
 import br.com.easyShop.utils.Constantes;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
@@ -18,8 +17,6 @@ public class Desejo
 	/*-*-*-* Variaveis e Objetos Privados *-*-*-*/
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long pkDesejo;
-	@Column(length=500)
-	private String nome;
 	private int status = Constantes.STATUS_ATIVO;
 
 	@ManyToOne @JoinColumn(name="fkCliente")
@@ -35,9 +32,6 @@ public class Desejo
 	/*-*-*-* Metodos Gets e Sets *-*-*-*/
 	public long getPkDesejo() { return pkDesejo; }
 	public void setPkDesejo(long pkDesejo) { this.pkDesejo = pkDesejo; }
-
-	public String getNome() { return nome; }
-	public void setNome(String nome) { this.nome = nome; }
 
 	public int getStatus() { return status; }
 	public void setStatus(int status) { this.status = status; }
