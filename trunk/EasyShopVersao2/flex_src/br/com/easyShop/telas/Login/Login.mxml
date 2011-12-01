@@ -11,8 +11,9 @@
 	</fx:Declarations>
 	<mx:Label x="30" y="109" width="75" fontFamily="Verdana" fontSize="16" text="Usuário"/>
 	<mx:Label x="34" y="148" width="57.5" fontFamily="Verdana" fontSize="16" text="Senha"/>
-	<mx:TextInput x="100" y="107" id="txtUsuario"/>
-	<mx:TextInput x="100" y="146" displayAsPassword="true" id="txtSenha"/>
+	<mx:TextInput id="txtUsuario" x="100" y="107" fontFamily="Verdana" fontSize="16"/>
+	<mx:TextInput id="txtSenha" x="100" y="146" displayAsPassword="true" fontFamily="Verdana"
+				  fontSize="16"/>
 	<mx:Button id="btnLogin" x="86" y="195" width="130" label="Login"
 			   fontFamily="Verdana" fontSize="16" click="clickadoLogin()"/>
 	<mx:VRule x="280" y="35" width="9" height="205" chromeColor="#969494"/>

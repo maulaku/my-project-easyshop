@@ -34,7 +34,7 @@ package br.com.easyShop.componentes.modulo
 		 * Adiciona um Modulo no painel
 		 * @param painelModuloItem
 		 */ 
-		public function addModulo(item:ProdutoItem):void
+		public function addModulo(item:ModuloItem):void
 		{
 			try
 			{
