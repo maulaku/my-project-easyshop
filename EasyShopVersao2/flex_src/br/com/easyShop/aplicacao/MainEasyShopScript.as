@@ -19,6 +19,7 @@ import br.com.easyShop.telas.produtos.AbaDetalhesProduto;
 import br.com.easyShop.telas.produtos.MeuCarrinho;
 import br.com.easyShop.utils.Constantes;
 import br.com.mresolucoes.componentes.mre.Alerta;
+import br.com.mresolucoes.componentes.mre.MBotao;
 import br.com.mresolucoes.componentes.mre.MModulo;
 import br.com.mresolucoes.imagens.ImagensUtils;
 import br.com.mresolucoes.utils.NumberUtil;
@@ -135,7 +136,24 @@ private function lidaModuloItem(event:Event):void{
 	produto = item.produto;
 	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
 }
-
+public function escutaBotoes(botao:MBotao):void
+{
+	try
+	{
+		if (botao == btBuscar)
+		{
+			if(cbBusca.mreGetSelectedItem() != null)
+			{
+				produto = cbBusca.mreGetSelectedItem() as Produto;
+				modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
+			}
+		}
+	}
+	catch(e:Error)
+	{
+		
+	}
+}
 public function resultCategoria(result:ResultJava):void
 {
 	try		
