@@ -147,7 +147,7 @@ public class LancamentoDePermissao extends JFrame {
 		
 		usuarios = usuarioService.getUsuarios();
 		for(Usuario usuario : usuarios){
-			if(usuario.getPessoa().getClientes()==null){
+			if(usuario.getPessoa() != null && usuario.getPessoa().getClientes()==null){
 				cboUsuarios.addItem(usuario);
 			}
 		}

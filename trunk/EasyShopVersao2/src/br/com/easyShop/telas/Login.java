@@ -23,7 +23,7 @@ public class Login extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private Usuario usuario;
 	private JPasswordField passSenha;
-	private JTextField txtUsuario;
+	private JTextField txtUsuario = new JTextField();
 	private JPanel panelLogin;
 	private JButton btnEntrar = new JButton("Entrar");
 	private Long id;
@@ -38,7 +38,7 @@ public class Login extends JFrame {
 		
 		btnEntrar.addActionListener(new VerificarLogin());
 		btnCancelar.addActionListener(new Cancelar());
-		
+//		txtUsuario.addKeyListener()
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		panelLogin = new JPanel();
