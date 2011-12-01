@@ -1,7 +1,6 @@
 import br.com.easyShop.aplicacao.AccordionItem;
-import br.com.easyShop.aplicacao.ImportsMain;
 import br.com.easyShop.aplicacao.MainEasyShop;
-import br.com.easyShop.componentes.modulo.ProdutoItem;
+import br.com.easyShop.componentes.modulo.ModuloItem;
 import br.com.easyShop.comunicacao.MRemoteObject;
 import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Categoria;
@@ -16,9 +15,11 @@ import br.com.easyShop.telas.desejos.AbaMeuDesejo;
 import br.com.easyShop.telas.pagamento.ConfirmarCompra;
 import br.com.easyShop.telas.pagamento.Pagamentos;
 import br.com.easyShop.telas.pagamento.PedidoConfirmado;
+import br.com.easyShop.telas.produtos.AbaDetalhesProduto;
 import br.com.easyShop.telas.produtos.MeuCarrinho;
 import br.com.easyShop.utils.Constantes;
 import br.com.mresolucoes.componentes.mre.Alerta;
+import br.com.mresolucoes.componentes.mre.MModulo;
 import br.com.mresolucoes.imagens.ImagensUtils;
 import br.com.mresolucoes.utils.NumberUtil;
 
@@ -46,13 +47,21 @@ private var painelPagamentos:Pagamentos;
 private var confirmarCompra:ConfirmarCompra;
 private var pedidoConfirmado:PedidoConfirmado;
 
-private var importsMain:ImportsMain = null;
+private var produtoAux:Produto;
 private var nomeCategoriaSelecionada:String;
 private var nomePaiCategoriaSelecionada:String;
 private var accondeonAtual:String;
 
 private static var clienteGlobal:Cliente; //Cliente Global da Aplicação. Ele é setado pelo Login.
 private static var usuarioGlobal:Usuario; //Usuario Global da Aplicação. Ele é setado pelo Login.
+
+[Bindable]
+private static var produto:Produto;
+
+public static function getProdutoGlobal():Produto
+{
+	return produto;	
+}
 
 /**
  * Inicializa os componentes e objetos
@@ -70,11 +79,14 @@ public static function getUsurioGlobal():Usuario
 
 public function construtor():void
 {
+	modulo.removeAllElements();
+//	grPainelModulos.removeAllElements();
 	clienteGlobal = null;
 	usuarioGlobal = null;
 	btnCarrinho.visible = false;
 	btnDesejo.visible = false;
 	btnPedido.visible = false;
+	panelCategorias.title = "Categorias Principais" ;
 	cbBusca.mreServicePesquisa = "ProdutoService.getProdutosNome";
 	MRemoteObject.get("CategoriaService.getTodasCategoriasPai", null, resultCategoria);
 	MRemoteObject.get("ProdutoService.getProdutosPromocao", null, resultProduto);
@@ -92,13 +104,14 @@ public function resultProduto(result:ResultJava):void
 			for(var i:int=0;i<result.lista.length;i++)
 			{				
 				produto = result.lista.getItemAt(i) as Produto;  
-				var item:ProdutoItem = new ProdutoItem();
+				var item:ModuloItem = new ModuloItem();
 				
 				item.nome = produto.nome;
 				item.preco = NumberUtil.toString(produto.preco, 2);
 				item.modulo = modulo;
 				item.produto = produto;
 				item.imagemSource = Constantes.instance.ENDERECO_IMAGEM_PRODUTO+NumberUtil.toString(produto.pkProduto)+".jpg";
+				item.addEventListener("clickadoModuloItem", lidaModuloItem);
 			
 				grPainelModulos.addModulo(item);
 			}
@@ -114,8 +127,13 @@ public function resultProduto(result:ResultJava):void
 	catch(e:Error)
 	{ 
 		Alerta.abrir("Ops, Ocorreu um erro ao carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
-	}
-	
+	}	
+}
+
+private function lidaModuloItem(event:Event):void{
+	var item:ModuloItem = ((ModuloItem) (event.currentTarget));
+	produto = item.produto;
+	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
 }
 
 public function resultCategoria(result:ResultJava):void
@@ -125,29 +143,21 @@ public function resultCategoria(result:ResultJava):void
 		if(result != null)
 		{	
 			accordion.removeAllElements();
-			menuDinamico.removeAllElements();
 			cbCategorias.mreDataProvider = result.lista;
 			var categoria:Categoria = new Categoria();
 			var i:int;
 			
 			for(i=0;i<result.lista.length;i++){
 				categoria = ((Categoria) (result.lista[i]));  
-				var novoBotao:spark.components.Button = new spark.components.Button();
-				novoBotao.height = 40;
-				novoBotao.useHandCursor = true;
-				novoBotao.addEventListener(MouseEvent.MOUSE_OUT,mouseOut);
-				novoBotao.addEventListener(MouseEvent.MOUSE_OVER,mouseOver);
-				novoBotao.label = categoria.nome;          
-				menuDinamico.addChild(novoBotao);
-				
+							
 				var acord:AccordionItem = new AccordionItem();
 				acord.height = accordion.height;
 				acord.width = accordion.width;
 				acord.label = categoria.nome;
+				acord.name = categoria.nome;
 				acord.image = "@Embed('../imagens/botoes/back.png')";
 				acord.styleName = "gradientHeader";
 				accordion.addElement(acord);
-				accondeonAtual = "" + i;
 				MRemoteObject.get("CategoriaService.getTodasCategoriasSub", [categoria], resultSubCategoria);	
 			}
 			accordion.selectedIndex = result.lista.length;
@@ -164,7 +174,6 @@ public function resultCategoria(result:ResultJava):void
 	}	
 }
 
-
 public function resultSubCategoria(result:ResultJava):void
 {
 	try		
@@ -179,11 +188,7 @@ public function resultSubCategoria(result:ResultJava):void
 			
 			for(i=0;i<result.lista.length;i++){
 				categoria = ((Categoria) (result.lista[i]));
-				var verificou:int;
-				verificou = parseInt(accondeonAtual);
-				Alert.show("cheguei aqui1: " + verificou);
-				novo = ((AccordionItem) (accordion.getElementAt(verificou)));
-				//Alert.show("cheguei aqui2: "+categoria.nome);
+				novo = ((AccordionItem) (accordion.getChildByName(categoria.subCategoria.nome)));
 				var label:Label = new Label();
 				label.text = categoria.nome;
 				label.buttonMode = true;
@@ -245,15 +250,15 @@ public function resultCategoria3(result:ResultJava):void
 			
 			for(i=0;i<result.lista.length;i++){
 				categoria = ((Categoria) (result.lista[i]));  
-				
+				panelCategorias.title = categoria.subCategoria.nome ;
 				var acord:AccordionItem = new AccordionItem();
 				acord.height = accordion.height;
 				acord.width = accordion.width;
 				acord.label = categoria.nome;
+				acord.name = categoria.nome;
 				acord.image = "@Embed('../imagens/botoes/back.png')";
 				acord.styleName = "gradientHeader";
 				accordion.addElement(acord);
-				accondeonAtual = "" + i;
 				MRemoteObject.get("CategoriaService.getTodasCategoriasSub", [categoria], resultSubCategoria);	
 			}
 			accordion.selectedIndex = result.lista.length;
@@ -394,7 +399,7 @@ private function continuarComprando(event:Event):void
 public static function centralizarTela(componente:UIComponent):void {
 	if (componente != null) {
 		var diferencaLargura:Number = componente.screen.width - componente.width;
-		var diferencaAltura:Number = componente.screen.height - componente.height - 900;
+		var diferencaAltura:Number = componente.screen.height - componente.height - 800;
 		componente.x = componente.screen.x + (diferencaLargura / 2);
 		componente.y = componente.screen.y + (diferencaAltura / 2);
 	}

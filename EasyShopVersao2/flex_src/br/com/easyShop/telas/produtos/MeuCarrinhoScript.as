@@ -82,7 +82,6 @@ public function resultCarrinho(result:ResultJava):void
 				temp.campo2 = carrinhoProduto.quantidade;
 				temp.campo3 = "R$ " + carrinhoProduto.produto.preco;
 				temp.campo4 = "R$ " + carrinhoProduto.produto.preco;
-				temp.campo5 = "Remover";
 				
 				dados.addItem(temp);	
 				total = total + carrinhoProduto.produto.preco;

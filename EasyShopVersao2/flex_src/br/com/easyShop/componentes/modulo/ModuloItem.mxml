@@ -3,7 +3,7 @@
 		 xmlns:s="library://ns.adobe.com/flex/spark"
 		 xmlns:mx="library://ns.adobe.com/flex/mx"
 		 xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
-		 width="298" height="184">
+		 width="298" height="184" contentBackgroundColor="#FFFFFF">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -11,8 +11,9 @@
 	<fx:Script>
 		<![CDATA[
 			import br.com.easyShop.model.Produto;
-			import br.com.easyShop.utils.GlobalEasyShop;
 			import br.com.mresolucoes.componentes.mre.MModulo;
+			
+			import mx.controls.Alert;
 			
 			[Bindable]
 			private var _modulo:MModulo;
@@ -31,8 +32,7 @@
 			{
 				if(botao == btEspiar)
 				{
-					GlobalEasyShop.PRODUTO = _produto;
-					_modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
+					this.dispatchEvent(new Event("clickadoModuloItem"));	
 				}
 			}
 						

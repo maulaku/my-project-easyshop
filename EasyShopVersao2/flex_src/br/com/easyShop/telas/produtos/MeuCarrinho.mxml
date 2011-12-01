@@ -4,9 +4,11 @@
 				xmlns:s="library://ns.adobe.com/flex/spark"
 				xmlns:mx="library://ns.adobe.com/flex/mx"
 				xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
+				xmlns:tabela="br.com.mresolucoes.renders.tabela.*"
 				width="768" height="548" backgroundAlpha="0.39" backgroundColor="#F1F4F4"
-				close="PopUpManager.removePopUp(this)" dropShadowVisible="true" layout="absolute"
-				removedEffect="fechar" title="Meu Carrinho" creationComplete="construtor()" >
+				close="PopUpManager.removePopUp(this)" creationComplete="construtor()"
+				dropShadowVisible="true" layout="absolute" removedEffect="fechar"
+				title="Meu Carrinho">
 	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
@@ -17,15 +19,22 @@
 	<s:BorderContainer x="26" y="21" width="710" height="332" backgroundAlpha="0.52"
 					   backgroundColor="#F2F2F2">
 
-		<mx:DataGrid x="24" y="19" width="664" height="157" id="tblCarrinho" dataProvider="{dados}" >
-			<mx:columns>
+		<mxml:MTabela x="24" y="19" width="664" height="157" id="tblCarrinho" mreDataProvider="{dados}" editable="true" >
+			<mxml:columns>
 				<mx:DataGridColumn dataField="campo1label" headerText="Produto" width="250"/>
 				<mx:DataGridColumn dataField="campo2" headerText="Quantidade" width="120"/>
 				<mx:DataGridColumn dataField="campo3" headerText="Valor Unitário" width="120"/>
 				<mx:DataGridColumn dataField="campo4" headerText="Valor Parcial" width="120"/>
-				<mx:DataGridColumn dataField="campo5" headerText="Imagem" width="120"/>
-			</mx:columns>
-		</mx:DataGrid>
+				<mx:DataGridColumn id="colunaRemoverProponente" headerText="Remover" width="34" textAlign="center" editable="false" resizable="false" draggable="false" sortable="false">
+					<mx:itemRenderer>
+						<fx:Component>
+							<tabela:MRGridBotaoRemover>
+							</tabela:MRGridBotaoRemover>
+						</fx:Component>
+					</mx:itemRenderer>
+				</mx:DataGridColumn>
+			</mxml:columns>
+		</mxml:MTabela>
 		
 		<mx:HRule x="56" y="186" width="613" height="13"/>
 		<s:Label x="390" y="200" width="152" height="23" fontFamily="Verdana" fontSize="16"
@@ -45,6 +54,7 @@
 				 fontWeight="bold" text="Valor Total:" textAlign="right" verticalAlign="middle"/>
 		<s:Label id="lblValorTotal" x="547" y="279" fontFamily="Verdana" fontSize="16"
 				 fontWeight="bold" textAlign="left" verticalAlign="middle"/>	
+		
 		
 	</s:BorderContainer>
 	<s:Button id="btnContinuarComprando" x="143" y="451" width="210" height="38"
