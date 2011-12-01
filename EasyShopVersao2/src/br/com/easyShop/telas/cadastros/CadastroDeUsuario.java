@@ -506,7 +506,7 @@ public class CadastroDeUsuario extends JFrame {
 						PessoaFisica pessoaFisica = new PessoaFisica();
 						pessoaFisica.setApelido(txtApelido.getText());
 						pessoaFisica.setCpf(txtCPF.getText());
-						pessoaFisica.setDataNascimento(new Data(calendarDataDeNasc.getDate()));
+						if (calendarDataDeNasc.getDate() != null) { pessoaFisica.setDataNascimento(new Data(calendarDataDeNasc.getDate())); }
 						pessoaFisica.setNome(txtUsuario.getText());
 						pessoaFisica.setRg(txtRG.getText());
 						pessoaFisica.setSexo(obtemSexo(cboSexo.getSelectedIndex()));
@@ -549,7 +549,15 @@ public class CadastroDeUsuario extends JFrame {
 					if (cboEstado.getSelectedItem() != null) { estado = (Estado) cboEstado.getSelectedItem(); }
 					estado.setPais(pais);
 					if (cboCidade.getSelectedItem() != null) { cidade = (Cidade) cboCidade.getSelectedItem(); }
-					cidade.setEstado(estado);
+					if (cidade != null)
+					{
+						cidade.setEstado(estado);						
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Por favor, Selecione a cidade.");
+						return;
+					}
 	
 					Endereco endereco = new Endereco();
 					endereco.setBairro(txtBairro.getText());
@@ -564,9 +572,11 @@ public class CadastroDeUsuario extends JFrame {
 					endereco.setNumero(txtNumero.getText());
 	
 					Usuario usuario = new Usuario();
-					usuario.setLogin(txtLogin.getText());
+					if (txtLogin.getText().length() > 0) { usuario.setLogin(txtLogin.getText()); }
+					else { JOptionPane.showMessageDialog(null, "Por favor, digite um usuário"); return; }
+					if (txtPassword.getText().length() > 0) { usuario.setSenha(txtPassword.getText()); }
+					else {JOptionPane.showMessageDialog(null, "Por favor, digite a senha."); return; }
 					usuario.setPessoa(pessoa2);
-					usuario.setSenha(txtPassword.getText());
 					usuario.setStatus(Constantes.STATUS_ATIVO);
 	
 					for(Contato contatoAdd : listaContatos){
@@ -680,6 +690,7 @@ public class CadastroDeUsuario extends JFrame {
 
 	private class Cancelar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			BancoDeDados.desconectar();
 			CadastroDeUsuario.this.dispose();
 		}
 	}

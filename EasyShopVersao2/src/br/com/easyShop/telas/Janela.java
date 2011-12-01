@@ -33,6 +33,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 import br.com.easyShop.aplicacao.MainEasyShopDesktop;
 import br.com.easyShop.model.Usuario;
+import br.com.easyShop.persistencia.conexao.BancoDeDados;
 import br.com.easyShop.relatorios.ExcRepositorio;
 import br.com.easyShop.relatorios.repositorioProduto;
 import br.com.easyShop.telas.cadastros.CadastroDeCategoria;
@@ -195,14 +196,18 @@ public class Janela extends JFrame implements ActionListener {
 			 lblImagem.setIcon(new ImageIcon(aux));
 			
 		} catch (Exception e) {
-			if(usuario.getPessoa().getPessoaFisica().getSexo().equals("masculino")){
-				lblImagem.setIcon(new ImageIcon("Imagens/Padrao/padraoMasculino.png"));
-			}
-			else if(usuario.getPessoa().getPessoaFisica().getSexo().equals("femino")){
-				lblImagem.setIcon(new ImageIcon("Imagens/Padrao/padraoFeminino.png"));
-			}
-			else{
-				lblImagem.setIcon(new ImageIcon("Imagens/Padrao/padraoJuridico.png"));
+			
+			if (usuario.getPessoa() != null && usuario.getPessoa().getPessoaFisica() != null)
+			{
+				if(usuario.getPessoa().getPessoaFisica().getSexo().equals("masculino")){
+					lblImagem.setIcon(new ImageIcon("Imagens/Padrao/padraoMasculino.png"));
+				}
+				else if(usuario.getPessoa().getPessoaFisica().getSexo().equals("femino")){
+					lblImagem.setIcon(new ImageIcon("Imagens/Padrao/padraoFeminino.png"));
+				}
+				else{
+					lblImagem.setIcon(new ImageIcon("Imagens/Padrao/padraoJuridico.png"));
+				}
 			}
 		}
 
@@ -437,7 +442,7 @@ public class Janela extends JFrame implements ActionListener {
 	private class Sair implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			Janela.this.dispose();
-			
+			BancoDeDados.desconectar();
 			Frame[] fecharJanelasAbertas = getFrames();  
 			for (int i = 0; i < fecharJanelasAbertas.length; i++) {  
 				fecharJanelasAbertas[i].dispose();  
