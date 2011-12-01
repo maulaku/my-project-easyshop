@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXDataGridItemRenderer focusEnabled="true" width="100%" height="100%" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:mre="http://www.mresolucoes.com.br/2010/mxml">
+	
+	<!--*-*-*-* Componentes de Interface *-*-*-*-->
+	<mx:SWFLoader id="mbtBotaoGrid" source="@Embed('br/com/mresolucoes/imagens/renders/removerTabela.swf')" click="onClick()" verticalCenter="0" horizontalCenter="0" buttonMode="true" toolTip="Remover"/>
+	
+	<fx:Script>
+		<![CDATA[
+			import br.com.mresolucoes.componentes.mre.Alerta;
+			import br.com.mresolucoes.componentes.mre.MTabela;
+			import br.com.mresolucoes.imagens.ImagensUtils;
+			
+			import mx.collections.ArrayCollection;
+			import mx.containers.Form;
+			import mx.controls.DataGrid;
+			import mx.events.CloseEvent;
+			
+			
+			/*-*-*-* Variaveis e Objetos Privados *-*-*-*/ 
+			/**
+			 * Esta funcao deve receber um parametro Object com o registro da tabela e deve retornar um boolean true ou false para remover ou nao o registro
+			 * Exemplo: public function verificarRemocao(registro:Object):Boolean
+			 */ 
+			private var _condicao:Function = null;
+			private var _onRemover:Function = null;
+			
+			/*-*-*-* Metodos Publicos *-*-*-*/
+			/**
+			 * Metodo chamado quando o botao é pressionado
+			 */ 
+			public function onClick():void
+			{
+				if(condicao!=null)
+				{
+					if(condicao(data))
+					{
+						Alerta.abrir("Você deseja remover este item?", "Remover", ['Sim', 'Não'], null, remover, ImagensUtils.QUESTAO_ROXO, 1);
+					}
+				}
+				else
+				{ Alerta.abrir("Você deseja remover este item?", "Remover", ['Sim', 'Não'], null, remover, ImagensUtils.QUESTAO_ROXO, 1); }
+			}
+			
+			/**
+			 * Metodo chamado quando a dialog de confirmacao e fechada
+			 * @result com as informacoes do evento
+			 */ 
+			public function remover(result:CloseEvent):void
+			{
+				if(result.detail==Alerta.SIM)
+				{
+					MTabela(listData.owner).mreRemoveItem(data);
+					MTabela(listData.owner).mreDataProvider.refresh();
+					if(onRemover!=null) { onRemover(); }
+				}
+			}
+			
+			/*-*-*-* Metodos Gets e Sets *-*-*-*/ 
+			public function get condicao():Function 				{ return _condicao; }
+			public function set condicao(condicao:Function):void 	{ _condicao=condicao; }
+			
+			public function get onRemover():Function 				{ return _onRemover; }
+			public function set onRemover(onRemover:Function):void 	{ _onRemover=onRemover; }
+			
+		]]>
+	</fx:Script>
+</s:MXDataGridItemRenderer>
