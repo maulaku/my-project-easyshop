@@ -8,7 +8,6 @@ package br.com.easyShop.model
 	{
 		/*-*-*-*-* Objetos e Variaveis *-*-*-*-*/
 		public var pkDesejo:Number;
-		public var nome:String;
 		public var status:int = Constantes.instance.STATUS_ATIVO;
 		public var cliente:Cliente;
 
