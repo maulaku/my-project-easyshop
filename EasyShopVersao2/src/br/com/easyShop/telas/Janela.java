@@ -14,7 +14,6 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -61,9 +60,7 @@ public class Janela extends JFrame implements ActionListener {
 	private JButton btnSair = new JButton("   Sair");
 	private JButton btnLogoff = new JButton("Logoff");
 	private JButton btnMeusDados = new JButton("Meus Dados");
-	private JButton btnEditarMeusDados = new JButton("Editar Meus Dados");
 	private JButton btnRelatorioDeCategoria = new JButton("");
-	private List<Frame> fecharJanelasAbertas;
 	private repositorioProduto rep = new repositorioProduto();
 	private JasperPrint relat;
 	private JLabel lblRelogio = new JLabel("Rel\u00F3gio");
@@ -360,7 +357,6 @@ public class Janela extends JFrame implements ActionListener {
 		public void actionPerformed(ActionEvent e) {	
 			CadastroDeProdutos cadastroDeProdutos = new CadastroDeProdutos();
 			cadastroDeProdutos.setLocationRelativeTo(null);  
-			cadastroDeProdutos.setUndecorated(true);
 			cadastroDeProdutos.setVisible(true);			
 		}
 	}

@@ -198,21 +198,21 @@ public class CadastroDeProdutos extends JFrame {
 				produto.setPromocao(chkSimNao.isSelected());
 				produto.setStatus(Constantes.STATUS_ATIVO);
 
+				ProdutoService produtoService = new ProdutoService();
+			    produtoService.inserirProduto(produto);
+			    
 				//*********************************************************************//
 				//Salvar imagem na pasta
 				try {
 					File imagem_file = new File(caminhoImagem);
 					BufferedImage imagem_buffered = null;				
 					imagem_buffered = ImageIO.read( imagem_file );					
-					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensProduto/"+nextCodigo()+".jpg"));
+					ImageIO.write(imagem_buffered, "jpg", new File(Constantes.ENDERECO_PRODUTO+produto.getPkProduto()+".jpg"));
 				}
 				catch (Exception e2) {
 					
 				}
 				//*********************************************************************//
-
-				ProdutoService produtoService = new ProdutoService();
-			    produtoService.inserirProduto(produto);
 
 				JOptionPane.showMessageDialog(null, "Produto inserido com sucesso!!");
 
@@ -275,7 +275,7 @@ public class CadastroDeProdutos extends JFrame {
 				    imagem_buffered = null;
 					File imagem_file = new File(fc.getSelectedFile().toString());
 					imagem_buffered = ImageIO.read( imagem_file );
-					ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensProduto/CadastroDeProduto.jpg"));
+					ImageIO.write(imagem_buffered, "jpg", new File(Constantes.ENDERECO_PRODUTO + "CadastroDeProduto.jpg"));
 					lblImagem.setIcon(new ImageIcon("Imagens/ImagensProduto/CadastroDeProduto.jpg"));
 					caminhoImagem = fc.getSelectedFile().toString();
 				} catch (IOException e1) {

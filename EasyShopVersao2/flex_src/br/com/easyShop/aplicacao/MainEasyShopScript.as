@@ -98,7 +98,7 @@ public function resultProduto(result:ResultJava):void
 {
 	try		
 	{		
-		if(result != null)
+		if(result.lista.length != 0)
 		{	
 			grPainelModulos.removeAllElements();
 			var produto:Produto = new Produto();
@@ -119,11 +119,9 @@ public function resultProduto(result:ResultJava):void
 			
 			grPainelModulos.visible = true;
 		}
-		else
-		{ 
-			Alerta.abrir(result.lista.length > 0 ? result.lista.getItemAt(0) as String : "Ops, Erro ao carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
+		else{
+			Alerta.abrir("Ainda não há produtos na categoria selecionada!", "EasyShop", null, null, null, ImagensUtils.ATENCAO);
 		}
-		
 	} 
 	catch(e:Error)
 	{ 
@@ -173,6 +171,8 @@ public function resultCategoria(result:ResultJava):void
 				acord.width = accordion.width;
 				acord.label = categoria.nome;
 				acord.name = categoria.nome;
+				acord.categoria = categoria;
+				accondeonAtual = categoria.nome;
 				acord.image = "@Embed('../imagens/botoes/back.png')";
 				acord.styleName = "gradientHeader";
 				accordion.addElement(acord);
@@ -194,16 +194,15 @@ public function resultCategoria(result:ResultJava):void
 
 public function resultSubCategoria(result:ResultJava):void
 {
+	var i:int;
+	var categoria:Categoria;
+	var grid:VBox = new VBox();
+	var novo:AccordionItem;
+	
 	try		
 	{		
-		if(result != null)
-		{			
-			var i:int;
-			var categoria:Categoria;
-			var grid:VBox = new VBox();
-			var novo:AccordionItem;
-			var array:Array = new Array();
-			
+		if(result.lista.length != 0)
+		{						
 			for(i=0;i<result.lista.length;i++){
 				categoria = ((Categoria) (result.lista[i]));
 				novo = ((AccordionItem) (accordion.getChildByName(categoria.subCategoria.nome)));
@@ -217,9 +216,16 @@ public function resultSubCategoria(result:ResultJava):void
 			}	
 			novo.addElement(grid);
 		}
-		else
-		{ 
-			Alerta.abrir(result.lista.length > 0 ? result.lista.getItemAt(0) as String : "Ops, Erro ao carregar sub categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
+		else{			
+			novo = ((AccordionItem) (accordion.getChildByName(accondeonAtual)));
+			var label2:Label = new Label();
+			label2.text = novo.categoria.nome;
+			label2.buttonMode = true;
+			label2.id = "" + novo.categoria.pkCategoria;
+			label2.accessibilityName = "" + novo.categoria.nome;
+			label2.addEventListener(MouseEvent.CLICK,abrirCatalogos);
+			grid.addElement(label2);
+			novo.addElement(grid);
 		}
 	} 
 	catch(e2:Error)
@@ -233,7 +239,6 @@ private function abrirCatalogos(event:MouseEvent):void {
 	var string:String = categoria.id;
 	nomeCategoriaSelecionada = string;
 	nomePaiCategoriaSelecionada = categoria.accessibilityName;
-//	Alert.show("Categoria Selecionada " + nomeCategoriaSelecionada+ "Categoria Pai: " +nomePaiCategoriaSelecionada);
 	MRemoteObject.get("CategoriaService.getTodasCategoriasSubString", [string], resultCategoria2);
 }
 
@@ -273,6 +278,7 @@ public function resultCategoria3(result:ResultJava):void
 				acord.height = accordion.height;
 				acord.width = accordion.width;
 				acord.label = categoria.nome;
+				acord.categoria = categoria;
 				acord.name = categoria.nome;
 				acord.image = "@Embed('../imagens/botoes/back.png')";
 				acord.styleName = "gradientHeader";

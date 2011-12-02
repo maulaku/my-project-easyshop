@@ -47,4 +47,8 @@ public class Estado
 
 	public List<Cidade> getCidades() { if(cidades==null) { cidades = new ArrayList<Cidade>(); } return cidades; }
 	public void setCidades(List<Cidade> cidades) { this.cidades = cidades; }
+	
+	public String toString() {
+		return nome;
+	}
 }

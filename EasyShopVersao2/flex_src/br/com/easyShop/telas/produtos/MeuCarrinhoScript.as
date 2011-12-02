@@ -18,6 +18,7 @@ import flashx.textLayout.formats.Float;
 import mx.collections.ArrayCollection;
 import mx.controls.Alert;
 import mx.controls.Image;
+import mx.core.IFactory;
 import mx.managers.PopUpManager;
 
 [Bindable]
@@ -34,6 +35,43 @@ private static var enderecoEscolhido:Endereco;
 [Bindable]
 private static var carrinho:ArrayCollection;
  
+public function removerProduto():void
+{
+	Alert.show("aqui");
+	try
+	{
+		if(tblCarrinho.mreGetSelectedItem() != null)
+		{
+			var obj:Object = dados.getItemAt(tblCarrinho.selectedIndex);
+			MRemoteObject.get("CarrinhoProdutoService.removerCarrinhoProdutos", [obj.campo5 as CarrinhoProduto], resultRemoverProduto);
+		}
+	}
+	catch(e:Error)
+	{ 
+		Alerta.abrir("Ops, Ocorreu um erro ao remover carrinho produto", "EasyShop", null, null, null, ImagensUtils.INFO);
+	}
+}
+
+public function resultRemoverProduto(result:ResultJava):void
+{
+	try		
+	{		
+		if(result != null)
+		{
+			dados.removeItemAt(tblCarrinho.selectedIndex);
+		}
+		else
+		{ 
+			Alerta.abrir(result.lista.length > 0 ? result.lista.getItemAt(0) as String : "Ops, Erro ao remover carrinho produto", "EasyShop", null, null, null, ImagensUtils.INFO);
+		}
+		
+	} 
+	catch(e:Error)
+	{ 
+		Alerta.abrir("Ops, Ocorreu um erro ao remover carrinho produto", "EasyShop", null, null, null, ImagensUtils.INFO);
+	}
+}
+
 public function construtor():void
 {
 	MRemoteObject.get("CarrinhoProdutoService.getCarrinhoProdutos", [MainEasyShop.getClienteGlobal()], resultCarrinho);
@@ -82,6 +120,7 @@ public function resultCarrinho(result:ResultJava):void
 				temp.campo2 = carrinhoProduto.quantidade;
 				temp.campo3 = "R$ " + carrinhoProduto.produto.preco;
 				temp.campo4 = "R$ " + carrinhoProduto.produto.preco;
+				temp.campo5 = carrinhoProduto;
 				
 				dados.addItem(temp);	
 				total = total + carrinhoProduto.produto.preco;

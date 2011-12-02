@@ -34,4 +34,8 @@ public class TipoPermissao
 
 	public List<UsuarioTela> getUsuarioTelas() { if(usuarioTelas==null) { usuarioTelas = new ArrayList<UsuarioTela>(); } return usuarioTelas; }
 	public void setUsuarioTelas(List<UsuarioTela> usuarioTelas) { this.usuarioTelas = usuarioTelas; }
+	
+	public String toString() {
+		return nome;
+	}
 }

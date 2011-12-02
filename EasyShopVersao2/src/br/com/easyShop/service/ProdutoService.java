@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import br.com.easyShop.comunicacao.ResultJava;
-import br.com.easyShop.model.Categoria;
 import br.com.easyShop.model.Produto;
 import br.com.easyShop.persistencia.DAO.ProdutoDAO;
 import br.com.easyShop.service.base.BaseServiceAtta;
@@ -99,7 +98,7 @@ public class ProdutoService extends BaseServiceAtta {
 		} 
 		catch (Exception e) 
 		{
-			return new ResultJava(false, Arrays.asList(new String[] { "Erro ão buscar produtos" }));
+			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao buscar produtos" }));
 		}
 	}
 }
