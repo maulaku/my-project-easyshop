@@ -49,6 +49,18 @@ public class CarrinhoProdutoService extends BaseServiceAtta
 		}
 	}
 	
+	public ResultJava removerCarrinhoProdutos(CarrinhoProduto carrinhoProduto) {
+		try
+		{
+			carrinhoProduto.setStatus(Constantes.STATUS_REMOVIDO);  
+			return new ResultJava(new CarrinhoProdutoDAO().alterar(carrinhoProduto));
+		} 
+		catch (Exception e) 
+		{
+			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao atualizar carrinho produtos!\n" + e }));
+		}
+	}
+	
 	public ResultJava atualizaCarrinhoProdutos(Cliente cliente) {
 		try
 		{

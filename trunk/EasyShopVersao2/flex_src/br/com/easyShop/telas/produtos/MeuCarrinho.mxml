@@ -8,7 +8,7 @@
 				width="768" height="548" backgroundAlpha="0.39" backgroundColor="#F1F4F4"
 				close="PopUpManager.removePopUp(this)" creationComplete="construtor()"
 				dropShadowVisible="true" layout="absolute" removedEffect="fechar"
-				title="Meu Carrinho">
+				title="Meu Carrinho" xmlns:renderer="br.com.easyShop.componentes.renderer.*">
 	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
@@ -25,14 +25,7 @@
 				<mx:DataGridColumn dataField="campo2" headerText="Quantidade" width="120"/>
 				<mx:DataGridColumn dataField="campo3" headerText="Valor Unitário" width="120"/>
 				<mx:DataGridColumn dataField="campo4" headerText="Valor Parcial" width="120"/>
-				<mx:DataGridColumn id="colunaRemoverProponente" headerText="Remover" width="34" textAlign="center" editable="false" resizable="false" draggable="false" sortable="false">
-					<mx:itemRenderer>
-						<fx:Component>
-							<tabela:MRGridBotaoRemover>
-							</tabela:MRGridBotaoRemover>
-						</fx:Component>
-					</mx:itemRenderer>
-				</mx:DataGridColumn>
+				
 			</mxml:columns>
 		</mxml:MTabela>
 		

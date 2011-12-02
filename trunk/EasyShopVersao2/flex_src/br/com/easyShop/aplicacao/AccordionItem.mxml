@@ -8,14 +8,12 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import br.com.easyShop.model.Categoria;
 			[Bindable]
-			public var description:String;
+			public var categoria:Categoria;
 			
 			[Bindable]
 			public var image:*;
-			
-			[Bindable]
-			public var title:String;
 			
 			protected function vbox1_mouseOverHandler(event:MouseEvent):void
 			{

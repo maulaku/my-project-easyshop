@@ -34,4 +34,6 @@ public class Constantes
 	public static final String CONTATO_TELEFONE="Telefone";
 	public static final String CONTATO_FAX="Fax";
 	public static final String CONTATO_CELULAR="Celular";
+	
+	public static final String ENDERECO_PRODUTO = "flex_src/br/com/easyShop/imagens/aplicacao/produtos/";
 }

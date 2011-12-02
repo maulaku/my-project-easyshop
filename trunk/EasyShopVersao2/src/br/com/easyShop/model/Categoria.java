@@ -63,4 +63,8 @@ public class Categoria
 
 	public List<Produto> getProdutos() { if(produtos==null) { produtos = new ArrayList<Produto>(); } return produtos; }
 	public void setProdutos(List<Produto> produtos) { this.produtos = produtos; }
+
+	public String toString() {
+		return nome;
+	}
 }
