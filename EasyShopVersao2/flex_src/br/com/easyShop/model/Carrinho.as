@@ -1,7 +1,5 @@
 package br.com.easyShop.model
 {
-	import flash.external.ExternalInterface;
-	
 	import mx.collections.ArrayCollection;
 
 	[RemoteClass(alias="br.com.easyShop.model.Carrinho")]

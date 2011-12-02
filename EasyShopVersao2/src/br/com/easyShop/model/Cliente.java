@@ -29,13 +29,13 @@ public class Cliente
 	private List<Carrinho> carrinhos;
 
 	@OneToMany(mappedBy="cliente")
-	private List<Desejo> desejos;
-
-	@OneToMany(mappedBy="cliente")
 	private List<Pedido> pedidos;
 
 	@OneToMany(mappedBy="cliente")
 	private List<Preferencia> preferencias;
+
+	@OneToMany(mappedBy="cliente")
+	private List<Desejo> desejos;
 
 
 	/*-*-*-* Construtores *-*-*-*/
@@ -57,12 +57,12 @@ public class Cliente
 	public List<Carrinho> getCarrinhos() { if(carrinhos==null) { carrinhos = new ArrayList<Carrinho>(); } return carrinhos; }
 	public void setCarrinhos(List<Carrinho> carrinhos) { this.carrinhos = carrinhos; }
 
-	public List<Desejo> getDesejos() { if(desejos==null) { desejos = new ArrayList<Desejo>(); } return desejos; }
-	public void setDesejos(List<Desejo> desejos) { this.desejos = desejos; }
-
 	public List<Pedido> getPedidos() { if(pedidos==null) { pedidos = new ArrayList<Pedido>(); } return pedidos; }
 	public void setPedidos(List<Pedido> pedidos) { this.pedidos = pedidos; }
 
 	public List<Preferencia> getPreferencias() { if(preferencias==null) { preferencias = new ArrayList<Preferencia>(); } return preferencias; }
 	public void setPreferencias(List<Preferencia> preferencias) { this.preferencias = preferencias; }
+
+	public List<Desejo> getDesejos() { if(desejos==null) { desejos = new ArrayList<Desejo>(); } return desejos; }
+	public void setDesejos(List<Desejo> desejos) { this.desejos = desejos; }
 }

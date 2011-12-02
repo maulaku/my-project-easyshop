@@ -42,8 +42,4 @@ public class Cidade
 
 	public List<Endereco> getEnderecos() { if(enderecos==null) { enderecos = new ArrayList<Endereco>(); } return enderecos; }
 	public void setEnderecos(List<Endereco> enderecos) { this.enderecos = enderecos; }
-	
-	public String toString() {
-		return nome;
-	}
 }
