@@ -3,4 +3,4 @@ insert into tela(nome) values('Cadastro de Produto');
 insert into tela(nome) values('Cadastro de Categoria');
 insert into tela(nome) values('Cadastro de Marca');
 insert into tela(nome) values('Lançamento de Permissão');
-insert into tela(nome) values('Pesquisar Produto');
+insert into tela(nome) values('Editar Produto');

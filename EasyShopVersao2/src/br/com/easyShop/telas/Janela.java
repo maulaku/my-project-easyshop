@@ -32,9 +32,11 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 import br.com.easyShop.aplicacao.MainEasyShopDesktop;
 import br.com.easyShop.model.Usuario;
+import br.com.easyShop.model.UsuarioTela;
 import br.com.easyShop.persistencia.conexao.BancoDeDados;
 import br.com.easyShop.relatorios.ExcRepositorio;
 import br.com.easyShop.relatorios.repositorioProduto;
+import br.com.easyShop.service.UsuarioTelaService;
 import br.com.easyShop.telas.cadastros.CadastroDeCategoria;
 import br.com.easyShop.telas.cadastros.CadastroDeMarca;
 import br.com.easyShop.telas.cadastros.CadastroDeProdutos;
@@ -354,10 +356,26 @@ public class Janela extends JFrame implements ActionListener {
 	   }  
 	
 	private class CadastroDeProduto implements ActionListener {
-		public void actionPerformed(ActionEvent e) {	
-			CadastroDeProdutos cadastroDeProdutos = new CadastroDeProdutos();
-			cadastroDeProdutos.setLocationRelativeTo(null);  
-			cadastroDeProdutos.setVisible(true);			
+		public void actionPerformed(ActionEvent e) {
+			if(abrirLancamentoDePermissaoADM()){
+				Long fkTela = Long.parseLong("2");
+				Long fkTipoPermissao = Long.parseLong("1");
+				UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+				
+				if(usuarioTela!=null){
+					CadastroDeProdutos cadastroDeProdutos = new CadastroDeProdutos();
+					cadastroDeProdutos.setLocationRelativeTo(null);  
+					cadastroDeProdutos.setVisible(true);	
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Leitura");
+				}	
+			}
+			else{
+				CadastroDeProdutos cadastroDeProdutos = new CadastroDeProdutos();
+				cadastroDeProdutos.setLocationRelativeTo(null);  
+				cadastroDeProdutos.setVisible(true);		
+			}	
 		}
 	}
 	
@@ -371,35 +389,104 @@ public class Janela extends JFrame implements ActionListener {
 	}
 	
 	private class CadastroDeUsuarios implements ActionListener {
-		public void actionPerformed(ActionEvent e) {	
-			CadastroDeUsuario cadastroDeUsuario = new CadastroDeUsuario();
-			cadastroDeUsuario.setLocationRelativeTo(null);  
-			cadastroDeUsuario.setVisible(true);			
+		public void actionPerformed(ActionEvent e) {
+			if(abrirLancamentoDePermissaoADM()){
+				Long fkTela = Long.parseLong("1");
+				Long fkTipoPermissao = Long.parseLong("1");
+				UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+				
+				if(usuarioTela!=null){
+					CadastroDeUsuario cadastroDeUsuario = new CadastroDeUsuario();
+					cadastroDeUsuario.setLocationRelativeTo(null);  
+					cadastroDeUsuario.setVisible(true);	
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Leitura");
+				}		
+			}
+			else{
+				CadastroDeUsuario cadastroDeUsuario = new CadastroDeUsuario();
+				cadastroDeUsuario.setLocationRelativeTo(null);  
+				cadastroDeUsuario.setVisible(true);		
+			}	
 		}
 	}
 	
 	private class PesquisaDeCategoria implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			CadastroDeCategoria cadastro = new CadastroDeCategoria();		
-			cadastro.setLocationRelativeTo(null);  
-			cadastro.setVisible(true);			
+			if(abrirLancamentoDePermissaoADM()){
+				Long fkTela = Long.parseLong("3");
+				Long fkTipoPermissao = Long.parseLong("1");
+				UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+				
+				if(usuarioTela!=null){
+					
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Leitura");
+				}	
+			}
+			else{
+				CadastroDeCategoria cadastro = new CadastroDeCategoria();		
+				cadastro.setLocationRelativeTo(null);  
+				cadastro.setVisible(true);			
+			}	
 		}
 	}
 	
 	private class PesquisaDeMarca implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			CadastroDeMarca cadastro = new CadastroDeMarca();
-			cadastro.setLocationRelativeTo(null);  
-			cadastro.setVisible(true);			
+			if(abrirLancamentoDePermissaoADM()){
+				Long fkTela = Long.parseLong("4");
+				Long fkTipoPermissao = Long.parseLong("1");
+				UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+				
+				if(usuarioTela!=null){
+					CadastroDeMarca cadastro = new CadastroDeMarca();
+					cadastro.setLocationRelativeTo(null);  
+					cadastro.setVisible(true);			
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Leitura");
+				}		
+			}
+			else{
+				CadastroDeMarca cadastro = new CadastroDeMarca();
+				cadastro.setLocationRelativeTo(null);  
+				cadastro.setVisible(true);	
+			}
 		}
 	}
 	
 	private class AbrirLancamentoDePermissao implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			LancamentoDePermissao cadastro = new LancamentoDePermissao();
-			cadastro.setLocationRelativeTo(null);  
-			cadastro.setVisible(true);			
+			if(abrirLancamentoDePermissaoADM()){
+				Long fkTela = Long.parseLong("5");
+				Long fkTipoPermissao = Long.parseLong("1");
+				UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+				
+				if(usuarioTela!=null){
+					LancamentoDePermissao cadastro = new LancamentoDePermissao();
+					cadastro.setLocationRelativeTo(null);  
+					cadastro.setVisible(true);			
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Leitura");
+				}	
+			}
+			else{
+				LancamentoDePermissao cadastro = new LancamentoDePermissao();
+				cadastro.setLocationRelativeTo(null);  
+				cadastro.setVisible(true);
+			}
 		}
+	}
+	
+	private boolean abrirLancamentoDePermissaoADM(){
+		if(usuario.getLogin().equals("adm")){			
+			return false;
+		}
+		return true;
 	}
 	
 	private class RelatorioDeProduto implements ActionListener {
@@ -455,9 +542,25 @@ public class Janela extends JFrame implements ActionListener {
 	
 	private class EditarProduto implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			EditarProdutos cadastro = new EditarProdutos();		
-			cadastro.setLocationRelativeTo(null);  
-			cadastro.setVisible(true);	
+			if(abrirLancamentoDePermissaoADM()){
+				Long fkTela = Long.parseLong("6");
+				Long fkTipoPermissao = Long.parseLong("1");
+				UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+				
+				if(usuarioTela!=null){
+					EditarProdutos cadastro = new EditarProdutos();		
+					cadastro.setLocationRelativeTo(null);  
+					cadastro.setVisible(true);			
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Leitura");
+				}	
+			}
+			else{
+				EditarProdutos cadastro = new EditarProdutos();		
+				cadastro.setLocationRelativeTo(null);  
+				cadastro.setVisible(true);	
+			}
 		}
 	}
 	
