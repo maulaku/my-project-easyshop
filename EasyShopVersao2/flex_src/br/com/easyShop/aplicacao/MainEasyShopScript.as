@@ -170,7 +170,7 @@ public function resultCategoria(result:ResultJava):void
 				acord.name = categoria.nome;
 				acord.categoria = categoria;
 				accondeonAtual = categoria.nome;
-				acord.image = "@Embed('../imagens/botoes/back.png')";
+				acord.image = "br/com/easyShop/imagens/botoes/back.png";
 				acord.styleName = "gradientHeader";
 				accordion.addElement(acord);
 				MRemoteObject.get("CategoriaService.getTodasCategoriasSub", [categoria], resultSubCategoria);	
