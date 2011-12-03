@@ -2,15 +2,20 @@
 <s:MXDataGridItemRenderer focusEnabled="true" width="100%" height="100%" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:mre="http://www.mresolucoes.com.br/2010/mxml">
 	
 	<!--*-*-*-* Componentes de Interface *-*-*-*-->
-	
+	<mx:SWFLoader id="mbtBotaoGrid" source="@Embed('../../imagens/botoes/Close.png')" click="onClick()" verticalCenter="0" horizontalCenter="0" buttonMode="true" toolTip="Remover"/>
+		
 	<fx:Script>
 		<![CDATA[
+			import br.com.easyShop.comunicacao.MRemoteObject;
+			import br.com.easyShop.comunicacao.ResultJava;
+			import br.com.easyShop.model.CarrinhoProduto;
 			import br.com.mresolucoes.componentes.mre.Alerta;
 			import br.com.mresolucoes.componentes.mre.MTabela;
 			import br.com.mresolucoes.imagens.ImagensUtils;
 			
 			import mx.collections.ArrayCollection;
 			import mx.containers.Form;
+			import mx.controls.Alert;
 			import mx.controls.DataGrid;
 			import mx.events.CloseEvent;
 			
@@ -48,9 +53,30 @@
 			{
 				if(result.detail==Alerta.SIM)
 				{
-					MTabela(listData.owner).mreRemoveItem(data);
-					MTabela(listData.owner).mreDataProvider.refresh();
-					if(onRemover!=null) { onRemover(); }
+					Alert.show("aqui");
+		
+					MRemoteObject.get("CarrinhoProdutoService.removerCarrinhoProdutos", [data.campo5 as CarrinhoProduto], resultRemoverProduto);
+				}
+			}
+			
+			public function resultRemoverProduto(result:ResultJava):void
+			{
+				try		
+				{		
+					if(result != null)
+					{
+						MTabela(listData.owner).mreRemoveItem(data);
+						MTabela(listData.owner).mreDataProvider.refresh();
+						if(onRemover!=null) { onRemover(); }
+					}
+					else
+					{ 
+						Alerta.abrir(result.lista.length > 0 ? result.lista.getItemAt(0) as String : "Ops, Erro ao remover carrinho produto", "EasyShop", null, null, null, ImagensUtils.INFO);
+					}
+				} 
+				catch(e:Error)
+				{ 
+					Alerta.abrir("Ops, Ocorreu um erro ao remover carrinho produto", "EasyShop", null, null, null, ImagensUtils.INFO);
 				}
 			}
 			

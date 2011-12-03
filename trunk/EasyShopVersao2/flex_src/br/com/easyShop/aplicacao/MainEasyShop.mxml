@@ -69,7 +69,7 @@
 				 source="@Embed('../imagens/aplicacao/pedidos.png')"/>
 		<s:Image x="1143" y="48" buttonMode="true"
 				 click="btnEntrar_clickHandler()" smooth="true" smoothingQuality="high"
-				 source="@Embed('../imagens/aplicacao/user3.png')" toolTip="Entrar/Cadastrar"/>
+				 source="@Embed('../imagens/aplicacao/user3.png')" toolTip="Login/Cadastrar"/>
 		<s:Label x="29" y="23" width="482" height="117" click="construtor()" toolTip="Início" buttonMode="true"/>	
 
 </s:Application>

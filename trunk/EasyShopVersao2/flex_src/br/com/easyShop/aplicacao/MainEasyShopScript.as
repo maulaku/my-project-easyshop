@@ -15,6 +15,7 @@ import br.com.easyShop.telas.desejos.AbaMeuDesejo;
 import br.com.easyShop.telas.pagamento.ConfirmarCompra;
 import br.com.easyShop.telas.pagamento.Pagamentos;
 import br.com.easyShop.telas.pagamento.PedidoConfirmado;
+import br.com.easyShop.telas.pedidos.AbaMeusPedidos;
 import br.com.easyShop.telas.produtos.AbaDetalhesProduto;
 import br.com.easyShop.telas.produtos.MeuCarrinho;
 import br.com.easyShop.utils.Constantes;
@@ -64,10 +65,6 @@ public static function getProdutoGlobal():Produto
 	return produto;	
 }
 
-/**
- * Inicializa os componentes e objetos
- */ 
-
 public static function getClienteGlobal():Cliente
 {
 	return clienteGlobal;
@@ -81,12 +78,12 @@ public static function getUsurioGlobal():Usuario
 public function construtor():void
 {
 	modulo.removeAllElements();
-//	grPainelModulos.removeAllElements();
-	clienteGlobal = null;
-	usuarioGlobal = null;
-	btnCarrinho.visible = false;
-	btnDesejo.visible = false;
-	btnPedido.visible = false;
+	if(clienteGlobal==null){
+		btnCarrinho.visible = false;
+		btnDesejo.visible = false;
+		btnPedido.visible = false;
+	}
+	grPainelModulos.removeAllElements();
 	panelCategorias.title = "Categorias Principais" ;
 	cbBusca.mreServicePesquisa = "ProdutoService.getProdutosNome";
 	MRemoteObject.get("CategoriaService.getTodasCategoriasPai", null, resultCategoria);
@@ -308,7 +305,12 @@ public function mouseOut(evt:MouseEvent):void{
 
 protected function btnPedido_clickHandler():void
 {
-	modulo.mreLoadModule("br/com/easyShop/telas/pedidos/AbaMeusPedidos.swf");
+	var painelMeusPedidos:AbaMeusPedidos = new AbaMeusPedidos();
+	painelMeusPedidos.showCloseButton=true;
+	painelMeusPedidos.setVisible(true);
+	PopUpManager.addPopUp(painelMeusPedidos, this, true);
+	
+	centralizarTela(painelMeusPedidos);
 }
 
 private function enviaCliente():Cliente{
@@ -450,6 +452,7 @@ private function lidaClickadoLogout(event:Event):void{
 	clienteGlobal = null;
 	usuarioGlobal = null;
 	painelLogout.setVisible(false);
+	painelLogin.toolTip = "Login/Cadastrar";
 	btnCarrinho.visible = false;
 	btnDesejo.visible = false;
 	btnPedido.visible = false;
@@ -507,6 +510,7 @@ public function verificarLogin2(result:ResultJava):void
 		if((ObjectUtil.stringCompare(senhaCliente,senhaPainel))==0){
 			painelLogin.setVisible(false);
 			usuarioGlobal = usuario;
+			painelLogin.toolTip = "Logout/Cadastrar";
 			btnCarrinho.visible = true;
 			btnDesejo.visible = true;
 			btnPedido.visible = true;

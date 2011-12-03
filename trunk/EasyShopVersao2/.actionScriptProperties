@@ -21,21 +21,20 @@
     <application path="br/com/easyShop/aplicacao/MainEasyShop.mxml"/>
   </applications>
   <modules>
-    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/produtos/AbaDetalhesProduto.mxml"/>
-    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/pedidos/AbaDetalheMeuPedido.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/pedidos/AbaDetalheMeuPedido.mxml"/>
-    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/Login/Login.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/Login/Login.mxml"/>
-    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/consultas/AbaMeusDadosClientePessoaFisica.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/consultas/AbaMeusDadosClientePessoaFisica.mxml"/>
-    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaJuridica.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaJuridica.mxml"/>
+    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/pagamento/ConfirmarCompra.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/pagamento/ConfirmarCompra.mxml"/>
     <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/consultas/AbaMeusDadosClientePessoaJuridica.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/consultas/AbaMeusDadosClientePessoaJuridica.mxml"/>
-    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/utils/EasyShopGlobal.swf" optimize="true" sourcePath="flex_src/br/com/easyShop/utils/EasyShopGlobal.mxml"/>
     <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaFisica.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaFisica.mxml"/>
+    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/produtos/MeuCarrinho.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/produtos/MeuCarrinho.mxml"/>
+    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaJuridica.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaJuridica.mxml"/>
+    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/consultas/AbaMeusDadosClientePessoaFisica.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/consultas/AbaMeusDadosClientePessoaFisica.mxml"/>
+    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/utils/EasyShopGlobal.swf" optimize="true" sourcePath="flex_src/br/com/easyShop/utils/EasyShopGlobal.mxml"/>
+    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/desejos/AbaMeuDesejo.swf" optimize="true" sourcePath="flex_src/br/com/easyShop/telas/desejos/AbaMeuDesejo.mxml"/>
     <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/Login/Logout.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/Login/Logout.mxml"/>
     <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/pagamento/PedidoConfirmado.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/pagamento/PedidoConfirmado.mxml"/>
-    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/pagamento/ConfirmarCompra.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/pagamento/ConfirmarCompra.mxml"/>
-    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/pedidos/AbaMeusPedidos.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/pedidos/AbaMeusPedidos.mxml"/>
-    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/produtos/MeuCarrinho.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/produtos/MeuCarrinho.mxml"/>
+    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/Login/Login.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/Login/Login.mxml"/>
+    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/pedidos/AbaDetalheMeuPedido.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/pedidos/AbaDetalheMeuPedido.mxml"/>
+    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/produtos/AbaDetalhesProduto.mxml"/>
     <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/pagamento/Pagamentos.swf" optimize="false" sourcePath="flex_src/br/com/easyShop/telas/pagamento/Pagamentos.mxml"/>
-    <module application="flex_src/br/com/easyShop/aplicacao/MainEasyShop.mxml" destPath="br/com/easyShop/telas/desejos/AbaMeuDesejo.swf" optimize="true" sourcePath="flex_src/br/com/easyShop/telas/desejos/AbaMeuDesejo.mxml"/>
   </modules>
   <buildCSSFiles/>
   <flashCatalyst validateFlashCatalystCompatibility="false"/>
