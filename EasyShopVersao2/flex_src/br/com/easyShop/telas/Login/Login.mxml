@@ -4,7 +4,7 @@
 				xmlns:s="library://ns.adobe.com/flex/spark"
 				xmlns:mx="library://ns.adobe.com/flex/mx"
 				width="580" height="300" backgroundAlpha="1.0" backgroundColor="#E0E3E3"
-				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar">
+				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar" title="Login">
 	<fx:Script source="LoginScript.as" />
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->

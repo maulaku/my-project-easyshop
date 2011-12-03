@@ -40,8 +40,9 @@ package br.com.easyShop.componentes.comboLOD
 		public var imagem:Image;
 		
 		/*-*-*-*-* Imagens *-*-*-*-*/
-		[Bindable]
+		
 		[Embed(source="imagens/lupa16.png")]
+		[Bindable]
 		private var lupa:Class;
 		
 		[Bindable]

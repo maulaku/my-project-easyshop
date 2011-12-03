@@ -34,46 +34,10 @@ private static var enderecoSelecionado:int;
 private static var enderecoEscolhido:Endereco;
 [Bindable]
 private static var carrinho:ArrayCollection;
- 
-public function removerProduto():void
-{
-	Alert.show("aqui");
-	try
-	{
-		if(tblCarrinho.mreGetSelectedItem() != null)
-		{
-			var obj:Object = dados.getItemAt(tblCarrinho.selectedIndex);
-			MRemoteObject.get("CarrinhoProdutoService.removerCarrinhoProdutos", [obj.campo5 as CarrinhoProduto], resultRemoverProduto);
-		}
-	}
-	catch(e:Error)
-	{ 
-		Alerta.abrir("Ops, Ocorreu um erro ao remover carrinho produto", "EasyShop", null, null, null, ImagensUtils.INFO);
-	}
-}
-
-public function resultRemoverProduto(result:ResultJava):void
-{
-	try		
-	{		
-		if(result != null)
-		{
-			dados.removeItemAt(tblCarrinho.selectedIndex);
-		}
-		else
-		{ 
-			Alerta.abrir(result.lista.length > 0 ? result.lista.getItemAt(0) as String : "Ops, Erro ao remover carrinho produto", "EasyShop", null, null, null, ImagensUtils.INFO);
-		}
-		
-	} 
-	catch(e:Error)
-	{ 
-		Alerta.abrir("Ops, Ocorreu um erro ao remover carrinho produto", "EasyShop", null, null, null, ImagensUtils.INFO);
-	}
-}
 
 public function construtor():void
 {
+	total = 0;
 	MRemoteObject.get("CarrinhoProdutoService.getCarrinhoProdutos", [MainEasyShop.getClienteGlobal()], resultCarrinho);
 	MRemoteObject.get("EnderecoService.getEnderecosCliente", [MainEasyShop.getClienteGlobal().pessoa], resultEnderecos);
 }
@@ -107,9 +71,7 @@ public function resultCarrinho(result:ResultJava):void
 			var i:int;
 			var carrinhoProduto:CarrinhoProduto;
 			var temp:Object;
-			//			var imagem:Image = new Image();
-			//			imagem.source();
-			//			imagem.addEventListener(MouseEvent.CLICK,deleteLinha);
+			
 			for(i=0;i<result.lista.length;i++)
 			{
 				carrinhoProduto = new CarrinhoProduto();

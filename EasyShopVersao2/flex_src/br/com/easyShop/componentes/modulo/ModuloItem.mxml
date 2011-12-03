@@ -27,7 +27,7 @@
 			private var _produto:Produto;
 			[Bindable]
 			private var _funcao:Function;
-			
+					
 			public function escutaBotoes(botao:MBotao):void
 			{
 				if(botao == btEspiar)
