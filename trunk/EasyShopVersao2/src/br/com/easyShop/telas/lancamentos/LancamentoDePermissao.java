@@ -1,6 +1,5 @@
 package br.com.easyShop.telas.lancamentos;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,26 +45,7 @@ public class LancamentoDePermissao extends JFrame {
 	private JButton btnRemover = new JButton("");
 	private JButton btnSalvar = new JButton("Salvar");
 	private JButton btnCancelar = new JButton("Cancelar");
-	
-//	/**
-//	 * Launch the application.
-//	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					LancamentoDePermissao frame = new LancamentoDePermissao();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-//
-//	/**
-//	 * Create the frame.
-//	 */
+
 	public LancamentoDePermissao() {
 		cboUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		cboUsuarios.addActionListener(new PreencherTabelaTela());
@@ -243,44 +223,37 @@ public class LancamentoDePermissao extends JFrame {
 			UsuarioTelaService usuarioTelaService = new UsuarioTelaService();
 			List<UsuarioTela> usuarioTelas;
 			usuarioTelas = usuarioTelaService.getUsuarioTelas((Usuario)cboUsuarios.getSelectedItem());
-			
-			if(usuarioTelas.size()==0){
-				try{
-					UsuarioTela adicionar = new UsuarioTela();
-					//UsuarioTelaService usuarioTelaService = new UsuarioTelaService();
-					
-					int qtd = modeloPermissao.getRowCount(), i;
-					for(i=0;i<qtd;i++){
-						adicionar = (UsuarioTela) modeloPermissao.getValueAt(i,0);
-						usuarioTelaService.inserirUsuarioTela(adicionar);
-					}
-					
-					JOptionPane.showMessageDialog(null, "Permissão(ões) inserida(s) com sucesso!!");
-				}catch (Exception e1) {
-					// TODO: handle exception
-				}
-			}
-			else{
+
+				int qtd = modelo.getRowCount(), i, sair = 0;
 				for(UsuarioTela usuarioTela : usuarioTelas){
-					usuarioTelaService.excluirUsuarioTela(usuarioTela);
+					for(i=0;i<qtd;i++){
+						Tela tela = new Tela();
+						tela = (Tela) modelo.getValueAt(i,0);
+						if(usuarioTela.getTela().getNome().equals(tela.getNome())){
+							usuarioTelaService.excluirUsuarioTela(usuarioTela);
+						}
+					}
 				}
 				
-				try{
-					UsuarioTela adicionar = new UsuarioTela();
-					//UsuarioTelaService usuarioTelaService = new UsuarioTelaService();
-					
-					int qtd = modeloPermissao.getRowCount(), i;
-					for(i=0;i<qtd;i++){
-						adicionar = (UsuarioTela) modeloPermissao.getValueAt(i,0);
-						usuarioTelaService.inserirUsuarioTela(adicionar);
+				usuarioTelas = usuarioTelaService.getUsuarioTelas((Usuario)cboUsuarios.getSelectedItem());
+				qtd = modeloPermissao.getRowCount();
+				
+				for(i=0;i<qtd;i++){
+					sair = 0;
+					for(UsuarioTela usuarioTela : usuarioTelas){
+						UsuarioTela tela = new UsuarioTela();
+						tela = (UsuarioTela) modeloPermissao.getValueAt(i,0);
+						if(usuarioTela.getTela().getNome().equals(tela.getTela().getNome())){
+							sair = 1;
+						}
 					}
-					
-					JOptionPane.showMessageDialog(null, "Permissão(ões) alteradas(s) com sucesso!!");
-				}catch (Exception e1) {
-					// TODO: handle exception
+					if(sair==0){
+						usuarioTelaService.inserirUsuarioTela((UsuarioTela) modeloPermissao.getValueAt(i,0));
+					}				
 				}
-			}			
-		}
+				
+					JOptionPane.showMessageDialog(null, "Permissão(ões) alteradas(s) com sucesso!!");
+			}
 	}
 	
 	private class Cancelar implements ActionListener {

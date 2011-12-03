@@ -34,6 +34,19 @@ public class UsuarioTelaService extends BaseServiceAtta
 		}
 	}
 	
+	public UsuarioTela getUsuarioTelasSelecionado(Usuario usuario, Long fkTela, Long fkTipoPermissao)
+	{
+		try
+		{
+			return new UsuarioTelaDAO().getUsuarioTelasSelecionado(usuario, fkTela, fkTipoPermissao, 3);
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public void excluirUsuarioTela(UsuarioTela usuarioTela)
 	{
 		try
