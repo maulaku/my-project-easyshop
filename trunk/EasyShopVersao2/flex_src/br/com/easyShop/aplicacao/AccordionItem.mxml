@@ -13,7 +13,7 @@
 			public var categoria:Categoria;
 			
 			[Bindable]
-			public var image:*;
+			public var image:String;
 			
 			protected function vbox1_mouseOverHandler(event:MouseEvent):void
 			{
