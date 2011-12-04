@@ -46,10 +46,6 @@ import br.com.easyShop.telas.edicao.EditarProdutos;
 import br.com.easyShop.telas.lancamentos.LancamentoDePermissao;
 
 public class Janela extends JFrame implements ActionListener {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JButton btnCadastroProduto = new JButton("");
