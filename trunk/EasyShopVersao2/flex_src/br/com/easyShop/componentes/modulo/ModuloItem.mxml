@@ -27,12 +27,17 @@
 			private var _produto:Produto;
 			[Bindable]
 			private var _funcao:Function;
-					
+			
 			public function escutaBotoes(botao:MBotao):void
 			{
 				if(botao == btEspiar)
 				{
 					this.dispatchEvent(new Event("clickadoModuloItem"));
+				}
+				
+				if(botao == btDesejo)
+				{
+					this.dispatchEvent(new Event("clickadoModuloItemDesejo"));	
 				}
 			}
 			
@@ -48,7 +53,6 @@
 			public function set preco(preco:String):void { _preco = preco; }
 			public function get produto():Produto { return _produto; }
 			public function set produto(produto:Produto):void { _produto = produto; }
-			
 		]]>
 	</fx:Script>
 	
@@ -56,4 +60,5 @@
 	<s:Label id="lbNome" x="10" y="10"  fontSize="25" textAlign="center" width="278" text="{_nome}"/>
 	<s:Label id="lbPreco" x="130" y="75" fontSize="18" textAlign="right" width="150" text="{_preco}"/>
 	<mxml:MBotao id="btEspiar" x="218" y="153" label="Espiar" mreClick="escutaBotoes"/>
+	<mxml:MBotao id="btDesejo" x="138" y="153" width="74" label="Meu desejo" mreClick="escutaBotoes"/>
 </s:Group>
