@@ -182,7 +182,7 @@ private function adicionaMeuDesejo(event:Event):void{
 	desejoProduto.produto = produto;
 	desejoProduto.desejo = desejo;
 	
-	MRemoteObject.get("MeusDesejosServices.inserirDesejo", [desejoProduto], salvarMeusDesejos);
+	MRemoteObject.get("DesejoProdutoService.inserirDesejo", [desejoProduto], salvarMeusDesejos);
 }
 
 public function salvarMeusDesejos(result:ResultJava):void{

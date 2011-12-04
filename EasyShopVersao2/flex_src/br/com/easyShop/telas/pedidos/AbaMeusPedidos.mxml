@@ -27,6 +27,8 @@
 			<mx:DataGridColumn  dataField="status" headerText="Status" width="120"/>	
 		</mx:columns>
 	</mx:DataGrid>
+	
+	
 	<s:Button x="337" y="289" label="Detalhes" click="irParaDetalhe()"/>
 	<s:Button x="220" y="289" label="Voltar"/>
 	
