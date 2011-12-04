@@ -56,6 +56,8 @@ public function preencherPedido(result:ResultJava):void{
 		pedidos.addItem(temp);
 	}	
 	
+	//tblPedido.mreDataProvider = result.lista;
+	
 	//pedido = ((Pedido) (dadosPedido[i])); 
 	//	arr.push(pedido);
 	//MRemoteObject.get("PedidoProdutoService.getPedidosProdutoCliente", arr, preencherTabela);
