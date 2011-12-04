@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"
-		  xmlns:s="library://ns.adobe.com/flex/spark"
-		  xmlns:mx="library://ns.adobe.com/flex/mx"
-		  xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
-		  xmlns:tabela="br.com.mresolucoes.renders.tabela.*"
-		  width="878" height="512">
-	
-	<fx:Script source="AbaMeuPedidoScript.as" />
-	
+
+<mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
+				width="882" height="554" backgroundAlpha="1.0" backgroundColor="#E0E3E3"
+				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar"
+				title="Detalhes Do Pedido">
+	<fx:Script source="LoginScript.as" />
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	
 	<s:DataGrid id="tblPedido" x="21" y="82" width="837" height="52"
 				contentBackgroundColor="#F9F9F9" requestedRowCount="1">
 		<s:columns>
@@ -55,6 +54,4 @@
 	</s:DataGrid>
 	<s:Label x="296" y="23" fontSize="25" fontWeight="bold" text="Detalhes do Pedido"/>
 	
-	
-	
-</s:Module>
+</mx:TitleWindow>
