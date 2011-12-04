@@ -3,12 +3,13 @@
 	
 	<!--*-*-*-* Componentes de Interface *-*-*-*-->
 	<mx:SWFLoader id="mbtBotaoGrid" source="@Embed('../../imagens/botoes/Close.png')" click="onClick()" verticalCenter="0" horizontalCenter="0" buttonMode="true" toolTip="Remover"/>
-		
+	
 	<fx:Script>
 		<![CDATA[
 			import br.com.easyShop.comunicacao.MRemoteObject;
 			import br.com.easyShop.comunicacao.ResultJava;
 			import br.com.easyShop.model.CarrinhoProduto;
+			import br.com.easyShop.model.DesejoProduto;
 			import br.com.mresolucoes.componentes.mre.Alerta;
 			import br.com.mresolucoes.componentes.mre.MTabela;
 			import br.com.mresolucoes.imagens.ImagensUtils;
@@ -53,9 +54,8 @@
 			{
 				if(result.detail==Alerta.SIM)
 				{
-					Alert.show("aqui");
-		
-					MRemoteObject.get("CarrinhoProdutoService.removerCarrinhoProdutos", [data.campo5 as CarrinhoProduto], resultRemoverProduto);
+					MRemoteObject.get("DesejoProdutoService.removerDesejo", [data.campo5 as DesejoProduto], resultRemoverDesejo);
+					//MRemoteObject.get("CarrinhoProdutoService.removerCarrinhoProdutos", [data.campo5 as CarrinhoProduto], resultRemoverProduto);
 				}
 			}
 			
@@ -79,6 +79,28 @@
 					Alerta.abrir("Ops, Ocorreu um erro ao remover carrinho produto", "EasyShop", null, null, null, ImagensUtils.INFO);
 				}
 			}
+			
+			public function resultRemoverDesejo(result:ResultJava):void
+			{
+				try		
+				{		
+					if(result != null)
+					{
+						MTabela(listData.owner).mreRemoveItem(data);
+						MTabela(listData.owner).mreDataProvider.refresh();
+						if(onRemover!=null) { onRemover(); }
+					}
+					else
+					{ 
+						Alerta.abrir(result.lista.length > 0 ? result.lista.getItemAt(0) as String : "Ops, Erro ao remover desejo", "EasyShop", null, null, null, ImagensUtils.INFO);
+					}
+				} 
+				catch(e:Error)
+				{ 
+					Alerta.abrir("Ops, Ocorreu um erro ao remover desejo", "EasyShop", null, null, null, ImagensUtils.INFO);
+				}
+			}
+			
 			
 			/*-*-*-* Metodos Gets e Sets *-*-*-*/ 
 			public function get condicao():Function 				{ return _condicao; }

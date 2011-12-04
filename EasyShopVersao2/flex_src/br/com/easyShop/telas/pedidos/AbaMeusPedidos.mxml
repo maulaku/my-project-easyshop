@@ -4,7 +4,7 @@
 				xmlns:s="library://ns.adobe.com/flex/spark"
 				xmlns:mx="library://ns.adobe.com/flex/mx"
 				width="794" height="390" backgroundAlpha="1.0" backgroundColor="#E0E3E3"
-				close="PopUpManager.removePopUp(this)" creationComplete="construtor(MainEasyShop.getClienteGlobal())" 
+				close="PopUpManager.removePopUp(this)" creationComplete="construtor()" 
 				layout="absolute" removedEffect="fechar" title="Meus Pedidos">
 	<fx:Script>
 		<![CDATA[

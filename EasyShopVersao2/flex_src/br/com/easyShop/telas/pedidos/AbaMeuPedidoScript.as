@@ -22,12 +22,9 @@ public var dadosPedido:ArrayCollection = new ArrayCollection();
 public var listaPedidos:ArrayCollection = new ArrayCollection([{pedido:Pedido, pedidoProduto:PedidoProduto}]);
 
 
-public function construtor(cliente:Cliente):void
+public function construtor():void
 {
-	var arr:Array = new Array();
-	arr.push(cliente);
-
-	MRemoteObject.get("PedidoService.getPedidosCliente", arr, preencherPedido);
+	MRemoteObject.get("PedidoProdutoService.getPedidosProduto", [MainEasyShop.getClienteGlobal()], preencherPedido);
 }
 
 public function escutaBotoes(botao:MBotao):void
@@ -36,62 +33,90 @@ public function escutaBotoes(botao:MBotao):void
 }
 
 public function preencherPedido(result:ResultJava):void{
-
+	
 	var i:int;
-	var pedido:Pedido = new Pedido();
+	var pedido:PedidoProduto;
 	var arr:Array = new Array();
-
+	
 	dadosPedido = result.lista;
-
-	for(i=0;i<result.lista.length;i++){
+	
+	for(i=0; i<result.lista.length; i++){
 		
-		pedido = ((Pedido) (result.lista[i]));  
+		pedido = new PedidoProduto();
+		pedido = ((PedidoProduto) (result.lista[i]));  
 		var temp:Object;
 		
 		temp=new Object();
+		temp.codigo=pedido.pkPedidoProduto;
+		temp.produto=pedido.produto.nome;
+		temp.valor = pedido.pedido.total;
+		temp.status = pedido.pedido.status;
+		temp.quantidade = pedido.quantidade;
+		
+		pedidos.addItem(temp);
+	}	
+	
+	//pedido = ((Pedido) (dadosPedido[i])); 
+	//	arr.push(pedido);
+	//MRemoteObject.get("PedidoProdutoService.getPedidosProdutoCliente", arr, preencherTabela);
+}
+
+
+
+//var i:int;
+//var pedido:Pedido = new Pedido();
+//var arr:Array = new Array();
+//
+//dadosPedido = result.lista;
+//
+//for(i=0;i<result.lista.length;i++){
+//	
+//	pedido = ((Pedido) (result.lista[i]));  
+//	var temp:Object;
+//	
+//	temp=new Object();
+//	temp.codigo=pedido.pkPedido;
+//	temp.produto=pedido.;
+//	temp.valor = pedido.total;
+//	temp.status = pedido.status;
+//	
+//	pedidos.addItem(temp);
+//}	
+//
+//pedido = ((Pedido) (dadosPedido[i])); 
+//arr.push(pedido);
+//MRemoteObject.get("PedidoProdutoService.getPedidosProdutoCliente", arr, preencherTabela);
+
+public function preencherTabela(result:ResultJava):void{
+	
+	var i:int;
+	var pedido:Pedido = new Pedido();
+	var pedidoProduto:PedidoProduto = new PedidoProduto();
+	
+	pedidoProduto = ((PedidoProduto) (result.item));  
+	
+	for(i=0;i<result.lista.length;i++){
+		
+		pedido = dadosPedido[i];
+		
+		var temp:Object;
+		temp=new Object();
+		temp.produto=pedidoProduto[i].produto.nome;
+		temp.quantidade = pedidoProduto[i].quantidade;
 		temp.codigo=pedido.pkPedido;
 		temp.produto=pedido.total;
 		temp.valor = pedido.total;
 		temp.status = pedido.status;
 		
 		pedidos.addItem(temp);
-	}	
-	
-	pedido = ((Pedido) (dadosPedido[i])); 
-	arr.push(pedido);
-	MRemoteObject.get("PedidoProdutoService.getPedidosProdutoCliente", arr, preencherTabela);
-}
-
-public function preencherTabela(result:ResultJava):void{
-	
-		var i:int;
-		var pedido:Pedido = new Pedido();
-		var pedidoProduto:PedidoProduto = new PedidoProduto();
-
-		pedidoProduto = ((PedidoProduto) (result.item));  
 		
-		for(i=0;i<result.lista.length;i++){
- 
-			pedido = dadosPedido[i];
-			
-			var temp:Object;
-			temp=new Object();
-			temp.produto=pedidoProduto[i].produto.nome;
-			temp.quantidade = pedidoProduto[i].quantidade;
-			temp.codigo=pedido.pkPedido;
-			temp.produto=pedido.total;
-			temp.valor = pedido.total;
-			temp.status = pedido.status;
-			
-			pedidos.addItem(temp);
-
-			listaPedidos.setItemAt(pedido,0);
-			listaPedidos.setItemAt(pedidoProduto,1);
-		}	
+		listaPedidos.setItemAt(pedido,0);
+		listaPedidos.setItemAt(pedidoProduto,1);
+	}	
 }
 
 private function irParaDetalhe():void {
-
+	
 	var main:MainEasyShop = new MainEasyShop();
 	main.modulo.mreLoadModule("br/com/easyShop/telas/pedidos/AbaDetalheMeuPedido.swf");
 }
