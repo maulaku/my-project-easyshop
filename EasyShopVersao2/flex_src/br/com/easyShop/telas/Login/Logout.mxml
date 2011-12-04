@@ -3,13 +3,24 @@
 <mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:s="library://ns.adobe.com/flex/spark"
 				xmlns:mx="library://ns.adobe.com/flex/mx"
-				width="636" height="350" backgroundAlpha="1.0" backgroundColor="#E0E3E3"
+				width="636" height="372" backgroundAlpha="1.0" backgroundColor="#E0E3E3"
 				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar" title="Logout" creationComplete="construtor()">
 	<fx:Script source="LogoutScript.as" />
+	
+	<fx:Script>
+		<![CDATA[
+		[Bindable]
+		public var _image:String;
+		
+			public function get imagemSource():String { return _image; }
+			public function set imagemSource(imagemSource:String):void { _image = imagemSource; }
+			
+		]]>
+	</fx:Script>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	<mx:Button id="btnLogout" x="103" y="252" width="130" height="29" label="Logout"
+	<mx:Button id="btnLogout" x="90" y="286" width="130" height="29" label="Logout"
 			   click="clickadoLogout()" fontFamily="Verdana" fontSize="16"/>
 	<mx:VRule x="309" y="42" width="9" height="205" chromeColor="#969494"/>
 	<mx:Label id="bemVindo" x="21" y="23" width="280" color="#1C4BE2" fontFamily="Verdana"
@@ -20,6 +31,6 @@
 			   fontFamily="Verdana" fontSize="15" click="clickadoPessoaFisica()"/>
 	<mx:Button id="btnPessoaJeridica" x="473" y="159" width="129" height="29" label="Pessoa Jurídica"
 			   fontFamily="Verdana" fontSize="15" click="clickadoPessoaJuridica()"/>
-	<s:Image x="90" y="66" width="157" height="172" source="@Embed('../../../../../../Imagens/ImagensUsuario/usuario1.jpg')"/>
+	<s:Image id="imagemProduto" x="47" y="64" width="221" height="196" source="{_image}"/>
 	
 </mx:TitleWindow>

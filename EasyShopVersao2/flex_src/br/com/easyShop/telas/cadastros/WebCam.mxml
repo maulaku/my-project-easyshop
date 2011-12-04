@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				width="784" height="604" backgroundAlpha="1.0" backgroundColor="#E0E3E3"
+				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar" title="WebCan">
+	
+	<mx:creationComplete>
+		<![CDATA[
+		
+		//cam é a instância de sua WebCam
+		//Geralmente surge uma mensagem de permissão ao usuário
+		var cam:Camera = Camera.getCamera();
+		
+		// Aqui inserimos a instância da câmera no
+		// componente VideoDisplay
+		webcam.attachCamera(cam);
+		
+		]]>
+	</mx:creationComplete>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			public static var rawBytes:ByteArray;
+			
+			public static function getBytes():ByteArray{
+				return rawBytes;
+			}
+			
+			protected function titlewindow1_creationCompleteHandler(event:FlexEvent):void
+			{
+				var cam:Camera = Camera.getCamera();
+				webcam.attachCamera(cam);
+			}
+			
+		]]>
+	</fx:Script>
+	<mx:VideoDisplay id="webcam"
+					 width="587" height="455"
+					 top="37"
+					 left="98"
+					 />
+	
+	<s:Button id="salvar" left="346" top="518" width="91" height="25" label="Capturar">
+		<s:click>
+			<![CDATA[
+			import mx.graphics.ImageSnapshot;
+			import mx.graphics.codec.JPEGEncoder;
+						
+			//Primeiro criamos a imagem Bitmap da câmera
+			var imageBitmapData:BitmapData;
+			imageBitmapData= ImageSnapshot.captureBitmapData(webcam);
+			
+			//Depois transformamos essa imagem em bytecodes
+			var encoder:JPEGEncoder = new JPEGEncoder();
+			rawBytes = encoder.encode(imageBitmapData);		
+			
+			this.dispatchEvent(new Event("clickadoSalvar"));	
+			]]>
+		</s:click>
+	</s:Button>
+	
+</mx:TitleWindow>
