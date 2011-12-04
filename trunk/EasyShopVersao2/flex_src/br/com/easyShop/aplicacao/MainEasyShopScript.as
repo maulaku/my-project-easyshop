@@ -170,7 +170,7 @@ public function resultCategoria(result:ResultJava):void
 				acord.name = categoria.nome;
 				acord.categoria = categoria;
 				accondeonAtual = categoria.nome;
-				acord.image = "br/com/easyShop/imagens/botoes/back.png";
+				acord.image = Constantes.instance.ENDERECO_IMAGEM_CATEGORIA+NumberUtil.toString(categoria.pkCategoria)+".jpg";
 				acord.styleName = "gradientHeader";
 				accordion.addElement(acord);
 				MRemoteObject.get("CategoriaService.getTodasCategoriasSub", [categoria], resultSubCategoria);	
@@ -459,7 +459,7 @@ private function lidaClickadoLogout(event:Event):void{
 }
 
 private function lidaClickadoLogin(event:Event):void{
-	MRemoteObject.get("ClienteService.getCliente",[event.currentTarget.txtUsuario.text], verificarLogin);
+	MRemoteObject.get("ClienteService.getCliente",[event.currentTarget.txtUsuario.text, event.currentTarget.txtSenha.text], verificarLogin);
 }
 
 private function lidaClickadoPessoaFisica(event:Event):void{
@@ -485,11 +485,16 @@ private function lidaClickadoPessoaJuridica2(event:Event):void{
 public function verificarLogin(result:ResultJava):void
 {
 	try		
-	{	
-		var cliente:Cliente = new Cliente();
-		cliente = ((Cliente) (result.item));
-		MRemoteObject.get("UsuarioService.getUsuarioId",[cliente.pessoa.pkPessoa], verificarLogin2);
-		clienteGlobal = cliente;
+	{
+		if(result.item != null){
+			var cliente:Cliente = new Cliente();
+			cliente = ((Cliente) (result.item));
+			MRemoteObject.get("UsuarioService.getUsuarioId",[cliente.pessoa.pkPessoa], verificarLogin2);
+			clienteGlobal = cliente;
+		}
+		else{
+			Alerta.abrir("Cliente ou Senha inválida", "EasyShop", null, null, null, ImagensUtils.ATENCAO);
+		}
 	} 
 	catch(e:Error)
 	{ 
@@ -502,23 +507,14 @@ public function verificarLogin2(result:ResultJava):void
 	try		
 	{	
 		var usuario:Usuario = new Usuario();
-		var senhaPainel:String;
-		var senhaCliente:String;
-		senhaPainel = painelLogin.txtSenha.text;
 		usuario = ((Usuario) (result.item));
-		senhaCliente = usuario.senha;
-		if((ObjectUtil.stringCompare(senhaCliente,senhaPainel))==0){
-			painelLogin.setVisible(false);
-			usuarioGlobal = usuario;
-			painelLogin.toolTip = "Logout/Cadastrar";
-			btnCarrinho.visible = true;
-			btnDesejo.visible = true;
-			btnPedido.visible = true;
-		}
-		else{
-			clienteGlobal = null;
-			Alerta.abrir("Cliente ou Senha inválida", "EasyShop", null, null, null, ImagensUtils.ATENCAO);
-		}
+		
+		painelLogin.setVisible(false);
+		usuarioGlobal = usuario;
+		painelLogin.toolTip = "Logout/Cadastrar";
+		btnCarrinho.visible = true;
+		btnDesejo.visible = true;
+		btnPedido.visible = true;
 	} 
 	catch(e:Error)
 	{ 

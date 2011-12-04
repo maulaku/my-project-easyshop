@@ -167,7 +167,7 @@ public class CadastroDeCategoria extends JFrame {
 						File imagem_file = new File(caminhoImagem);
 						BufferedImage imagem_buffered = null;
 						imagem_buffered = ImageIO.read( imagem_file );
-						ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensCategoria/categoria"+categoria.getPkCategoria()+".jpg"));
+						ImageIO.write(imagem_buffered, "jpg", new File(Constantes.ENDERECO_CATEGORIA+categoria.getPkCategoria()+".jpg"));
 					}catch (Exception e1) {
 						
 					}

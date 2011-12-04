@@ -29,6 +29,8 @@ private var produto:Produto;
 
 public function construtor():void
 {
+	imagemSource = Constantes.instance.ENDERECO_IMAGEM_PRODUTO+NumberUtil.toString(MainEasyShop.getProdutoGlobal().pkProduto)+".jpg";
+	
 	novo();
 	carregarProduto();
 }

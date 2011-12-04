@@ -32,10 +32,10 @@
 			{
 				if(botao == btEspiar)
 				{
-					this.dispatchEvent(new Event("clickadoModuloItem"));	
+					this.dispatchEvent(new Event("clickadoModuloItem"));
 				}
 			}
-						
+			
 			public function get funcao():Function { return _funcao; }
 			public function set funcao(funcao:Function):void { _funcao = funcao; }
 			public function get modulo():MModulo { return _modulo; }
@@ -48,6 +48,7 @@
 			public function set preco(preco:String):void { _preco = preco; }
 			public function get produto():Produto { return _produto; }
 			public function set produto(produto:Produto):void { _produto = produto; }
+			
 		]]>
 	</fx:Script>
 	

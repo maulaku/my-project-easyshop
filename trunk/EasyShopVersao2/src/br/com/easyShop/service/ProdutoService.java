@@ -1,7 +1,12 @@
 package br.com.easyShop.service;
 
+import java.awt.Image;
 import java.util.Arrays;
 import java.util.List;
+
+import javassist.bytecode.ByteArray;
+
+import javax.swing.ImageIcon;
 
 import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Produto;
@@ -100,5 +105,10 @@ public class ProdutoService extends BaseServiceAtta {
 		{
 			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao buscar produtos" }));
 		}
+	}
+		
+	public ResultJava salvarImagem(byte[] im){
+		
+		return new ResultJava(null);
 	}
 }

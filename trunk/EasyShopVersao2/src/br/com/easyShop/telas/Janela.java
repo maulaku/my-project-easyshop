@@ -514,7 +514,7 @@ public class Janela extends JFrame implements ActionListener {
 	private class RelatorioDeCategoria implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			try {
-				relat = rep.gerar("easyShopRelatorioDeCategoria.jasper");
+				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDeCategoria.jasper");
 				JasperViewer.viewReport(relat, false);
 			} catch (ExcRepositorio e1) {
 				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());

@@ -106,25 +106,18 @@ public class Login extends JFrame {
 			usuario = new Usuario();
 			UsuarioService usuarioService = new UsuarioService();
 
-			usuario = usuarioService.getUsuario(getTxtUsuario());
+			usuario = usuarioService.getUsuario(getTxtUsuario(), getPassSenha());
 				
 			if(usuario!=null){
-				if(usuario.getSenha().equals(getPassSenha())){
-					setVisible(false);
-					Janela principal = new Janela(usuario);
-					principal.setLocationRelativeTo(null);  
-					principal.setVisible(true);
-				}
-				else{
-					setTxtUsuario("");
-					setPassSenha("");
-					JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto!");
-				}
+				setVisible(false);
+				Janela principal = new Janela(usuario);
+				principal.setLocationRelativeTo(null);  
+				principal.setVisible(true);
 			}
 			else{
 				setTxtUsuario("");
 				setPassSenha("");
-				JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto!");
+				JOptionPane.showMessageDialog(null, "Usuário ou senha incorreta!");
 			}
 		}
 	}

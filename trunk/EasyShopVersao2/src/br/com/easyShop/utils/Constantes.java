@@ -36,4 +36,5 @@ public class Constantes
 	public static final String CONTATO_CELULAR="Celular";
 	
 	public static final String ENDERECO_PRODUTO = "flex_src/br/com/easyShop/imagens/aplicacao/produtos/";
+	public static final String ENDERECO_CATEGORIA = "flex_src/br/com/easyShop/imagens/aplicacao/categorias/";
 }
