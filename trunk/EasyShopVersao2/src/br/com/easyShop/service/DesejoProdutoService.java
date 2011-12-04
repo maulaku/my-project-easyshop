@@ -21,6 +21,7 @@ public class DesejoProdutoService {
 		{
 			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao buscar desejoProduto\n" + e }));
 		}
+		
 	}
 	
 	public ResultJava removerDesejo(DesejoProduto desejoProduto) {

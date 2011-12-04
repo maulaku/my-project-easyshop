@@ -23,14 +23,11 @@
 			<mx:DataGridColumn  dataField="codigo" headerText="Código" width="120"/>
 			<mx:DataGridColumn  dataField="produto" headerText="Produto" width="120"/>
 			<mx:DataGridColumn  dataField="quantidade" headerText="Quantidade" width="120"/>
-			<mx:DataGridColumn  dataField="valor" headerText="Valor" width="120"/>	
-			<mx:DataGridColumn  dataField="status" headerText="Status" width="120"/>	
+			<mx:DataGridColumn  dataField="valor" headerText="Valor" width="120"/>		
 		</mx:columns>
 	</mx:DataGrid>
 	
-	
 	<s:Button x="337" y="289" label="Detalhes" click="irParaDetalhe()"/>
 	<s:Button x="220" y="289" label="Voltar"/>
-	
 	
 </mx:TitleWindow>
