@@ -9,6 +9,7 @@ import br.com.easyShop.model.Pais;
 import br.com.easyShop.model.Pessoa;
 import br.com.easyShop.model.PessoaFisica;
 import br.com.easyShop.model.Usuario;
+import br.com.easyShop.telas.cadastros.WebCam;
 import br.com.easyShop.utils.Constantes;
 import br.com.mresolucoes.componentes.mre.Alerta;
 import br.com.mresolucoes.componentes.mre.MBotao;
@@ -30,7 +31,9 @@ import mx.collections.IList;
 import mx.controls.Alert;
 import mx.controls.Image;
 import mx.core.ByteArrayAsset;
+import mx.core.UIComponent;
 import mx.graphics.codec.JPEGEncoder;
+import mx.managers.PopUpManager;
 import mx.utils.Base64Decoder;
 
 private var obj_FileReference:FileReference;
@@ -40,6 +43,7 @@ private var myFilter:FileFilter = new FileFilter("Imagens (*.jpg; *.jpeg; *.gif;
 public var dados:ArrayCollection = new ArrayCollection();
 [Bindable]
 public var dadosEndereco:ArrayCollection = new ArrayCollection();
+private var webcam:WebCam;
 
 public var tiposContato:ArrayCollection = new ArrayCollection([
 	{nome:"Telefone", tipo:Constantes.instance.TIPO_CONTATO_TELEFONE},
@@ -109,6 +113,33 @@ private function salvarFoto(e:Event):void{
 
 public function resultado(result:ResultJava):void
 {
+}
+
+protected function carregarImagem0_clickHandler(event:MouseEvent):void
+{
+	webcam = new WebCam();
+	webcam.showCloseButton=true;
+	webcam.setVisible(true);
+	webcam.addEventListener("clickadoSalvar", clickWeb);
+	PopUpManager.addPopUp(webcam, this, true);
+	
+	centralizarTela(webcam);
+}
+
+private function clickWeb(event:Event):void
+{
+	webcam.setVisible(false);
+	swfLoader.load(WebCam.getBytes());
+	MRemoteObject.get("ClienteService.salvarImagem", [WebCam.getBytes()], resultado);
+}
+
+public static function centralizarTela(componente:UIComponent):void {
+	if (componente != null) {
+		var diferencaLargura:Number = componente.screen.width - componente.width;
+		var diferencaAltura:Number = componente.screen.height - componente.height - 800;
+		componente.x = componente.screen.x + (diferencaLargura / 2);
+		componente.y = componente.screen.y + (diferencaAltura / 2);
+	}
 }
 
 private function indexEndereco(result:int):int{

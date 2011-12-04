@@ -60,9 +60,8 @@
 			  icon="@Embed('../../imagens/botoes/Remove.png')" click="deleteLinha(dataGrid1.selectedIndex);" />
 	
 	
-	<s:Button id="carregarImagem" x="723" y="316" width="198" height="44" label="Carregar Imagem"
-			  click="abreJanela()" fontFamily="Verdana" fontSize="12"
-			  icon="@Embed('../../imagens/botoes/Picture.png')"/>
+	<s:Button id="carregarImagem" x="723" y="316" width="198" height="28" label="Do Computador"
+			  click="abreJanela()" fontFamily="Verdana" fontSize="12"/>
 	
 	<s:Button id="salvar" x="746" y="414" width="152" height="35" label="Salvar" click="Salvar()"
 			  fontFamily="Verdana" fontSize="18" icon="@Embed('../../imagens/botoes/Save.png')"/>
@@ -128,9 +127,12 @@
 			 text="  *Digite abaixo os dados para Contato, e clique em adicionar." textAlign="left"
 			 verticalAlign="middle"/>
 	
-	<mx:SWFLoader id="swfLoader" x="733" y="116" width="182" height="192">
+	<mx:SWFLoader id="swfLoader" x="733" y="106" width="182" height="192">
 		<mx:filters>
 			<mx:DropShadowFilter />
 		</mx:filters>
 	</mx:SWFLoader>
+	<s:Label x="776" y="301" text="Carregar Imagem"/>
+	<s:Button id="carregarImagem0" x="723" y="348" width="198" height="28" label="Da WebCam"
+			  click="carregarImagem0_clickHandler(event)" fontFamily="Verdana" fontSize="12"/>
 </s:Module>
