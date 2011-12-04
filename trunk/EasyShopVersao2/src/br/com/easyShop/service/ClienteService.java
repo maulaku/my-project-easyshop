@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -31,6 +32,18 @@ public class ClienteService {
 		catch (Exception e) 
 		{
 			return new ResultJava(false, Arrays.asList(new String[] { "Erro ao buscar clientes!\n" + e }));
+		}
+	}
+	
+	public List<Cliente> getClientes() {
+		try
+		{
+			return new ClienteDAO().getClientes(3);
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+			return null;
 		}
 	}
 	

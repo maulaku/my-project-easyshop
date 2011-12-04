@@ -17,6 +17,14 @@ public class ProdutoService extends BaseServiceAtta {
 			e.printStackTrace();
 		}
 	}
+	
+	public void atualizarProduto(Produto produto) {
+		try {
+			new ProdutoDAO().alterar(produto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public Produto getProduto(int id) {
 		try {

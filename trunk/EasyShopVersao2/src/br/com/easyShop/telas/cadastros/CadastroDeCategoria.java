@@ -1,15 +1,8 @@
 package br.com.easyShop.telas.cadastros;
 
 import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Graphics2D;
-
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
@@ -19,20 +12,26 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.UIManager;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 import br.com.easyShop.model.Categoria;
+import br.com.easyShop.model.Usuario;
+import br.com.easyShop.model.UsuarioTela;
 import br.com.easyShop.service.CategoriaService;
+import br.com.easyShop.service.UsuarioTelaService;
 import br.com.easyShop.utils.Constantes;
-
-import javax.swing.JRadioButton;
-import javax.swing.ImageIcon;
 
 public class CadastroDeCategoria extends JFrame {
 
@@ -54,28 +53,10 @@ public class CadastroDeCategoria extends JFrame {
 	private String caminhoImagem;
 	private JButton btnCancelar = new JButton("Cancelar");
 	private JButton btnLimpar = new JButton("Limpar");
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CadastroDeCategoria frame = new CadastroDeCategoria();
-					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public CadastroDeCategoria() {
+	private Usuario usuarioPrincipal;
+	
+	public CadastroDeCategoria(Usuario usuario) {
+		usuarioPrincipal = usuario;
 		
 		btnCarregar.addActionListener(new Abrir());
 		btnCancelar.addActionListener(new Cancelar());
@@ -134,48 +115,57 @@ public class CadastroDeCategoria extends JFrame {
 		btnInserir.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(txtNome.getText().equals("")){
-					txtNome.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-					JOptionPane.showMessageDialog(null, "Digite o nome da Categoria!!");
-				}
-				else{
-					JTextField jTextField = new JTextField();
-					txtNome.setBorder(jTextField.getBorder());
-					
-					CategoriaService categoriaService = new CategoriaService();
-					
-					Categoria categoria = new Categoria();
-					categoria.setNome(txtNome.getText());
-					
-					
-					if(rdSub.isSelected() == true){
-//						 categoriaPai = (Categoria) cboCategoriaPai.getSelectedItem();
-						categoria.setSubCategoria((Categoria) cboCategoriaPai.getSelectedItem());
-						
+				
+				Long fkTela = Long.parseLong("3");
+				Long fkTipoPermissao = Long.parseLong("2");
+				UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuarioPrincipal,fkTela ,fkTipoPermissao);
+				
+				if(usuarioTela!=null || abrirLancamentoDePermissaoADM()==false){
+					if(txtNome.getText().equals("")){
+						txtNome.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+						JOptionPane.showMessageDialog(null, "Digite o nome da Categoria!!");
 					}
 					else{
-						categoria.setTipo(Constantes.CATEGORIA_PAI);
-					}
-	
-	                
-	                categoriaService.inserirCategoria(categoria);
-	                
-	                
-	                //*********************************************************************//
-					//Salvar imagem na pasta
-					try{
-						File imagem_file = new File(caminhoImagem);
-						BufferedImage imagem_buffered = null;
-						imagem_buffered = ImageIO.read( imagem_file );
-						ImageIO.write(imagem_buffered, "jpg", new File(Constantes.ENDERECO_CATEGORIA+categoria.getPkCategoria()+".jpg"));
-					}catch (Exception e1) {
+						JTextField jTextField = new JTextField();
+						txtNome.setBorder(jTextField.getBorder());
 						
+						CategoriaService categoriaService = new CategoriaService();
+						
+						Categoria categoria = new Categoria();
+						categoria.setNome(txtNome.getText());
+						
+						
+						if(rdSub.isSelected() == true){
+							categoria.setSubCategoria((Categoria) cboCategoriaPai.getSelectedItem());
+							
+						}
+						else{
+							categoria.setTipo(Constantes.CATEGORIA_PAI);
+						}
+		
+		                
+		                categoriaService.inserirCategoria(categoria);
+		                
+		                
+		                //*********************************************************************//
+						//Salvar imagem na pasta
+						try{
+							File imagem_file = new File(caminhoImagem);
+							BufferedImage imagem_buffered = null;
+							imagem_buffered = ImageIO.read( imagem_file );
+							ImageIO.write(imagem_buffered, "jpg", new File(Constantes.ENDERECO_CATEGORIA+categoria.getPkCategoria()+".jpg"));
+						}catch (Exception e1) {
+							
+						}
+						//*********************************************************************//
+		                
+		                JOptionPane.showMessageDialog(null, "Categoria inserido com sucesso!!");
+		                clean();
 					}
-					//*********************************************************************//
-	                
-	                JOptionPane.showMessageDialog(null, "Categoria inserido com sucesso!!");
-	                clean();
 				}
+				else{
+					JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Escrita");
+				}		
 			}
 		});
 		
@@ -277,5 +267,12 @@ public class CadastroDeCategoria extends JFrame {
 				 preencheCombo();
 				 txtNome.setText("");
 			}
+		}
+	 
+	 private boolean abrirLancamentoDePermissaoADM(){
+			if(usuarioPrincipal.getLogin().equals("adm")){			
+				return false;
+			}
+			return true;
 		}
 }

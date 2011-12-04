@@ -18,10 +18,12 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import br.com.easyShop.model.Cliente;
 import br.com.easyShop.model.Tela;
 import br.com.easyShop.model.TipoPermissao;
 import br.com.easyShop.model.Usuario;
 import br.com.easyShop.model.UsuarioTela;
+import br.com.easyShop.service.ClienteService;
 import br.com.easyShop.service.TelaService;
 import br.com.easyShop.service.TipoPermissaoService;
 import br.com.easyShop.service.UsuarioService;
@@ -45,8 +47,11 @@ public class LancamentoDePermissao extends JFrame {
 	private JButton btnRemover = new JButton("");
 	private JButton btnSalvar = new JButton("Salvar");
 	private JButton btnCancelar = new JButton("Cancelar");
-
-	public LancamentoDePermissao() {
+	private Usuario usuarioPrincipal;
+	
+	public LancamentoDePermissao(Usuario usuario) {
+		usuarioPrincipal = usuario;
+		
 		cboUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		cboUsuarios.addActionListener(new PreencherTabelaTela());
 		btnAdicionar.addActionListener(new Adicionar());
@@ -124,9 +129,21 @@ public class LancamentoDePermissao extends JFrame {
 	
 	private void preencherComboUsuario(){		
 		UsuarioService usuarioService = new UsuarioService();
+		ClienteService clienteService = new ClienteService();
 		
+		List<Cliente> clientes = clienteService.getClientes();
 		usuarios = usuarioService.getUsuarios();
+		
+		int sair = 0;
+		
 		for(Usuario usuario : usuarios){
+			sair = 0;
+			for(Cliente cliente : clientes){
+				if(cliente.getPessoa().getPkPessoa()==usuario.getPessoa().getPkPessoa()){
+					sair = 1;
+				}
+			}
+			if(sair == 0)
 				cboUsuarios.addItem(usuario);
 		}
 	}
@@ -220,45 +237,61 @@ public class LancamentoDePermissao extends JFrame {
 	
 	private class Salvar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			UsuarioTelaService usuarioTelaService = new UsuarioTelaService();
-			List<UsuarioTela> usuarioTelas;
-			usuarioTelas = usuarioTelaService.getUsuarioTelas((Usuario)cboUsuarios.getSelectedItem());
-
-				int qtd = modelo.getRowCount(), i, sair = 0;
-				for(UsuarioTela usuarioTela : usuarioTelas){
-					for(i=0;i<qtd;i++){
-						Tela tela = new Tela();
-						tela = (Tela) modelo.getValueAt(i,0);
-						if(usuarioTela.getTela().getNome().equals(tela.getNome())){
-							usuarioTelaService.excluirUsuarioTela(usuarioTela);
-						}
-					}
-				}
-				
+			Long fkTela = Long.parseLong("5");
+			Long fkTipoPermissao = Long.parseLong("2");
+			UsuarioTela usuarioTela2 = new UsuarioTelaService().getUsuarioTelasSelecionado(usuarioPrincipal,fkTela ,fkTipoPermissao);
+			
+			if(usuarioTela2!=null || abrirLancamentoDePermissaoADM()==false){
+				UsuarioTelaService usuarioTelaService = new UsuarioTelaService();
+				List<UsuarioTela> usuarioTelas;
 				usuarioTelas = usuarioTelaService.getUsuarioTelas((Usuario)cboUsuarios.getSelectedItem());
-				qtd = modeloPermissao.getRowCount();
-				
-				for(i=0;i<qtd;i++){
-					sair = 0;
+
+					int qtd = modelo.getRowCount(), i, sair = 0;
 					for(UsuarioTela usuarioTela : usuarioTelas){
-						UsuarioTela tela = new UsuarioTela();
-						tela = (UsuarioTela) modeloPermissao.getValueAt(i,0);
-						if(usuarioTela.getTela().getNome().equals(tela.getTela().getNome())){
-							sair = 1;
+						for(i=0;i<qtd;i++){
+							Tela tela = new Tela();
+							tela = (Tela) modelo.getValueAt(i,0);
+							if(usuarioTela.getTela().getNome().equals(tela.getNome())){
+								usuarioTelaService.excluirUsuarioTela(usuarioTela);
+							}
 						}
 					}
-					if(sair==0){
-						usuarioTelaService.inserirUsuarioTela((UsuarioTela) modeloPermissao.getValueAt(i,0));
-					}				
-				}
-				
-					JOptionPane.showMessageDialog(null, "Permissão(ões) alteradas(s) com sucesso!!");
+					
+					usuarioTelas = usuarioTelaService.getUsuarioTelas((Usuario)cboUsuarios.getSelectedItem());
+					qtd = modeloPermissao.getRowCount();
+					
+					for(i=0;i<qtd;i++){
+						sair = 0;
+						for(UsuarioTela usuarioTela : usuarioTelas){
+							UsuarioTela tela = new UsuarioTela();
+							tela = (UsuarioTela) modeloPermissao.getValueAt(i,0);
+							if(usuarioTela.getTela().getNome().equals(tela.getTela().getNome())){
+								sair = 1;
+							}
+						}
+						if(sair==0){
+							usuarioTelaService.inserirUsuarioTela((UsuarioTela) modeloPermissao.getValueAt(i,0));
+						}				
+					}
+					
+						JOptionPane.showMessageDialog(null, "Permissão(ões) alteradas(s) com sucesso!!");               
 			}
+			else{
+				JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Escrita");
+			}	
+		}
 	}
 	
 	private class Cancelar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			LancamentoDePermissao.this.dispose();
 		}
+	}
+	
+	private boolean abrirLancamentoDePermissaoADM(){
+		if(usuarioPrincipal.getLogin().equals("adm")){			
+			return false;
+		}
+		return true;
 	}
 }
