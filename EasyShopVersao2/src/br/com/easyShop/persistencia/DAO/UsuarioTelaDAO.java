@@ -21,9 +21,7 @@ public class UsuarioTelaDAO extends BaseDAOAtta{
     }
 	
 	public UsuarioTela getUsuarioTelasSelecionado(Usuario usuario, Long fkTela, Long fkTipoPermissao, int profundidade) throws Exception  
-	 {
-		 Long num = Long.parseLong("2");
-		 
+	 {		 
 		 QuerySQL query = new QuerySQL();
 			
 		 query.add("SELECT *");
@@ -31,7 +29,6 @@ public class UsuarioTelaDAO extends BaseDAOAtta{
 		 query.add(" WHERE fkUsuario = ?", usuario.getPkUsuario());
 		 query.add(" AND fkTela = ?", fkTela);
 		 query.add(" AND fkTipoPermissao = ?", fkTipoPermissao);
-		 query.add(" OR fkTipoPermissao = ?", num);
 		 
 		 return obtemUnico(UsuarioTela.class, query, profundidade);
    }

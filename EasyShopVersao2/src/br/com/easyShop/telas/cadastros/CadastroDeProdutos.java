@@ -15,6 +15,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -29,12 +30,13 @@ import javax.swing.border.EmptyBorder;
 import br.com.easyShop.model.Categoria;
 import br.com.easyShop.model.Marca;
 import br.com.easyShop.model.Produto;
+import br.com.easyShop.model.Usuario;
+import br.com.easyShop.model.UsuarioTela;
 import br.com.easyShop.service.CategoriaService;
 import br.com.easyShop.service.MarcaService;
 import br.com.easyShop.service.ProdutoService;
+import br.com.easyShop.service.UsuarioTelaService;
 import br.com.easyShop.utils.Constantes;
-import javax.swing.JCheckBox;
-import java.awt.Checkbox;
 
 public class CadastroDeProdutos extends JFrame {
 
@@ -63,9 +65,12 @@ public class CadastroDeProdutos extends JFrame {
 	private JButton btnCancelar = new JButton("Cancelar");
 	private TextArea txtAreaCaracteristica = new TextArea();
 	private TextArea txtAreaEspecificacaoTecnica = new TextArea();
-	private JCheckBox chkSimNao = new JCheckBox("Sim/N\u00E3o");
-
-	public CadastroDeProdutos() {
+	private JCheckBox chkSimNao = new JCheckBox("");
+	private Usuario usuarioPrincipal;
+	
+	public CadastroDeProdutos(Usuario usuario) {
+		this.usuarioPrincipal = usuario;
+		
 		btnCarregarImagem.setBounds(595, 200, 171, 41);
 		btnCarregarImagem.setIcon(new ImageIcon(CadastroDeProdutos.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/Picture.png")));
 		btnCarregarImagem.addActionListener(new Abrir());
@@ -178,45 +183,54 @@ public class CadastroDeProdutos extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				marca = new Marca();
-				marca = (Marca) cboMarca.getSelectedItem();
-
-				subCategoria = new Categoria();
-				subCategoria = (Categoria) cboSubcategoria.getSelectedItem();
-
-				Produto produto = new Produto();
-				produto.setCategoria(subCategoria);
-				produto.setCodigo(txtCodigo.getText());
-				produto.setDescricao(txtAreaDescricao.getText());
-				produto.setCaracteristicas(txtAreaCaracteristica.getText());
-				produto.setEspecificacoesTecnicas(txtAreaEspecificacaoTecnica.getText());
-				produto.setGarantia(Integer.parseInt(txtGarantia.getText()));
-				produto.setMarca(marca);
-				produto.setNome(txtNome.getText());
-				produto.setPreco(Double.parseDouble(txtPreco.getText()));
-				produto.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
-				produto.setPromocao(chkSimNao.isSelected());
-				produto.setStatus(Constantes.STATUS_ATIVO);
-
-				ProdutoService produtoService = new ProdutoService();
-			    produtoService.inserirProduto(produto);
-			    
-				//*********************************************************************//
-				//Salvar imagem na pasta
-				try {
-					File imagem_file = new File(caminhoImagem);
-					BufferedImage imagem_buffered = null;				
-					imagem_buffered = ImageIO.read( imagem_file );					
-					ImageIO.write(imagem_buffered, "jpg", new File(Constantes.ENDERECO_PRODUTO+produto.getPkProduto()+".jpg"));
-				}
-				catch (Exception e2) {
+					Long fkTela = Long.parseLong("2");
+					Long fkTipoPermissao = Long.parseLong("2");
+					UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuarioPrincipal,fkTela ,fkTipoPermissao);
 					
-				}
-				//*********************************************************************//
+					if(usuarioTela!=null || abrirLancamentoDePermissaoADM()==false){
+						marca = new Marca();
+						marca = (Marca) cboMarca.getSelectedItem();
 
-				JOptionPane.showMessageDialog(null, "Produto inserido com sucesso!!");
+						subCategoria = new Categoria();
+						subCategoria = (Categoria) cboSubcategoria.getSelectedItem();
 
-				clean();
+						Produto produto = new Produto();
+						produto.setCategoria(subCategoria);
+						produto.setCodigo(txtCodigo.getText());
+						produto.setDescricao(txtAreaDescricao.getText());
+						produto.setCaracteristicas(txtAreaCaracteristica.getText());
+						produto.setEspecificacoesTecnicas(txtAreaEspecificacaoTecnica.getText());
+						produto.setGarantia(Integer.parseInt(txtGarantia.getText()));
+						produto.setMarca(marca);
+						produto.setNome(txtNome.getText());
+						produto.setPreco(Double.parseDouble(txtPreco.getText()));
+						produto.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+						produto.setPromocao(chkSimNao.isSelected());
+						produto.setStatus(Constantes.STATUS_ATIVO);
+
+						ProdutoService produtoService = new ProdutoService();
+					    produtoService.inserirProduto(produto);
+					    
+						//*********************************************************************//
+						//Salvar imagem na pasta
+						try {
+							File imagem_file = new File(caminhoImagem);
+							BufferedImage imagem_buffered = null;				
+							imagem_buffered = ImageIO.read( imagem_file );					
+							ImageIO.write(imagem_buffered, "jpg", new File(Constantes.ENDERECO_PRODUTO+produto.getPkProduto()+".jpg"));
+						}
+						catch (Exception e2) {
+							
+						}
+						//*********************************************************************//
+
+						JOptionPane.showMessageDialog(null, "Produto inserido com sucesso!!");
+
+						clean();
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Escrita");
+					}		
 			}
 		});
 
@@ -333,4 +347,11 @@ public class CadastroDeProdutos extends JFrame {
 		count++;
 		return Long.toString(count);
 	 }
+	 
+	 private boolean abrirLancamentoDePermissaoADM(){
+			if(usuarioPrincipal.getLogin().equals("adm")){			
+				return false;
+			}
+			return true;
+		}
 }

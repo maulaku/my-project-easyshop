@@ -1,25 +1,26 @@
 package br.com.easyShop.telas.cadastros;
 
 import java.awt.Color;
-import java.awt.EventQueue;
-
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JTextField;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 import br.com.easyShop.model.Marca;
+import br.com.easyShop.model.Usuario;
+import br.com.easyShop.model.UsuarioTela;
 import br.com.easyShop.service.MarcaService;
+import br.com.easyShop.service.UsuarioTelaService;
 import br.com.easyShop.utils.Constantes;
-import javax.swing.ImageIcon;
 
 public class CadastroDeMarca extends JFrame {
 
@@ -31,27 +32,10 @@ public class CadastroDeMarca extends JFrame {
 	private JTextField txtMarca;
 	private JButton btnLimpar = new JButton("Limpar");
 	private JButton btnCancelar = new JButton("Cancelar");
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CadastroDeMarca frame = new CadastroDeMarca();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public CadastroDeMarca() {
+	private Usuario usuarioPrincipal;
+	
+	public CadastroDeMarca(Usuario usuario) {
+		usuarioPrincipal = usuario;
 		
 		btnCancelar.addActionListener(new Sair());
 		
@@ -92,25 +76,33 @@ public class CadastroDeMarca extends JFrame {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				Long fkTela = Long.parseLong("4");
+				Long fkTipoPermissao = Long.parseLong("2");
+				UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuarioPrincipal,fkTela ,fkTipoPermissao);
 				
-				if(txtMarca.getText().equals("")){
-					txtMarca.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-					JOptionPane.showMessageDialog(null, "Digite o nome da Marca!!");
+				if(usuarioTela!=null || abrirLancamentoDePermissaoADM()==false){
+					if(txtMarca.getText().equals("")){
+						txtMarca.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+						JOptionPane.showMessageDialog(null, "Digite o nome da Marca!!");
+					}
+					else{
+						JTextField jTextField = new JTextField();
+						txtMarca.setBorder(jTextField.getBorder());
+						
+						Marca marca = new Marca();
+		                 marca.setNome(txtMarca.getText());
+		                 marca.setStatus(Constantes.STATUS_ATIVO);
+
+		                 MarcaService marcaServise = new MarcaService();
+		                 marcaServise.inserir(marca);
+		                 
+		                 JOptionPane.showMessageDialog(null, "Marca inserida com sucesso!!");
+		                 txtMarca.setText("");
+					}                 
 				}
 				else{
-					JTextField jTextField = new JTextField();
-					txtMarca.setBorder(jTextField.getBorder());
-					
-					Marca marca = new Marca();
-	                 marca.setNome(txtMarca.getText());
-	                 marca.setStatus(Constantes.STATUS_ATIVO);
-
-	                 MarcaService marcaServise = new MarcaService();
-	                 marcaServise.inserir(marca);
-	                 
-	                 JOptionPane.showMessageDialog(null, "Marca inserida com sucesso!!");
-	                 txtMarca.setText("");
-				}                 
+					JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Escrita");
+				}		
 			}
 		});
 		
@@ -128,5 +120,11 @@ public class CadastroDeMarca extends JFrame {
 			CadastroDeMarca.this.dispose();
 		}
 	}
-
+	
+	 private boolean abrirLancamentoDePermissaoADM(){
+			if(usuarioPrincipal.getLogin().equals("adm")){			
+				return false;
+			}
+			return true;
+		}
 }

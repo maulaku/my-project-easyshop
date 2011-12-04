@@ -14,9 +14,7 @@ public class UsuarioDAO extends BaseDAOAtta
 		 QuerySQL query = new QuerySQL();
 			
 		 query.add("SELECT *");
-		 query.add(" FROM usuario,cliente,pessoa");
-		 query.add(" WHERE usuario.fkpessoa = pessoa.pkpessoa");
-		 query.add(" AND pessoa.pkpessoa != cliente.fkpessoa");
+		 query.add(" FROM usuario");
 		
 		 return obtem(Usuario.class, query, profundidade);
     }

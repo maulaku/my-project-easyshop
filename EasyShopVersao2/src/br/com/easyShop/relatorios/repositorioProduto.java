@@ -16,7 +16,7 @@ public class repositorioProduto{
 	public JasperPrint gerar(String arquivoJasper) throws ExcRepositorio{
 		JasperPrint rel = null;
 		try {
-			Connection con = Conexao.getConexao();
+			Connection con = gConexao.getConexao();
 			HashMap map = new HashMap();
 			rel = JasperFillManager.fillReport(arquivoJasper, map, con);
 		} catch (JRException e) {

@@ -73,6 +73,14 @@ public class Janela extends JFrame implements ActionListener {
 	private JButton btnEditarProduto = new JButton("");
 	private JMenu mnIniciar = new JMenu("     Iniciar    ");
 	private JLabel lblImagem = new JLabel("");
+	private JButton btnEditarMeusDados = new JButton("Editar Meus Dados");
+	private JButton btnRelatorioDePessoa = new JButton("");
+	private JButton btnRelatorioDePFisica = new JButton("");
+	private JButton btnRelatorioDePJuridica = new JButton("");
+	private JButton btnRelatorioDeEndereco = new JButton("");
+	private JButton btnRelatorioDeCliente = new JButton("");
+	private JButton btnRelatorioDeUsuario = new JButton("");
+	private JButton btnRelatorioDePedido = new JButton("");
 	
 	/**
 	 * Launch the application.
@@ -113,8 +121,17 @@ public class Janela extends JFrame implements ActionListener {
 		btnLogoff.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/1320376266_login.png")));
 		btnLogoff.addActionListener(new Logoff());
 		btnMeusDados.addActionListener(new MeusDado());
+		btnEditarMeusDados.addActionListener(new EditarMeusDados());
 		btnEditarProduto.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/editarProduto.png")));
 		btnEditarProduto.addActionListener(new EditarProduto());
+		btnRelatorioDePessoa.addActionListener(new RelatorioDePessoa());
+		btnRelatorioDePFisica.addActionListener(new RelatorioDePFisica());
+		btnRelatorioDePJuridica.addActionListener(new RelatorioDePJuridica());
+		btnRelatorioDeEndereco.addActionListener(new RelatorioDeEndereco());
+		btnRelatorioDeCliente.addActionListener(new RelatorioDeCliente());
+		btnRelatorioDeUsuario.addActionListener(new RelatorioDeUsuario());
+		btnRelatorioDePedido.addActionListener(new RelatorioDePedido());
+		
 		mnIniciar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -157,7 +174,6 @@ public class Janela extends JFrame implements ActionListener {
 		btnLogoff.setBounds(10, 330, 205, 44);
 		panel.add(btnLogoff);
 		
-		JButton btnEditarMeusDados = new JButton("Editar Meus Dados");
 		btnEditarMeusDados.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnEditarMeusDados.setBounds(10, 275, 205, 44);
 		panel.add(btnEditarMeusDados);
@@ -221,7 +237,7 @@ public class Janela extends JFrame implements ActionListener {
 		
 		JLabel lblCadastroDeProdutos = new JLabel("Cadastro de Produtos");
 		lblCadastroDeProdutos.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblCadastroDeProdutos.setBounds(10, 85, 147, 41);
+		lblCadastroDeProdutos.setBounds(10, 87, 147, 41);
 		contentPane.add(lblCadastroDeProdutos);
 		
 		btnCadastroUsuario.setBounds(46, 145, 72, 67);
@@ -296,7 +312,7 @@ public class Janela extends JFrame implements ActionListener {
 		lblRelatrioDeMarca.setBounds(179, 469, 137, 41);
 		contentPane.add(lblRelatrioDeMarca);
 		
-		btnRelatorioDeCategoria.setBounds(367, 19, 72, 67);
+		btnRelatorioDeCategoria.setBounds(374, 21, 72, 67);
 		btnRelatorioDeCategoria.setBorder(null);
 		btnRelatorioDeCategoria.setBorderPainted(false);
 		btnRelatorioDeCategoria.setContentAreaFilled(false);
@@ -305,7 +321,7 @@ public class Janela extends JFrame implements ActionListener {
 		
 		JLabel lblRelatrioDeCategoria = new JLabel("Relat\u00F3rio de Categoria");
 		lblRelatrioDeCategoria.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblRelatrioDeCategoria.setBounds(335, 85, 159, 41);
+		lblRelatrioDeCategoria.setBounds(342, 87, 159, 41);
 		contentPane.add(lblRelatrioDeCategoria);
 		
 		
@@ -320,9 +336,93 @@ public class Janela extends JFrame implements ActionListener {
 		lblEditarProduto.setBounds(204, 87, 112, 41);
 		contentPane.add(lblEditarProduto);
 		
+		btnRelatorioDePessoa.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/relatorio.png")));
+		btnRelatorioDePessoa.setOpaque(false);
+		btnRelatorioDePessoa.setContentAreaFilled(false);
+		btnRelatorioDePessoa.setBorderPainted(false);
+		btnRelatorioDePessoa.setBounds(374, 145, 72, 67);
+		contentPane.add(btnRelatorioDePessoa);
+		
+		JLabel lblRelatrioDePessoa = new JLabel("  Relat\u00F3rio de Pessoa");
+		lblRelatrioDePessoa.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblRelatrioDePessoa.setBounds(342, 211, 159, 41);
+		contentPane.add(lblRelatrioDePessoa);
+		
+		btnRelatorioDePFisica.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/relatorio.png")));
+		btnRelatorioDePFisica.setOpaque(false);
+		btnRelatorioDePFisica.setContentAreaFilled(false);
+		btnRelatorioDePFisica.setBorderPainted(false);
+		btnRelatorioDePFisica.setBounds(374, 274, 72, 67);
+		contentPane.add(btnRelatorioDePFisica);
+		
+		JLabel lblRelatrioDeP = new JLabel(" Relat\u00F3rio de P. F\u00EDsica");
+		lblRelatrioDeP.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblRelatrioDeP.setBounds(342, 340, 147, 41);
+		contentPane.add(lblRelatrioDeP);
+		
+		btnRelatorioDePJuridica.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/relatorio.png")));
+		btnRelatorioDePJuridica.setOpaque(false);
+		btnRelatorioDePJuridica.setContentAreaFilled(false);
+		btnRelatorioDePJuridica.setBorderPainted(false);
+		btnRelatorioDePJuridica.setBounds(374, 403, 72, 67);
+		contentPane.add(btnRelatorioDePJuridica);
+		
+		JLabel lblRelatrioDeP_1 = new JLabel("Relat\u00F3rio de P. Jur\u00EDdica");
+		lblRelatrioDeP_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblRelatrioDeP_1.setBounds(342, 469, 159, 41);
+		contentPane.add(lblRelatrioDeP_1);
+		
+		btnRelatorioDeEndereco.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/relatorio.png")));
+		btnRelatorioDeEndereco.setOpaque(false);
+		btnRelatorioDeEndereco.setContentAreaFilled(false);
+		btnRelatorioDeEndereco.setBorderPainted(false);
+		btnRelatorioDeEndereco.setBounds(557, 21, 72, 67);
+		contentPane.add(btnRelatorioDeEndereco);
+		
+		JLabel lblRelatrioDeEndereo = new JLabel("Relat\u00F3rio de Endere\u00E7o");
+		lblRelatrioDeEndereo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblRelatrioDeEndereo.setBounds(525, 87, 159, 41);
+		contentPane.add(lblRelatrioDeEndereo);
+		
+		btnRelatorioDeCliente.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/relatorio.png")));
+		btnRelatorioDeCliente.setOpaque(false);
+		btnRelatorioDeCliente.setContentAreaFilled(false);
+		btnRelatorioDeCliente.setBorderPainted(false);
+		btnRelatorioDeCliente.setBounds(557, 147, 72, 67);
+		contentPane.add(btnRelatorioDeCliente);
+		
+		JLabel lblRelatrioDeCliente = new JLabel("  Relat\u00F3rio de Cliente");
+		lblRelatrioDeCliente.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblRelatrioDeCliente.setBounds(525, 213, 159, 41);
+		contentPane.add(lblRelatrioDeCliente);
+		
+		btnRelatorioDeUsuario.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/relatorio.png")));
+		btnRelatorioDeUsuario.setOpaque(false);
+		btnRelatorioDeUsuario.setContentAreaFilled(false);
+		btnRelatorioDeUsuario.setBorderPainted(false);
+		btnRelatorioDeUsuario.setBounds(557, 274, 72, 67);
+		contentPane.add(btnRelatorioDeUsuario);
+		
+		JLabel lblRelatrioDeUsurio = new JLabel("  Relat\u00F3rio de Usu\u00E1rio");
+		lblRelatrioDeUsurio.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblRelatrioDeUsurio.setBounds(525, 340, 159, 41);
+		contentPane.add(lblRelatrioDeUsurio);
+		
+		btnRelatorioDePedido.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/relatorio.png")));
+		btnRelatorioDePedido.setOpaque(false);
+		btnRelatorioDePedido.setContentAreaFilled(false);
+		btnRelatorioDePedido.setBorderPainted(false);
+		btnRelatorioDePedido.setBounds(557, 403, 72, 67);
+		contentPane.add(btnRelatorioDePedido);
+		
+		JLabel lblRelatrioDePedido = new JLabel("  Relat\u00F3rio de Pedido");
+		lblRelatrioDePedido.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblRelatrioDePedido.setBounds(525, 469, 159, 41);
+		contentPane.add(lblRelatrioDePedido);
+		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/fundo_easyShop.jpg")));
-		label.setBounds(-216, -42, 1121, 593);
+		label.setBounds(-213, -42, 1121, 593);
 		contentPane.add(label);
 	}
 	
@@ -360,10 +460,12 @@ public class Janela extends JFrame implements ActionListener {
 			if(abrirLancamentoDePermissaoADM()){
 				Long fkTela = Long.parseLong("2");
 				Long fkTipoPermissao = Long.parseLong("1");
+				Long fkTipoPermissao2 = Long.parseLong("2");
+				UsuarioTela usuarioTela2 = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao2);
 				UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
 				
-				if(usuarioTela!=null){
-					CadastroDeProdutos cadastroDeProdutos = new CadastroDeProdutos();
+				if(usuarioTela!=null || usuarioTela2!=null){
+					CadastroDeProdutos cadastroDeProdutos = new CadastroDeProdutos(usuario);
 					cadastroDeProdutos.setLocationRelativeTo(null);  
 					cadastroDeProdutos.setVisible(true);	
 				}
@@ -372,7 +474,7 @@ public class Janela extends JFrame implements ActionListener {
 				}	
 			}
 			else{
-				CadastroDeProdutos cadastroDeProdutos = new CadastroDeProdutos();
+				CadastroDeProdutos cadastroDeProdutos = new CadastroDeProdutos(usuario);
 				cadastroDeProdutos.setLocationRelativeTo(null);  
 				cadastroDeProdutos.setVisible(true);		
 			}	
@@ -381,7 +483,16 @@ public class Janela extends JFrame implements ActionListener {
 	
 	private class MeusDado implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			MeusDados meusDados = new MeusDados(usuario);
+			MeusDados meusDados = new MeusDados(usuario,false);
+			meusDados.setLocationRelativeTo(null);  
+			meusDados.setAlwaysOnTop(true);  
+			meusDados.setVisible(true);			
+		}
+	}
+	
+	private class EditarMeusDados implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			MeusDados meusDados = new MeusDados(usuario,true);
 			meusDados.setLocationRelativeTo(null);  
 			meusDados.setAlwaysOnTop(true);  
 			meusDados.setVisible(true);			
@@ -390,25 +501,9 @@ public class Janela extends JFrame implements ActionListener {
 	
 	private class CadastroDeUsuarios implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if(abrirLancamentoDePermissaoADM()){
-				Long fkTela = Long.parseLong("1");
-				Long fkTipoPermissao = Long.parseLong("1");
-				UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
-				
-				if(usuarioTela!=null){
 					CadastroDeUsuario cadastroDeUsuario = new CadastroDeUsuario();
 					cadastroDeUsuario.setLocationRelativeTo(null);  
 					cadastroDeUsuario.setVisible(true);	
-				}
-				else{
-					JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Leitura");
-				}		
-			}
-			else{
-				CadastroDeUsuario cadastroDeUsuario = new CadastroDeUsuario();
-				cadastroDeUsuario.setLocationRelativeTo(null);  
-				cadastroDeUsuario.setVisible(true);		
-			}	
 		}
 	}
 	
@@ -418,16 +513,20 @@ public class Janela extends JFrame implements ActionListener {
 				Long fkTela = Long.parseLong("3");
 				Long fkTipoPermissao = Long.parseLong("1");
 				UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+				Long fkTipoPermissao2 = Long.parseLong("2");
+				UsuarioTela usuarioTela2 = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao2);
 				
-				if(usuarioTela!=null){
-					
+				if(usuarioTela!=null || usuarioTela2!=null){
+					CadastroDeCategoria cadastro = new CadastroDeCategoria(usuario);		
+					cadastro.setLocationRelativeTo(null);  
+					cadastro.setVisible(true);	
 				}
 				else{
 					JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Leitura");
 				}	
 			}
 			else{
-				CadastroDeCategoria cadastro = new CadastroDeCategoria();		
+				CadastroDeCategoria cadastro = new CadastroDeCategoria(usuario);		
 				cadastro.setLocationRelativeTo(null);  
 				cadastro.setVisible(true);			
 			}	
@@ -440,9 +539,11 @@ public class Janela extends JFrame implements ActionListener {
 				Long fkTela = Long.parseLong("4");
 				Long fkTipoPermissao = Long.parseLong("1");
 				UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+				Long fkTipoPermissao2 = Long.parseLong("2");
+				UsuarioTela usuarioTela2 = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao2);
 				
-				if(usuarioTela!=null){
-					CadastroDeMarca cadastro = new CadastroDeMarca();
+				if(usuarioTela!=null || usuarioTela2!=null){
+					CadastroDeMarca cadastro = new CadastroDeMarca(usuario);
 					cadastro.setLocationRelativeTo(null);  
 					cadastro.setVisible(true);			
 				}
@@ -451,7 +552,7 @@ public class Janela extends JFrame implements ActionListener {
 				}		
 			}
 			else{
-				CadastroDeMarca cadastro = new CadastroDeMarca();
+				CadastroDeMarca cadastro = new CadastroDeMarca(usuario);
 				cadastro.setLocationRelativeTo(null);  
 				cadastro.setVisible(true);	
 			}
@@ -464,9 +565,11 @@ public class Janela extends JFrame implements ActionListener {
 				Long fkTela = Long.parseLong("5");
 				Long fkTipoPermissao = Long.parseLong("1");
 				UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+				Long fkTipoPermissao2 = Long.parseLong("2");
+				UsuarioTela usuarioTela2 = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao2);
 				
-				if(usuarioTela!=null){
-					LancamentoDePermissao cadastro = new LancamentoDePermissao();
+				if(usuarioTela!=null || usuarioTela2!=null){
+					LancamentoDePermissao cadastro = new LancamentoDePermissao(usuario);
 					cadastro.setLocationRelativeTo(null);  
 					cadastro.setVisible(true);			
 				}
@@ -475,7 +578,7 @@ public class Janela extends JFrame implements ActionListener {
 				}	
 			}
 			else{
-				LancamentoDePermissao cadastro = new LancamentoDePermissao();
+				LancamentoDePermissao cadastro = new LancamentoDePermissao(usuario);
 				cadastro.setLocationRelativeTo(null);  
 				cadastro.setVisible(true);
 			}
@@ -492,7 +595,7 @@ public class Janela extends JFrame implements ActionListener {
 	private class RelatorioDeProduto implements ActionListener {
 		public void actionPerformed(ActionEvent e) {			
 			try {
-				relat = rep.gerar("easyShopRelatorioDeProduto.jasper");
+				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDeProduto.jasper");
 				JasperViewer.viewReport(relat, false);
 			} catch (ExcRepositorio e1) {
 				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
@@ -503,7 +606,84 @@ public class Janela extends JFrame implements ActionListener {
 	private class RelatorioDeMarca implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			try {
-				relat = rep.gerar("easyShopRelatorioDeMarca.jasper");
+				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDeMarca.jasper");
+				JasperViewer.viewReport(relat, false);
+			} catch (ExcRepositorio e1) {
+				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
+			}	
+		}
+	}
+	
+	private class RelatorioDePedido implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			try {
+				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDePedido.jasper");
+				JasperViewer.viewReport(relat, false);
+			} catch (ExcRepositorio e1) {
+				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
+			}	
+		}
+	}
+	
+	private class RelatorioDeUsuario implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			try {
+				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDeUsuario.jasper");
+				JasperViewer.viewReport(relat, false);
+			} catch (ExcRepositorio e1) {
+				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
+			}	
+		}
+	}
+	
+	private class RelatorioDeCliente implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			try {
+				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDeCliente.jasper");
+				JasperViewer.viewReport(relat, false);
+			} catch (ExcRepositorio e1) {
+				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
+			}	
+		}
+	}
+	
+	private class RelatorioDeEndereco implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			try {
+				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDeEndereco.jasper");
+				JasperViewer.viewReport(relat, false);
+			} catch (ExcRepositorio e1) {
+				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
+			}	
+		}
+	}
+	
+	private class RelatorioDePJuridica implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			try {
+				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDePessoaJuridica.jasper");
+				JasperViewer.viewReport(relat, false);
+			} catch (ExcRepositorio e1) {
+				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
+			}	
+		}
+	}
+	
+	private class RelatorioDePFisica implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			try {
+				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDePessoaFisica.jasper");
+				JasperViewer.viewReport(relat, false);
+			} catch (ExcRepositorio e1) {
+				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
+			}	
+		}
+	}
+	
+	private class RelatorioDePessoa implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			try {
+				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDePessoa.jasper");
 				JasperViewer.viewReport(relat, false);
 			} catch (ExcRepositorio e1) {
 				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
@@ -546,9 +726,11 @@ public class Janela extends JFrame implements ActionListener {
 				Long fkTela = Long.parseLong("6");
 				Long fkTipoPermissao = Long.parseLong("1");
 				UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+				Long fkTipoPermissao2 = Long.parseLong("2");
+				UsuarioTela usuarioTela2 = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao2);
 				
-				if(usuarioTela!=null){
-					EditarProdutos cadastro = new EditarProdutos();		
+				if(usuarioTela!=null || usuarioTela2!=null){
+					EditarProdutos cadastro = new EditarProdutos(usuario);		
 					cadastro.setLocationRelativeTo(null);  
 					cadastro.setVisible(true);			
 				}
@@ -557,7 +739,7 @@ public class Janela extends JFrame implements ActionListener {
 				}	
 			}
 			else{
-				EditarProdutos cadastro = new EditarProdutos();		
+				EditarProdutos cadastro = new EditarProdutos(usuario);		
 				cadastro.setLocationRelativeTo(null);  
 				cadastro.setVisible(true);	
 			}
@@ -569,12 +751,8 @@ public class Janela extends JFrame implements ActionListener {
 			File imagem_file = new File("Imagens/ImagensUsuario/usuario"+ usuario.getPkUsuario() + ".jpg");
 			imagem_buffered = null;
 			
-			try {
-				imagem_buffered = ImageIO.read(imagem_file);
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-
+			imagem_buffered = ImageIO.read(imagem_file);
+			
 			 BufferedImage aux = new BufferedImage(lblImagem.getSize().width, lblImagem.getSize().height, imagem_buffered.getType());//cria um buffer auxiliar com o tamanho desejado
 			 Graphics2D g = aux.createGraphics();//pega a classe graphics do aux para edicao
 			 AffineTransform at = AffineTransform.getScaleInstance((double) lblImagem.getSize().width / imagem_buffered.getWidth(), (double) lblImagem.getSize().height / imagem_buffered.getHeight());//cria a transformacao

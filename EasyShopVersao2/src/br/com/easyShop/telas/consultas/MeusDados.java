@@ -32,9 +32,9 @@ import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.StyledEditorKit.BoldAction;
 
 import utils.data.Data;
-
 import br.com.easyShop.model.Cidade;
 import br.com.easyShop.model.Contato;
 import br.com.easyShop.model.Endereco;
@@ -94,7 +94,6 @@ public class MeusDados extends JFrame {
 	private Estado estado;
 	private Cidade cidade;
 	private List<Contato> listaContatos = new ArrayList<Contato>();
-	private List<Contato> listaContatosRemovidos = new ArrayList<Contato>();
 	private Contato contato = new Contato();
 	private JTextField txtRazao;
 	private JTextField txtFantasia;
@@ -108,32 +107,11 @@ public class MeusDados extends JFrame {
 	private JButton btnSalvar;
 	private String tipoEndereco;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args, final Usuario usuario) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MeusDados frame = new MeusDados(usuario);
-					UIManager
-							.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-
-	public MeusDados(Usuario usuario) {
+	
+	public MeusDados(Usuario usuario, boolean verificar) {
 
 		this.usuario = usuario;
-
+		
 		estado = new Estado();
 		pais = new Pais();
 		new Cidade();
@@ -498,6 +476,11 @@ public class MeusDados extends JFrame {
 		btnEditar.addActionListener(new EditarListener());
 		btnRemover.addActionListener(new Remover());
 		btnInserirContato.addActionListener(new Inserir());
+		
+		if(verificar){
+			habilitarCampos();
+			btnEditar.setEnabled(false);
+		}
 	}
 
 	private String obtemSexo(int sexo) {
@@ -621,12 +604,8 @@ public class MeusDados extends JFrame {
 	private class Remover implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			try {
-				Contato ct = new Contato();
 				modelo.removeRow(tblContato.getSelectedRow());
 				listaContatos.remove(tblContato.getSelectedRow());
-
-//				ct = tblContato.get
-//				listaContatosRemovidos.addItem(tblContato.getSelectedRow());
 			} catch (Exception se2) {
 				JOptionPane.showMessageDialog(null,
 						"Selecione o Contado que deseja remover da tabela.");
@@ -748,12 +727,8 @@ public class MeusDados extends JFrame {
 					+ usuario.getPkUsuario() + ".jpg");
 			imagem_buffered = null;
 
-			try {
-				imagem_buffered = ImageIO.read(imagem_file);
-			} catch (IOException e2) {
-				e2.printStackTrace();
-			}
-
+			imagem_buffered = ImageIO.read(imagem_file);
+			
 			BufferedImage aux = new BufferedImage(lblImagem.getSize().width,
 					lblImagem.getSize().height, imagem_buffered.getType());
 			Graphics2D g = aux.createGraphics();
