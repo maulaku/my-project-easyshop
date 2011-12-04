@@ -5,6 +5,8 @@ import br.com.easyShop.comunicacao.MRemoteObject;
 import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Categoria;
 import br.com.easyShop.model.Cliente;
+import br.com.easyShop.model.Desejo;
+import br.com.easyShop.model.DesejoProduto;
 import br.com.easyShop.model.Pessoa;
 import br.com.easyShop.model.PessoaFisica;
 import br.com.easyShop.model.Produto;
@@ -65,6 +67,10 @@ public static function getProdutoGlobal():Produto
 	return produto;	
 }
 
+/**
+ * Inicializa os componentes e objetos
+ */ 
+
 public static function getClienteGlobal():Cliente
 {
 	return clienteGlobal;
@@ -73,6 +79,11 @@ public static function getClienteGlobal():Cliente
 public static function getUsurioGlobal():Usuario
 {
 	return usuarioGlobal;
+}
+
+public static function setProdutoGlobal(produto2:Produto):void
+{
+	produto = produto2; 
 }
 
 public function construtor():void
@@ -89,7 +100,7 @@ public function construtor():void
 	MRemoteObject.get("CategoriaService.getTodasCategoriasPai", null, resultCategoria);
 	MRemoteObject.get("ProdutoService.getProdutosPromocao", null, resultProduto);
 }
- 
+
 /* Listerners Java */
 public function resultProduto(result:ResultJava):void
 {
@@ -110,7 +121,8 @@ public function resultProduto(result:ResultJava):void
 				item.produto = produto;
 				item.imagemSource = Constantes.instance.ENDERECO_IMAGEM_PRODUTO+NumberUtil.toString(produto.pkProduto)+".jpg";
 				item.addEventListener("clickadoModuloItem", lidaModuloItem);
-			
+				item.addEventListener("clickadoModuloItemDesejo", adicionaMeuDesejo);
+				
 				grPainelModulos.addModulo(item);
 			}
 			
@@ -131,6 +143,14 @@ private function lidaModuloItem(event:Event):void{
 	produto = item.produto;
 	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
 }
+
+public function detalhes(event:Event):void{
+	var item:ModuloItem = ((ModuloItem) (event.currentTarget));
+	produto = item.produto;
+	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
+}
+
+
 public function escutaBotoes(botao:MBotao):void
 {
 	try
@@ -149,6 +169,37 @@ public function escutaBotoes(botao:MBotao):void
 		
 	}
 }
+private function adicionaMeuDesejo(event:Event):void{
+	
+	var item:ModuloItem = ((ModuloItem) (event.currentTarget));
+	produto = item.produto;
+	
+	var desejoProduto:DesejoProduto = new DesejoProduto();
+	var desejo:Desejo = new Desejo();
+	
+	desejo.cliente = ((Cliente) (MainEasyShop.getClienteGlobal()));
+	
+	desejoProduto.produto = produto;
+	desejoProduto.desejo = desejo;
+	
+	MRemoteObject.get("MeusDesejosServices.inserirDesejo", [desejoProduto], salvarMeusDesejos);
+}
+
+public function salvarMeusDesejos(result:ResultJava):void{
+	
+	try		
+	{		
+		if(result != null)
+		{	
+			Alerta.abrir("Produto adicionado aos seus desejos com sucesso!!", "EasyShop", null, null, null, ImagensUtils.INFO);
+		}
+	} 
+	catch(e:Error)
+	{ 
+		Alerta.abrir("Ops, Ocorreu um erro ao adicionar o produto carregar categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
+	}		
+}
+
 public function resultCategoria(result:ResultJava):void
 {
 	try		
@@ -162,7 +213,7 @@ public function resultCategoria(result:ResultJava):void
 			
 			for(i=0;i<result.lista.length;i++){
 				categoria = ((Categoria) (result.lista[i]));  
-							
+				
 				var acord:AccordionItem = new AccordionItem();
 				acord.height = accordion.height;
 				acord.width = accordion.width;
