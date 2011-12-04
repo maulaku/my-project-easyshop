@@ -104,19 +104,11 @@ private function carregarFoto(e:Event):void{
 
 private function salvarFoto(e:Event):void{	
 	swfLoader.load(obj_FileReference.data);
-	MRemoteObject.get("ProdutoService.salvarImagem", [obj_FileReference.data], resultado);
+	MRemoteObject.get("ClienteService.salvarImagem", [obj_FileReference.data], resultado);
 }
 
 public function resultado(result:ResultJava):void
 {
-	try		
-	{		
-		Alerta.abrir("Produto inserido em Meu Carrinho com sucesso!", "EasyShop", null, null, null, ImagensUtils.OK);
-	} 
-	catch(e2:Error)
-	{ 
-		Alerta.abrir("Ops, Ocorreu um erro ao salvar no carrinho", "EasyShop", null, null, null, ImagensUtils.TRISTE);
-	}	
 }
 
 private function indexEndereco(result:int):int{
