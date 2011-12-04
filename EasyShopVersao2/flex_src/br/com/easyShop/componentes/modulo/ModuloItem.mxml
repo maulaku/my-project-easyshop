@@ -37,7 +37,8 @@
 				
 				if(botao == btDesejo)
 				{
-					this.dispatchEvent(new Event("clickadoModuloItemDesejo"));	
+					this.dispatchEvent(new Event("clickadoModuloItemDesejo"));
+					
 				}
 			}
 			
