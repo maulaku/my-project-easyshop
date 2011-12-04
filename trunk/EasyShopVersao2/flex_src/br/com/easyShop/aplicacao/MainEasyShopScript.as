@@ -576,11 +576,17 @@ public function verificarLogin2(result:ResultJava):void
 
 protected function btnDesejo_clickHandler(event:MouseEvent):void
 {
-	meuCarrinho = new MeuCarrinho();
 	meuDesejo = new AbaMeuDesejo();
 	meuDesejo.showCloseButton=true;
 	meuDesejo.setVisible(true);
+	meuDesejo.addEventListener("clickadoComprar", clickadoComprarDesejo);
 	PopUpManager.addPopUp(meuDesejo, this, true);
 	
 	centralizarTela(meuDesejo);
+}
+
+private function clickadoComprarDesejo(event:Event):void{
+	meuDesejo.setVisible(false);
+//	produto = item.produto;
+	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
 }

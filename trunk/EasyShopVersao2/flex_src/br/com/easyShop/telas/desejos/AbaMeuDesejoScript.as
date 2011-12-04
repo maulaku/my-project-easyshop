@@ -27,6 +27,11 @@ public function construtor():void
 	MRemoteObject.get("DesejoProdutoService.getDesejoProduto", [MainEasyShop.getClienteGlobal()], preencherDesejo);
 }
 
+protected function btnComprar_clickHandler(event:MouseEvent):void
+{
+	this.dispatchEvent(new Event("clickadoComprar"));	
+}
+
 public function escutaBotoes(botao:MBotao):void
 {
 		if(botao == btEspiar)
