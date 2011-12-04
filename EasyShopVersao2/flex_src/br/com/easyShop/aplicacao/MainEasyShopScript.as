@@ -351,7 +351,6 @@ protected function btnEntrar_clickHandler():void
 		painelLogout = new Logout();
 		painelLogout.showCloseButton=true;
 		painelLogout.setVisible(true);
-		painelLogout. = Constantes.instance.ENDERECO_IMAGEM_CATEGORIA+NumberUtil.toString(clienteGlobal.pkCliente)+".jpg";
 		painelLogout.addEventListener("clickadoLogout", lidaClickadoLogout);
 		painelLogout.addEventListener("clickadoPessoaFisica", lidaClickadoPessoaFisica2);
 		painelLogout.addEventListener("clickadoPessoaJuridica", lidaClickadoPessoaJuridica2);

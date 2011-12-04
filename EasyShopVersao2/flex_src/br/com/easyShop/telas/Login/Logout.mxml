@@ -4,19 +4,9 @@
 				xmlns:s="library://ns.adobe.com/flex/spark"
 				xmlns:mx="library://ns.adobe.com/flex/mx"
 				width="636" height="372" backgroundAlpha="1.0" backgroundColor="#E0E3E3"
-				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar" title="Logout" creationComplete="construtor()">
+				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar" title="Logout" creationComplete="construtor()" xmlns:imagem="br.com.easyShop.componentes.imagem.*">
 	<fx:Script source="LogoutScript.as" />
 	
-	<fx:Script>
-		<![CDATA[
-		[Bindable]
-		public var _image:String;
-		
-			public function get imagemSource():String { return _image; }
-			public function set imagemSource(imagemSource:String):void { _image = imagemSource; }
-			
-		]]>
-	</fx:Script>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -31,6 +21,8 @@
 			   fontFamily="Verdana" fontSize="15" click="clickadoPessoaFisica()"/>
 	<mx:Button id="btnPessoaJeridica" x="473" y="159" width="129" height="29" label="Pessoa Jurídica"
 			   fontFamily="Verdana" fontSize="15" click="clickadoPessoaJuridica()"/>
-	<s:Image id="imagemProduto" x="47" y="64" width="221" height="196" source="{_image}"/>
+	<s:VGroup id="imagemDoCliente" x="46" y="60" width="229" height="208">
+	</s:VGroup>
+	
 	
 </mx:TitleWindow>
