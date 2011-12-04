@@ -18,10 +18,10 @@ public class ClienteService {
 		}
 	}
 	
-	public ResultJava getCliente(String nome) {
+	public ResultJava getCliente(String nome, String senha) {
 		try
 		{
-			return new ResultJava(new ClienteDAO().getClienteNome(nome, 3));
+			return new ResultJava(new ClienteDAO().getClienteNome(nome, senha, 3));
 		} 
 		catch (Exception e) 
 		{

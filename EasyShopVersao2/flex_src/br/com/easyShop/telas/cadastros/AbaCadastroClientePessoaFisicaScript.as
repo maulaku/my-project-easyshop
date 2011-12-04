@@ -14,16 +14,24 @@ import br.com.mresolucoes.componentes.mre.Alerta;
 import br.com.mresolucoes.componentes.mre.MBotao;
 import br.com.mresolucoes.imagens.ImagensUtils;
 
+import flash.display.BitmapData;
 import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.net.FileFilter;
 import flash.net.FileReference;
+import flash.net.FileReferenceList;
+import flash.system.Security;
+import flash.utils.ByteArray;
 
 import mx.charts.chartClasses.DataDescription;
 import mx.collections.ArrayCollection;
 import mx.collections.ArrayList;
 import mx.collections.IList;
 import mx.controls.Alert;
+import mx.controls.Image;
+import mx.core.ByteArrayAsset;
+import mx.graphics.codec.JPEGEncoder;
+import mx.utils.Base64Decoder;
 
 private var obj_FileReference:FileReference;
 private var myFilter:FileFilter = new FileFilter("Imagens (*.jpg; *.jpeg; *.gif; *.png;","*.jpg; *.jpeg; *.gif; *.png;");
@@ -83,18 +91,32 @@ private function preencherContato():void{
 }
 
 private function abreJanela(): void{
+	Security.LOCAL_TRUSTED;
 	obj_FileReference = new FileReference();
 	obj_FileReference.browse([myFilter]);
 	obj_FileReference.addEventListener(Event.SELECT,carregarFoto);
-	obj_FileReference.addEventListener(Event.COMPLETE,mostraFoto);
+	obj_FileReference.addEventListener(Event.COMPLETE,salvarFoto);
 }
 
 private function carregarFoto(e:Event):void{
 	obj_FileReference.load();
 }
 
-private function mostraFoto(e:Event):void{
-	//lblImagem.loaderInfo(obj_FileReference.data);
+private function salvarFoto(e:Event):void{	
+	swfLoader.load(obj_FileReference.data);
+	MRemoteObject.get("ProdutoService.salvarImagem", [obj_FileReference.data], resultado);
+}
+
+public function resultado(result:ResultJava):void
+{
+	try		
+	{		
+		Alerta.abrir("Produto inserido em Meu Carrinho com sucesso!", "EasyShop", null, null, null, ImagensUtils.OK);
+	} 
+	catch(e2:Error)
+	{ 
+		Alerta.abrir("Ops, Ocorreu um erro ao salvar no carrinho", "EasyShop", null, null, null, ImagensUtils.TRISTE);
+	}	
 }
 
 private function indexEndereco(result:int):int{

@@ -10,10 +10,20 @@
 	
 	<fx:Script source="AbaDetalhesProdutoScript.as" />
 	
+	<fx:Script>
+		<![CDATA[
+			[Bindable]
+			private var _imagemSource:String;
+		
+			public function get imagemSource():String { return _imagemSource; }
+			public function set imagemSource(imagemSource:String):void { _imagemSource = imagemSource; }			
+		]]>
+	</fx:Script>
+	
 	<mxml:MPanel title="Detalhes do Produto" x="0" y="0" width="100%" height="1182">
 		<s:Label id="lbNomeProduto" x="10" y="8" width="925" height="44" fontSize="32" text="Testa"
 				 textAlign="center" verticalAlign="middle"/>
-		<s:Image x="50" y="54" width="285" height="324"/>
+		<s:Image id="imagemProduto" x="10" y="55" width="314" height="322" source="{_imagemSource}"/>
 		<s:BorderContainer x="344" y="55" width="525" height="322">
 			<s:Label id="lbPreco" x="211" y="13" width="237" height="28" fontSize="23" text="Testa"
 					 textAlign="left" verticalAlign="middle"/>

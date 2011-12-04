@@ -53,9 +53,6 @@
 			 textAlign="left" verticalAlign="middle"/>
 	<mx:HRule x="177" y="870" width="358" height="5"/>
 	
-	<s:Image id="lblImagem" x="738" y="126" width="170" height="186" smooth="true" smoothingQuality="high"
-			 source="@Embed('../../imagens/aplicacao/user.png')"/>
-	
 	<s:Button id="adicionar" x="544" y="701" width="29" height="25"
 			  click="inserirContatoTabela()" icon="@Embed('../../imagens/botoes/Create.png')"/>
 	
@@ -130,4 +127,10 @@
 	<s:Label x="199" y="667" width="302" height="25" fontSize="11"
 			 text="  *Digite abaixo os dados para Contato, e clique em adicionar." textAlign="left"
 			 verticalAlign="middle"/>
+	
+	<mx:SWFLoader id="swfLoader" x="733" y="116" width="182" height="192">
+		<mx:filters>
+			<mx:DropShadowFilter />
+		</mx:filters>
+	</mx:SWFLoader>
 </s:Module>

@@ -21,15 +21,14 @@ public class UsuarioDAO extends BaseDAOAtta
 		 return obtem(Usuario.class, query, profundidade);
     }
     
-    public Usuario getUsuarioNome(String nome, int profundidade) throws Exception
+    public Usuario getUsuarioNome(String nome, String senha, int profundidade) throws Exception
     {
     	QuerySQL query = new QuerySQL();
 		
-    	query.add("SELECT *");
-		 query.add(" FROM usuario,cliente,pessoa");
-		 query.add(" WHERE usuario.fkpessoa = pessoa.pkpessoa");
-		 query.add(" AND pessoa.pkpessoa != cliente.fkpessoa");
-		 query.add(" AND usuario.login = ?", nome);
+    	 query.add("SELECT *");
+		 query.add(" FROM usuario");
+		 query.add(" WHERE login = ?", nome);
+		 query.add(" AND senha = ?", senha);
 		 
 		 return obtemUnico(Usuario.class, query, profundidade);
     }

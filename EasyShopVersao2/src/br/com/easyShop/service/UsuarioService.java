@@ -36,11 +36,11 @@ public class UsuarioService extends BaseServiceAtta
 		}
 	}
 
-	public Usuario getUsuario(String nome) 
+	public Usuario getUsuario(String nome, String senha) 
 	{
 		try
 		{
-			return new UsuarioDAO().getUsuarioNome(nome, 3);
+			return new UsuarioDAO().getUsuarioNome(nome, senha, 3);
 		}
 		catch (Exception e)
 		{

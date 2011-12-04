@@ -39,5 +39,6 @@ package br.com.easyShop.utils
 		
 		//Source imagens
 		public var ENDERECO_IMAGEM_PRODUTO:String = "br/com/easyShop/imagens/aplicacao/produtos/";
+		public var ENDERECO_IMAGEM_CATEGORIA:String = "br/com/easyShop/imagens/aplicacao/categorias/";
 	}
 }

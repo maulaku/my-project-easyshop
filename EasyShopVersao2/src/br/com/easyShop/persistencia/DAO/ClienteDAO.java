@@ -6,13 +6,14 @@ import br.com.easyShop.persistencia.utils.QuerySQL;
 
 public class ClienteDAO extends BaseDAOAtta{
 
-	 public Cliente getClienteNome(String nome, int profundidade) throws Exception
+	 public Cliente getClienteNome(String nome, String senha, int profundidade) throws Exception
 	    {
 	    	QuerySQL query = new QuerySQL();
 			
 			 query.add("SELECT *");
 			 query.add(" FROM cliente,usuario");
 			 query.add(" WHERE usuario.login = ?", nome);
+			 query.add(" AND usuario.senha = ?", senha);
 			 query.add(" AND usuario.fkpessoa = cliente.fkpessoa");
 			 
 			 return obtemUnico(Cliente.class, query, profundidade);
