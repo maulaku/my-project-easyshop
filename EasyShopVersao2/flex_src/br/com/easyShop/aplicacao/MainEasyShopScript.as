@@ -17,6 +17,7 @@ import br.com.easyShop.telas.desejos.AbaMeuDesejo;
 import br.com.easyShop.telas.pagamento.ConfirmarCompra;
 import br.com.easyShop.telas.pagamento.Pagamentos;
 import br.com.easyShop.telas.pagamento.PedidoConfirmado;
+import br.com.easyShop.telas.pedidos.AbaDetalheMeuPedido;
 import br.com.easyShop.telas.pedidos.AbaMeusPedidos;
 import br.com.easyShop.telas.produtos.AbaDetalhesProduto;
 import br.com.easyShop.telas.produtos.MeuCarrinho;
@@ -50,6 +51,8 @@ private var meuDesejo:AbaMeuDesejo;
 private var painelPagamentos:Pagamentos;
 private var confirmarCompra:ConfirmarCompra;
 private var pedidoConfirmado:PedidoConfirmado;
+private var painelMeusPedidos:AbaMeusPedidos;
+private var painelMeusPedidosDetalhe:AbaDetalheMeuPedido;
 
 private var produtoAux:Produto;
 private var nomeCategoriaSelecionada:String;
@@ -67,6 +70,10 @@ public static function getProdutoGlobal():Produto
 	return produto;	
 }
 
+/**
+ * Inicializa os componentes e objetos
+ */ 
+
 public static function getClienteGlobal():Cliente
 {
 	return clienteGlobal;
@@ -75,6 +82,11 @@ public static function getClienteGlobal():Cliente
 public static function getUsurioGlobal():Usuario
 {
 	return usuarioGlobal;
+}
+
+public static function setProdutoGlobal(produto2:Produto):void
+{
+	produto = produto2; 
 }
 
 public function construtor():void
