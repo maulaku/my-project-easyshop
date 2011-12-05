@@ -14,6 +14,15 @@ import mx.controls.Alert;
 [Bindable]
 public var dados:ArrayCollection = new ArrayCollection();
 
+[Bindable]
+public var enderecos:ArrayCollection = new ArrayCollection();
+
+[Bindable]
+public var pagamentos:ArrayCollection = new ArrayCollection();
+
+[Bindable]
+public var datas:ArrayCollection = new ArrayCollection();
+
 public static var pedidoProduto:PedidoProduto;
 
 
@@ -21,6 +30,9 @@ public function construtor():void
 {
 	pedidoProduto = MainEasyShop.getPedidoProduto();
     inserirDados();
+	inserirEndereco();
+	inserirPagamento();
+
 }
 
 public function inserirDados():void
@@ -36,3 +48,39 @@ public function inserirDados():void
 		dados.addItem(temp);	
 }
 
+public function inserirEndereco():void
+{
+	var temp:Object;
+	
+	temp = new Object();
+	temp.rua = pedidoProduto.pedido.endereco.logradouro;
+	temp.bairro = pedidoProduto.pedido.endereco.bairro;
+	temp.cidade = pedidoProduto.pedido.endereco.cidade;
+	temp.numero = pedidoProduto.pedido.endereco.numero;
+	temp.cep = pedidoProduto.pedido.endereco.cep;
+	
+	enderecos.addItem(temp);	
+}
+
+
+public function inserirPagamento():void
+{
+	var temp:Object;
+	
+	temp = new Object();
+	temp.nome = pedidoProduto.pedido.perfilPagamento.nome;
+	temp.descricao = pedidoProduto.pedido.perfilPagamento.descricao;
+
+	pagamentos.addItem(temp);	
+}
+
+public function inserirData():void
+{
+	var temp:Object;
+	
+	temp = new Object();
+	temp.datapedido = pedidoProduto.pedido.dataEntrega;
+	temp.dataentrega = pedidoProduto.pedido.dataPedido;
+	
+	datas.addItem(temp);	
+}

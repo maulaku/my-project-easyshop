@@ -49,6 +49,6 @@ public function preencherDesejo(result:ResultJava):void{
 
 public function btnComprarDesejo(event:MouseEvent):void
 {
-//	this.dispatchEvent(new Event("detalhes"));	
+	this.dispatchEvent(new Event("detalhes"));	
 	this.visible = false;
 }

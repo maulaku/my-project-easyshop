@@ -4,7 +4,7 @@
 				xmlns:s="library://ns.adobe.com/flex/spark"
 				xmlns:mx="library://ns.adobe.com/flex/mx"
 				xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
-				width="794" height="390" backgroundAlpha="1.0" backgroundColor="#E0E3E3"
+				width="704" height="356" backgroundAlpha="1.0" backgroundColor="#E0E3E3"
 				close="PopUpManager.removePopUp(this)" creationComplete="construtor()" 
 				layout="absolute" removedEffect="fechar" title="Meus Pedidos">
 	<fx:Script>
@@ -22,7 +22,7 @@
 	</fx:Declarations>
 	
 	
-	<mxml:MTabela x="79" y="21" width="606" height="228" id="tblPedido" mreDataProvider="{pedidos}" editable="false" >
+	<mxml:MTabela x="39" y="16" width="615" height="250" id="tblPedido" mreDataProvider="{pedidos}" editable="false" >
 		<mxml:columns>
 			<mx:DataGridColumn dataField="pkPedidoProduto" labelFunction="{NumberUtil.validarNumber}" editable="false" headerText="Código" width="120"/>
 			<mx:DataGridColumn dataField="produto.nome" headerText="Produto" width="120" editable="false"/>
@@ -31,7 +31,6 @@
 		</mxml:columns>
 	</mxml:MTabela>
 	
-	<s:Button x="337" y="289" label="Detalhes" click="irParaDetalhe()"/>
-	<s:Button x="220" y="289" label="Voltar"/>
+	<s:Button x="39" y="274" width="133" height="41" label="Ver detalhes" click="irParaDetalhe()" icon="@Embed('../../imagens/botoes/Create.png')"/>
 	
 </mx:TitleWindow>
