@@ -54,7 +54,7 @@
 			{
 				if(result.detail==Alerta.SIM)
 				{
-					MRemoteObject.get("CarrinhoProdutoService.removerCarrinhoProdutos", [data.campo5 as CarrinhoProduto], resultRemoverProduto);
+					MRemoteObject.get("DesejoProdutoService.removerDesejo", [data as DesejoProduto], resultRemoverDesejo);
 				}
 			}
 			
