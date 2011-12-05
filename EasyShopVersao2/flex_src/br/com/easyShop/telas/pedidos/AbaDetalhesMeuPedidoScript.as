@@ -55,7 +55,7 @@ public function inserirEndereco():void
 	temp = new Object();
 	temp.rua = pedidoProduto.pedido.endereco.logradouro;
 	temp.bairro = pedidoProduto.pedido.endereco.bairro;
-	temp.cidade = pedidoProduto.pedido.endereco.cidade;
+	temp.cidade = pedidoProduto.pedido.endereco.cidade.nome;
 	temp.numero = pedidoProduto.pedido.endereco.numero;
 	temp.cep = pedidoProduto.pedido.endereco.cep;
 	

@@ -25,8 +25,8 @@
 	
 	<mxml:MTabela x="22" y="41" width="837" height="42" id="tblPedido" mreDataProvider="{dados}" editable="false" >
 		<mxml:columns>
-			<mx:DataGridColumn dataField="codigo" headerText="Código" width="250"/>
-			<mx:DataGridColumn dataField="produto" headerText="Produto" width="250"/>
+			<mx:DataGridColumn dataField="codigo" headerText="Código" width="50"/>
+			<mx:DataGridColumn dataField="produto" headerText="Produto" width="200"/>
 			<mx:DataGridColumn dataField="quantidade" headerText="Quantidade" width="120"/>
 			<mx:DataGridColumn dataField="valor" headerText="Valor" width="120"/>
 		</mxml:columns>
