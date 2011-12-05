@@ -22,14 +22,13 @@
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<s:DataGrid id="tblPedido" x="21" y="82" width="837" height="52"
-				contentBackgroundColor="#F9F9F9" requestedRowCount="1">
+				contentBackgroundColor="#F9F9F9" requestedRowCount="1" dataProvider="{dados}">
 		<s:columns>
 			<s:ArrayList>
-				<s:GridColumn dataField="dataField1" headerText="Código"></s:GridColumn>
-				<s:GridColumn dataField="dataField2" headerText="Produto"></s:GridColumn>
-				<s:GridColumn dataField="dataField3" headerText="Quantidade" ></s:GridColumn>
-				<s:GridColumn dataField="dataField4" headerText="Valor"></s:GridColumn>		
-				<s:GridColumn dataField="dataField4" headerText="Status"></s:GridColumn>		
+				<s:GridColumn dataField="codigo" headerText="Código"></s:GridColumn>
+				<s:GridColumn dataField="produto" headerText="Produto"></s:GridColumn>
+				<s:GridColumn dataField="quantidade" headerText="Quantidade" ></s:GridColumn>
+				<s:GridColumn dataField="valor" headerText="Valor"></s:GridColumn>			
 			</s:ArrayList>
 		</s:columns>
 		<s:typicalItem>
