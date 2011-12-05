@@ -41,6 +41,6 @@ public function preencherPedido(result:ResultJava):void{
 
 protected function irParaDetalhe():void {	
 	
-	MainEasyShop.pedidoProduto = (tblPedido.mreGetSelectedItem() as PedidoProduto);
+	MainEasyShop.setPedidoProduto(tblPedido.mreGetSelectedItem() as PedidoProduto);
 	this.dispatchEvent(new Event("clicadoVerDetalhes"));	
 }
