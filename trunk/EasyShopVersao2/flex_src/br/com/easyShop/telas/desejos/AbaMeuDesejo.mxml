@@ -30,8 +30,7 @@
 				<mx:DataGridColumn id="colunaRemoverProponente" headerText="Remover" width="55" textAlign="center" editable="false" resizable="false" draggable="false" sortable="false">
 					<mx:itemRenderer>
 						<fx:Component>
-							<renderer:MRGridBotaoRemover>
-							</renderer:MRGridBotaoRemover>
+							<renderer:MRGridBotaoRemoverDesejo/>
 						</fx:Component>
 					</mx:itemRenderer>
 				</mx:DataGridColumn>
