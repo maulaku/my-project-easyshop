@@ -10,21 +10,32 @@ import br.com.easyShop.model.Pessoa;
 import br.com.easyShop.model.PessoaFisica;
 import br.com.easyShop.model.PessoaJuridica;
 import br.com.easyShop.model.Usuario;
+import br.com.easyShop.telas.cadastros.WebCam;
 import br.com.easyShop.utils.Constantes;
 import br.com.mresolucoes.componentes.mre.Alerta;
 import br.com.mresolucoes.componentes.mre.MBotao;
 import br.com.mresolucoes.imagens.ImagensUtils;
 
+import flash.display.BitmapData;
 import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.net.FileFilter;
 import flash.net.FileReference;
+import flash.net.FileReferenceList;
+import flash.system.Security;
+import flash.utils.ByteArray;
 
 import mx.charts.chartClasses.DataDescription;
 import mx.collections.ArrayCollection;
 import mx.collections.ArrayList;
 import mx.collections.IList;
 import mx.controls.Alert;
+import mx.controls.Image;
+import mx.core.ByteArrayAsset;
+import mx.core.UIComponent;
+import mx.graphics.codec.JPEGEncoder;
+import mx.managers.PopUpManager;
+import mx.utils.Base64Decoder;
 
 private var obj_FileReference:FileReference;
 private var myFilter:FileFilter = new FileFilter("Imagens (*.jpg; *.jpeg; *.gif; *.png;","*.jpg; *.jpeg; *.gif; *.png;");
@@ -33,6 +44,7 @@ private var myFilter:FileFilter = new FileFilter("Imagens (*.jpg; *.jpeg; *.gif;
 public var dados:ArrayCollection = new ArrayCollection();
 [Bindable]
 public var dadosEndereco:ArrayCollection = new ArrayCollection();
+private var webcam:WebCam;
 
 public var tiposContato:ArrayCollection = new ArrayCollection([
 	{nome:"Telefone", tipo:Constantes.instance.TIPO_CONTATO_TELEFONE},
@@ -75,18 +87,51 @@ private function preencherContato():void{
 }
 
 private function abreJanela(): void{
+	Security.LOCAL_TRUSTED;
 	obj_FileReference = new FileReference();
 	obj_FileReference.browse([myFilter]);
 	obj_FileReference.addEventListener(Event.SELECT,carregarFoto);
-	obj_FileReference.addEventListener(Event.COMPLETE,mostraFoto);
+	obj_FileReference.addEventListener(Event.COMPLETE,salvarFoto);
 }
 
 private function carregarFoto(e:Event):void{
 	obj_FileReference.load();
 }
 
-private function mostraFoto(e:Event):void{
-	//lblImagem.loaderInfo(obj_FileReference.data);
+private function salvarFoto(e:Event):void{	
+	swfLoader.load(obj_FileReference.data);
+	MRemoteObject.get("ClienteService.salvarImagem", [obj_FileReference.data], resultado);
+}
+
+public function resultado(result:ResultJava):void
+{
+}
+
+protected function carregarImagem0_clickHandler(event:MouseEvent):void
+{
+	webcam = new WebCam();
+	webcam.showCloseButton=true;
+	webcam.setVisible(true);
+	webcam.addEventListener("clickadoSalvar", clickWeb);
+	PopUpManager.addPopUp(webcam, this, true);
+	
+	centralizarTela(webcam);
+}
+
+private function clickWeb(event:Event):void
+{
+	webcam.setVisible(false);
+	swfLoader.load(WebCam.getBytes());
+	MRemoteObject.get("ClienteService.salvarImagem", [WebCam.getBytes()], resultado);
+}
+
+public static function centralizarTela(componente:UIComponent):void {
+	if (componente != null) {
+		var diferencaLargura:Number = componente.screen.width - componente.width;
+		var diferencaAltura:Number = componente.screen.height - componente.height - 800;
+		componente.x = componente.screen.x + (diferencaLargura / 2);
+		componente.y = componente.screen.y + (diferencaAltura / 2);
+	}
 }
 
 private function indexEndereco(result:int):int{
@@ -235,7 +280,7 @@ private function inserirEnderecoTabela():void{
 	temp.campo2 = logradouro.text;
 	temp.campo3 = bairro.text;
 	temp.campo4 = numero.text;
-	temp.campo5 = cep.text;
+	temp.campo5 = cep.mreTextoSemMascara;
 	temp.campo6 = complemento.text;
 	temp.campo7 = cboCidade.selectedItem;
 	temp.campo7label = labelCidade(cboCidade.selectedItem);
