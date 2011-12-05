@@ -7,6 +7,7 @@ import br.com.easyShop.model.Categoria;
 import br.com.easyShop.model.Cliente;
 import br.com.easyShop.model.Desejo;
 import br.com.easyShop.model.DesejoProduto;
+import br.com.easyShop.model.PedidoProduto;
 import br.com.easyShop.model.Pessoa;
 import br.com.easyShop.model.PessoaFisica;
 import br.com.easyShop.model.Produto;
@@ -43,6 +44,7 @@ private var painelPagamentos:Pagamentos;
 private var confirmarCompra:ConfirmarCompra;
 private var pedidoConfirmado:PedidoConfirmado;
 private var painelMeusPedidos:AbaMeusPedidos;
+private static var pedidoProduto:PedidoProduto;
 private var painelMeusPedidosDetalhe:AbaDetalheMeuPedido;
 
 private var produtoAux:Produto;
@@ -78,6 +80,16 @@ public static function getUsurioGlobal():Usuario
 public static function setProdutoGlobal(produto2:Produto):void
 {
 	produto = produto2; 
+}
+
+public static function getPedidoProduto():PedidoProduto
+{
+	return pedidoProduto;
+}
+
+public static function setPedidoProduto(pedido2:PedidoProduto):void
+{
+	pedidoProduto = pedido2; 
 }
 
 public function construtor():void

@@ -1,3 +1,4 @@
+import br.com.easyShop.aplicacao.MainEasyShop;
 import br.com.easyShop.comunicacao.MRemoteObject;
 import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Cliente;
@@ -16,9 +17,9 @@ public var dados:ArrayCollection = new ArrayCollection();
 public static var pedidoProduto:PedidoProduto;
 
 
-public function construtor(pedido:PedidoProduto):void
+public function construtor():void
 {
-	pedidoProduto = pedido;
+	pedidoProduto = MainEasyShop.getPedidoProduto();
     inserirDados();
 }
 

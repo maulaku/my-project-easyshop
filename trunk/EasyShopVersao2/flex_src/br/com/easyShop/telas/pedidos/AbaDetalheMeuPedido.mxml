@@ -5,7 +5,7 @@
 				xmlns:mx="library://ns.adobe.com/flex/mx"
 				xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
 				width="882" height="554" backgroundAlpha="1.0" backgroundColor="#E0E3E3"
-				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar" creationComplete="construtor(MainEasyShop.pedidoProduto)"
+				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar" creationComplete="construtor()"
 				title="Detalhes Do Pedido">
 	
 	<fx:Script>
