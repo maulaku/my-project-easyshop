@@ -7,6 +7,7 @@ import br.com.easyShop.model.Desejo;
 import br.com.easyShop.model.DesejoProduto;
 import br.com.easyShop.persistencia.DAO.baseDAO.BaseDAOAtta;
 import br.com.easyShop.persistencia.utils.QuerySQL;
+import br.com.easyShop.utils.Constantes;
 
 public class DesejoProdutoDAO extends BaseDAOAtta{
 	
@@ -29,6 +30,7 @@ public class DesejoProdutoDAO extends BaseDAOAtta{
 		 query.add(" FROM desejoproduto,desejo");
 		 query.add(" WHERE desejo.fkcliente = ?", cliente.getPkCliente());
 		 query.add(" AND desejoproduto.fkdesejo = desejo.pkdesejo");
+		 query.add(" AND desejoproduto.status = ?", Constantes.STATUS_ATIVO);
 
 		 return obtem(DesejoProduto.class, query, profundidade);
 	}
