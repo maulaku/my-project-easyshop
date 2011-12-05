@@ -4,6 +4,7 @@ import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Cliente;
 import br.com.easyShop.model.DesejoProduto;
 import br.com.easyShop.model.Pedido;
+import br.com.easyShop.model.Produto;
 import br.com.easyShop.model.PedidoProduto;
 import br.com.easyShop.telas.produtos.MeuCarrinho;
 import br.com.mresolucoes.componentes.mre.Alerta;
@@ -20,7 +21,7 @@ import spark.modules.Module;
 
 [Bindable]
 public var desejos:ArrayCollection = new ArrayCollection();
-
+public static var produto:Produto = new Produto();
 
 public function construtor():void
 {
@@ -29,6 +30,7 @@ public function construtor():void
 
 protected function btnComprar_clickHandler(event:MouseEvent):void
 {
+	produto = tblDesejo.mreGetSelectedItem();
 	this.dispatchEvent(new Event("clickadoComprar"));	
 }
 
