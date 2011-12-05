@@ -27,8 +27,8 @@ public class DesejoProdutoService {
 	public ResultJava removerDesejo(DesejoProduto desejoProduto) {
 		try
 		{
-			desejoProduto.setStatus(Constantes.STATUS_REMOVIDO);  
-			return new ResultJava(new DesejoProdutoDAO().alterar(desejoProduto));
+			new DesejoProdutoDAO().setStatus(desejoProduto, Constantes.STATUS_REMOVIDO);
+			return new ResultJava(true);
 		} 
 		catch (Exception e) 
 		{

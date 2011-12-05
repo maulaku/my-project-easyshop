@@ -99,6 +99,8 @@ public function construtor():void
 	cbBusca.mreServicePesquisa = "ProdutoService.getProdutosNome";
 	MRemoteObject.get("CategoriaService.getTodasCategoriasPai", null, resultCategoria);
 	MRemoteObject.get("ProdutoService.getProdutosPromocao", null, resultProduto);
+	cbBusca.mreSetSelectedItem(null);
+	cbCategorias.mreSetSelectedItem(null);
 }
 
 /* Listerners Java */
