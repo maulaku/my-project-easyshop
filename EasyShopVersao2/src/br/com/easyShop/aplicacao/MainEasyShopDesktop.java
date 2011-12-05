@@ -34,7 +34,7 @@ public class MainEasyShopDesktop {
 					try {			
 						Login login = new Login(); 
 						UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel"); 
-						login.setSize(800,600); 		
+						login.setSize(846,600); 		
 						login.setLocationRelativeTo(null);  
 						login.setVisible(true);
 						login.setLocationRelativeTo(null);	//Coloca o Frame no meio da tela				
