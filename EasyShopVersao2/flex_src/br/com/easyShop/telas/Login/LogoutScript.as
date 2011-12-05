@@ -1,6 +1,7 @@
 import br.com.easyShop.aplicacao.MainEasyShop;
 import br.com.easyShop.componentes.imagem.Imagem;
 import br.com.easyShop.telas.Login.Login;
+import br.com.easyShop.telas.cadastros.AbaCadastroClientePessoaFisica;
 import br.com.easyShop.utils.Constantes;
 import br.com.mresolucoes.utils.NumberUtil;
 
@@ -12,9 +13,17 @@ import mx.managers.PopUpManager;
 public function construtor():void
 {
 	bemVindo.text = bemVindo.text + MainEasyShop.getUsurioGlobal().login;
-	var i:Imagem = new Imagem;
-	i.imagemSource = Constantes.instance.ENDERECO_IMAGEM_CLIENTE+NumberUtil.toString(MainEasyShop.getClienteGlobal().pkCliente)+".jpg";
-	imagemDoCliente.addElement(i);
+	
+	if(AbaCadastroClientePessoaFisica.getImagemGlobal()==null){
+		var i:Imagem = new Imagem;
+		i.imagemSource = Constantes.instance.ENDERECO_IMAGEM_CLIENTE+NumberUtil.toString(MainEasyShop.getClienteGlobal().pkCliente)+".jpg";
+		imagemDoCliente.addElement(i);
+	}
+	else{
+		var i2:Imagem = new Imagem;
+		i2.imagemProduto.load(AbaCadastroClientePessoaFisica.getImagemGlobal());
+		imagemDoCliente.addElement(i2);
+	}
 }
 
 protected function btnEntrar_clickHandler(centrado:Boolean):void

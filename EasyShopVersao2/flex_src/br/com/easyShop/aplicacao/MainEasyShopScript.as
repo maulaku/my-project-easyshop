@@ -156,12 +156,6 @@ private function lidaModuloItem(event:Event):void{
 	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
 }
 
-public function detalhes(event:Event):void{
-	var item:ModuloItem = ((ModuloItem) (event.currentTarget));
-	produto = item.produto;
-	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
-}
-
 public function escutaBotoes(botao:MBotao):void
 {
 	try
@@ -171,6 +165,7 @@ public function escutaBotoes(botao:MBotao):void
 			if(cbBusca.mreGetSelectedItem() != null)
 			{
 				produto = cbBusca.mreGetSelectedItem() as Produto;
+				modulo.setVisible(true);
 				modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
 			}
 		}
@@ -621,6 +616,7 @@ protected function btnDesejo_clickHandler(event:MouseEvent):void
 
 private function clickadoComprarDesejo(event:Event):void{
 	meuDesejo.setVisible(false);
+	modulo.setVisible(true);
 	produto = AbaMeuDesejo.produto;
 	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
 }

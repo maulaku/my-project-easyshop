@@ -5,7 +5,7 @@
 			   xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
 			   xmlns:comboLOD="br.com.easyShop.componentes.comboLOD.*"
 			   xmlns:tabela="br.com.mresolucoes.renders.tabela.*"
-			   width="1259" height="1472" backgroundAlpha="1.0"
+			   width="1259" height="1490" backgroundAlpha="1.0"
 			   creationComplete="construtor()" pageTitle="EasyShop" xmlns:componentes="br.com.easyShop.componentes.*" xmlns:model="br.com.easyShop.model.*" xmlns:ns="http://hamcrest.org/2009/mxml"
 			   xmlns:flexlib="http://code.google.com/p/flexlib/" xmlns:modulo="br.com.easyShop.componentes.modulo.*">
 	<fx:Style source="MainEasyShop.css"/>
@@ -27,14 +27,14 @@
 	<fx:Script source="MainEasyShopScript.as" />
 
 		<s:Image x="-156" y="-69" width="1493" height="682" smooth="true" source="@Embed('../imagens/aplicacao/fundo.png')"/>
-		<s:Image id="btnCarrinho" x="882" y="49" width="70" height="64" buttonMode="true" smooth="true" smoothingQuality="high" toolTip="Meu Carrinho"
+		<s:Image id="btnCarrinho" x="879" y="48" width="70" height="64" buttonMode="true" smooth="true" smoothingQuality="high" toolTip="Meu Carrinho"
 				 source="@Embed('../imagens/aplicacao/icone_carrinho.png')" click="btnCarrinho_clickHandler(event)"/>
 		
 		<s:Image x="-58" y="-45" width="650" height="319" scaleMode="stretch" smooth="true"
 				 smoothingQuality="high" source="@Embed('../imagens/aplicacao/nomEasy.png')"/>
 		
-		<s:Image id="btnDesejo" x="1055" y="54" width="83" height="59" buttonMode="true" smooth="true" smoothingQuality="high" toolTip="Meus Desejos"
-				 source="@Embed('../imagens/aplicacao/desejo.png')" click="btnDesejo_clickHandler(event)"/>
+		<s:Image id="btnDesejo" x="1059" y="48" width="83" height="65" buttonMode="true" smooth="true" smoothingQuality="high" toolTip="Meus Desejos"
+				 source="@Embed('../imagens/aplicacao/novoDesejo.png')" click="btnDesejo_clickHandler(event)"/>
 		
 		<modulo:PainelModulo id="grPainelModulos" visible="true" x="274" y="222" width="945"
 							 height="579" contentBackgroundColor="#FFFFFF" hideEffect="{anSumir}"
@@ -44,18 +44,20 @@
 					  contentBackgroundColor="#FFFFFF">
 		</mxml:MModulo>
 		
-		<mxml:MComboBox id="cbCategorias" x="188" y="154" width="207" height="27" labelField="nome"/>
+		<mxml:MComboBox id="cbCategorias" x="188" y="160" width="207" height="27" labelField="nome"/>
 		
-		<s:Label x="118" y="154" width="65" height="31" color="#F0F2F9" fontFamily="Verdana"
+		<s:Label x="118" y="160" width="65" height="31" color="#F0F2F9" fontFamily="Verdana"
 				 fontSize="15" fontWeight="bold" text="BUSCA" textAlign="center" verticalAlign="middle"/>
-		<comboLOD:MComboLOD id="cbBusca" x="398" y="154" width="659" height="27"
+		<comboLOD:MComboLOD id="cbBusca" x="398" y="160" width="659" height="27"
 							mreLabelFunction="lfProduto" mreMinimoCaracteres="3"/>
-		<mxml:MBotao id="btBuscar" x="1060" y="154" width="81" height="28" label="Buscar" fontFamily="Verdana" mreClick="escutaBotoes"
+		<mxml:MBotao id="btBuscar" x="1060" y="160" width="81" height="28" label="Buscar" fontFamily="Verdana" mreClick="escutaBotoes"
 				  fontSize="14"/>
-		<s:Label x="452" y="1423" width="355" height="19" fontSize="15"
-				 text="Créditos sobre o Site ficaram aqui" textAlign="center" verticalAlign="middle"/>
+		<s:Label x="29" y="1410" width="1190" height="72" fontFamily="Arial" fontSize="15"
+				 fontStyle="normal" fontWeight="normal"
+				 text="Projeto EasyShop &#xd;Jean Bueno: 10587947   /   Monise Rafaela: 10599264   /  Patrick Guimarães: 10587996  /  Tamara Teodoro: 10587988    &#xd;Orientador: André Carvalho&#xd;Colaboradores: Alexander Flacker e Welington Lodi"
+				 textAlign="center" verticalAlign="middle"/>
 		
-		<mx:Panel id="panelCategorias" x="21" y="221" width="249" height="580" fontSize="15"
+		<mx:Panel id="panelCategorias" x="21" y="221" width="249" height="803" fontSize="15"
 				  styleName="Panel" textAlign="center" verticalAlign="middle">
 			<flexlib:VAccordion id="accordion" headerLocation="below"
 								resizeToContent="true" styleName="VAccordion" height="100%"
@@ -64,12 +66,12 @@
 								borderStyle="none">			
 			</flexlib:VAccordion>
 		</mx:Panel>
-		<s:Image id="btnPedido" x="977" y="49" width="70" height="64" buttonMode="true" toolTip="Meus Pedidos"
+		<s:Image id="btnPedido" x="972" y="45" width="70" height="76" buttonMode="true" toolTip="Meus Pedidos"
 				 click="btnPedido_clickHandler()" smooth="true" smoothingQuality="high"
 				 source="@Embed('../imagens/aplicacao/pedidos.png')"/>
-		<s:Image x="1143" y="48" buttonMode="true"
+		<s:Image x="1155" y="48" buttonMode="true"
 				 click="btnEntrar_clickHandler()" smooth="true" smoothingQuality="high"
-				 source="@Embed('../imagens/aplicacao/user3.png')" toolTip="Login/Cadastrar"/>
+				 source="@Embed('../imagens/aplicacao/user3.png')"/>
 		<s:Label x="29" y="23" width="482" height="117" click="construtor()" toolTip="Início" buttonMode="true"/>	
 
 </s:Application>

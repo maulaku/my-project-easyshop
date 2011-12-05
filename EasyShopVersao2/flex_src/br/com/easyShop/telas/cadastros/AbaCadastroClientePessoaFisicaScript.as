@@ -45,6 +45,13 @@ public var dados:ArrayCollection = new ArrayCollection();
 public var dadosEndereco:ArrayCollection = new ArrayCollection();
 private var webcam:WebCam;
 
+[Bindable]
+public static var imagemGlobal:ByteArray = null;
+
+public static function getImagemGlobal():ByteArray{
+	return imagemGlobal;
+}
+
 public var tiposContato:ArrayCollection = new ArrayCollection([
 	{nome:"Telefone", tipo:Constantes.instance.TIPO_CONTATO_TELEFONE},
 	{nome:"Celular", tipo:Constantes.instance.TIPO_CONTATO_CELULAR},
@@ -108,6 +115,7 @@ private function carregarFoto(e:Event):void{
 
 private function salvarFoto(e:Event):void{	
 	swfLoader.load(obj_FileReference.data);
+	imagemGlobal = obj_FileReference.data;
 	MRemoteObject.get("ClienteService.salvarImagem", [obj_FileReference.data], resultado);
 }
 
@@ -130,6 +138,7 @@ private function clickWeb(event:Event):void
 {
 	webcam.setVisible(false);
 	swfLoader.load(WebCam.getBytes());
+	imagemGlobal = WebCam.getBytes();
 	MRemoteObject.get("ClienteService.salvarImagem", [WebCam.getBytes()], resultado);
 }
 
@@ -225,7 +234,7 @@ public function confirmarCadastro(result:ResultJava):void
 {
 	try		
 	{
-			Alerta.abrir("Cliente cadastrado com sucesso!", "EasyShop", null, null, null, ImagensUtils.FELIZ);	
+		Alerta.abrir("Cliente cadastrado com sucesso!", "EasyShop", null, null, null, ImagensUtils.FELIZ);	
 	} 
 	catch(e:Error)
 	{ 
