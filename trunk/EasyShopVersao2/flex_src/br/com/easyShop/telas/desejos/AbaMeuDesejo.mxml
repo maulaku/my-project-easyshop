@@ -23,7 +23,7 @@
 	<s:BorderContainer x="26" y="21" width="496" height="275" backgroundColor="#F2F2F2">
 		
 		
-		<mxml:MTabela x="38" y="14" width="279" height="233" id="tblDesejo" mreDataProvider="{desejos}" editable="true" >
+		<mxml:MTabela x="38" y="14" width="279" height="233" id="tblDesejo" mreDataProvider="{desejos}" editable="false" >
 			<mxml:columns>
 				<mx:DataGridColumn dataField="produto.nome" headerText="Produto" width="150"/>
 				<mx:DataGridColumn dataField="produto.preco" headerText="Preço" width="120"/>
