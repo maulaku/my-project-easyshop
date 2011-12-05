@@ -7,6 +7,9 @@ import br.com.easyShop.model.PedidoProduto;
 import br.com.mresolucoes.componentes.mre.Alerta;
 import br.com.mresolucoes.componentes.mre.MBotao;
 
+import flash.events.Event;
+import flash.events.MouseEvent;
+
 import mx.collections.ArrayCollection;
 import mx.collections.ArrayList;
 import mx.controls.Alert;
@@ -117,8 +120,7 @@ public function preencherTabela(result:ResultJava):void{
 	}	
 }
 
-private function irParaDetalhe():void {
+protected function irParaDetalhe():void {	
 	
-	var main:MainEasyShop = new MainEasyShop();
-	main.modulo.mreLoadModule("br/com/easyShop/telas/pedidos/AbaDetalheMeuPedido.swf");
+	this.dispatchEvent(new Event("clicadoVerDetalhes"));	
 }

@@ -22,12 +22,12 @@
 	</fx:Declarations>
 	
 	
-	<mxml:MTabela x="79" y="21" width="606" height="228" id="tblPedido" mreDataProvider="{pedidos}" editable="true" >
+	<mxml:MTabela x="79" y="21" width="606" height="228" id="tblPedido" mreDataProvider="{pedidos}" editable="false" >
 		<mxml:columns>
-			<mx:DataGridColumn dataField="pkPedidoProduto" labelFunction="{NumberUtil.validarNumber}" headerText="Código" width="120"/>
-			<mx:DataGridColumn dataField="produto.nome" headerText="Produto" width="120"/>
-			<mx:DataGridColumn dataField="quantidade" headerText="Quantidade" labelFunction="{NumberUtil.validarNumber}" width="120"/>
-			<mx:DataGridColumn dataField="pedido.total" headerText="Total" labelFunction="{NumberUtil.validarNumber}" width="120"/>
+			<mx:DataGridColumn dataField="pkPedidoProduto" labelFunction="{NumberUtil.validarNumber}" editable="false" headerText="Código" width="120"/>
+			<mx:DataGridColumn dataField="produto.nome" headerText="Produto" width="120" editable="false"/>
+			<mx:DataGridColumn dataField="quantidade" headerText="Quantidade" editable="false" labelFunction="{NumberUtil.validarNumber}" width="120"/>
+			<mx:DataGridColumn dataField="pedido.total" headerText="Total" editable="false" labelFunction="{NumberUtil.validarNumber}" width="120"/>
 		</mxml:columns>
 	</mxml:MTabela>
 	

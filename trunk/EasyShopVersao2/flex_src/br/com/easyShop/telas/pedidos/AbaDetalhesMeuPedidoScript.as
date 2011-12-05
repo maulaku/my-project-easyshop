@@ -17,10 +17,8 @@ public var pedidos:ArrayCollection = new ArrayCollection();
 public var dadosPedido:ArrayCollection = new ArrayCollection();
 
 
-public function construtor(cliente:Cliente):void
+public function construtor():void
 {
-	var arr:Array = new Array();
-	arr.push(cliente);
-}
 
 }
+
