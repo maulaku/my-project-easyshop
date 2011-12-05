@@ -7,6 +7,7 @@ import br.com.easyShop.model.Categoria;
 import br.com.easyShop.model.Cliente;
 import br.com.easyShop.model.Desejo;
 import br.com.easyShop.model.DesejoProduto;
+import br.com.easyShop.model.PedidoProduto;
 import br.com.easyShop.model.Pessoa;
 import br.com.easyShop.model.PessoaFisica;
 import br.com.easyShop.model.Produto;
@@ -64,6 +65,7 @@ private static var usuarioGlobal:Usuario; //Usuario Global da Aplicação. Ele �
 
 [Bindable]
 private static var produto:Produto;
+public static var pedidoProduto:PedidoProduto;
 
 public static function getProdutoGlobal():Produto
 {
@@ -360,10 +362,25 @@ protected function btnPedido_clickHandler():void
 	var painelMeusPedidos:AbaMeusPedidos = new AbaMeusPedidos();
 	painelMeusPedidos.showCloseButton=true;
 	painelMeusPedidos.setVisible(true);
+	painelMeusPedidos.addEventListener("clickadoFinalizarCarrinho", btnDetalhesPedido);
 	PopUpManager.addPopUp(painelMeusPedidos, this, true);
 	
 	centralizarTela(painelMeusPedidos);
 }
+
+
+private function btnDetalhesPedido(event:Event):void
+{
+	painelMeusPedidos.visible = false;
+	painelMeusPedidosDetalhe = new AbaDetalheMeuPedido();
+	painelMeusPedidosDetalhe.showCloseButton=true;
+	painelMeusPedidosDetalhe.setVisible(true);
+	PopUpManager.addPopUp(painelMeusPedidosDetalhe, this, true);
+	
+	centralizarTela(painelMeusPedidosDetalhe);
+}
+
+
 
 private function enviaCliente():Cliente{
 	
