@@ -1,6 +1,9 @@
 package br.com.easyShop.service;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 import br.com.easyShop.comunicacao.ResultJava;
 import br.com.easyShop.model.Cliente;
@@ -116,20 +120,35 @@ public class ClienteService {
 	}
 	
 	public ResultJava recuperaImagem(Cliente cliente) {  
-		File imagem_file = new File("C:/EasyShop/siteCompras/EasyShop/flex_src/br/com/easyShop/imagens/aplicacao/cliente/CadastroDeCliente.jpg");
-			
-	    InputStream is = null;  
-	    byte[] buffer = null;  
-	    try {  
-	        is = new FileInputStream(imagem_file);  
-	        buffer = new byte[is.available()];  
-	        is.read(buffer);  
-	        is.close();  
-	    } catch (FileNotFoundException e) {  
-	        e.printStackTrace();  
-	    } catch (IOException e) {  
-	        e.printStackTrace();  
-	    }  
-	    return new ResultJava(buffer);
+		ImageIcon imagem_file = new ImageIcon("C:/EasyShop/siteCompras/EasyShop/flex_src/br/com/easyShop/imagens/aplicacao/cliente/CadastroDeCliente.jpg");
+		Image image = imagem_file.getImage();	
+		
+		BufferedImage bi = new BufferedImage(image.getWidth(null),image.getHeight(null),BufferedImage.TYPE_INT_RGB);  
+	    Graphics bg = bi.getGraphics();  
+	    bg.drawImage(image, 0, 0, null);  
+	    bg.dispose();  
+	      
+	    ByteArrayOutputStream buff = new ByteArrayOutputStream();         
+	    try {    
+	        ImageIO.write(bi, "JPG", buff);    
+	    } catch (IOException e) {    
+	        e.printStackTrace();    
+	    }    
+	    return new ResultJava(buff.toByteArray());
+	    
+//	    
+//	    InputStream is = null;  
+//	    byte[] buffer = null;  
+//	    try {  
+//	        is = new FileInputStream(imagem_file);  
+//	        buffer = new byte[is.available()];  
+//	        is.read(buffer);  
+//	        is.close();  
+//	    } catch (FileNotFoundException e) {  
+//	        e.printStackTrace();  
+//	    } catch (IOException e) {  
+//	        e.printStackTrace();  
+//	    }  
+//	    return new ResultJava(buffer);
 	}  
 }
