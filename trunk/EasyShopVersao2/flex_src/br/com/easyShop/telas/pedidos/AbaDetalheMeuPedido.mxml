@@ -4,7 +4,7 @@
 				xmlns:s="library://ns.adobe.com/flex/spark"
 				xmlns:mx="library://ns.adobe.com/flex/mx"
 				xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
-				width="882" height="554" backgroundAlpha="1.0" backgroundColor="#E0E3E3"
+				width="892" height="364" backgroundAlpha="1.0" backgroundColor="#E0E3E3"
 				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar" creationComplete="construtor()"
 				title="Detalhes Do Pedido">
 	
@@ -21,11 +21,9 @@
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	
 
 	
-	
-	<mxml:MTabela x="21" y="82" width="837" height="42" id="tblPedido" mreDataProvider="{dados}" editable="true" >
+	<mxml:MTabela x="22" y="41" width="837" height="42" id="tblPedido" mreDataProvider="{dados}" editable="false" >
 		<mxml:columns>
 			<mx:DataGridColumn dataField="codigo" headerText="Código" width="250"/>
 			<mx:DataGridColumn dataField="produto" headerText="Produto" width="250"/>
@@ -34,30 +32,29 @@
 		</mxml:columns>
 	</mxml:MTabela>
 	
+	<mxml:MTabela x="22" y="132" width="837" height="42" id="tblEndereco" mreDataProvider="{enderecos}" editable="false" >
+		<mxml:columns>
+			<mx:DataGridColumn dataField="cidade" headerText="Cidade" width="250"/>
+			<mx:DataGridColumn dataField="rua" headerText="Logradouro" width="250"/>
+			<mx:DataGridColumn dataField="bairro" headerText="Bairro" width="250"/>
+			<mx:DataGridColumn dataField="numero" headerText="Número" width="250"/>
+			<mx:DataGridColumn dataField="cep" headerText="CEP" width="250"/>
+		</mxml:columns>
+	</mxml:MTabela>
 	
-	<mxml:MBotao x="24" y="456" width="100" label="Voltar"/>
-	<mxml:MPanel x="21" y="188" width="210" height="95" title="Endereço de entrega">
-	</mxml:MPanel>
-	<mxml:MPanel x="338" y="188" width="209" height="95" title="Endereço de cobrança">
-	</mxml:MPanel>
-	<mxml:MPanel x="659" y="188" width="199" height="95" title="Forma de pagamento">
-	</mxml:MPanel>
-	<s:Label x="25" y="344" fontSize="17" fontWeight="bold" text="Rastrear pedido"/>
-	<s:DataGrid id="tblRastro" x="25" y="370" width="833" height="50"
-				contentBackgroundColor="#F9F9F9" requestedRowCount="1">
-		<s:columns>
-			<s:ArrayList>
-				<s:GridColumn dataField="dataField1" headerText="Pedido realizado" ></s:GridColumn>
-				<s:GridColumn dataField="dataField2" headerText="Pedido autorizado" ></s:GridColumn>
-				<s:GridColumn dataField="dataField3" headerText="Preparado para envio"></s:GridColumn>
-				<s:GridColumn dataField="dataField4" headerText="Produto na transportadora" ></s:GridColumn>
-				<s:GridColumn dataField="dataField4" headerText="Produto entregue" ></s:GridColumn>
-			</s:ArrayList>
-		</s:columns>
-		<s:typicalItem>
-			<fx:Object dataField1="Sample Data" dataField2="Sample Data" dataField3="Sample Data" dataField4="Sample Data"></fx:Object>
-		</s:typicalItem>
-	</s:DataGrid>
-	<s:Label x="296" y="23" fontSize="25" fontWeight="bold" text="Detalhes do Pedido"/>
+	<s:Label x="23" y="117" fontWeight="bold" text="Endereço"/>
+	
+	<mxml:MTabela x="21" y="218" width="837" height="42" id="tblPagamento" mreDataProvider="{pagamentos}" editable="false" >
+		<mxml:columns>
+			<mx:DataGridColumn dataField="nome" headerText="Tipo" width="120"/>
+			<mx:DataGridColumn dataField="descricao" headerText="Modo de Pagamento" width="250"/>
+		</mxml:columns>
+	</mxml:MTabela>
+	
+	
+	<s:Label x="21" y="203" fontWeight="bold" text="Forma de pagamento"/>
+
+	
+	<s:Label x="23" y="26" fontWeight="bold" text="Pedido"/>
 	
 </mx:TitleWindow>
