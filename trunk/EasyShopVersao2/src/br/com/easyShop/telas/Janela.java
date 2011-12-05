@@ -499,9 +499,9 @@ public class Janela extends JFrame implements ActionListener {
 	
 	private class CadastroDeUsuarios implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-					CadastroDeUsuario cadastroDeUsuario = new CadastroDeUsuario();
-					cadastroDeUsuario.setLocationRelativeTo(null);  
-					cadastroDeUsuario.setVisible(true);	
+			CadastroDeUsuario cadastroDeUsuario = new CadastroDeUsuario();
+			cadastroDeUsuario.setLocationRelativeTo(null);  
+			cadastroDeUsuario.setVisible(true);	
 		}
 	}
 	
@@ -591,114 +591,225 @@ public class Janela extends JFrame implements ActionListener {
 	}
 	
 	private class RelatorioDeProduto implements ActionListener {
-		public void actionPerformed(ActionEvent e) {			
-			try {
-				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDeProduto.jasper");
-				JasperViewer.viewReport(relat, false);
-			} catch (ExcRepositorio e1) {
-				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
-			}	
+		public void actionPerformed(ActionEvent e) {	
+			Long fkTela = Long.parseLong("7");
+			Long fkTipoPermissao = Long.parseLong("1");
+			UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+			Long fkTipoPermissao2 = Long.parseLong("2");
+			UsuarioTela usuarioTela2 = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao2);
+			
+			if(usuarioTela!=null || usuarioTela2!=null || abrirLancamentoDePermissaoADM()==false){
+				try {
+					relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDeProduto.jasper");
+					JasperViewer.viewReport(relat, false);
+				} catch (ExcRepositorio e1) {
+					JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
+				}	
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Leitura");
+			}
 		}
 	}
 	
 	private class RelatorioDeMarca implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			try {
-				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDeMarca.jasper");
-				JasperViewer.viewReport(relat, false);
-			} catch (ExcRepositorio e1) {
-				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
-			}	
+			Long fkTela = Long.parseLong("7");
+			Long fkTipoPermissao = Long.parseLong("1");
+			UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+			Long fkTipoPermissao2 = Long.parseLong("2");
+			UsuarioTela usuarioTela2 = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao2);
+			
+			if(usuarioTela!=null || usuarioTela2!=null || abrirLancamentoDePermissaoADM()==false){
+				try {
+					relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDeMarca.jasper");
+					JasperViewer.viewReport(relat, false);
+				} catch (ExcRepositorio e1) {
+					JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
+				}		
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Leitura");
+			}
 		}
 	}
 	
 	private class RelatorioDePedido implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			try {
-				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDePedido.jasper");
-				JasperViewer.viewReport(relat, false);
-			} catch (ExcRepositorio e1) {
-				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
-			}	
+			Long fkTela = Long.parseLong("7");
+			Long fkTipoPermissao = Long.parseLong("1");
+			UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+			Long fkTipoPermissao2 = Long.parseLong("2");
+			UsuarioTela usuarioTela2 = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao2);
+			
+			if(usuarioTela!=null || usuarioTela2!=null || abrirLancamentoDePermissaoADM()==false){
+				try {
+					relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDePedido.jasper");
+					JasperViewer.viewReport(relat, false);
+				} catch (ExcRepositorio e1) {
+					JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
+				}		
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Leitura");
+			}
 		}
 	}
 	
 	private class RelatorioDeUsuario implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			try {
-				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDeUsuario.jasper");
-				JasperViewer.viewReport(relat, false);
-			} catch (ExcRepositorio e1) {
-				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
-			}	
+			Long fkTela = Long.parseLong("7");
+			Long fkTipoPermissao = Long.parseLong("1");
+			UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+			Long fkTipoPermissao2 = Long.parseLong("2");
+			UsuarioTela usuarioTela2 = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao2);
+			
+			if(usuarioTela!=null || usuarioTela2!=null || abrirLancamentoDePermissaoADM()==false){
+				try {
+					relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDeUsuario.jasper");
+					JasperViewer.viewReport(relat, false);
+				} catch (ExcRepositorio e1) {
+					JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
+				}		
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Leitura");
+			}
 		}
 	}
 	
 	private class RelatorioDeCliente implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			try {
-				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDeCliente.jasper");
-				JasperViewer.viewReport(relat, false);
-			} catch (ExcRepositorio e1) {
-				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
-			}	
+			Long fkTela = Long.parseLong("7");
+			Long fkTipoPermissao = Long.parseLong("1");
+			UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+			Long fkTipoPermissao2 = Long.parseLong("2");
+			UsuarioTela usuarioTela2 = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao2);
+			
+			if(usuarioTela!=null || usuarioTela2!=null || abrirLancamentoDePermissaoADM()==false){
+				try {
+					relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDeCliente.jasper");
+					JasperViewer.viewReport(relat, false);
+				} catch (ExcRepositorio e1) {
+					JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
+				}		
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Leitura");
+			}
 		}
 	}
 	
 	private class RelatorioDeEndereco implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			try {
-				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDeEndereco.jasper");
-				JasperViewer.viewReport(relat, false);
-			} catch (ExcRepositorio e1) {
-				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
-			}	
+			Long fkTela = Long.parseLong("7");
+			Long fkTipoPermissao = Long.parseLong("1");
+			UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+			Long fkTipoPermissao2 = Long.parseLong("2");
+			UsuarioTela usuarioTela2 = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao2);
+			
+			if(usuarioTela!=null || usuarioTela2!=null || abrirLancamentoDePermissaoADM()==false){
+				try {
+					relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDeEndereco.jasper");
+					JasperViewer.viewReport(relat, false);
+				} catch (ExcRepositorio e1) {
+					JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
+				}		
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Leitura");
+			}
 		}
 	}
 	
 	private class RelatorioDePJuridica implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			try {
-				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDePessoaJuridica.jasper");
-				JasperViewer.viewReport(relat, false);
-			} catch (ExcRepositorio e1) {
-				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
-			}	
+			Long fkTela = Long.parseLong("7");
+			Long fkTipoPermissao = Long.parseLong("1");
+			UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+			Long fkTipoPermissao2 = Long.parseLong("2");
+			UsuarioTela usuarioTela2 = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao2);
+			
+			if(usuarioTela!=null || usuarioTela2!=null || abrirLancamentoDePermissaoADM()==false){
+				try {
+					relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDePessoaJuridica.jasper");
+					JasperViewer.viewReport(relat, false);
+				} catch (ExcRepositorio e1) {
+					JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
+				}		
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Leitura");
+			}
 		}
 	}
 	
 	private class RelatorioDePFisica implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			try {
-				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDePessoaFisica.jasper");
-				JasperViewer.viewReport(relat, false);
-			} catch (ExcRepositorio e1) {
-				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
-			}	
+			Long fkTela = Long.parseLong("7");
+			Long fkTipoPermissao = Long.parseLong("1");
+			UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+			Long fkTipoPermissao2 = Long.parseLong("2");
+			UsuarioTela usuarioTela2 = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao2);
+			
+			if(usuarioTela!=null || usuarioTela2!=null || abrirLancamentoDePermissaoADM()==false){
+				try {
+					relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDePessoaFisica.jasper");
+					JasperViewer.viewReport(relat, false);
+				} catch (ExcRepositorio e1) {
+					JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
+				}		
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Leitura");
+			}
 		}
 	}
 	
 	private class RelatorioDePessoa implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			try {
-				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDePessoa.jasper");
-				JasperViewer.viewReport(relat, false);
-			} catch (ExcRepositorio e1) {
-				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
-			}	
+			Long fkTela = Long.parseLong("7");
+			Long fkTipoPermissao = Long.parseLong("1");
+			UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+			Long fkTipoPermissao2 = Long.parseLong("2");
+			UsuarioTela usuarioTela2 = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao2);
+			
+			if(usuarioTela!=null || usuarioTela2!=null || abrirLancamentoDePermissaoADM()==false){
+				try {
+					relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDePessoa.jasper");
+					JasperViewer.viewReport(relat, false);
+				} catch (ExcRepositorio e1) {
+					JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
+				}		
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Leitura");
+			}
 		}
 	}
 	
 	private class RelatorioDeCategoria implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			try {
-				relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDeCategoria.jasper");
-				JasperViewer.viewReport(relat, false);
-			} catch (ExcRepositorio e1) {
-				JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
-			}	
+				Long fkTela = Long.parseLong("7");
+				Long fkTipoPermissao = Long.parseLong("1");
+				UsuarioTela usuarioTela = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao);
+				Long fkTipoPermissao2 = Long.parseLong("2");
+				UsuarioTela usuarioTela2 = new UsuarioTelaService().getUsuarioTelasSelecionado(usuario,fkTela ,fkTipoPermissao2);
+				
+				if(usuarioTela!=null || usuarioTela2!=null || abrirLancamentoDePermissaoADM()==false){
+					try {
+						relat = rep.gerar("src/br/com/easyShop/relatorios/easyShopRelatorioDeCategoria.jasper");
+						JasperViewer.viewReport(relat, false);
+					} catch (ExcRepositorio e1) {
+						JOptionPane.showMessageDialog(null, "Erro: " + e1.getMessage());
+					}			
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "O usuário não tem permissão de Leitura");
+				}
+		
+			}
 		}
-	}
 	
 	private class Sair implements ActionListener {
 		public void actionPerformed(ActionEvent e) {

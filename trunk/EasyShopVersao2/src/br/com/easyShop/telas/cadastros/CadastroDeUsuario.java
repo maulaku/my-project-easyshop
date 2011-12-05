@@ -2,7 +2,6 @@ package br.com.easyShop.telas.cadastros;
 
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -13,8 +12,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javassist.bytecode.ByteArray;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -37,14 +34,8 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import flex.messaging.io.PropertyProxyRegistry;
-
 import utils.data.Data;
-
-import br.com.easyShop.comunicacao.FlexProxy;
-import br.com.easyShop.comunicacao.JavaFlexRO;
 import br.com.easyShop.comunicacao.ResultJava;
-import br.com.easyShop.configuracoes.Configuracoes;
 import br.com.easyShop.model.Cidade;
 import br.com.easyShop.model.Contato;
 import br.com.easyShop.model.Endereco;
@@ -115,42 +106,6 @@ public class CadastroDeUsuario extends JFrame {
     private BufferedImage imagem_buffered;
     private JButton btnRemover = new JButton("");
     private final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) 
-	{
-		PropertyProxyRegistry.getRegistry().register(Object.class, new FlexProxy());
-
-		JavaFlexRO.prePackages.add("br.com.easyShop.service");
-
-		Configuracoes.carregar(Configuracoes.class.getResourceAsStream("configuracoes.properties"), Configuracoes.class.getResourceAsStream("log4j.properties"));
-
-		System.out.println("Iniciando DB...");
-		BancoDeDados.conectar();
-		System.out.println("SISTEMA EASYSHOP INICIALIZADO COM SUCESSO");
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Configuracoes.carregar(Configuracoes.class.getResourceAsStream("configuracoes.properties"), Configuracoes.class.getResourceAsStream("log4j.properties"));
-
-					BancoDeDados.conectar();
-					
-					CadastroDeUsuario frame = new CadastroDeUsuario();
-					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 
 	public CadastroDeUsuario() {
 
@@ -491,15 +446,15 @@ public class CadastroDeUsuario extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				PessoaFisicaService pessoaFisicaService = new PessoaFisicaService();
 				
-//				if(verificarCamposVazios()==1){
-//					String eString = "O(s) campo(s) destacado(s) em Vermelho é(são) obrigatório(s).";
-//					JOptionPane.showMessageDialog(null, eString);
-//				}
-//				else if(verificarCamposErrados()==1){
-//						String eString = "O(s) campo(s) destacado(s) Amarelo está(estão) errado(s).";
-//						JOptionPane.showMessageDialog(null, eString);
-//				}
-//				else{
+				if(verificarCamposVazios()==1){
+					String eString = "O(s) campo(s) destacado(s) em Vermelho é(são) obrigatório(s).";
+					JOptionPane.showMessageDialog(null, eString);
+				}
+				else if(verificarCamposErrados()==1){
+						String eString = "O(s) campo(s) destacado(s) Amarelo está(estão) errado(s).";
+						JOptionPane.showMessageDialog(null, eString);
+				}
+				else{
 					Pessoa pessoa = new Pessoa();
 					pessoa.setStatus(Constantes.STATUS_ATIVO);
 					pessoa.setClientes(null);
@@ -607,7 +562,7 @@ public class CadastroDeUsuario extends JFrame {
 					//*********************************************************************//
 	
 					JOptionPane.showMessageDialog(null, "Usuário inserido com sucesso!!");
-				//}
+				}
 			}
 		});
 
@@ -818,6 +773,7 @@ public class CadastroDeUsuario extends JFrame {
 		
 		return verificar;
 	}
+	@SuppressWarnings("deprecation")
 	private int verificarCamposVazios(){
 		int verificar = 0;
 		

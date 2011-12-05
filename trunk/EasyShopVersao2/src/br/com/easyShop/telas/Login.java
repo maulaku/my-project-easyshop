@@ -15,6 +15,9 @@ import javax.swing.border.EmptyBorder;
 
 import br.com.easyShop.model.Usuario;
 import br.com.easyShop.service.UsuarioService;
+import br.com.easyShop.telas.cadastros.CadastroDeUsuario;
+
+import java.awt.Font;
 
 public class Login extends JFrame {
 	/**
@@ -28,50 +31,54 @@ public class Login extends JFrame {
 	private JButton btnEntrar = new JButton("Entrar");
 	private Long id;
 	private JButton btnCancelar = new JButton("Cancelar");
+	private JButton btnRegistrar = new JButton("Cadastrar");
 	
-	
-	/**
-	 * Create the frame.
-	 */
 	public Login() {
 		super("Login");
 		
 		btnEntrar.addActionListener(new VerificarLogin());
 		btnCancelar.addActionListener(new Cancelar());
-//		txtUsuario.addKeyListener()
+		btnRegistrar.addActionListener(new Registrar());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(100, 100, 846, 600);
 		panelLogin = new JPanel();
 		panelLogin.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(panelLogin);
 		panelLogin.setLayout(null);
 		
 		JLabel lblUsuario = new JLabel("Usu\u00E1rio");
-		lblUsuario.setBounds(503, 258, 46, 14);
+		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblUsuario.setBounds(538, 249, 63, 14);
 		panelLogin.add(lblUsuario);
 		
 		JLabel lblSenha = new JLabel("Senha");
-		lblSenha.setBounds(503, 290, 46, 14);
+		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblSenha.setBounds(538, 281, 46, 14);
 		panelLogin.add(lblSenha);
 		
 		passSenha = new JPasswordField();
-		passSenha.setBounds(552, 287, 102, 20);
+		passSenha.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		passSenha.setBounds(594, 278, 119, 20);
 		panelLogin.add(passSenha);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setBounds(552, 255, 102, 20);
+		txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		txtUsuario.setBounds(595, 246, 118, 20);
 		panelLogin.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
-		btnEntrar.setBounds(485, 327, 89, 23);
+		btnEntrar.setBounds(481, 320, 99, 23);
 		panelLogin.add(btnEntrar);
 		
-		btnCancelar.setBounds(592, 327, 89, 23);
+		btnCancelar.setBounds(707, 320, 101, 23);
 		panelLogin.add(btnCancelar);
+		
+		btnRegistrar.setBounds(592, 320, 105, 23);
+		panelLogin.add(btnRegistrar);
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(Login.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/fundo_easyShop.jpg")));
-		label.setBounds(-382, -16, 1178, 578);
+		label.setBounds(-389, -27, 1235, 589);
 		panelLogin.add(label);
 	}
 	
@@ -125,6 +132,14 @@ public class Login extends JFrame {
 	private class Cancelar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			System.exit(0); 		
+		}
+	}
+	
+	private class Registrar implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			CadastroDeUsuario cadastroDeUsuario = new CadastroDeUsuario();
+			cadastroDeUsuario.setLocationRelativeTo(null);  
+			cadastroDeUsuario.setVisible(true);			
 		}
 	}
 	
