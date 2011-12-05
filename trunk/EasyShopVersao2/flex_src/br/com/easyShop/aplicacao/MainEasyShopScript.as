@@ -58,6 +58,8 @@ private static var usuarioGlobal:Usuario; //Usuario Global da Aplicação. Ele �
 [Bindable]
 private static var produto:Produto;
 
+
+
 public static function getProdutoGlobal():Produto
 {
 	return produto;	
