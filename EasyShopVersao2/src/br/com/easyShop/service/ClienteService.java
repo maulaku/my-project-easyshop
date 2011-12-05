@@ -2,7 +2,11 @@ package br.com.easyShop.service;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 
@@ -110,4 +114,22 @@ public class ClienteService {
 			 
 		return new ResultJava(null);
 	}
+	
+	public ResultJava recuperaImagem(Cliente cliente) {  
+		File imagem_file = new File("C:/EasyShop/siteCompras/EasyShop/flex_src/br/com/easyShop/imagens/aplicacao/cliente/CadastroDeCliente.jpg");
+			
+	    InputStream is = null;  
+	    byte[] buffer = null;  
+	    try {  
+	        is = new FileInputStream(imagem_file);  
+	        buffer = new byte[is.available()];  
+	        is.read(buffer);  
+	        is.close();  
+	    } catch (FileNotFoundException e) {  
+	        e.printStackTrace();  
+	    } catch (IOException e) {  
+	        e.printStackTrace();  
+	    }  
+	    return new ResultJava(buffer);
+	}  
 }

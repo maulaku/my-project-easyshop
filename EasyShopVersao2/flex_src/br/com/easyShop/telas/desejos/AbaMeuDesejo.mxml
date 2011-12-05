@@ -3,7 +3,7 @@
 				xmlns:s="library://ns.adobe.com/flex/spark"
 				xmlns:mx="library://ns.adobe.com/flex/mx"
 				xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
-				width="452" height="416" backgroundAlpha="1.0" backgroundColor="#F1F4F4"
+				width="524" height="416" backgroundAlpha="1.0" backgroundColor="#F1F4F4"
 				close="PopUpManager.removePopUp(this)" creationComplete="construtor()"
 				layout="absolute" removedEffect="fechar" 
 				title="Meus desejos" xmlns:renderer="br.com.easyShop.componentes.renderer.*">
@@ -19,29 +19,25 @@
 			import mx.managers.PopUpManager;
 		]]>
 	</fx:Script>
-	
-	<s:BorderContainer x="26" y="21" width="384" height="275" backgroundColor="#F2F2F2">
-		
-		
-		<mxml:MTabela x="38" y="14" width="302" height="233" id="tblDesejo" mreDataProvider="{desejos}" editable="false" >
-			<mxml:columns>
-				<mx:DataGridColumn dataField="produto.nome" headerText="Produto" width="150"/>
-				<mx:DataGridColumn dataField="produto.preco" headerText="Preço" width="120"/>
-				<mx:DataGridColumn id="colunaRemoverProponente" headerText="Remover" width="55" textAlign="center" editable="false" resizable="false" draggable="false" sortable="false">
-					<mx:itemRenderer>
-						<fx:Component>
-							<renderer:MRGridBotaoRemoverDesejo/>
-						</fx:Component>
-					</mx:itemRenderer>
-				</mx:DataGridColumn>
-			</mxml:columns>
-		</mxml:MTabela>
-		
-	</s:BorderContainer>
-	<s:Button id="btnContinuarComprando" x="28" y="311" width="210" height="38"
+	<s:Button id="btnContinuarComprando" x="39" y="320" width="210" height="38"
 			  label="Continuar Comprando" fontSize="14" fontWeight="bold"
 			  icon="@Embed('../../imagens/botoes/back.png')" click="btnComprarDesejo(event)" />
-	<s:Button id="btnComprar" x="245" y="308" width="161" height="41" label="Comprar"
-			  icon="@Embed('../../imagens/botoes/card_add.png')" click="btnComprar_clickHandler(event)"/>
+	<s:Button id="btnComprar" x="273" y="320" width="210" height="38" label="Comprar"
+			  click="btnComprar_clickHandler(event)" fontSize="14" fontWeight="bold"
+			  icon="@Embed('../../imagens/botoes/card_add.png')"/>
+	<mxml:MTabela id="tblDesejo" x="43" y="26" width="440" height="267" editable="false"
+				  fontSize="15" mreDataProvider="{desejos}">
+		<mxml:columns>
+			<mx:DataGridColumn dataField="produto.nome" headerText="Produto" width="200"/>
+			<mx:DataGridColumn dataField="produto.preco" headerText="Preço" width="90"/>
+			<mx:DataGridColumn id="colunaRemoverProponente" headerText="Remover" width="80" textAlign="center" editable="false" resizable="false" draggable="false" sortable="false">
+				<mx:itemRenderer>
+					<fx:Component>
+						<renderer:MRGridBotaoRemoverDesejo/>
+					</fx:Component>
+				</mx:itemRenderer>
+			</mx:DataGridColumn>
+		</mxml:columns>
+	</mxml:MTabela>
 	
 </mx:TitleWindow>

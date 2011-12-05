@@ -249,6 +249,8 @@ public function resultSubCategoria(result:ResultJava):void
 	var i:int;
 	var categoria:Categoria;
 	var grid:VBox = new VBox();
+	grid.verticalCenter="0";
+	grid.horizontalCenter="0" 
 	var novo:AccordionItem;
 	
 	try		
@@ -264,6 +266,8 @@ public function resultSubCategoria(result:ResultJava):void
 				label.id = "" + categoria.pkCategoria;
 				label.accessibilityName = "" + categoria.subCategoria.pkCategoria;
 				label.addEventListener(MouseEvent.CLICK,abrirCatalogos);
+				label.verticalCenter="0";
+				label.horizontalCenter="0" 
 				grid.addElement(label);
 			}	
 			novo.addElement(grid);

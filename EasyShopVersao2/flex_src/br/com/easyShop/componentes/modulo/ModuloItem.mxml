@@ -3,7 +3,7 @@
 		 xmlns:s="library://ns.adobe.com/flex/spark"
 		 xmlns:mx="library://ns.adobe.com/flex/mx"
 		 xmlns:mxml="http://www.mresolucoes.com.br/2010/mxml"
-		 width="298" height="184" contentBackgroundColor="#FFFFFF">
+		 width="298" height="184" contentBackgroundColor="#FFFFFF" creationComplete="group1_creationCompleteHandler(event)">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -14,6 +14,8 @@
 			import br.com.easyShop.model.Produto;
 			import br.com.mresolucoes.componentes.mre.Alerta;
 			import br.com.mresolucoes.imagens.ImagensUtils;
+			
+			import mx.events.FlexEvent;
 			
 			[Bindable]
 			private var _imagemSource:String;
@@ -56,12 +58,25 @@
 			public function set preco(preco:String):void { _preco = preco; }
 			public function get produto():Produto { return _produto; }
 			public function set produto(produto:Produto):void { _produto = produto; }
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				lbPreco.text = "R$ " + _preco;
+				if(produto.promocao==false){
+					lbPromocao.setVisible(false);
+				}
+			}
+			
 		]]>
 	</fx:Script>
 	
 	<s:Image id="imagemProduto" x="7" y="45" width="123" height="129" source="{_imagemSource}" click="escutaBotoes(btEspiar)"/>
-	<s:Label id="lbNome" x="10" y="10"  fontSize="25" textAlign="center" width="278" text="{_nome}"/>
-	<s:Label id="lbPreco" x="130" y="75" fontSize="18" textAlign="right" width="150" text="{_preco}"/>
+	<s:Label id="lbNome" x="10" y="7" width="278" height="32" fontSize="26" fontWeight="bold"
+			 text="{_nome}" textAlign="center" verticalAlign="middle"/>
+	<s:Label id="lbPreco" x="136" y="90" width="150" height="26" fontSize="18" textAlign="center"
+			 verticalAlign="middle"/>
 	<mxml:MBotao id="btEspiar" x="218" y="153" label="Espiar" mreClick="escutaBotoes"/>
 	<mxml:MBotao id="btDesejo" x="138" y="153" width="74" label="Meu desejo" mreClick="escutaBotoes"/>
+	<s:Label id="lbPromocao" x="134" y="65" width="150" height="26" fontSize="18" text="Promoção:"
+			 textAlign="center" verticalAlign="middle"/>
 </s:Group>

@@ -264,7 +264,7 @@ public class CadastroDeProdutos extends JFrame {
 				
 				JLabel lblPromoo = new JLabel("Promo\u00E7\u00E3o");
 				lblPromoo.setFont(new Font("Tahoma", Font.PLAIN, 18));
-				lblPromoo.setBounds(312, 196, 96, 24);
+				lblPromoo.setBounds(312, 196, 89, 24);
 				ctpCadastroProduto.add(lblPromoo);
 				
 				chkSimNao.setFont(new Font("Tahoma", Font.PLAIN, 16));
