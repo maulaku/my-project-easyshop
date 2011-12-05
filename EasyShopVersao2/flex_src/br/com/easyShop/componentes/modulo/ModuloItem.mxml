@@ -10,8 +10,11 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import br.com.easyShop.aplicacao.MainEasyShop;
 			import br.com.easyShop.model.Produto;
+			import br.com.mresolucoes.componentes.mre.Alerta;
 			import br.com.mresolucoes.componentes.mre.MModulo;
+			import br.com.mresolucoes.imagens.ImagensUtils;
 			
 			import mx.controls.Alert;
 			
@@ -37,8 +40,14 @@
 				
 				if(botao == btDesejo)
 				{
-					this.dispatchEvent(new Event("clickadoModuloItemDesejo"));
-					
+					if(MainEasyShop.getClienteGlobal() != null)
+					{
+						this.dispatchEvent(new Event("clickadoModuloItemDesejo"));						
+					}
+					else
+					{
+						Alerta.abrir("Faça o login primeiro", "EasyShop", null, null, null, ImagensUtils.INFO);
+					}
 				}
 			}
 			
