@@ -16,14 +16,14 @@ public var dados:ArrayCollection = new ArrayCollection();
 public static var pedidoProduto:PedidoProduto;
 
 
-public function construtor(PedidoProduto pedido):void
+public function construtor(pedido:PedidoProduto):void
 {
 	pedidoProduto = pedido;
     inserirDados();
 }
 
-public function inserirDados()void:{
-
+public function inserirDados():void
+{
 	var temp:Object;
 
 		temp = new Object();
