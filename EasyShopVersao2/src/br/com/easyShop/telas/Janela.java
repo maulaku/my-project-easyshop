@@ -100,9 +100,9 @@ public class Janela extends JFrame implements ActionListener {
 		btnCadastroProduto.addActionListener(new CadastroDeProduto());
 		btnCadastroUsuario.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/addUsuario.png")));
 		btnCadastroUsuario.addActionListener(new CadastroDeUsuarios());
-		btnCadastroDeCategoria.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/relatorio.png")));
+		btnCadastroDeCategoria.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/addcategoria.png")));
 		btnCadastroDeCategoria.addActionListener(new PesquisaDeCategoria());
-		btnCadastroDeMarca.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/relatorio.png")));
+		btnCadastroDeMarca.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/addmarca2.png")));
 		btnCadastroDeMarca.addActionListener(new PesquisaDeMarca());
 		btnLancamentoDePermissao.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/lancamentoDePermissao.png")));
 		btnLancamentoDePermissao.addActionListener(new AbrirLancamentoDePermissao());
@@ -116,9 +116,11 @@ public class Janela extends JFrame implements ActionListener {
 		btnSair.addActionListener(new Sair());
 		btnLogoff.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/1320376266_login.png")));
 		btnLogoff.addActionListener(new Logoff());
+		btnMeusDados.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/dados.png")));
 		btnMeusDados.addActionListener(new MeusDado());
+		btnEditarMeusDados.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/edit.png")));
 		btnEditarMeusDados.addActionListener(new EditarMeusDados());
-		btnEditarProduto.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/editarProduto.png")));
+		btnEditarProduto.setIcon(new ImageIcon(Janela.class.getResource("/br/com/easyShop/telas/imagens/aplicacao/editarPr.png")));
 		btnEditarProduto.addActionListener(new EditarProduto());
 		btnRelatorioDePessoa.addActionListener(new RelatorioDePessoa());
 		btnRelatorioDePFisica.addActionListener(new RelatorioDePFisica());
@@ -170,7 +172,7 @@ public class Janela extends JFrame implements ActionListener {
 		btnLogoff.setBounds(10, 330, 205, 44);
 		panel.add(btnLogoff);
 		
-		btnEditarMeusDados.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnEditarMeusDados.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnEditarMeusDados.setBounds(10, 275, 205, 44);
 		panel.add(btnEditarMeusDados);
 		

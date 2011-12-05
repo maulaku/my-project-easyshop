@@ -17,7 +17,6 @@ import br.com.easyShop.telas.desejos.AbaMeuDesejo;
 import br.com.easyShop.telas.pagamento.ConfirmarCompra;
 import br.com.easyShop.telas.pagamento.Pagamentos;
 import br.com.easyShop.telas.pagamento.PedidoConfirmado;
-import br.com.easyShop.telas.pedidos.AbaDetalheMeuPedido;
 import br.com.easyShop.telas.pedidos.AbaMeusPedidos;
 import br.com.easyShop.telas.produtos.AbaDetalhesProduto;
 import br.com.easyShop.telas.produtos.MeuCarrinho;
@@ -51,8 +50,6 @@ private var meuDesejo:AbaMeuDesejo;
 private var painelPagamentos:Pagamentos;
 private var confirmarCompra:ConfirmarCompra;
 private var pedidoConfirmado:PedidoConfirmado;
-private var painelMeusPedidos:AbaMeusPedidos;
-private var painelMeusPedidosDetalhe:AbaDetalheMeuPedido;
 
 private var produtoAux:Produto;
 private var nomeCategoriaSelecionada:String;
@@ -70,10 +67,6 @@ public static function getProdutoGlobal():Produto
 	return produto;	
 }
 
-/**
- * Inicializa os componentes e objetos
- */ 
-
 public static function getClienteGlobal():Cliente
 {
 	return clienteGlobal;
@@ -84,14 +77,10 @@ public static function getUsurioGlobal():Usuario
 	return usuarioGlobal;
 }
 
-public static function setProdutoGlobal(produto2:Produto):void
-{
-	produto = produto2; 
-}
-
 public function construtor():void
 {
 	modulo.removeAllElements();
+	produto = new Produto();
 	if(clienteGlobal==null){
 		btnCarrinho.visible = false;
 		btnDesejo.visible = false;
@@ -149,13 +138,6 @@ private function lidaModuloItem(event:Event):void{
 	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
 }
 
-public function detalhes(event:Event):void{
-	var item:ModuloItem = ((ModuloItem) (event.currentTarget));
-	produto = item.produto;
-	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
-}
-
-
 public function escutaBotoes(botao:MBotao):void
 {
 	try
@@ -175,20 +157,20 @@ public function escutaBotoes(botao:MBotao):void
 	}
 }
 private function adicionaMeuDesejo(event:Event):void{
-	
-	var item:ModuloItem = ((ModuloItem) (event.currentTarget));
-	produto = item.produto;
-	
-	var desejoProduto:DesejoProduto = new DesejoProduto();
-	var desejo:Desejo = new Desejo();
-	
-	desejo.cliente = ((Cliente) (MainEasyShop.getClienteGlobal()));
-	
-	desejoProduto.produto = produto;
-	desejoProduto.desejo = desejo;
-	
-	MRemoteObject.get("DesejoProdutoService.inserirDesejo", [desejoProduto], salvarMeusDesejos);
-	
+		var item:ModuloItem = ((ModuloItem) (event.currentTarget));
+		produto = item.produto;
+		
+		var desejoProduto:DesejoProduto = new DesejoProduto();
+		var desejo:Desejo = new Desejo();
+		
+		desejo.cliente = MainEasyShop.getClienteGlobal();
+		desejo.status = Constantes.instance.STATUS_ATIVO;
+		
+		desejoProduto.produto = produto;
+		desejoProduto.desejo = desejo;
+		desejoProduto.status = Constantes.instance.STATUS_ATIVO;
+		
+		MRemoteObject.get("DesejoProdutoService.inserirDesejo", [desejoProduto], salvarMeusDesejos);
 }
 
 public function salvarMeusDesejos(result:ResultJava):void{
@@ -360,25 +342,14 @@ public function mouseOut(evt:MouseEvent):void{
 	diminuir.play([evt.currentTarget]);
 }
 
-protected function btnPedido_clickHandler():void{
-
-	painelMeusPedidos = new AbaMeusPedidos();
+protected function btnPedido_clickHandler():void
+{
+	var painelMeusPedidos:AbaMeusPedidos = new AbaMeusPedidos();
 	painelMeusPedidos.showCloseButton=true;
 	painelMeusPedidos.setVisible(true);
-    painelMeusPedidos.addEventListener("clicadoVerDetalhes", btnDetalhesPedido_clickHandler);
 	PopUpManager.addPopUp(painelMeusPedidos, this, true);
 	
 	centralizarTela(painelMeusPedidos);
-}
-
-private function btnDetalhesPedido_clickHandler(event:Event):void
-{
-	painelMeusPedidos.visible = false;
-	painelMeusPedidosDetalhe = new AbaDetalheMeuPedido();
-	painelMeusPedidosDetalhe.showCloseButton=true;
-	painelMeusPedidosDetalhe.setVisible(true);
-	PopUpManager.addPopUp(painelMeusPedidosDetalhe, this, true);
-	centralizarTela(painelMeusPedidosDetalhe);
 }
 
 private function enviaCliente():Cliente{
