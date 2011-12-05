@@ -79,7 +79,8 @@ public static function getUsurioGlobal():Usuario
 
 public function construtor():void
 {
-	modulo.removeAllElements();
+	modulo.setVisible(false);
+	
 	produto = new Produto();
 	if(clienteGlobal==null){
 		btnCarrinho.visible = false;
@@ -111,7 +112,6 @@ public function resultProduto(result:ResultJava):void
 				
 				item.nome = produto.nome;
 				item.preco = NumberUtil.toString(produto.preco, 2);
-				item.modulo = modulo;
 				item.produto = produto;
 				item.imagemSource = Constantes.instance.ENDERECO_IMAGEM_PRODUTO+NumberUtil.toString(produto.pkProduto)+".jpg";
 				item.addEventListener("clickadoModuloItem", lidaModuloItem);
@@ -135,6 +135,7 @@ public function resultProduto(result:ResultJava):void
 private function lidaModuloItem(event:Event):void{
 	var item:ModuloItem = ((ModuloItem) (event.currentTarget));
 	produto = item.produto;
+	modulo.setVisible(true);
 	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
 }
 
@@ -503,21 +504,25 @@ private function lidaClickadoLogin(event:Event):void{
 
 private function lidaClickadoPessoaFisica(event:Event):void{
 	painelLogin.setVisible(false);
+	modulo.setVisible(true);
 	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaFisica.swf");
 }
 
 private function lidaClickadoPessoaJuridica(event:Event):void{
 	painelLogin.setVisible(false);
+	modulo.setVisible(true);
 	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaJuridica.swf");
 }
 
 private function lidaClickadoPessoaFisica2(event:Event):void{
 	painelLogout.setVisible(false);
+	modulo.setVisible(true);
 	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaFisica.swf");
 }
 
 private function lidaClickadoPessoaJuridica2(event:Event):void{
 	painelLogout.setVisible(false);
+	modulo.setVisible(true);
 	modulo.mreLoadModule("br/com/easyShop/telas/cadastros/AbaCadastroClientePessoaJuridica.swf");
 }
 
