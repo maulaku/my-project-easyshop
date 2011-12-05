@@ -362,7 +362,7 @@ protected function btnPedido_clickHandler():void
 	var painelMeusPedidos:AbaMeusPedidos = new AbaMeusPedidos();
 	painelMeusPedidos.showCloseButton=true;
 	painelMeusPedidos.setVisible(true);
-	painelMeusPedidos.addEventListener("clickadoFinalizarCarrinho", btnDetalhesPedido);
+	painelMeusPedidos.addEventListener("clicadoVerDetalhes", btnDetalhesPedido);
 	PopUpManager.addPopUp(painelMeusPedidos, this, true);
 	
 	centralizarTela(painelMeusPedidos);
@@ -379,8 +379,6 @@ private function btnDetalhesPedido(event:Event):void
 	
 	centralizarTela(painelMeusPedidosDetalhe);
 }
-
-
 
 private function enviaCliente():Cliente{
 	
