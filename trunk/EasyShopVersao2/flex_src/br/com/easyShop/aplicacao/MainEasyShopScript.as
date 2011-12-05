@@ -588,6 +588,6 @@ protected function btnDesejo_clickHandler(event:MouseEvent):void
 
 private function clickadoComprarDesejo(event:Event):void{
 	meuDesejo.setVisible(false);
-//	produto = item.produto;
+	produto = AbaMeuDesejo.produto;
 	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
 }
