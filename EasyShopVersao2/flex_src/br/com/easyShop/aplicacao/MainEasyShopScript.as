@@ -17,6 +17,7 @@ import br.com.easyShop.telas.desejos.AbaMeuDesejo;
 import br.com.easyShop.telas.pagamento.ConfirmarCompra;
 import br.com.easyShop.telas.pagamento.Pagamentos;
 import br.com.easyShop.telas.pagamento.PedidoConfirmado;
+import br.com.easyShop.telas.pedidos.AbaDetalheMeuPedido;
 import br.com.easyShop.telas.pedidos.AbaMeusPedidos;
 import br.com.easyShop.telas.produtos.AbaDetalhesProduto;
 import br.com.easyShop.telas.produtos.MeuCarrinho;
@@ -50,6 +51,8 @@ private var meuDesejo:AbaMeuDesejo;
 private var painelPagamentos:Pagamentos;
 private var confirmarCompra:ConfirmarCompra;
 private var pedidoConfirmado:PedidoConfirmado;
+private var painelMeusPedidos:AbaMeusPedidos;
+private var painelMeusPedidosDetalhe:AbaDetalheMeuPedido;
 
 private var produtoAux:Produto;
 private var nomeCategoriaSelecionada:String;
@@ -357,14 +360,25 @@ public function mouseOut(evt:MouseEvent):void{
 	diminuir.play([evt.currentTarget]);
 }
 
-protected function btnPedido_clickHandler():void
-{
-	var painelMeusPedidos:AbaMeusPedidos = new AbaMeusPedidos();
+protected function btnPedido_clickHandler():void{
+
+	painelMeusPedidos = new AbaMeusPedidos();
 	painelMeusPedidos.showCloseButton=true;
 	painelMeusPedidos.setVisible(true);
+    painelMeusPedidos.addEventListener("clicadoVerDetalhes", btnDetalhesPedido_clickHandler);
 	PopUpManager.addPopUp(painelMeusPedidos, this, true);
 	
 	centralizarTela(painelMeusPedidos);
+}
+
+private function btnDetalhesPedido_clickHandler(event:Event):void
+{
+	painelMeusPedidos.visible = false;
+	painelMeusPedidosDetalhe = new AbaDetalheMeuPedido();
+	painelMeusPedidosDetalhe.showCloseButton=true;
+	painelMeusPedidosDetalhe.setVisible(true);
+	PopUpManager.addPopUp(painelMeusPedidosDetalhe, this, true);
+	centralizarTela(painelMeusPedidosDetalhe);
 }
 
 private function enviaCliente():Cliente{

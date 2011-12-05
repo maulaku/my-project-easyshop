@@ -7,7 +7,17 @@
 				width="882" height="554" backgroundAlpha="1.0" backgroundColor="#E0E3E3"
 				close="PopUpManager.removePopUp(this)" layout="absolute" removedEffect="fechar"
 				title="Detalhes Do Pedido">
-	<fx:Script source="LoginScript.as" />
+	
+	<fx:Script>
+		<![CDATA[
+			import br.com.easyShop.aplicacao.MainEasyShop;
+			import br.com.mresolucoes.utils.NumberUtil;
+			
+			import mx.managers.PopUpManager;
+		]]>
+	</fx:Script>
+	
+	<fx:Script source="AbaDetalhesMeuPedidoScript.as" />
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
