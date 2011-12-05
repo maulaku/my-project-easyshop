@@ -34,29 +34,29 @@ public function escutaBotoes(botao:MBotao):void
 
 public function preencherPedido(result:ResultJava):void{
 	
-	var i:int;
-	var pedido:PedidoProduto;
-	var arr:Array = new Array();
+//	var i:int;
+//	var pedido:PedidoProduto;
+//	var arr:Array = new Array();
+//	
+//	dadosPedido = result.lista;
+//	
+//	for(i=0; i<result.lista.length; i++){
+//		
+//		pedido = new PedidoProduto();
+//		pedido = ((PedidoProduto) (result.lista[i]));  
+//		var temp:Object;
+//		
+//		temp=new Object();
+//		temp.codigo=pedido.pkPedidoProduto;
+//		temp.produto=pedido.produto.nome;
+//		temp.valor = pedido.pedido.total;
+//		temp.status = pedido.pedido.status;
+//		temp.quantidade = pedido.quantidade;
+//		
+//		pedidos.addItem(temp);
+//	}	
 	
-	dadosPedido = result.lista;
-	
-	for(i=0; i<result.lista.length; i++){
-		
-		pedido = new PedidoProduto();
-		pedido = ((PedidoProduto) (result.lista[i]));  
-		var temp:Object;
-		
-		temp=new Object();
-		temp.codigo=pedido.pkPedidoProduto;
-		temp.produto=pedido.produto.nome;
-		temp.valor = pedido.pedido.total;
-		temp.status = pedido.pedido.status;
-		temp.quantidade = pedido.quantidade;
-		
-		pedidos.addItem(temp);
-	}	
-	
-	//tblPedido.mreDataProvider = result.lista;
+	tblPedido.mreDataProvider = result.lista;
 	
 	//pedido = ((Pedido) (dadosPedido[i])); 
 	//	arr.push(pedido);
