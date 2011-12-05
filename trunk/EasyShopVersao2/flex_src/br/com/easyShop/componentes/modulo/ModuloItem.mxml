@@ -71,7 +71,7 @@
 	</fx:Script>
 	
 	<s:Image id="imagemProduto" x="7" y="45" width="123" height="129" source="{_imagemSource}" click="escutaBotoes(btEspiar)"/>
-	<s:Label id="lbNome" x="10" y="7" width="278" height="32" fontSize="26" fontWeight="bold"
+	<s:Label id="lbNome" x="10" y="10" width="278" height="27" fontSize="26" fontWeight="bold"
 			 text="{_nome}" textAlign="center" verticalAlign="middle"/>
 	<s:Label id="lbPreco" x="136" y="90" width="150" height="26" fontSize="18" textAlign="center"
 			 verticalAlign="middle"/>

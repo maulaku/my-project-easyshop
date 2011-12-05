@@ -11,7 +11,7 @@
 	<fx:Script>
 		<![CDATA[
 			[Bindable]
-			private var _imagemSource:String;
+			private var _imagemSource:String; 
 				
 			public function get imagemSource():String { return _imagemSource; }
 			public function set imagemSource(imagemSource:String):void { _imagemSource = imagemSource; }
