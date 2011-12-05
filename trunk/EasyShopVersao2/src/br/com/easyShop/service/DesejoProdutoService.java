@@ -40,7 +40,10 @@ public class DesejoProdutoService {
 		try
 		{
 			DesejoService desejoService = new DesejoService();
+			desejoProduto.getDesejo().setStatus(Constantes.STATUS_ATIVO);
 			desejoService.inserir(desejoProduto.getDesejo());
+			
+			desejoProduto.setStatus(Constantes.STATUS_ATIVO);
 			
 			return new ResultJava(new DesejoProdutoDAO().salvar(desejoProduto));
 		} 

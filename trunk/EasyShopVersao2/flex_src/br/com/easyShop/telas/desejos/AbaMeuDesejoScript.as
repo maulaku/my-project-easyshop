@@ -30,45 +30,13 @@ public function construtor():void
 
 protected function btnComprar_clickHandler(event:MouseEvent):void
 {
-	produto = tblDesejo.mreGetSelectedItem();
+	produto = (tblDesejo.mreGetSelectedItem() as DesejoProduto).produto;
 	this.dispatchEvent(new Event("clickadoComprar"));	
 }
 
-public function escutaBotoes(botao:MBotao):void
-{
-		if(botao == btEspiar)
-		{
-			if(tblDesejo.mreGetSelectedItem() != null)
-			{
-				//MainEashoShop.setProdutoGlobal = (tblDesejo.mreGetSelectedItem() as DesejoProduto).produto;
-				//modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
-			}else{
-			//	Alerta.abrir("Ops, Ocorreu um erro ao carregar enderecos", "EasyShop", null, null, null, ImagensUtils.INFO);
-			}
-			
-		}
-}
-
 public function preencherDesejo(result:ResultJava):void{
-	
-//	var i:int;
-//	var desejo:DesejoProduto;
-//
-//	for(i=0; i< result.lista.length; i++){
-//		
-//		desejo = new DesejoProduto();
-//		desejo = ((DesejoProduto) (result.lista[i]));  
-//
-//		var temp:Object;
-//		temp = new Object();
-//		temp.produto=desejo.produto.nome;
-//		temp.preco=desejo.produto.preco;
-//		
-//		desejos.addItem(temp);
-//	}
-	
-	tblDesejo.mreDataProvider = result.lista;
 
+	tblDesejo.mreDataProvider = result.lista;
 }
 
 public function btnComprarDesejo(event:MouseEvent):void
