@@ -12,7 +12,6 @@ import br.com.mresolucoes.componentes.mre.Alerta;
 import br.com.mresolucoes.componentes.mre.MBotao;
 import br.com.mresolucoes.imagens.ImagensUtils;
 import br.com.mresolucoes.utils.NumberUtil;
-import br.com.mresolucoes.utils.TelaUtil;
 
 import flash.globalization.NumberFormatter;
 
@@ -30,22 +29,7 @@ private var produto:Produto;
 public function construtor():void
 {
 	imagemSource = Constantes.instance.ENDERECO_IMAGEM_PRODUTO+NumberUtil.toString(MainEasyShop.getProdutoGlobal().pkProduto)+".jpg";
-	
-	novo();
 	carregarProduto();
-}
-
-public function novo():void
-{
-	try
-	{
-		TelaUtil.limparComponentes(this,2);
-//		cbParcelamento.enabled = false;
-	}
-	catch (e:Error)
-	{
-		Alerta.abrir("Ocorreu um erro, contate o administrador..", "Detalhes do Produto", null, null, null, ImagensUtils.ERRO);		
-	}
 }
 
 public function carregarProduto():void
@@ -60,25 +44,17 @@ public function carregarProduto():void
 			
 			var str:String;
 			var i:int;
-			
-			lbPreco.text = "R$: " + ((Math.round(produto.preco)*100)/100);
-//			imagemProduto.source = Constantes.instance.ENDERECO_IMAGEM_PRODUTO+NumberUtil.toString(produto.pkProduto)+".jpg";
-			
+			lbPreco.text = "R$: " + ((Math.round(produto.preco)*100)/100);			
 		    var tiposParcelamento:ArrayCollection = new ArrayCollection;
 			
 			for(i=1;i<13;i++){
-				str = "R$ " + ((Math.round(produto.preco/i)*100)/100);
+				str = i + "x de R$ " + ((Math.round(produto.preco/i)*100)/100) + " sem juros";
 				
 				tiposParcelamento.addItem(str);
 			}
 			
 			cbParcelamento.dataProvider = tiposParcelamento;
-			
-//			tiposParcelamento
-//			[{nome:"1 x "+NumberUtil.toString(produto.preco, 2)+" sem juros"};
-//			{nome:"1 x "+NumberUtil.toString(produto.preco, 2)+" sem juros"};
-//			]);
-			
+						
 			txtQuantidade.text = "1";
 			txtQuantidade.showInAutomationHierarchy = true;
 	} 

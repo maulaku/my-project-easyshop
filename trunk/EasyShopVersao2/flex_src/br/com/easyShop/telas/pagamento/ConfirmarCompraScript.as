@@ -18,6 +18,7 @@ import flash.events.MouseEvent;
 import flash.sampler.NewObjectSample;
 
 import mx.collections.ArrayCollection;
+import mx.controls.Alert;
 import mx.core.mx_internal;
 import mx.events.CalendarLayoutChangeEvent;
 import mx.managers.PopUpManager;
@@ -30,7 +31,7 @@ public function construtor():void
 	valorTotalProdutos.text = valorTotalProdutos.text + MeuCarrinho.getValorCarrinho() + ",00";
 	valorFrete.text = valorFrete.text + MeuCarrinho.getValorFrete() + ",00";
 	valorTotalPagar.text = valorTotalPagar.text + (MeuCarrinho.getValorFrete()+MeuCarrinho.getValorCarrinho()) + ",00";
-	
+		
 	if(Pagamentos.getSelecaoFormaPagamento()==0){
 		formaDePagamento.text = "Boleto Bancário";
 		valor.text = valor.text + (MeuCarrinho.getValorFrete()+MeuCarrinho.getValorCarrinho()) + ",00";

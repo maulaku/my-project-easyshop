@@ -238,8 +238,8 @@ public class CadastroDeCategoria extends JFrame {
 					    imagem_buffered = null;
 						File imagem_file = new File(fc.getSelectedFile().toString());
 						imagem_buffered = ImageIO.read( imagem_file );
-						ImageIO.write(imagem_buffered, "jpg", new File("Imagens/ImagensCategoria/CadastroDeCategoria.jpg"));
-						lblImagem.setIcon(new ImageIcon(("Imagens/ImagensCategoria/CadastroDeCategoria.jpg")));
+						ImageIO.write(imagem_buffered, "jpg", new File(Constantes.ENDERECO_CATEGORIA+"CadastroDeCategoria.jpg"));
+						lblImagem.setIcon(new ImageIcon((Constantes.ENDERECO_CATEGORIA+"CadastroDeCategoria.jpg")));
 						caminhoImagem = fc.getSelectedFile().toString();
 					} catch (IOException e1) {
 						JOptionPane.showMessageDialog(null, "Arquivo selecionado não é uma imagem!");

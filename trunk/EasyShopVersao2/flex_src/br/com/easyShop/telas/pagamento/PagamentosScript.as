@@ -10,6 +10,7 @@ import flashx.textLayout.formats.Float;
 
 import mx.collections.ArrayCollection;
 import mx.collections.IList;
+import mx.controls.Alert;
 import mx.controls.DateField;
 import mx.managers.PopUpManager;
 
@@ -33,6 +34,7 @@ public static function getDescricaoPagamento():String{
 public function construtor():void
 {
 	var i:int;
+	resp = 0;
 	var valorTotal:int = MeuCarrinho.getValorCarrinho() + MeuCarrinho.getValorFrete();
 	var arr:ArrayCollection = new ArrayCollection();
 	var string:String;
@@ -59,7 +61,7 @@ protected function btnFinalizarCompra_clickHandler(event:MouseEvent):void
 	
 	if(boleto.selected){
 		resp 0;
-		descricaoPagamento = "Parcelado em 1x de R$ " + valor + " sem juros.";
+		descricaoPagamento = "Parcelado em 1x de R$ " + valor + " sem juros no boleto bancário.";
 	}
 	else{
 		if(visa.selected) nomeCartao = "Visa";
