@@ -58,8 +58,6 @@ private static var usuarioGlobal:Usuario; //Usuario Global da Aplicação. Ele �
 [Bindable]
 private static var produto:Produto;
 
-
-
 public static function getProdutoGlobal():Produto
 {
 	return produto;	
@@ -98,13 +96,12 @@ public function construtor():void
 {
 	modulo.setVisible(false);
 	
-	produto = new Produto();
 	if(clienteGlobal==null){
 		btnCarrinho.visible = false;
 		btnDesejo.visible = false;
 		btnPedido.visible = false;
 	}
-	grPainelModulos.removeAllElements();
+//	grPainelModulos.removeAllElements();
 	panelCategorias.title = "Categorias Principais" ;
 	cbBusca.mreServicePesquisa = "ProdutoService.getProdutosNome";
 	MRemoteObject.get("CategoriaService.getTodasCategoriasPai", null, resultCategoria);
