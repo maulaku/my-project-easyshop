@@ -18,5 +18,5 @@
 		]]>
 	</fx:Script>
 	
-	<s:SWFLoader id="imagemProduto" x="0" y="0" width="192" height="209" source="{_imagemSource}"/>
+	<s:Image id="imagemProduto" x="0" y="0" width="192" height="209" source="{_imagemSource}"/>
 </s:Group>
