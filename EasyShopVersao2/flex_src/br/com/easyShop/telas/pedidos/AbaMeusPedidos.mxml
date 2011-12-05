@@ -8,8 +8,10 @@
 				layout="absolute" removedEffect="fechar" title="Meus Pedidos">
 	<fx:Script>
 		<![CDATA[
-			import mx.managers.PopUpManager;
 			import br.com.easyShop.aplicacao.MainEasyShop;
+			import br.com.mresolucoes.utils.NumberUtil;
+			
+			import mx.managers.PopUpManager;
 		]]>
 	</fx:Script>
 	
@@ -18,14 +20,15 @@
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	
-	<mx:DataGrid x="79" y="21" width="606" height="228" id="tblPedido" dataProvider="{pedidos}" > 
-		<mx:columns>
-			<mx:DataGridColumn  dataField="codigo" headerText="Código" width="120"/>
-			<mx:DataGridColumn  dataField="produto" headerText="Produto" width="120"/>
-			<mx:DataGridColumn  dataField="quantidade" headerText="Quantidade" width="120"/>
-			<mx:DataGridColumn  dataField="valor" headerText="Valor" width="120"/>		
-		</mx:columns>
-	</mx:DataGrid>
+	
+	<mxml:MTabela x="79" y="21" width="606" height="228" id="tblPedido" mreDataProvider="{pedidos}" editable="true" >
+		<mxml:columns>
+			<mx:DataGridColumn dataField="pkPedidoProduto" labelFunction="{NumberUtil.validarNumber2}" headerText="Código" width="120"/>
+			<mx:DataGridColumn dataField="produto.nome" headerText="Produto" width="120"/>
+			<mx:DataGridColumn dataField="quantidade" headerText="Quantidade" labelFunction="{NumberUtil.validarNumber2}" width="120"/>
+			<mx:DataGridColumn dataField="pedido.total" headerText="Total" labelFunction="{NumberUtil.validarNumber2}" width="120"/>
+		</mxml:columns>
+	</mxml:MTabela>
 	
 	<s:Button x="337" y="289" label="Detalhes" click="irParaDetalhe()"/>
 	<s:Button x="220" y="289" label="Voltar"/>
