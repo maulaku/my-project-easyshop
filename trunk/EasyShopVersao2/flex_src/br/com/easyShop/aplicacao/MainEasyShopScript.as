@@ -7,7 +7,6 @@ import br.com.easyShop.model.Categoria;
 import br.com.easyShop.model.Cliente;
 import br.com.easyShop.model.Desejo;
 import br.com.easyShop.model.DesejoProduto;
-import br.com.easyShop.model.PedidoProduto;
 import br.com.easyShop.model.Pessoa;
 import br.com.easyShop.model.PessoaFisica;
 import br.com.easyShop.model.Produto;
@@ -20,29 +19,20 @@ import br.com.easyShop.telas.pagamento.Pagamentos;
 import br.com.easyShop.telas.pagamento.PedidoConfirmado;
 import br.com.easyShop.telas.pedidos.AbaDetalheMeuPedido;
 import br.com.easyShop.telas.pedidos.AbaMeusPedidos;
-import br.com.easyShop.telas.produtos.AbaDetalhesProduto;
 import br.com.easyShop.telas.produtos.MeuCarrinho;
 import br.com.easyShop.utils.Constantes;
 import br.com.mresolucoes.componentes.mre.Alerta;
 import br.com.mresolucoes.componentes.mre.MBotao;
-import br.com.mresolucoes.componentes.mre.MModulo;
 import br.com.mresolucoes.imagens.ImagensUtils;
 import br.com.mresolucoes.utils.NumberUtil;
 
-import flash.display.Loader;
 import flash.events.Event;
 import flash.events.MouseEvent;
-import flash.net.URLRequest;
 
 import mx.containers.VBox;
-import mx.controls.Alert;
-import mx.controls.LinkButton;
 import mx.core.UIComponent;
 import mx.managers.PopUpManager;
-import mx.states.AddChild;
-import mx.utils.ObjectUtil;
 
-import spark.components.Button;
 import spark.components.Label;
 
 private var painelLogin:Login;
@@ -65,7 +55,6 @@ private static var usuarioGlobal:Usuario; //Usuario Global da Aplicação. Ele �
 
 [Bindable]
 private static var produto:Produto;
-public static var pedidoProduto:PedidoProduto;
 
 public static function getProdutoGlobal():Produto
 {
@@ -150,6 +139,12 @@ private function lidaModuloItem(event:Event):void{
 	var item:ModuloItem = ((ModuloItem) (event.currentTarget));
 	produto = item.produto;
 	modulo.setVisible(true);
+	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
+}
+
+public function detalhes(event:Event):void{
+	var item:ModuloItem = ((ModuloItem) (event.currentTarget));
+	produto = item.produto;
 	modulo.mreLoadModule("br/com/easyShop/telas/produtos/AbaDetalhesProduto.swf");
 }
 
@@ -359,24 +354,29 @@ public function mouseOut(evt:MouseEvent):void{
 
 protected function btnPedido_clickHandler():void
 {
-	var painelMeusPedidos:AbaMeusPedidos = new AbaMeusPedidos();
+//	var painelMeusPedidos:AbaMeusPedidos = new AbaMeusPedidos();
+//	painelMeusPedidos.showCloseButton=true;
+//	painelMeusPedidos.setVisible(true);
+//	PopUpManager.addPopUp(painelMeusPedidos, this, true);
+//	
+//	centralizarTela(painelMeusPedidos);
+	
+	painelMeusPedidos = new AbaMeusPedidos();
 	painelMeusPedidos.showCloseButton=true;
 	painelMeusPedidos.setVisible(true);
-	painelMeusPedidos.addEventListener("clicadoVerDetalhes", btnDetalhesPedido);
+	painelMeusPedidos.addEventListener("clicadoVerDetalhes", btnDetalhesPedido_clickHandler);
 	PopUpManager.addPopUp(painelMeusPedidos, this, true);
 	
 	centralizarTela(painelMeusPedidos);
 }
 
-
-private function btnDetalhesPedido(event:Event):void
+private function btnDetalhesPedido_clickHandler(event:Event):void
 {
 	painelMeusPedidos.visible = false;
 	painelMeusPedidosDetalhe = new AbaDetalheMeuPedido();
 	painelMeusPedidosDetalhe.showCloseButton=true;
 	painelMeusPedidosDetalhe.setVisible(true);
 	PopUpManager.addPopUp(painelMeusPedidosDetalhe, this, true);
-	
 	centralizarTela(painelMeusPedidosDetalhe);
 }
 
