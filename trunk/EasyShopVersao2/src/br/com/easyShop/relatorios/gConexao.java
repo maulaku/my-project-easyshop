@@ -9,7 +9,7 @@ public class gConexao {
 		String driver = "org.postgresql.Driver";
 		String url = "jdbc:postgresql://localhost:5432/easy";
 		String login = "postgres";
-		String senha = "root";
+		String senha = "postgres";
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, login, senha);
