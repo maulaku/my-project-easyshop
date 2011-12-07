@@ -286,7 +286,6 @@ public function resultSubCategoria(result:ResultJava):void
 	} 
 	catch(e2:Error)
 	{ 
-		Alerta.abrir("Ops, Ocorreu um erro ao carregar sub categorias", "EasyShop", null, null, null, ImagensUtils.INFO);
 	}	
 }
 
@@ -336,7 +335,7 @@ public function resultCategoria3(result:ResultJava):void
 				acord.label = categoria.nome;
 				acord.categoria = categoria;
 				acord.name = categoria.nome;
-				acord.image = "@Embed('../imagens/botoes/back.png')";
+				acord.image = Constantes.instance.ENDERECO_IMAGEM_CATEGORIA+NumberUtil.toString(categoria.pkCategoria)+".jpg";
 				acord.styleName = "gradientHeader";
 				accordion.addElement(acord);
 				MRemoteObject.get("CategoriaService.getTodasCategoriasSub", [categoria], resultSubCategoria);	
