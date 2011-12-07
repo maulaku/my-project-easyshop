@@ -550,7 +550,7 @@ public class MeusDados extends JFrame {
 					caminhoImagem = fc.getSelectedFile().toString();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null,
-							"Arquivo selecionado n�o � uma imagem!");
+							"Arquivo selecionado não é uma imagem!");
 				}
 				// *********************************************************************//
 
@@ -792,82 +792,82 @@ public class MeusDados extends JFrame {
 					.setStatus(Constantes.STATUS_ATIVO);
 		}
 
-		pais = (Pais) cboPais.getSelectedItem();
-		estado = (Estado) cboEstado.getSelectedItem();
-		estado.setPais(pais);
-		cidade = (Cidade) cboCidade.getSelectedItem();
-		cidade.setEstado(estado);
-
-		Endereco endereco = new Endereco();
-		EnderecoService enderecoServico = new EnderecoService();
-		endereco = enderecoServico.getEnderecoPessoa(this.usuario.getPessoa());
-
-		Pessoa pessoa = new Pessoa();
-		PessoaService pessoaService = new PessoaService();
-		pessoa = pessoaService.getPessoa(usuario.getPessoa().getPessoaFisica(),-1);
-		pessoa.setPessoaFisica(usuario.getPessoa().getPessoaFisica());
-
-		endereco.setBairro(txtBairro.getText());
-		endereco.setCep(txtCEP.getText());
-		endereco.setComplemento(txtComplemento.getText());
-		endereco.setLogradouro(txtLogradouro.getText());
-		endereco.setStatus(Constantes.STATUS_ATIVO);
-		endereco.setTipo(TipoEndereco.getIndexTipoEndereco(cboTipo
-				.getSelectedItem().toString()));
-		endereco.setNumero(txtNumero.getText());
-
-		this.usuario.setLogin(txtLogin.getText());
-		this.usuario.setSenha(txtPassword.getText());
-		this.usuario.setStatus(Constantes.STATUS_ATIVO);
-
-		if (tabbedPane.getSelectedIndex() == 0) {
-			PessoaFisicaService pessoaFisicaService = new PessoaFisicaService();
-			pessoaFisicaService.atualizar(this.usuario.getPessoa().getPessoaFisica());
-		} else {
-			PessoaJuridicaService pessoaJuridicaService = new PessoaJuridicaService();
-			pessoaJuridicaService.atualizar(this.usuario.getPessoa().getPessoaJuridica());
-		}
-
-		pessoaService.atulizar(pessoa);
-
-		for (Contato contatoAdd : listaContatos) {
-			contato = contatoAdd;
-			contato.setPessoa(pessoa);
-			ContatoService contatoService = new ContatoService();
-			contatoService.salvarContato(contato);
-		}
-
-		UsuarioService usuarioService = new UsuarioService();
-		usuarioService.salvar(this.usuario);
-
-		enderecoServico.atualizar(endereco);
-
+		int sair = 0;
+		
 		try {
-			// *********************************************************************//
-			// Salvar imagem na pasta
-			File imagem_file = new File(caminhoImagem);
-			BufferedImage imagem_buffered = null;
-			try {
-				imagem_buffered = ImageIO.read(imagem_file);
-			} catch (IOException e2) {
-				e2.printStackTrace();
-			}
-			try {
-				ImageIO.write(
-						imagem_buffered,
-						"jpg",
-						new File("Imagens/ImagensUsuario/usuario"
-								+ usuario.getPkUsuario() + ".jpg"));
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			// *********************************************************************//
+			pais = (Pais) cboPais.getSelectedItem();
+			estado = (Estado) cboEstado.getSelectedItem();
+			estado.setPais(pais);
+			cidade = (Cidade) cboCidade.getSelectedItem();
+			cidade.setEstado(estado);
 		} catch (Exception e) {
-			e.getStackTrace();
+			JOptionPane.showMessageDialog(null,
+			"Escolha o Pais, Estado e Cidade novamente!");
+			sair = 1;
 		}
+		
+		if(sair!=1){
+			Endereco endereco = new Endereco();
+			EnderecoService enderecoServico = new EnderecoService();
+			endereco = enderecoServico.getEnderecoPessoa(this.usuario.getPessoa());
 
-		JOptionPane.showMessageDialog(null,
-				"Dado(s) atualizado(s) com sucesso!!");
+			Pessoa pessoa = new Pessoa();
+			PessoaService pessoaService = new PessoaService();
+			pessoa = pessoaService.getPessoa(usuario.getPessoa().getPessoaFisica(),-1);
+			pessoa.setPessoaFisica(usuario.getPessoa().getPessoaFisica());
+
+			endereco.setBairro(txtBairro.getText());
+			endereco.setCep(txtCEP.getText());
+			endereco.setComplemento(txtComplemento.getText());
+			endereco.setLogradouro(txtLogradouro.getText());
+			endereco.setStatus(Constantes.STATUS_ATIVO);
+			endereco.setTipo(TipoEndereco.getIndexTipoEndereco(cboTipo
+					.getSelectedItem().toString()));
+			endereco.setNumero(txtNumero.getText());
+
+			this.usuario.setLogin(txtLogin.getText());
+			this.usuario.setSenha(txtPassword.getText());
+			this.usuario.setStatus(Constantes.STATUS_ATIVO);
+
+			if (tabbedPane.getSelectedIndex() == 0) {
+				PessoaFisicaService pessoaFisicaService = new PessoaFisicaService();
+				pessoaFisicaService.atualizar(this.usuario.getPessoa().getPessoaFisica());
+			} else {
+				PessoaJuridicaService pessoaJuridicaService = new PessoaJuridicaService();
+				pessoaJuridicaService.atualizar(this.usuario.getPessoa().getPessoaJuridica());
+			}
+
+			pessoaService.atulizar(pessoa);
+
+			for (Contato contatoAdd : listaContatos) {
+				contato = contatoAdd;
+				contato.setPessoa(pessoa);
+				ContatoService contatoService = new ContatoService();
+				contatoService.salvarContato(contato);
+			}
+
+			UsuarioService usuarioService = new UsuarioService();
+			usuarioService.salvar(this.usuario);
+
+			enderecoServico.atualizar(endereco);
+
+			try {
+				// *********************************************************************//
+				// Salvar imagem na pasta
+					File imagem_file = new File(caminhoImagem);
+					BufferedImage imagem_buffered = null;
+					imagem_buffered = ImageIO.read(imagem_file);
+				
+					ImageIO.write(
+							imagem_buffered,
+							"jpg",
+							new File("Imagens/ImagensUsuario/usuario"
+									+ usuario.getPkUsuario() + ".jpg"));
+			} catch (Exception e) {}
+
+			JOptionPane.showMessageDialog(null,
+					"Dado(s) atualizado(s) com sucesso!!");
+		}
 	}
 
 	private void habilitarCampos() {
